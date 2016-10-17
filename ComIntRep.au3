@@ -168,28 +168,28 @@ Func _Main()
 
 	Local $BtnOptions, $BtnLSP
 
-	$mForm = GUICreate($APPSET_TITLE & " " & _GetExecVersioning(@ScriptFullPath, 5), 420, 580, -1, -1)
-	GUISetFont(8.5, 400, 0, "Verdana")
-	$AppIcon = GUICtrlCreateIcon(@ScriptFullPath, 99, 5, 5, 72, 72)
-	$PrAni = GUICtrlCreateIcon($RESOURCE_PROCESS, -1, 10, 10, 64, 64)
-	GuiCtrlSetState($PrAni, $GUI_HIDE)
-	$lblWelc = GUICtrlCreateLabel(	"Hold your mouse over an option's icon to view its description. " & _
-									"Select your repair options and press 'Go!' to start. " & _
-									"Do not select something unless your computer has the described problem. " & _
-									"Skip any option you do not understand.", 90, 10, 310, 70)
-	GuiCtrlSetColor($lblWelc, 0x555555)
-	Switch @OSVersion
-		Case "WIN_7", "WIN_8", "WIN_81", "WIN_2008", "WIN_2008R2", "WIN_2012", "WIN_2012R2"
-			$lblNetDiagWeb = GUICtrlCreateLabel("Start Microsoft Internet Connection Troubleshooter.", 20, 90, 400, 20)
-			;~ GuiCtrlSetFont($lblNetDiagWeb, 9, -1, 4) ;Underlined
-			GuiCtrlSetColor($lblNetDiagWeb, 0x295496)
-			GuiCtrlSetCursor($lblNetDiagWeb, 0)
-		Case "WIN_XP", "WIN_XPe", "WIN_VISTA", "WIN_2003"
-			$lblSysRestore = GUICtrlCreateLabel("Click here to create a System Restore Point.", 20, 90, 400, 20)
-			;~ GuiCtrlSetFont($lblSysRestore, 9, -1, 4) ;Underlined
-			GuiCtrlSetColor($lblSysRestore, 0x295496)
-			GuiCtrlSetCursor($lblSysRestore, 0)
-	EndSwitch
+	;$mForm = GUICreate($APPSET_TITLE & " " & _GetExecVersioning(@ScriptFullPath, 5), 420, 580, -1, -1)
+	;GUISetFont(8.5, 400, 0, "Verdana")
+	;$AppIcon = GUICtrlCreateIcon(@ScriptFullPath, 99, 5, 5, 72, 72)
+	;$PrAni = GUICtrlCreateIcon($RESOURCE_PROCESS, -1, 10, 10, 64, 64)
+;~ 	GuiCtrlSetState($PrAni, $GUI_HIDE)
+;~ 	$lblWelc = GUICtrlCreateLabel(	"Hold your mouse over an option's icon to view its description. " & _
+;~ 									"Select your repair options and press 'Go!' to start. " & _
+;~ 									"Do not select something unless your computer has the described problem. " & _
+;~ 									"Skip any option you do not understand.", 90, 10, 310, 70)
+;~ 	GuiCtrlSetColor($lblWelc, 0x555555)
+;~ 	Switch @OSVersion
+;~ 		Case "WIN_7", "WIN_8", "WIN_81", "WIN_2008", "WIN_2008R2", "WIN_2012", "WIN_2012R2"
+;~ 			$lblNetDiagWeb = GUICtrlCreateLabel("Start Microsoft Internet Connection Troubleshooter.", 20, 90, 400, 20)
+;~ 			;~ GuiCtrlSetFont($lblNetDiagWeb, 9, -1, 4) ;Underlined
+;~ 			GuiCtrlSetColor($lblNetDiagWeb, 0x295496)
+;~ 			GuiCtrlSetCursor($lblNetDiagWeb, 0)
+;~ 		Case "WIN_XP", "WIN_XPe", "WIN_VISTA", "WIN_2003"
+;~ 			$lblSysRestore = GUICtrlCreateLabel("Click here to create a System Restore Point.", 20, 90, 400, 20)
+;~ 			;~ GuiCtrlSetFont($lblSysRestore, 9, -1, 4) ;Underlined
+;~ 			GuiCtrlSetColor($lblSysRestore, 0x295496)
+;~ 			GuiCtrlSetCursor($lblSysRestore, 0)
+;~ 	EndSwitch
 
 	$FileMenu = GUICtrlCreateMenu("&File")
 	$FiEventView = GuiCtrlCreateMenuItem("&Event Viewer...", $FileMenu)
@@ -261,7 +261,7 @@ Func _Main()
 	GUICtrlSetOnEvent($lblNetDiagWeb, "_OpenNetworkDiagnosticsWeb")
 
 	Local Const $Gap = 20
-	GUICtrlCreateGroup("", 10, 115, 400, 325)
+;~ 	GUICtrlCreateGroup("", 10, 115, 400, 325)
 	For $i = 0 To $RepCount
 		$IcoRep[$i] = GUICtrlCreateIcon(@ScriptFullPath, 201 + $i, 20, 135 + ($i * $Gap), 16, 16)
 		GUICtrlSetCursor($IcoRep[$i], 0)
@@ -271,7 +271,7 @@ Func _Main()
 		GUICtrlSetCursor($BtnRep[$i], 0)
 		GuiCtrlSetOnEvent($BtnRep[$i], "_RunRepair")
 	Next
-	GUICtrlCreateGroup("", -99, -99, 1, 1)  ;close group
+;~ 	GUICtrlCreateGroup("", -99, -99, 1, 1)  ;close group
 
 	GuiCtrlSetTip($IcoRep[0], 	"This option rewrites important registry keys that are used by " & @CRLF & _
 								"the Internet Protocol (TCP/IP) stack. This has the same result " & @CRLF & _
