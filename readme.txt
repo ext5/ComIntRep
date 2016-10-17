@@ -1,17 +1,16 @@
 ==================================================
 Complete Internet Repair
-© Rizonesoft. All rights reserved (www.rizonesoft.com)
+Â© Rizonesoft. All rights reserved
+http://www.rizonesoft.com
+==================================================
+Version: 3.0.2.2595
+Release Date: 17 October, 2016
+System Requirements: Windows XP, Vista, 2008, 7, 8, 8.1, 10 
+Disk Space: 3 MB
 ==================================================
 
-Version: 2.1.0.2103
-Release Date: 31 August 2014
-System Requirements: Windows XP, Windows Vista (32Bit & 64Bit), Windows 2008 (32Bit & 64Bit), Windows 7 (32Bit & 64Bit), Windows 8 (32Bit & 64Bit), Windows 8.1 (32Bit & 64Bit)
-Disk Space: 5 MB
-
---------------------------------------------------
 Description
 --------------------------------------------------
-
 We are living in an Internet age and with any widely used technologies, come a new set of problems. Humanity is busy moving to the point where most people cannot function without the internet. With services like online accounting, online backups, document editors and the fast amount of information it is easy to see why we became so dependent on it. But what do we do when it breaks down. Yea sure; a technician is an option, but this can be an expensive option. Complete Internet Repair will give you a free option to attempt to repair everything internet related.
 
 Complete Internet Repair is portable; this means you can carry it around with you on a USB flash drive and have it ready when something goes wrong. It will not write any settings to the registry or leave any traces on your computer. So, for all you wannabe technicians out there; you can use it and nobody would ever know you did. We recommend you download it now while you still have internet access. You never know what could happen.
@@ -24,7 +23,7 @@ With any repair utility, you will need to remember only two golden rules. Firstl
 - Pop-up error window with network related problem description.
 - No network connectivity due to registry errors.
 - DNS lookup problem.
-- Fail to renew the network adapter’s IP address or other DHCP errors.
+- Fail to renew the network adapterâ€™s IP address or other DHCP errors.
 - Network connectivity issue with limited or no connections message.
 - Windows update does not work
 - You are having problems connecting to secured websites (ex. Banking).
@@ -41,7 +40,14 @@ Complete Internet Repair will not repair physical or modem issues. If Complete I
 6. Reenter your internet access login information (the default login information for access to the modem configuration interface should be printed in the manual, but this is usually; username: admin password: admin). If you still cannot find the login information try http://www.routerpasswords.com
 7. After following all these steps and your internet is still not working, you modem could be broken and you will need to replace it or phone that overpriced technician to come lend a hand.
 
+
 --------------------------------------------------
-Installation
+Installing
 --------------------------------------------------
-Complete Internet Repair is very simple utility and, for this reason, does not demand any installation utility. Simply double-click on comintrep.exe and extract all the files to a folder of your choice. Now run the main executable file (usually, " ComIntRep.exe") in the newly extracted folder.
+
+--------------------------------------------------
+Portable
+--------------------------------------------------
+
+==================================================
+http://www.rizonesoft.com

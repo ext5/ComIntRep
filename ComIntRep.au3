@@ -1,762 +1,1062 @@
 #NoTrayIcon
-#RequireAdmin
-#Region ;**** Directives created by AutoIt3Wrapper_GUI ****
-#AutoIt3Wrapper_Version=Beta
-#AutoIt3Wrapper_Icon=Resources\ComIntRep.ico
-#AutoIt3Wrapper_Outfile=ComIntRep.exe
-#AutoIt3Wrapper_Compression=4
-#AutoIt3Wrapper_UseUpx=y
-#AutoIt3Wrapper_Compile_Both=y
-#AutoIt3Wrapper_UseX64=y
-#AutoIt3Wrapper_Res_Fileversion=2.1.0.2104
-#AutoIt3Wrapper_Res_Fileversion_AutoIncrement=y
-#AutoIt3Wrapper_Res_LegalCopyright=Copyright © 2014 Rizonesoft
-#AutoIt3Wrapper_Res_requestedExecutionLevel=requireAdministrator
-#AutoIt3Wrapper_Res_Icon_Add=Resources\ResIP.ico
-#AutoIt3Wrapper_Res_Icon_Add=Resources\Wins.ico
-#AutoIt3Wrapper_Res_Icon_Add=Resources\RenICon.ico
-#AutoIt3Wrapper_Res_Icon_Add=Resources\FlDNS.ico
-#AutoIt3Wrapper_Res_Icon_Add=Resources\InEx.ico
-#AutoIt3Wrapper_Res_Icon_Add=Resources\UpHist.ico
-#AutoIt3Wrapper_Res_Icon_Add=Resources\WinUp.ico
-#AutoIt3Wrapper_Res_Icon_Add=Resources\RepSSL.ico
-#AutoIt3Wrapper_Res_Icon_Add=Resources\ResFir.ico
-#AutoIt3Wrapper_Res_Icon_Add=Resources\hosts.ico
-#AutoIt3Wrapper_Res_Icon_Add=Resources\RepWG.ico
-#AutoIt3Wrapper_Res_Icon_Add=Resources\RunFixB.ico
-#AutoIt3Wrapper_Res_Icon_Add=Resources\RunFix.ico
-#AutoIt3Wrapper_Res_Icon_Add=Resources\Complete.ico
-#AutoIt3Wrapper_Res_Icon_Add=Resources\Gear.ico
-#AutoIt3Wrapper_Res_Icon_Add=Resources\Facebook.ico
-#AutoIt3Wrapper_Res_Icon_Add=Resources\Twitter.ico
-#AutoIt3Wrapper_Res_Icon_Add=Resources\LinkedIn.ico
-#AutoIt3Wrapper_Res_Icon_Add=Resources\Google.ico
-#AutoIt3Wrapper_Res_Icon_Add=Resources\PP.ico
-#AutoIt3Wrapper_Res_Icon_Add=Resources\Info.ico
-#EndRegion ;**** Directives created by AutoIt3Wrapper_GUI ****
+#OnAutoItStartRegister "_ReBarStartUp"
+
+#Region AutoIt3Wrapper Directives Dection
+
+#AutoIt3Wrapper_If_Run
+
+	;===============================================================================================================
+	; AutoIt3 Settings
+	;===============================================================================================================
+	#AutoIt3Wrapper_UseX64=Y										 ;~ (Y/N) Use AutoIt3_x64 or Aut2Exe_x64. Default=N
+	#AutoIt3Wrapper_Run_Debug_Mode=N								 ;~ (Y/N) Run Script with console debugging. Default=N
+	#AutoIt3Wrapper_Run_SciTE_Minimized=Y 							 ;~ (Y/N) Minimize SciTE while script is running. Default=N
+	#AutoIt3Wrapper_Run_SciTE_OutputPane_Minimized=N				 ;~ (Y/N) Minimize SciTE output pane at run time. Default=N
+	;===============================================================================================================
+	; Tidy Settings
+	;===============================================================================================================
+	#AutoIt3Wrapper_Run_Tidy=Y										 ;~ (Y/N) Run Tidy before compilation. Default=N
+	#AutoIt3Wrapper_Tidy_Stop_OnError=N								 ;~ (Y/N) Continue when only Warnings. Default=Y
+	;#Tidy_Parameters= 												;~ Tidy Parameters...see SciTE4AutoIt3 Helpfile for options
+	;===============================================================================================================
+	; AU3Check settings
+	;===============================================================================================================
+	#AutoIt3Wrapper_Run_AU3Check=Y									 ;~ (Y/N) Run au3check before compilation. Default=Y
+	;#AutoIt3Wrapper_AU3Check_Parameters=							;~ Au3Check parameters...see SciTE4AutoIt3 Helpfile for options
+	;#AutoIt3Wrapper_AU3Check_Stop_OnWarning=						;~ (Y/N) Continue/Stop on Warnings.(Default=N)
+
+#Autoit3Wrapper_If_Compile
+
+	#AutoIt3Wrapper_ShowProgress=Y									 ;~ (Y/N) Show ProgressWindow during Compile. Default=Y
+	;===============================================================================================================
+	; AutoIt3 Settings
+	;===============================================================================================================
+	#AutoIt3Wrapper_UseX64=Y										 ;~ (Y/N) Use AutoIt3_x64 or Aut2Exe_x64. Default=N
+	#AutoIt3Wrapper_Version=B                        				 ;~ (B/P) Use Beta or Production for AutoIt3 and Aut2Eex. Default is P
+	#AutoIt3Wrapper_Run_Debug_Mode=N								 ;~ (Y/N) Run Script with console debugging. Default=N
+	;#AutoIt3Wrapper_Autoit3Dir=									;~ Optionally override the AutoIt3 install directory to use.
+	;#AutoIt3Wrapper_Aut2exe=										;~ Optionally override the Aut2exe.exe to use for this script
+	;#AutoIt3Wrapper_AutoIt3=										;~ Optionally override the Autoit3.exe to use for this script
+	;===============================================================================================================
+	; Aut2Exe Settings
+	;===============================================================================================================
+	#AutoIt3Wrapper_Icon=Themes\Icons\ComIntRep.ico					 ;~ Filename of the Ico file to use for the compiled exe
+	#AutoIt3Wrapper_OutFile_Type=exe								 ;~ exe=Standalone executable (Default); a3x=Tokenised AutoIt3 code file
+	#AutoIt3Wrapper_OutFile=ComIntRep.exe							 ;~ Target exe/a3x filename.
+	#AutoIt3Wrapper_OutFile_X64=ComIntRep_X64.exe					 ;~ Target exe filename for X64 compile.
+	;#AutoIt3Wrapper_Compression=4									;~ Compression parameter 0-4  0=Low 2=normal 4=High. Default=2
+	;#AutoIt3Wrapper_UseUpx=Y										;~ (Y/N) Compress output program.  Default=Y
+	;#AutoIt3Wrapper_UPX_Parameters=								;~ Override the default settings for UPX.
+	#AutoIt3Wrapper_Change2CUI=N									 ;~ (Y/N) Change output program to CUI in stead of GUI. Default=N
+	#AutoIt3Wrapper_Compile_both=Y									 ;~ (Y/N) Compile both X86 and X64 in one run. Default=N
+	;===============================================================================================================
+	; Target Program Resource info
+	;===============================================================================================================
+	#AutoIt3Wrapper_Res_Comment=Complete Internet Repair				 ;~ Comment field
+	#AutoIt3Wrapper_Res_Description=Complete Internet Repair	      	 ;~ Description field
+	#AutoIt3Wrapper_Res_Fileversion=3.0.2.2596
+	#AutoIt3Wrapper_Res_FileVersion_AutoIncrement=Y  					 ;~ (Y/N/P) AutoIncrement FileVersion. Default=N
+	#AutoIt3Wrapper_Res_FileVersion_First_Increment=N					 ;~ (Y/N) AutoIncrement Y=Before; N=After compile. Default=N
+	#AutoIt3Wrapper_Res_HiDpi=Y                      					 ;~ (Y/N) Compile for high DPI. Default=N
+	#AutoIt3Wrapper_Res_ProductVersion=0             					 ;~ Product Version
+	#AutoIt3Wrapper_Res_Language=2057									 ;~ Resource Language code . Default 2057=English (United Kingdom)
+	#AutoIt3Wrapper_Res_LegalCopyright=Â© 2016 Rizonesoft				 ;~ Copyright field
+	#AutoIt3Wrapper_res_requestedExecutionLevel=highestAvailable		 ;~ asInvoker, highestAvailable, requireAdministrator or None (remove the trsutInfo section).  Default is the setting from Aut2Exe (asInvoker)
+	#AutoIt3Wrapper_res_Compatibility=Vista,Win7,Win8,Win81,Win10		 ;~ Vista/Windows7/win7/win8/win81 allowed separated by a comma     (Default=Win81)
+	;#AutoIt3Wrapper_Res_SaveSource=N									;~ (Y/N) Save a copy of the Script_source in the EXE resources. Default=N
+	; If _Res_SaveSource=Y the content of Script_source depends on the _Run_Au3Stripper and #Au3Stripper_parameters directives:
+	;    If _Run_Au3Stripper=Y then
+	;        If #Au3Stripper_parameters=/STRIPONLY then Script_source is stripped script & stripped includes
+	;        If #Au3Stripper_parameters=/STRIPONLYINCLUDES then Script_source is original script & stripped includes
+	;       With any other parameters, the SaveSource directive is ignored as obfuscation is intended to protect the source
+	;   If _Run_Au3Stripper=N or is not set then
+	;       Scriptsource is original script only
+	; AutoIt3Wrapper indicates the SaveSource action taken in the SciTE console during compilation
+	; See SciTE4AutoIt3 Helpfile for more detail on Au3Stripper parameters
+	;===============================================================================================================
+	; Free form resource fields ... max 15
+	;===============================================================================================================
+	; You can use the following variables:
+	;	%AutoItVer% which will be replaced with the version of AutoIt3
+	;	%date% = PC date in short date format
+	;	%longdate% = PC date in long date format
+	;	%time% = PC timeformat
+	;	eg: #AutoIt3Wrapper_Res_Field=AutoIt Version|%AutoItVer%
+	#AutoIt3Wrapper_Res_Field=CompanyName|Rizonesoft
+	#AutoIt3Wrapper_Res_Field=ProductName|Complete Internet Repair
+	#AutoIt3Wrapper_Res_Field=HomePage|http://www.rizonesoft.com
+	#AutoIt3Wrapper_Res_Field=AutoItVersion|%AutoItVer%
+	; Add extra ICO files to the resources
+	; Use full path of the ico files to be added
+	; ResNumber is a numeric value used to access the icon: TraySetIcon(@ScriptFullPath, ResNumber)
+	; If no ResNumber is specified, the added icons are numbered from 201 up
+	; #AutoIt3Wrapper_Res_Icon_Add=                   				;~ Filename[,ResNumber[,LanguageCode]] of ICO to be added.
+	; #AutoIt3Wrapper_Res_File_Add=                   				;~ Filename[,Section [,ResName[,LanguageCode]]] to be added.
+	; Add files to the resources - can be compressed
+	; #AutoIt3Wrapper_Res_Remove=
+	; Remove resources
+	#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\ComIntRepH.ico
+	;===============================================================================================================
+	; Tidy Settings
+	;===============================================================================================================
+	#AutoIt3Wrapper_Run_Tidy=N										 ;~ (Y/N) Run Tidy before compilation. Default=N
+	;#AutoIt3Wrapper_Tidy_Stop_OnError=              				;~ (Y/N) Continue when only Warnings. Default=Y
+	;#Tidy_Parameters=                               				;~ Tidy Parameters...see SciTE4AutoIt3 Helpfile for options
+	;===============================================================================================================
+	; Au3Stripper Settings
+	;===============================================================================================================
+	#AutoIt3Wrapper_Run_Au3Stripper=N								 ;~ (Y/N) Run Au3Stripper before compilation. default=N
+	;#Au3Stripper_Parameters=										;~ Au3Stripper parameters...see SciTE4AutoIt3 Helpfile for options
+	;#Au3Stripper_Ignore_Variables=
+	;===============================================================================================================
+	; AU3Check settings
+	;===============================================================================================================
+	#AutoIt3Wrapper_Run_AU3Check=Y									 ;~ (Y/N) Run au3check before compilation. Default=Y
+	;#AutoIt3Wrapper_AU3Check_Parameters=							;~ Au3Check parameters...see SciTE4AutoIt3 Helpfile for options
+	#AutoIt3Wrapper_AU3Check_Stop_OnWarning=Y 						 ;~ (Y/N) Continue/Stop on Warnings.(Default=N)
+	;===============================================================================================================
+	; Versioning Settings
+	;===============================================================================================================
+	;#AutoIt3Wrapper_Versioning=V									;~ (Y/N/V) Run Versioning to update the script source. default=N
+	;	V=only run when fileversion is increased by #AutoIt3Wrapper_Res_FileVersion_AutoIncrement.
+	;#AutoIt3Wrapper_Versioning_Parameters=/NoPrompt				;~ /NoPrompt  : Will skip the Comments prompt
+	;	/Comments  : Text to added in the Comments. It can also contain the below variables.
+	;===============================================================================================================
+	; RUN BEFORE AND AFTER definitions
+	;===============================================================================================================
+	;The following directives can contain: these variables
+	;	%in% , %out%, %outx64%, %icon% which will be replaced by the fullpath\filename.
+	;	%scriptdir% same as @ScriptDir and %scriptfile% = filename without extension.
+	;	%fileversion% is the information from the #AutoIt3Wrapper_Res_Fileversion directive
+	;	%scitedir% will be replaced by the SciTE program directory
+	;	%autoitdir% will be replaced by the AutoIt3 program directory
+	;#AutoIt3Wrapper_Run_Before_Admin=               				;~ (Y/N) Run subsequent Run_Before statements with #RequireAdmin. Default=N
+	;#AutoIt3Wrapper_Run_After_Admin=                				;~ (Y/N) Run subsequent Run_After statements with #RequireAdmin. Default=N
+	;#AutoIt3Wrapper_Run_Before=                     				;~ process to run before compilation - multiple records will be processed in sequence
+	;#AutoIt3Wrapper_Run_After=                      				;~ process to run after compilation - multiple records will be processed in sequence
+	;===============================================================================================================
+
+#AutoIt3Wrapper_EndIf
+
+#EndRegion AutoIt3Wrapper Directives Dection
+
+Opt("CaretCoordMode", 1) ;~ 1=absolute, 0=relative, 2=client
+Opt("ExpandEnvStrings", 1) ;~ 0=don't expand, 1=do expand
+Opt("ExpandVarStrings", 1) ;~ 0=don't expand, 1=do expand
+Opt("GUICloseOnESC", 1) ;~ 1=ESC  closes, 0=ESC won't close
+Opt("GUICoordMode", 1) ;~ 1=absolute, 0=relative, 2=cell
+Opt("GUIDataSeparatorChar", "|") ;~ "|" is the default
+Opt("GUIOnEventMode", 1) ;~ 0=disabled, 1=OnEvent mode enabled
+Opt("GUIResizeMode", 802) ;~ 0=no resizing, <1024 special resizing
+Opt("GUIEventOptions", 0) ;~ 0=default, 1=just notification, 2=GUICtrlRead tab index
+Opt("MouseClickDelay", 10) ;~ 10 milliseconds
+Opt("MouseClickDownDelay", 10) ;~ 10 milliseconds
+Opt("MouseClickDragDelay", 250) ;~ 250 milliseconds
+Opt("MouseCoordMode", 1) ;~ 1=absolute, 0=relative, 2=client
+Opt("MustDeclareVars", 1) ;~ 0=no, 1=require pre-declaration
+Opt("PixelCoordMode", 1) ;~ 1=absolute, 0=relative, 2=client
+Opt("SendAttachMode", 0) ;~ 0=don't attach, 1=do attach
+Opt("SendCapslockMode", 1) ;~ 1=store and restore, 0=don't
+Opt("SendKeyDelay", 5) ;~ 5 milliseconds
+Opt("SendKeyDownDelay", 1) ;~ 1 millisecond
+Opt("TCPTimeout", 100) ;~ 100 milliseconds
+Opt("TrayAutoPause", 1) ;~ 0=no pause, 1=Pause
+Opt("TrayIconDebug", 1) ;~ 0=no info, 1=debug line info
+Opt("TrayIconHide", 1) ;~ 0=show, 1=hide tray icon
+Opt("TrayMenuMode", 1) ;~ 0=append, 1=no default menu, 2=no automatic check, 4=menuitemID  not return
+Opt("TrayOnEventMode", 1) ;~ 0=disable, 1=enable
+Opt("WinDetectHiddenText", 0) ;~ 0=don't detect, 1=do detect
+Opt("WinSearchChildren", 1) ;~ 0=no, 1=search children also
+Opt("WinTextMatchMode", 1) ;~ 1=complete, 2=quick
+Opt("WinTitleMatchMode", 1) ;~ 1=start, 2=subStr, 3=exact, 4=advanced, -1 to -4=Nocase
+Opt("WinWaitDelay", 250) ;~ 250 milliseconds
 
 
-Opt("TrayMenuMode", 1) ;~ Default tray menu items (Script Paused/Exit) will not be shown.
-Opt("MustDeclareVars", 1)
-Opt("GUIOnEventMode", 1)
-
+#include <ListviewConstants.au3>
 #include <WindowsConstants.au3>
-#include <StaticConstants.au3>
 #include <ButtonConstants.au3>
+#include <StaticConstants.au3>
+#include <StringConstants.au3>
 #include <GuiConstantsEx.au3>
+#include <EditConstants.au3>
+#include <GuiImageList.au3>
+#include <GuiListView.au3>
 #include <Constants.au3>
-#include <GuiEdit.au3>
-#include <Misc.au3>
+#include <GDIPlus.au3>
+#include <GuiMenu.au3>
+
+#include "Includes\ReBar_Declarations.au3"
+#include "Includes\ReBar_Versioning.au3"
+#include "Includes\ReBar_Functions.au3"
+#include "Includes\ReBar_Services.au3"
+#include "Includes\ReBar_Registry.au3"
+#include "Includes\ReBar_Logging.au3"
+#include "Includes\ReBar_Process.au3"
+#include "Includes\ReBar_Splash.au3"
+#include "Includes\ReBar_File.au3"
+
+#include "UDF\ReBar_Options.au3"
+
+#include "Includes\ReBar_Startup.au3"
 
 
-#include <UDF\Configuration.au3>
-#include <UDF\Functions.au3>
-#include <UDF\Services.au3>
+;===============================================================================================================
+; Declarations
+;===============================================================================================================
+Global Const $DIR_SDDATASTORE = @WindowsDir & "\SoftwareDistribution\DataStore"
+Global Const $DIR_SDDATASTORE_OLD = @WindowsDir & "\SoftwareDistribution\DataStore.Old"
+Global Const $DIR_SDDOWNLOAD = @WindowsDir & "\SoftwareDistribution\Download"
+Global Const $DIR_SDDOWNLOAD_OLD = @WindowsDir & "\SoftwareDistribution\Download.Old"
+Global Const $DIR_CATROOT2 = @SystemDir & "\CatRoot2"
+Global Const $DIR_CATROOT2_OLD = @SystemDir & "\CatRoot2.Old"
+Global Const $COUNT_REPAIR = 12
+Global Const $LINESPACING = 20
+
+Global $g_aniProcessing, $g_CoreGuiHandle, $g_CoreGuiCoords, $g_BtnExtend, $g_GuiRetracted = True
+Global $g_IconRepair[$COUNT_REPAIR], $g_ChkRepair[$COUNT_REPAIR], $g_BtnHlpRepair[$COUNT_REPAIR], $g_BtnGoRepair[$COUNT_REPAIR]
+Global $g_PrTopRepair[$COUNT_REPAIR], $g_LineRepair[$COUNT_REPAIR], $g_ProgressRepair[$COUNT_REPAIR]
+Global $g_BtnHlpRepairH[$COUNT_REPAIR], $g_BtnGoRepairH[$COUNT_REPAIR]
+Global $g_ListStatus, $g_ImgStatus, $g_EditInfo, $g_BtnGo, $g_Cancel, $g_IntExplVersion
+Global $g_MenuFile, $g_MenuMaintenance, $g_MenuTrouble, $g_MenuCommands, $g_MenuTools, $g_MenuHelp
+Global $g_ResetWinsock = True, $g_ResetFirewall = True, $g_ClearWinUpdate = True, $g_ResetProxy = True, $g_ResetFirewall = True
+Global $g_Cancel, $g_Singlelarity = True
+
+Global $g_OptionsGui, $g_ChkBackupFolders, $g_ChkLogEnabled, $g_InLogSize, $g_LabelLogSize
+Global $g_OptionBackupData = 0, $g_InLogSizeTemp = 0, $g_BtnSaveSettings
+;===============================================================================================================
 
 
-;~ Application Settings
-Global Const $APPSET_TITLE = "Complete Internet Repair"
+If Not @AutoItX64 And @OSArch = "X64" Then
 
-Global Const $RESOURCE_PROCESS = @ScriptDir & "\themes\101.ani"
-Global Const $LOGGING_COMINTREP = @ScriptDir & "\logging\ComIntRepair.log"
-Global Const $CIRResLSP = @ScriptDir & "\logging\CIRLSPs.log"
-Global Const $CIRResLog = @ScriptDir & "\logging\CIRReset.log"
-Global Const $Note2EXE = @ScriptDir & "\Bin\Notepad2\Notepad2.exe"
-Global Const $GDataStoreDir = @WindowsDir & "\SoftwareDistribution\DataStore"
-Global Const $GDownLoadDir = @WindowsDir & "\SoftwareDistribution\Download"
-Global Const $GCATRootDir = @SystemDir & "\CatRoot2"
-Global Const $CIRVer = FileGetVersion(@ScriptFullPath)
-
-Global $LOGGING_MAXSIZE = 2048, $LOGGING_ENABLE = 1
-Global $GOHPage
-Global $IEXPLORE_VERSION
-
-Global $mForm, $AppIcon, $PrAni, $lblWelc, $BtnGo, $eStatus
-Global $RepCount = 10, $FileMenu, $CommMenu, $OpMenu, $HelpMenu, $HlpAbout, $AboutDlg
-Global $ChkRep[$RepCount + 1], $IcoRep[$RepCount + 1], $BtnRep[$RepCount + 1], $HoverIcon[$RepCount + 1]
-
-Global $ClearWinUpHist = False
-Global $EventLogConfigured = False
-Global $ResetWinsock = False
-Global $Cancel = 0
-Global $GoMode = 0
-
-
-
-If @OSVersion = "WIN_2000" Or @OSVersion = "WIN_XPe" Then
-	MsgBox(64, $APPSET_TITLE, 	$APPSET_TITLE & " is not compatable with your version of windows. If you believe this to be an error, " & _
-								"please feel free to visit https://www.rizonesoft.com and send me a message.", 30)
-	ShellExecute("https://www.rizonesoft.com")
-	Exit
-Else
-
-	If Not @AutoItX64 And @OSArch = "X64" Then
-
-		If FileExists(@ScriptDir & "\ComIntRep_x64.exe") Then
-			ShellExecute(@ScriptDir & "\ComIntRep_x64.exe")
-			Exit
-		Else
-
-			If Not IsDeclared("iMsgBox") Then Local $iMsgBox
-			$iMsgBox = MsgBox(	$MB_YESNO + $MB_ICONEXCLAMATION + 262144, "Warning", _
-								$APPSET_TITLE & " 32 Bit is not compatible with your Windows version. " & _
-								"Please download " & $APPSET_TITLE & " 64 Bit. Would you like to visit the Download page " & _
-								"now to download the 64 Bit version?", 60)
-			Switch $iMsgBox
-				Case  $IDYES
-					ShellExecute("http://www.rizonesoft.com")
-					Exit
-				Case -1, $IDNO
-					Exit
-			EndSwitch
-
-		EndIf
-
+	If FileExists(@ScriptDir & "\ComIntRep_X64.exe") Then
+		ShellExecute(@ScriptDir & "\ComIntRep_X64.exe")
+		Exit
 	Else
 
-		If _Singleton(@ScriptName, 1) = 0 Then
-			MsgBox(262192, "Warning!", "An occurence of " & $APPSET_TITLE & " is already running.", 30)
-			Exit
-		Else
-
-			If Not FileExists(@ScriptDir & "\logging") Then DirCreate(@ScriptDir & "\logging")
-			If Not FileExists(@ScriptDir & "\Themes") Then DirCreate(@ScriptDir & "\Themes")
-			FileInstall("Resources\101.ani", $RESOURCE_PROCESS, 0)
-
-			_LoadSettings()
-
-			If FileExists($LOGGING_COMINTREP) Then
-				FileSetAttrib($LOGGING_COMINTREP, "-RASHOT")
-				If FileGetSize($LOGGING_COMINTREP) > ($LOGGING_MAXSIZE * 1024) Then
-					FileDelete($LOGGING_COMINTREP)
-				EndIf
-			EndIf
-
-			_LogWrite("", False)
-			_LogWrite("", False)
-			_LogWrite("                                            ./", False)
-			_LogWrite("                                          (o o)", False)
-			_LogWrite("--------------------------------------oOOo-(_)-oOOo--------------------------------------", False)
-
-			If FileExists(@ProgramFilesDir & "\Internet Explorer\iexplore.exe") Then
-				Local $sSpltString =  StringSplit(FileGetVersion(@ProgramFilesDir & "\Internet Explorer\iexplore.exe"), ".")
-				$IEXPLORE_VERSION = StringStripWS($sSpltString[1] & "." & $sSpltString[2] & "." & $sSpltString[3], 8)
-			EndIf
-
-			_Main()
-
-		EndIf
+		MsgBox($MB_OK + $MB_ICONERROR, "Warning", "Unfortuantely " & _
+				$g_ReBarProgName & " 32 Bit is not compatible " & _
+				"with your Windows version. Please download " & _
+				$g_ReBarProgName & " 64 Bit from " & $g_ReBarAboutHome, 60)
+		ShellExecute($g_ReBarAboutHome)
+		Exit
 
 	EndIf
+
+Else
+
+	_SplashStart("Initializing " & $g_ReBarProgName)
+	_SplashUpdate("Setting Working Directories", 1)
+	_SetWorkingDirectories()
+	Global Const $LOG_LSP = $g_ReBarLogBase & "\LSPs.log"
+	Global Const $LOG_IPRESET = $g_ReBarLogBase & "\IP_Reset.log"
+	_SplashUpdate("Loading Settings", 2)
+	_LoadSettings()
+	_SplashUpdate("Initializing Logging Subsystem", 3)
+	_LoggingInitialize()
+	_SplashUpdate("Checking Integrity", 4)
+	_CheckResources($g_ReBarResFugue)
+	_CheckResources($g_ReBarResDoors)
+	_SplashUpdate("Building Interface", 5)
+	_StartCoreGUI()
 
 EndIf
 
-Func _LoadSettings()
 
-	$LOGGING_MAXSIZE = IniRead(@ScriptDir & "\CIntRep.ini", "Logging", "LogMaxSize", 2048)
-	$LOGGING_ENABLE = IniRead(@ScriptDir & "\CIntRep.ini", "Logging", "LogEnabled", 1)
+Func _StartCoreGUI()
 
-EndFunc
+	Local $guiStartTop = -1
+	Local $miFileEvView, $miFileClose, $miFileReboot, $miFileOptions
+	Local $mnuLogging, $miLogDir, $miOpenLog, $miTcpResLog
+	Local $miMaintRestore
+	Local $miTrIntSpeed, $miTrRouterPass
+	Local $miComShowIPConf, $miComShowLSP, $miComIP6Install, $miComIP6Uninstall
+	Local $miToolRDP, $miToolIEP, $miTrIntTrouble
+	Local $miHlpHome, $miHlpSupport
+	Local $lblHeading, $lblWelcome, $lblNetDiagWeb, $lblSysRestore
 
-
-Func _Main()
-
-	Local $FiEventView, $FiLoggMenu, $FiOLogDir, $FiOpenLog, $FiTcpResLog, $FiReboot, $FiClose
-	Local $CommSysRes, $CommNetDiagWeb, $CommIPAll, $ComShowLSP, $ComInsIP6, $ComUnInsIP6, $ComRDP, $ComIEProperties
-	Local $OpPre, $HlpHome, $HlpSpeedTest, $HlPasswords, $lblFreeMsg, $lnkPurch
-	Local $lblNetDiagWeb, $lblSysRestore
-
-	Local $BtnOptions, $BtnLSP
-
-	;$mForm = GUICreate($APPSET_TITLE & " " & _GetExecVersioning(@ScriptFullPath, 5), 420, 580, -1, -1)
-	;GUISetFont(8.5, 400, 0, "Verdana")
-	;$AppIcon = GUICtrlCreateIcon(@ScriptFullPath, 99, 5, 5, 72, 72)
-	;$PrAni = GUICtrlCreateIcon($RESOURCE_PROCESS, -1, 10, 10, 64, 64)
-;~ 	GuiCtrlSetState($PrAni, $GUI_HIDE)
-;~ 	$lblWelc = GUICtrlCreateLabel(	"Hold your mouse over an option's icon to view its description. " & _
-;~ 									"Select your repair options and press 'Go!' to start. " & _
-;~ 									"Do not select something unless your computer has the described problem. " & _
-;~ 									"Skip any option you do not understand.", 90, 10, 310, 70)
-;~ 	GuiCtrlSetColor($lblWelc, 0x555555)
-;~ 	Switch @OSVersion
-;~ 		Case "WIN_7", "WIN_8", "WIN_81", "WIN_2008", "WIN_2008R2", "WIN_2012", "WIN_2012R2"
-;~ 			$lblNetDiagWeb = GUICtrlCreateLabel("Start Microsoft Internet Connection Troubleshooter.", 20, 90, 400, 20)
-;~ 			;~ GuiCtrlSetFont($lblNetDiagWeb, 9, -1, 4) ;Underlined
-;~ 			GuiCtrlSetColor($lblNetDiagWeb, 0x295496)
-;~ 			GuiCtrlSetCursor($lblNetDiagWeb, 0)
-;~ 		Case "WIN_XP", "WIN_XPe", "WIN_VISTA", "WIN_2003"
-;~ 			$lblSysRestore = GUICtrlCreateLabel("Click here to create a System Restore Point.", 20, 90, 400, 20)
-;~ 			;~ GuiCtrlSetFont($lblSysRestore, 9, -1, 4) ;Underlined
-;~ 			GuiCtrlSetColor($lblSysRestore, 0x295496)
-;~ 			GuiCtrlSetCursor($lblSysRestore, 0)
-;~ 	EndSwitch
-
-	$FileMenu = GUICtrlCreateMenu("&File")
-	$FiEventView = GuiCtrlCreateMenuItem("&Event Viewer...", $FileMenu)
-	GuiCtrlCreateMenuItem("", $FileMenu)
-	$FiLoggMenu = GUICtrlCreateMenu("&Logging", $FileMenu)
-	$FiOLogDir = GuiCtrlCreateMenuItem("Open &logging Directory...", $FiLoggMenu)
-	GUICtrlCreateMenuItem("", $FiLoggMenu)
-	$FiOpenLog = GuiCtrlCreateMenuItem("&Open [ComIntRepair.log]...", $FiLoggMenu)
-	If @OSVersion = "WIN_XP" Or @OSVersion = "WIN_2003" Then
-		GUICtrlCreateMenuItem("", $FiLoggMenu)
-		$FiTcpResLog = GUICtrlCreateMenuItem("Open [CIRReset.log]...", $FiLoggMenu)
+	If @DesktopHeight < 600 Then
+		$g_GuiRetracted = False
 	EndIf
-	GuiCtrlCreateMenuItem("", $FileMenu)
-	$FiReboot = GuiCtrlCreateMenuItem("&Reboot Windows", $FileMenu)
-	$FiClose = GuiCtrlCreateMenuItem("&Close " & @TAB & " Esc", $FileMenu)
-	$CommMenu = GUICtrlCreateMenu("&Commands")
 
-	$CommSysRes = GUICtrlCreateMenuItem("Create a System Restore Point", $CommMenu)
-	GUICtrlCreateMenuItem("", $CommMenu)
+	$g_ReBarCoreGui = GUICreate($g_ReBarGuiTitle, $g_ReBarFormWidth, $g_ReBarFormHeight, -1, 25, -1)
+	GUIRegisterMsg($WM_GETMINMAXINFO, "WM_GETMINMAXINFO")
+	GUISetFont($g_ReBarFontSize, 400, -1, $g_ReBarFontName, $g_ReBarCoreGui, $CLEARTYPE_QUALITY)
+
+	$g_CoreGuiHandle = WinGetHandle($g_ReBarCoreGui)
+	$g_CoreGuiCoords = WinGetPos($g_CoreGuiHandle)
+
+	If Not @Compiled Then
+		GUISetIcon($g_ReBarIcon, 0, $g_ReBarCoreGui)
+	EndIf
+
+	$g_MenuFile = GUICtrlCreateMenu("&File")
+	$g_MenuMaintenance = GUICtrlCreateMenu("&Maintenance")
+	$g_MenuTrouble = GUICtrlCreateMenu("&Troubleshoot")
+	$g_MenuCommands = GUICtrlCreateMenu("&Commands")
+	$g_MenuTools = GUICtrlCreateMenu("T&ools")
+	$g_MenuHelp = GUICtrlCreateMenu("&Help")
+
+	$miFileEvView = GUICtrlCreateMenuItem("Open &Event Viewer", $g_MenuFile)
+	GUICtrlCreateMenuItem("", $g_MenuFile)
+	$miFileOptions = GUICtrlCreateMenuItem("Preferences", $g_MenuFile)
+	GUICtrlCreateMenuItem("", $g_MenuFile)
+	$mnuLogging = GUICtrlCreateMenu("&Logging", $g_MenuFile)
+	$miLogDir = GUICtrlCreateMenuItem("Open logging &Directory", $mnuLogging)
+	$miOpenLog = GUICtrlCreateMenuItem("Open logging &File", $mnuLogging)
+	If @OSVersion = "WIN_XP" Or @OSVersion = "WIN_2003" Then
+		GUICtrlCreateMenuItem("", $mnuLogging)
+		$miTcpResLog = GUICtrlCreateMenuItem("Open &IP reset log", $mnuLogging)
+	EndIf
+	GUICtrlCreateMenuItem("", $g_MenuFile)
+	$miFileReboot = GUICtrlCreateMenuItem("&Reboot Windows", $g_MenuFile)
+	$miFileClose = GUICtrlCreateMenuItem("&Close" & @TAB & "Esc", $g_MenuFile)
+
+	GUICtrlSetOnEvent($miFileEvView, "_StartEventLog")
+	GUICtrlSetOnEvent($miLogDir, "_OpenLoggingDirectory")
+	GUICtrlSetOnEvent($miOpenLog, "_OpenLogging")
+	GUICtrlSetOnEvent($miTcpResLog, "_OpenIPResetLog")
+	GUICtrlSetOnEvent($miFileReboot, "_RebootWindows")
+	GUICtrlSetOnEvent($miFileOptions, "_ShowOptionsDlg")
+	GUICtrlSetOnEvent($miFileClose, "_ShutdownProgram")
+
 	Switch @OSVersion
-		Case "WIN_7", "WIN_8", "WIN_81", "WIN_2008", "WIN_2008R2", "WIN_2012", "WIN_2012R2"
-			$CommNetDiagWeb = GUICtrlCreateMenuItem("Start Microsoft internet connection troubleshooter", $CommMenu)
-			GUICtrlCreateMenuItem("", $CommMenu)
+		Case "WIN_7", "WIN_8", "WIN_81", "WIN_10", "WIN_2008", "WIN_2008R2", "WIN_2012", "WIN_2012R2"
+			$miTrIntTrouble = GUICtrlCreateMenuItem("Start Windows Internet &Troubleshooter", $g_MenuTrouble)
+			GUICtrlCreateMenuItem("", $g_MenuTrouble)
+			GUICtrlSetOnEvent($miTrIntTrouble, "_OpenNetworkDiagnosticsWeb")
 	EndSwitch
-	$CommIPAll = GUICtrlCreateMenuItem("Show &TCP/IP configuration", $CommMenu)
-	$ComShowLSP = GUICtrlCreateMenuItem("Show Winsock &LSPs", $CommMenu)
+	$miTrIntSpeed = GUICtrlCreateMenuItem("&Internet Speed Test", $g_MenuTrouble)
+	$miTrRouterPass = GUICtrlCreateMenuItem("Get &Router Passwords", $g_MenuTrouble)
+
+	GUICtrlSetOnEvent($miTrIntSpeed, "_SpeedTest")
+	GUICtrlSetOnEvent($miTrRouterPass, "_GetRouterPasswords")
+
+	$miMaintRestore = GUICtrlCreateMenuItem("System &Restore", $g_MenuMaintenance)
+	GUICtrlSetOnEvent($miMaintRestore, "_OpenWindowsSystemRestore")
+
+	$miComShowIPConf = GUICtrlCreateMenuItem("Show &TCP/IP configuration", $g_MenuCommands)
+	GUICtrlCreateMenuItem("", $g_MenuCommands)
+	$miComShowLSP = GUICtrlCreateMenuItem("Show Winsock &LSPs", $g_MenuCommands)
 	If @OSVersion = "WIN_XP" Or @OSVersion = "WIN_2003" Then
-		GUICtrlCreateMenuItem("", $CommMenu)
-		$ComInsIP6 = GUICtrlCreateMenuItem("&Install IP6 protocol", $CommMenu)
-		$ComUnInsIP6 = GUICtrlCreateMenuItem("&Uninstall IP6 protocol", $CommMenu)
+		GUICtrlCreateMenuItem("", $g_MenuCommands)
+		$miComIP6Install = GUICtrlCreateMenuItem("&Install IP6 protocol", $g_MenuCommands)
+		$miComIP6Uninstall = GUICtrlCreateMenuItem("&Uninstall IP6 protocol", $g_MenuCommands)
+		GUICtrlSetOnEvent($miComIP6Install, "_InstallIP6")
+		GUICtrlSetOnEvent($miComIP6Uninstall, "_UnInstallIP6")
 	EndIf
-	GUICtrlCreateMenuItem("", $CommMenu)
-	$ComRDP = GUICtrlCreateMenuItem("Open Remote Desktop (RDP)", $CommMenu)
-	$ComIEProperties = GUICtrlCreateMenuItem("Open Internet Explorer properties", $CommMenu)
 
-	$OpMenu = GUICtrlCreateMenu("&Options")
-	$OpPre = GuiCtrlCreateMenuItem("&Preferences...", $OpMenu)
+	GUICtrlSetOnEvent($miComShowIPConf, "_GetIPConfiguration")
+	GUICtrlSetOnEvent($miComShowLSP, "_ShowWinsockLSPs")
 
-	$HelpMenu = GUICtrlCreateMenu("&Help")
-	$HlpHome = GUICtrlCreateMenuItem("&Rizonesoft Home", $HelpMenu)
-	GuiCtrlCreateMenuItem("", $HelpMenu)
-	$HlpSpeedTest = GUICtrlCreateMenuItem("&Internet Speed Test", $HelpMenu)
-	$HlPasswords = GUICtrlCreateMenuItem("Get &Router Passwords", $HelpMenu)
-	GuiCtrlCreateMenuItem("", $HelpMenu)
-	$HlpAbout = GUICtrlCreateMenuItem("&About...", $HelpMenu)
+	$miToolRDP = GUICtrlCreateMenuItem("Open Remote Desktop Connection", $g_MenuTools)
+	$miToolIEP = GUICtrlCreateMenuItem("Open Internet Explorer properties", $g_MenuTools)
 
-	GUICtrlSetOnEvent($FiEventView, "_OpenEventViewer")
-	GUICtrlSetOnEvent($FiOLogDir, "_OpenLoggingDirectory")
-	GUICtrlSetOnEvent($FiOpenLog, "_OpenCIRLog")
-	GUICtrlSetOnEvent($FiReboot, "_Reboot")
-	GUICtrlSetOnEvent($FiClose, "_CloseClicked")
-	GUICtrlSetOnEvent($CommSysRes, "_OpenWindowsSystemRestore")
-	GUICtrlSetOnEvent($CommNetDiagWeb, "_OpenNetworkDiagnosticsWeb")
-	GUICtrlSetOnEvent($CommIPAll, "_GetTCPIPFullConfig")
-	GUICtrlSetOnEvent($ComShowLSP, "_ShowWinsockLSPs")
-	GUICtrlSetOnEvent($ComInsIP6, "_InstallIP6")
-	GUICtrlSetOnEvent($ComUnInsIP6, "_UnInstallIP6")
-	GUICtrlSetOnEvent($ComRDP, "_OpenRDP")
-	GUICtrlSetOnEvent($ComIEProperties, "_OpenIEProperties")
+	GUICtrlSetOnEvent($miToolRDP, "_OpenRDP")
+	GUICtrlSetOnEvent($miToolIEP, "_OpenIEProperties")
 
-	GUICtrlSetOnEvent($OpPre, "_Options")
+	$g_ReBarAboutMenu = GUICtrlCreateMenuItem("&About " & $g_ReBarProgName, $g_MenuHelp)
+	$miHlpHome = GUICtrlCreateMenuItem($g_ReBarCompName & " &Home", $g_MenuHelp)
+	GUICtrlCreateMenuItem("", $g_MenuHelp)
+	$miHlpSupport = GUICtrlCreateMenuItem($g_ReBarCompName & " &Support", $g_MenuHelp)
 
-	GUICtrlSetOnEvent($HlpHome, "_HomePageClicked")
-	GUICtrlSetOnEvent($HlpSpeedTest, "_SpeedTest")
-	GUICtrlSetOnEvent($HlPasswords, "_GetRouterPasswords")
-	GUICtrlSetOnEvent($HlpAbout, "_AboutDlg")
+	GUICtrlSetOnEvent($g_ReBarAboutMenu, "_ShowAboutDialog")
+	GUICtrlSetOnEvent($miHlpHome, "_OpenHomePageLink")
+	GUICtrlSetOnEvent($miHlpSupport, "_OpenSupportLink")
 
-	GUICtrlSetOnEvent($lblSysRestore, "_OpenWindowsSystemRestore")
-	GUICtrlSetOnEvent($lblNetDiagWeb, "_OpenNetworkDiagnosticsWeb")
+	$g_ReBarGuiIcon = GUICtrlCreateIcon($g_ReBarIcon, 99, 10, 10, 64, 64)
+	GUICtrlSetTip($g_ReBarGuiIcon, "Version " & $g_ReBarRunVersion & @CRLF & _
+			"Build with AutoIt version " & @AutoItVersion & @CRLF & _
+			"Copyright Â© " & @YEAR & " " & $g_ReBarCompName, _
+			"About " & $g_ReBarProgName, $TIP_INFOICON, $TIP_BALLOON)
+	GUICtrlSetCursor($g_ReBarGuiIcon, 0)
 
-	Local Const $Gap = 20
-;~ 	GUICtrlCreateGroup("", 10, 115, 400, 325)
-	For $i = 0 To $RepCount
-		$IcoRep[$i] = GUICtrlCreateIcon(@ScriptFullPath, 201 + $i, 20, 135 + ($i * $Gap), 16, 16)
-		GUICtrlSetCursor($IcoRep[$i], 0)
-		$ChkRep[$i] = GUICtrlCreateCheckbox("", 50, 135 + ($i * $Gap), 280, 16)
-		$HoverIcon[$i] = 1
-		$BtnRep[$i] = GUICtrlCreateIcon(@ScriptFullPath, 212, 370, 135 + ($i * $Gap), 16, 16)
-		GUICtrlSetCursor($BtnRep[$i], 0)
-		GuiCtrlSetOnEvent($BtnRep[$i], "_RunRepair")
+	GUICtrlSetOnEvent($g_ReBarGuiIcon, "_ShowAboutDialog")
+
+	; $g_aniProcessing = GUICtrlCreateIcon($g_ReBarSplashAni, -1, $g_ReBarFormWidth - 52, 10, 32, 32)
+	; GUICtrlSetState($g_aniProcessing, $GUI_HIDE)
+
+	$lblHeading = GUICtrlCreateLabel("Complete Internet Repair " & _GetProgramVersion(), 90, 10, $g_ReBarFormWidth - 142, 20)
+	GUICtrlSetFont($lblHeading, 12, 400)
+	$lblWelcome = GUICtrlCreateLabel("Select your repair options and press 'Go!' to start. " & _
+			"Do not select something unless your computer has the described problem. " & _
+			"Skip any option you do not understand.", 90, 40, $g_ReBarFormWidth - 142, 60)
+	GUICtrlSetColor($lblWelcome, 0x555555)
+
+	$g_IntExplVersion = _GetInternetExplorerVersion()
+
+	; Switch @OSVersion
+	; Case "WIN_7", "WIN_8", "WIN_81", "WIN_10", "WIN_2008", "WIN_2008R2", "WIN_2012", "WIN_2012R2"
+	; $lblNetDiagWeb = GUICtrlCreateLabel(".", 20, 100, 400, 20)
+;~ GuiCtrlSetFont($lblNetDiagWeb, 9, -1, 4) ;Underlined
+	; GuiCtrlSetColor($lblNetDiagWeb, 0x295496)
+	; GuiCtrlSetCursor($lblNetDiagWeb, 0)
+	; Case Else
+	; $lblSysRestore = GUICtrlCreateLabel("Click here to create a System Restore Point.", 20, 100, 400, 20)
+;~ GuiCtrlSetFont($lblSysRestore, 9, -1, 4) ;Underlined
+	; GuiCtrlSetColor($lblSysRestore, 0x295496)
+	; GuiCtrlSetCursor($lblSysRestore, 0)
+	; EndSwitch
+
+	GUICtrlCreateGroup("", 10, 95, $g_ReBarFormWidth - 20, 280)
+
+	For $iRepair = 0 To $COUNT_REPAIR - 1
+		$g_IconRepair[$iRepair] = GUICtrlCreateIcon($g_ReBarResFugue, 147 + $iRepair, 20, 113 + ($iRepair * $LINESPACING), 16, 16)
+		$g_ChkRepair[$iRepair] = GUICtrlCreateCheckbox(" Repairing...", 43, 113 + ($iRepair * $LINESPACING), 315, 16)
+		$g_BtnHlpRepair[$iRepair] = GUICtrlCreateIcon($g_ReBarResFugue, 104, 408, 113 + ($iRepair * $LINESPACING), 16, 16)
+		GUICtrlSetCursor($g_BtnHlpRepair[$iRepair], 0)
+		$g_BtnGoRepair[$iRepair] = GUICtrlCreateIcon($g_ReBarResFugue, 108, 428, 113 + ($iRepair * $LINESPACING), 16, 16)
+		GUICtrlSetCursor($g_BtnGoRepair[$iRepair], 0)
+		$g_PrTopRepair[$iRepair] = 130 + ($iRepair * $LINESPACING)
+		$g_LineRepair[$iRepair] = GUICtrlCreateLabel("", 43, $g_PrTopRepair[$iRepair], 365, 1)
+		GUICtrlSetBkColor($g_LineRepair[$iRepair], 0xD9D9D9)
+		$g_ProgressRepair[$iRepair] = GUICtrlCreateLabel("", 43, $g_PrTopRepair[$iRepair], 1, 1)
+		GUICtrlSetBkColor($g_ProgressRepair[$iRepair], 0x3399FF)
+		GUICtrlSetState($g_ProgressRepair[$iRepair], $GUI_HIDE)
+
+		GUICtrlSetOnEvent($g_BtnHlpRepair[$iRepair], "_ShowRepairInfo")
+		GUICtrlSetOnEvent($g_BtnGoRepair[$iRepair], "_RunRepairOption")
+
 	Next
-;~ 	GUICtrlCreateGroup("", -99, -99, 1, 1)  ;close group
 
-	GuiCtrlSetTip($IcoRep[0], 	"This option rewrites important registry keys that are used by " & @CRLF & _
-								"the Internet Protocol (TCP/IP) stack. This has the same result " & @CRLF & _
-								"as removing and reinstalling the protocol.")
-	GuiCtrlSetTip($IcoRep[1], 	"This can be used to recover from Winsock corruption result in lost " & @CRLF & _
-								"of network connectivity. This option should be used with care "  & @CRLF & _
-								"becuase any pre-installed LSPs will need to be reinstalled.")
-	GuiCtrlSetTip($IcoRep[2], 	"Release and renew all Interent (TCP/IP) connections.")
-	GuiCtrlSetTip($IcoRep[3], 	"Flush DNS Resolver Cache, refresh all DHCP leases and " & @CRLF & _
-								"re-register DNS names.")
-	GuiCtrlSetTip($IcoRep[4], 	"Re-registers all the concerned dll and ocx files required for " & @CRLF & _
-								"the smooth operation of Internet Explorer " & $IEXPLORE_VERSION & ".")
-	GuiCtrlSetTip($IcoRep[5], 	"This option will clear the Windows Update History. "  & @CRLF & _
-								"It will do this by emptying the " & @CRLF & _
-								"[" & $GDataStoreDir & "]" & @CRLF & "[" & $GDownLoadDir & "] directories.")
-	GuiCtrlSetTip($IcoRep[6], 	"This option will try and fix Windows Update / Automatic Updates. " & @CRLF & _
-								"Try this when you are unable to download or install updates.")
-	GuiCtrlSetTip($IcoRep[7], 	"If you are having trouble connecting to SSL / Secured websites " & @CRLF & _
-								"(Ex. Banking) then this option could help.")
-	GuiCtrlSetTip($IcoRep[8], 	"Reset the Windows Firewall configuration to its default state.")
-	GuiCtrlSetTip($IcoRep[9], 	"Reset the Windows hosts file to its default state.")
-	GuiCtrlSetTip($IcoRep[10], 	"Select this option if you cannot view other "  & @CRLF & _
-								"workgroup computers on the network.")
+	GUICtrlSetData($g_ChkRepair[0], " Reset Internet Protocol (TCP/IP)")
+	GUICtrlSetData($g_ChkRepair[1], " Repair Winsock (Reset Catalog)")
+	GUICtrlSetData($g_ChkRepair[2], " Renew Internet Connections")
+	GUICtrlSetData($g_ChkRepair[3], " Flush DNS Resolver Cache")
+	GUICtrlSetData($g_ChkRepair[4], " Repair Internet Explorer " & $g_IntExplVersion)
+	GUICtrlSetData($g_ChkRepair[5], " Clear Windows Update History")
+	GUICtrlSetData($g_ChkRepair[6], " Repair Windows / Automatic Updates")
+	GUICtrlSetData($g_ChkRepair[7], " Repair SSL / HTTPS / Cryptography")
+	GUICtrlSetData($g_ChkRepair[8], " Reset Proxy Server Configuration")
+	GUICtrlSetData($g_ChkRepair[9], " Reset Windows Firewall Configuration")
+	GUICtrlSetData($g_ChkRepair[10], " Restore the default hosts file")
+	GUICtrlSetData($g_ChkRepair[11], " Repair Workgroup Computers view")
 
-	GuiCtrlSetData($ChkRep[0], " Reset Internet Protocol (TCP/IP)")
-	GuiCtrlSetData($ChkRep[1], " Repair Winsock (Reset Catalog)")
-	GuiCtrlSetData($ChkRep[2], " Renew Internet Connections")
-	GuiCtrlSetData($ChkRep[3], " Flush DNS Resolver Cache")
-	GuiCtrlSetData($ChkRep[4], " Repair Internet Explorer " & $IEXPLORE_VERSION)
-	GuiCtrlSetData($ChkRep[5], " Clear Windows Update History")
-	GuiCtrlSetData($ChkRep[6], " Repair Windows / Automatic Updates")
-	GuiCtrlSetData($ChkRep[7], " Repair SSL / HTTPS / Cryptography")
-	GuiCtrlSetData($ChkRep[8], " Reset Windows Firewall Configuration")
-	GuiCtrlSetData($ChkRep[9], " Restore the default hosts file")
-	GuiCtrlSetData($ChkRep[10], " Repair Workgroup Computers view")
+	GUICtrlCreateGroup("", -99, -99, 1, 1) ;close group
 
-	If @OSVersion = "WIN_VISTA" Or @OSVersion = "WIN_2008" Or @OSVersion = "WIN_2008R2" Or @OSVersion = "WIN_7" Then
-		;GuiCtrlSetState($IcoRep[10], $GUI_DISABLE)
-		;GuiCtrlSetState($ChkRep[10], $GUI_DISABLE)
-		;GuiCtrlSetState($BtnRep[10], $GUI_DISABLE)
-	EndIf
+	$g_BtnExtend = GUICtrlCreateCheckbox(6, 10, 395, 30, 28, $BS_PUSHLIKE)
+	GUICtrlSetFont($g_BtnExtend, 10, 400, 0, "Webdings")
+	GUICtrlSetTip($g_BtnExtend, "Show Logging")
 
-	$BtnGo = GUICtrlCreateButton("Go!", 200, 380, 190, 50)
-	GuiCtrlSetState($BtnGo, $GUI_FOCUS)
-	GUICtrlSetFont($BtnGo, 11, 400, 0, "Verdana")
-	GuiCtrlSetOnEvent($BtnGo, "_Go")
+	$g_BtnGo = GUICtrlCreateButton("Go!", 300, 380, 190, 43)
+	GUICtrlSetState($g_BtnGo, $GUI_FOCUS)
+	GUICtrlSetFont($g_BtnGo, 11, 400, 0, "Verdana")
+	GUICtrlSetOnEvent($g_BtnGo, "_RunRepairOption")
 
-	;$iTip = GuiCtrlCreateIcon(@ScriptFullPath, 212, 10, 210, 16,16)
+	GUICtrlSetOnEvent($g_BtnExtend, "_GUIExtender")
 
-	;GUICtrlSetFont($lblInfo, 8.5, 400, 0, "Verdana", $GFSm)
-	;$BtnOptions = GUICtrlCreateButton("Options...", 205, 360, 100, 30)
-	;GUICtrlSetFont($BtnOptions, 8.5, 400, 0, "Verdana", $GFSm)
-	;$BtnLSP = GUICtrlCreateButton("LSPs...", 310, 360, 60, 30)
-	;GUICtrlSetFont($BtnLSP, 8.5, 400, 0, "Verdana", $GFSm)
+	$g_ListStatus = GUICtrlCreateListView("", 10, 445, $g_ReBarFormWidth - 20, 120, BitOR($LVS_REPORT, $LVS_NOCOLUMNHEADER))
+	_GUICtrlListView_SetExtendedListViewStyle($g_ListStatus, BitOR($LVS_EX_FULLROWSELECT, $LVS_EX_DOUBLEBUFFER, _
+			$LVS_EX_SUBITEMIMAGES, $LVS_EX_INFOTIP, _
+			$WS_EX_CLIENTEDGE))
+	_GUICtrlListView_AddColumn($g_ListStatus, "", 680)
+	_WinAPI_SetWindowTheme(GUICtrlGetHandle($g_ListStatus), "Explorer")
 
-	$eStatus = GUICtrlCreateEdit("", 10, 453, 400, 90, BitOR($WS_VSCROLL, $WS_HSCROLL, $ES_READONLY, $ES_AUTOVSCROLL))
-	GuiCtrlSetFont(-1, 9, 400, -1, "Courier New")
+	$g_ImgStatus = _GUIImageList_Create(16, 16, 5, 1, 8, 8)
+	_GUIImageList_AddIcon($g_ImgStatus, $g_ReBarResFugue, -103)
+	_GUIImageList_AddIcon($g_ImgStatus, $g_ReBarResFugue, -130)
+	_GUIImageList_AddIcon($g_ImgStatus, $g_ReBarResFugue, -122)
+	_GUIImageList_AddIcon($g_ImgStatus, $g_ReBarResFugue, -134)
+	_GUIImageList_AddIcon($g_ImgStatus, $g_ReBarResFugue, -133)
+	_GUIImageList_AddIcon($g_ImgStatus, $g_ReBarResFugue, -135)
+	_GUIImageList_AddIcon($g_ImgStatus, $g_ReBarResFugue, -136)
+	_GUIImageList_AddIcon($g_ImgStatus, $g_ReBarResFugue, -138)
+	_GUIImageList_AddIcon($g_ImgStatus, $g_ReBarResFugue, -159)
+	_GUIImageList_AddIcon($g_ImgStatus, $g_ReBarResFugue, -999)
+	_GUICtrlListView_SetImageList($g_ListStatus, $g_ImgStatus, 1)
 
-	;SoundPlay(@ScriptDir & "\Sounds\welcome.wav")
+	GUICtrlSetFont($g_ListStatus, 9, -1, -1, "Courier New")
+	GUICtrlSetColor($g_ListStatus, 0x222222)
+	GUICtrlSetState($g_ListStatus, $GUI_HIDE)
 
-	GUISetState(@SW_SHOW, $mForm)
+	$g_EditInfo = GUICtrlCreateEdit("", 10, 445, $g_ReBarFormWidth - 20, 120, BitOR($WS_VSCROLL, $ES_READONLY, $ES_AUTOVSCROLL))
+	GUICtrlSetBkColor($g_EditInfo, 0xFFFFE1)
+;~ 	GuiCtrlSetFont(-1, 9, 400, -1, "Courier New")
 
+	GUICtrlSetData($g_EditInfo, "Before you start; it is recommended that you create a System Restore Point to roll " & _
+			"back any changes made by Complete Internet Repair. Furthermore, run the build-in " & _
+			"Windows Internet Troubleshooters before any repair options.")
+
+	; This will close the splash page.
+	_SplashUpdate("", 100)
+	GUISetState(@SW_SHOW, $g_ReBarCoreGui)
 	GUIRegisterMsg($WM_COMMAND, "MY_WM_COMMAND")
-	GUISetOnEvent($GUI_EVENT_CLOSE, "_CloseClicked")
-	GUICtrlSetOnEvent($BtnLSP, "_ShowWinsockLSPs")
+	GUISetOnEvent($GUI_EVENT_CLOSE, "_ShutdownProgram", $g_ReBarCoreGui)
+	AdlibRegister("_OnMainIconHover", 50)
+
+	_GUIExtender()
+	SoundPlay(@ScriptDir & "\Themes\Sounds\Welcome.wav")
+	_SoftwareUpdateCheck()
 
 	While 1
-		_GUIControl()
-		_ReduceMemory()
-		Sleep(35)
+		Sleep(55)
+		; _OnMainIconHover()
 	WEnd
 
-EndFunc
+EndFunc   ;==>_StartCoreGUI
+
+
+Func _OpenLoggingDirectory()
+
+	_StartLogging("Opening logging Directory.")
+	_EditLoggingWrite("[" & $g_ReBarLogBase & "]")
+	ShellExecute($g_ReBarLogBase)
+	If @error Then
+		_EditLoggingWrite("Error: Could not open [" & $g_ReBarLogBase & "].")
+	Else
+		_EditLoggingWrite("Success: The 'logging' directory should now be open.")
+	EndIf
+	_EndLogging()
+
+EndFunc   ;==>_OpenLoggingDirectory
+
+
+Func _OpenLogging()
+	_OpenTextFile($g_ReBarLogPath)
+EndFunc   ;==>_OpenLogging
+
+
+Func _OpenIPResetLog()
+	_OpenTextFile($LOG_IPRESET)
+EndFunc   ;==>_OpenIPResetLog
 
 
 Func _OpenNetworkDiagnosticsWeb()
 	Run("msdt.exe /id NetworkDiagnosticsWeb")
-EndFunc
+EndFunc   ;==>_OpenNetworkDiagnosticsWeb
+
+
+Func _SpeedTest()
+	ShellExecute("http://www.speedtest.net")
+EndFunc   ;==>_SpeedTest
+
+
+Func _GetRouterPasswords()
+	ShellExecute("http://www.routerpasswords.com")
+EndFunc   ;==>_GetRouterPasswords
 
 
 Func _OpenWindowsSystemRestore()
 	Run("systempropertiesprotection")
-EndFunc
+EndFunc   ;==>_OpenWindowsSystemRestore
 
 
-Func _OpenRizonesoftDownloads()
-	ShellExecute("http://www.rizonesoft.com/freeware-downloads/")
-EndFunc
-
-
-Func _GUIControl()
-	Local $cursor = GUIGetCursorInfo()
-	If Not @error Then
-		For $a = 0 To $RepCount
-			If $cursor[4] = $BtnRep[$a] And $HoverIcon[$a] = 1 Then
-				$HoverIcon[$a] = 0
-				GUICtrlSetImage($BtnRep[$a], @ScriptFullPath, 213)
-			ElseIf $cursor[4] <> $BtnRep[$a] And $HoverIcon[$a] = 0 Then
-				$HoverIcon[$a] = 1
-				GUICtrlSetImage($BtnRep[$a], @ScriptFullPath, 212)
-			EndIf
-		Next
-	EndIf
-EndFunc
-
-
-Func MY_WM_COMMAND($hWnd, $iMsg, $wParam, $lParam)
-
-    Switch BitAND($wParam, 0xFFFF) ;LoWord = IDFrom
-        Case $BtnGo
-            Switch BitShift($wParam, 16) ;HiWord = Code
-				Case $BN_CLICKED
-					If GUICtrlRead($BtnGo) = "Stop!" Then
-						$Cancel = 1
-					EndIf
-            EndSwitch
-    EndSwitch
-
-    Return $GUI_RUNDEFMSG
-EndFunc;==>WM_COMMAND
-
-
-Func _CloseClicked()
-
-	Local $PID = ProcessExists(@ScriptName) ; Will return the PID or 0 if the process isn't found.
-	If $PID Then ProcessClose(@ScriptName)
-	Exit
-
-EndFunc
-
-Func _Reboot()
-	Shutdown(18)
-EndFunc
-
-Func _RunRepair()
-	_StartProcess()
-	Switch @GUI_CtrlId
-		Case $BtnRep[0]
-			_ResetTCPIP()
-		Case $BtnRep[1]
-			_RepairWinsock()
-		Case $BtnRep[2]
-			_ReleaseRenewIP()
-		Case $BtnRep[3]
-			_FlushReDNS()
-		Case $BtnRep[4]
-			_RepairIE()
-		Case $BtnRep[5]
-			_ClearUpdateHistory()
-		Case $BtnRep[6]
-			_RepairWUAU()
-		Case $BtnRep[7]
-			_RepairSHC()
-		Case $BtnRep[8]
-			_ResetFirewall()
-		Case $BtnRep[9]
-			_RestoreHosts()
-		Case $BtnRep[10]
-			_RepairWorkGroups()
-	EndSwitch
-	_EndProcess()
-EndFunc
-
-Func _InstallIP6()
-	;_StartProcess()
-	_MemoLogWrite("Installing the TCP/IP v6 protocol, Please wait.....")
-	Local $eCode = ShellExecuteWait("netsh", "int ipv6 install", "", "", @SW_HIDE)
-	If Not $eCode Then
-		_MemoLogWrite("The TCP/IP v6 protocol Installation was successful or it's already installed.", 1)
-	Else
-		_MemoLogWrite("Could not install TCP/IP v6.", 2)
-		_MemoLogWrite("You may need to restart your computer for the settings to take effect.")
-	EndIf
-	;_EndProcess()
-EndFunc
-
-Func _UnInstallIP6()
-	;_StartProcess()
-	_MemoLogWrite("Uninstalling the TCP/IP v6 protocol, Please wait.....")
-	Local $eCode = ShellExecuteWait("netsh", "int ipv6 uninstall", "", "", @SW_HIDE)
-	If Not $eCode Then
-		_MemoLogWrite("The TCP/IP v6 protocol was successfully uninstalled or it's not installed.", 1)
-	Else
-		_MemoLogWrite("Could not uninstall TCP/IP v6.", 2)
-		_MemoLogWrite("You may need to restart your computer for the settings to take effect.")
-	EndIf
-	;_EndProcess()
-EndFunc
-
-Func _GetTCPIPFullConfig()
-	_MemoLogWrite("Getting full TCP/IP configuration, Please wait.....", False)
-	_LogWrite("-----------------------------------------------------------------------------------------", False)
-	RunWait(@ComSpec & " /k ipconfig /all", "", @SW_SHOW)
-	_LogWrite("", False)
-	_LogWrite("-----------------------------------------------------------------------------------------", False)
+Func _GetIPConfiguration()
+	_StartLogging("Showing TCP/IP Configuration.")
+	Run(@ComSpec & " /k ipconfig /all", "", @SW_SHOW)
+	_EndLogging()
 EndFunc
 
 
 Func _OpenRDP()
-	_MemoLogWrite("Opening the Remote Desktop (RDP) tool, Please wait.....", False)
-	_LogWrite("-----------------------------------------------------------------------------------------", False)
+	_StartLogging("Opening Remote Desktop Connection.")
 	ShellExecute("mstsc")
-	_LogWrite("", False)
-	_LogWrite("-----------------------------------------------------------------------------------------", False)
+	If @error Then
+		_EditLoggingWrite("Error: Could not open Remote Desktop Connection.")
+	EndIf
+	_EndLogging()
 EndFunc
 
 
 Func _OpenIEProperties()
-	_MemoLogWrite("Opening the Internet Explorer Properties dialog box, Please wait.....", False)
-	_LogWrite("-----------------------------------------------------------------------------------------", False)
+	_StartLogging("Opening Internet Explorer Properties.")
 	ShellExecute("inetcpl.cpl")
-	_LogWrite("", False)
-	_LogWrite("-----------------------------------------------------------------------------------------", False)
+	If @error Then
+		_EditLoggingWrite("Error: Could not open Internet Explorer Properties.")
+	EndIf
+	_EndLogging()
 EndFunc
 
 
-Func _Go()
+Func _OpenRizonesoftDownloads()
+	ShellExecute("http://www.rizonesoft.com/downloads/")
+EndFunc
 
-	$GoMode = 1
 
-;~ 	Local $cs, $cc = 0, $iText
+Func _StartEventLog()
 
-	For $c = 0 To $RepCount
-		If GUICtrlRead($ChkRep[$c]) = $GUI_CHECKED Then
-			_StartProcess()
-			ExitLoop
-		EndIf
-	Next
+	_StartLogging("Starting the Windows Event Log Service.")
 
-;~ 	If $cc > 0 Then
-;~
-;~ 	EndIf
+	If Not _SvcStart("eventlog") Then
+		_EditLoggingWrite("The Windows Event Log Service could not be started.")
+		_EditLoggingWrite("Attempting to repair the Windows Event Log Service.")
+		_EditLoggingWrite("Configuring the Windows Event Log Service.")
+		_ConfigureWindowsService("eventlog", 2)
+		_SvcSetStartMode("eventlog", "Automatic")
+		_EditLoggingWrite("Windows Event Log Service Configured.")
+		Switch @OSVersion
+			Case "WIN_XP", "WIN_2003"
+				_RegistryWrite("HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Eventlog", "Description", "REG_SZ", "Enables event log messages " & _
+						"issued by Windows-based programs and components to be viewed in Event Viewer. This service cannot be stopped.")
+				_RegistryWrite("HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Eventlog", "DisplayName", "REG_SZ", "Event Log")
+				_RegistryWrite("HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Eventlog", "ErrorControl", "REG_DWORD", 0x00000001)
+				_RegistryWrite("HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Eventlog", "Group", "REG_SZ", "Event log")
+				_RegistryWrite("HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Eventlog", "ImagePath", "REG_EXPAND_SZ", _
+						"C:\WINDOWS\system32\services.exe")
+				_RegistryWrite("HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Eventlog", "ObjectName", "REG_SZ", "LocalSystem")
+				_RegistryWrite("HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Eventlog", "PlugPlayServiceType", "REG_DWORD", 0x00000003)
+				_RegistryWrite("HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Eventlog", "Start", "REG_DWORD", 0x00000002)
+				_RegistryWrite("HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Eventlog", "Type", "REG_DWORD", 0x00000020)
+			Case Else
+				_EditLoggingWrite("Repairing the Windows Event Log Service.....")
+				_RegistryWrite("HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\eventlog", _
+						"ObjectName", "REG_SZ", "NT AUTHORITY\LocalService")
+				Sleep(250)
+				If Not _SvcStart("eventlog") Then
+					_EditLoggingWrite("The Windows Event Log Service could not be repaired and started.")
+				Else
+					_EditLoggingWrite("Windows Event Log Service repaired Successfully.")
+				EndIf
+		EndSwitch
+	Else
+		_EditLoggingWrite("Windows Event Log Service Started Successfully.")
+		_EditLoggingWrite("Opening Windows Event Viewer.")
+		ShellExecute("eventvwr")
+	EndIf
+	_EndLogging()
 
-	For $i = 0 To $RepCount
+EndFunc   ;==>_StartEventLog
 
-		If GUICtrlRead($ChkRep[$i]) = $GUI_CHECKED Then
-			_StartProcess()
-			If GUICtrlRead($ChkRep[$i], 1) = " Reset Internet Protocol (TCP/IP)" Then
-					If Not $Cancel Then _ResetTCPIP()
-					GUICtrlSetState($ChkRep[$i], $GUI_UNCHECKED)
-					GUICtrlSetImage($IcoRep[$i], @ScriptFullPath, 214)
-			ElseIf GUICtrlRead($ChkRep[$i], 1) = " Repair Winsock (Reset Catalog)" Then
-					If Not $Cancel Then _RepairWinsock()
-					GUICtrlSetState($ChkRep[$i], $GUI_UNCHECKED)
-					GUICtrlSetImage($IcoRep[$i], @ScriptFullPath, 214)
-			ElseIf GUICtrlRead($ChkRep[$i], 1) = " Renew Internet Connections" Then
-					If Not $Cancel Then _ReleaseRenewIP()
-					GUICtrlSetState($ChkRep[$i], $GUI_UNCHECKED)
-					GUICtrlSetImage($IcoRep[$i], @ScriptFullPath, 214)
-			ElseIf GUICtrlRead($ChkRep[$i], 1) = " Flush DNS Resolver Cache" Then
-					If Not $Cancel Then _FlushReDNS()
-					GUICtrlSetState($ChkRep[$i], $GUI_UNCHECKED)
-					GUICtrlSetImage($IcoRep[$i], @ScriptFullPath, 214)
-			ElseIf GUICtrlRead($ChkRep[$i], 1) = " Repair Internet Explorer " & $IEXPLORE_VERSION Then
-					If Not $Cancel Then _RepairIE()
-					GUICtrlSetState($ChkRep[$i], $GUI_UNCHECKED)
-					GUICtrlSetImage($IcoRep[$i], @ScriptFullPath, 214)
-			ElseIf GUICtrlRead($ChkRep[$i], 1) = " Clear Windows Update History" Then
-					If Not $Cancel Then $ClearWinUpHist = True
-					GUICtrlSetState($ChkRep[$i], $GUI_UNCHECKED)
-					GUICtrlSetImage($IcoRep[$i], @ScriptFullPath, 214)
-			ElseIf GUICtrlRead($ChkRep[$i], 1) = " Repair Windows / Automatic Updates" Then
-					If GUICtrlRead($ChkRep[$i]) = $GUI_CHECKED Then
-						GUICtrlSetState($ChkRep[$i + 1], $GUI_CHECKED)
+
+Func _ShowWinsockLSPs()
+
+	_StartLogging("Generating List of Installed Winsock LSPs.")
+	FileSetAttrib($LOG_LSP, "-RASHNOT")
+	RunWait(@ComSpec & " /c netsh winsock show catalog >" & Chr(34) & $LOG_LSP & Chr(34), "", @SW_HIDE)
+	If FileExists($LOG_LSP) Then
+		_EditLoggingWrite("Winsock LSPs List Saved to [" & $LOG_LSP & "]")
+		_OpenTextFile($LOG_LSP)
+	Else
+		_EditLoggingWrite("Could not save LSP list.")
+	EndIf
+	_EndLogging()
+
+EndFunc   ;==>_ShowWinsockLSPs
+
+
+Func _InstallIP6()
+	_StartLogging("Installing the TCP/IP v6 protocol.")
+	_RunCommand("netsh int ipv6 install")
+	_EndLogging()
+EndFunc
+
+Func _UnInstallIP6()
+	_StartLogging("Uninstalling the TCP/IP v6 protocol.")
+	_RunCommand("netsh int ipv6 uninstall")
+	_EndLogging()
+EndFunc
+
+
+Func _ShowRepairInfo()
+
+	GUICtrlSetState($g_ListStatus, $GUI_HIDE)
+	GUICtrlSetState($g_EditInfo, $GUI_SHOW)
+
+	Switch @GUI_CtrlId
+		Case $g_BtnHlpRepair[0]
+			GUICtrlSetData($g_EditInfo, "This option rewrites important registry keys that are used by " & _
+					"the Internet Protocol (TCP/IP) stack. This has the same result " & _
+					"as removing and reinstalling the protocol.")
+		Case $g_BtnHlpRepair[1]
+			GUICtrlSetData($g_EditInfo, "This can be used to recover from Winsock corruption result in lost " & _
+					"of network connectivity. This option should be used with care " & _
+					"becuase any pre-installed LSPs will need to be reinstalled.")
+		Case $g_BtnHlpRepair[2]
+			GUICtrlSetData($g_EditInfo, "Release and renew all Interent (TCP/IP) connections.")
+		Case $g_BtnHlpRepair[3]
+			GUICtrlSetData($g_EditInfo, "Flush DNS Resolver Cache, refresh all DHCP leases and " & _
+					"re-register DNS names.")
+		Case $g_BtnHlpRepair[4]
+			GUICtrlSetData($g_EditInfo, "Re-registers all the concerned dll and ocx files required for " & _
+					"the smooth operation of Microsoft Internet Explorer " & $g_IntExplVersion & ".")
+		Case $g_BtnHlpRepair[5]
+			GUICtrlSetData($g_EditInfo, "This option will clear the Windows Update History. " & _
+					"It will do this by emptying the [" & $DIR_SDDATASTORE & "] " & _
+					"and [" & $DIR_SDDOWNLOAD & "] directories.")
+		Case $g_BtnHlpRepair[6]
+			GUICtrlSetData($g_EditInfo, "This option will try and fix Windows Update / Automatic Updates. " & _
+					"Try this when you are unable to download or install updates.")
+		Case $g_BtnHlpRepair[7]
+			GUICtrlSetData($g_EditInfo, "If you are having trouble connecting to SSL / Secured websites " & _
+					"(Ex. Banking) then this option could help.")
+		Case $g_BtnHlpRepair[8]
+			GUICtrlSetData($g_EditInfo, "Many malware infections create proxy servers and then set Windows to route all " & _
+					"web traffic through the virus proxy. For example, an attempt to access Rizonesoft.com, " & _
+					"will redirect to a malware site." & @CRLF & @CRLF & _
+					"This option will attempt to reset all proxy configurations, including persistent " & _
+					"WinHTTP proxy configuration.")
+		Case $g_BtnHlpRepair[9]
+			GUICtrlSetData($g_EditInfo, "Reset the Windows Firewall configuration to its default state.")
+		Case $g_BtnHlpRepair[10]
+			GUICtrlSetData($g_EditInfo, "Reset the Windows hosts file to its default state.")
+		Case $g_BtnHlpRepair[11]
+			GUICtrlSetData($g_EditInfo, "Select this option if you cannot view other workgroup computers on the network.")
+
+	EndSwitch
+
+EndFunc   ;==>_ShowRepairInfo
+
+
+Func _RunRepairOption()
+
+	$g_Cancel = False
+
+	;_StartProcess()
+	Switch @GUI_CtrlId
+		Case $g_BtnGoRepair[0]
+			_ProcessSelectedOptions(0)
+		Case $g_BtnGoRepair[1]
+			_ProcessSelectedOptions(1)
+		Case $g_BtnGoRepair[2]
+			_ProcessSelectedOptions(2)
+		Case $g_BtnGoRepair[3]
+			_ProcessSelectedOptions(3)
+		Case $g_BtnGoRepair[4]
+			_ProcessSelectedOptions(4)
+		Case $g_BtnGoRepair[5]
+			_ProcessSelectedOptions(5)
+		Case $g_BtnGoRepair[6]
+			_ProcessSelectedOptions(6)
+		Case $g_BtnGoRepair[7]
+			_ProcessSelectedOptions(7)
+		Case $g_BtnGoRepair[8]
+			_ProcessSelectedOptions(8)
+		Case $g_BtnGoRepair[9]
+			_ProcessSelectedOptions(9)
+		Case $g_BtnGoRepair[10]
+			_ProcessSelectedOptions(10)
+		Case $g_BtnGoRepair[11]
+			_ProcessSelectedOptions(11)
+		Case $g_BtnGo
+			GUICtrlSetData($g_BtnGo, "Stop!")
+			$g_Singlelarity = False
+			For $iRun = 0 To $COUNT_REPAIR - 1
+				If GUICtrlRead($g_ChkRepair[$iRun]) = $GUI_CHECKED Then
+					If $g_Cancel = False Then
+						_ProcessSelectedOptions($iRun)
 					EndIf
-					If Not $Cancel Then _RepairWUAU()
-					GUICtrlSetState($ChkRep[$i], $GUI_UNCHECKED)
-					GUICtrlSetImage($IcoRep[$i], @ScriptFullPath, 214)
-			ElseIf GUICtrlRead($ChkRep[$i], 1) = " Repair SSL / HTTPS / Cryptography" Then
-					If Not $Cancel Then _RepairSHC()
-					GUICtrlSetState($ChkRep[$i], $GUI_UNCHECKED)
-					GUICtrlSetImage($IcoRep[$i], @ScriptFullPath, 214)
-			ElseIf GUICtrlRead($ChkRep[$i], 1) = " Reset Windows Firewall Configuration" Then
-					If Not $Cancel Then _ResetFirewall()
-					GUICtrlSetState($ChkRep[$i], $GUI_UNCHECKED)
-					GUICtrlSetImage($IcoRep[$i], @ScriptFullPath, 214)
-			ElseIf GUICtrlRead($ChkRep[$i], 1) = " Restore the default hosts file" Then
-					If Not $Cancel Then _RestoreHosts()
-					GUICtrlSetState($ChkRep[$i], $GUI_UNCHECKED)
-					GUICtrlSetImage($IcoRep[$i], @ScriptFullPath, 214)
-			ElseIf GUICtrlRead($ChkRep[$i], 1) = " Repair Workgroup Computers view" Then
-					If Not $Cancel Then _RepairWorkGroups()
-					GUICtrlSetState($ChkRep[$i], $GUI_UNCHECKED)
-					GUICtrlSetImage($IcoRep[$i], @ScriptFullPath, 214)
-			EndIf
-		EndIf
-	Next
-	_EndProcess()
-	_BootMessage()
-	$EventLogConfigured = False
-	$ResetWinsock = False
-	$Cancel = 0
+				EndIf
+			Next
 
-EndFunc
+			$g_Singlelarity = True
+			_EndProcessing()
+
+	EndSwitch
+
+EndFunc   ;==>_RunRepairOption
+
+
+Func _ProcessSelectedOptions($iOption)
+
+
+	_SetGUIState($GUI_DISABLE)
+	GUICtrlSetImage($g_IconRepair[$iOption], @ScriptDir & "\Themes\Processing\16\Process.ani", 0)
+
+;~ 	For $x = 1 To 100
+;~ 		_UpdateProcessing($iOption, $x)
+;~ 		Sleep(1000)
+;~ 	Next
+
+	Switch $iOption
+		Case 0
+			_ResetTCPIP()
+		Case 1
+			_RepairWinsock()
+		Case 2
+			_ReleaseRenewIP()
+		Case 3
+			_FlushReDNS()
+		Case 4
+			_RepairInternetExplorer()
+		Case 5
+			_ClearUpdateHistory()
+		Case 6
+			_RepairWindowsUpdate()
+		Case 7
+			_RepairCryptography()
+		Case 8
+			_ResetProxyServer()
+		Case 9
+			_ResetFirewall()
+		Case 10
+			_RestoreWindowsHosts()
+		Case 11
+			_RepairWorkGroups()
+	EndSwitch
+
+	_EndProcessing()
+
+EndFunc   ;==>_ProcessSelectedOptions
+
+Func _UpdateProcessing($iOption, $iPerc)
+
+	_DrawStatusSizeFromPercentage($g_ProgressRepair[$iOption], $iPerc, 43, $g_PrTopRepair[$iOption] - 1, 365, 1)
+
+	If $iPerc = 100 Then
+
+		; GUICtrlSetState($g_ChkRepair[$iOption], $GUI_UNCHECKED)
+		GUICtrlSetImage($g_IconRepair[$iOption], $g_ReBarResFugue, 130)
+		Sleep(100)
+
+		_DrawStatusSizeFromPercentage($g_ProgressRepair[$iOption], 100, 43, $g_PrTopRepair[$iOption] - 1, 365, 1)
+
+	EndIf
+
+EndFunc   ;==>_UpdateProcessing
+
+
+Func _EndProcessing()
+
+	If $g_Singlelarity = True Then
+		; Enable the Interface
+		_SetGUIState($GUI_ENABLE)
+
+		For $i = 0 To $COUNT_REPAIR - 1
+			GUICtrlSetImage($g_IconRepair[$i], $g_ReBarResFugue, 147 + $i)
+			GUICtrlSetState($g_ChkRepair[$i], $GUI_UNCHECKED)
+			GUICtrlSetState($g_ProgressRepair[$i], $GUI_HIDE)
+		Next
+
+		If $g_Cancel = False Then
+			SoundPlay(@ScriptDir & "\Themes\Sounds\Complete.wav")
+			_BootMessage()
+		EndIf
+
+	EndIf
+
+EndFunc   ;==>_EndProcessing
+
+
+Func _SetGUIState($iState)
+
+	GUICtrlSetState($g_BtnExtend, $iState)
+	; GUICtrlSetState($g_BtnGo, $iState)
+	GUICtrlSetState($g_ListStatus, $iState)
+
+	GUICtrlSetState($g_MenuFile, $iState)
+	GUICtrlSetState($g_MenuMaintenance, $iState)
+	GUICtrlSetState($g_MenuTrouble, $iState)
+	GUICtrlSetState($g_MenuCommands, $iState)
+	GUICtrlSetState($g_MenuTools, $iState)
+	GUICtrlSetState($g_MenuHelp, $iState)
+
+	For $x = 0 To $COUNT_REPAIR - 1
+		GUICtrlSetState($g_IconRepair[$x], $iState)
+		GUICtrlSetState($g_ChkRepair[$x], $iState)
+		GUICtrlSetState($g_BtnHlpRepair[$x], $iState)
+		GUICtrlSetState($g_BtnGoRepair[$x], $iState)
+	Next
+
+	If $iState = $GUI_ENABLE Then GUICtrlSetData($g_BtnGo, "Go!")
+
+EndFunc   ;==>_SetGUIState
 
 
 Func _ResetTCPIP()
 
-	_MemoLogWrite("Resetting all TCP/IP Interfaces, Please wait.....", False)
-	_LogWrite("-----------------------------------------------------------------------------------------", False)
-	Switch @OSVersion
+	Local Const $iRep = 0
 
-		Case "WIN_XP", "WIN_2003"
+	_StartLogging("Resetting all IP configurations.")
+	_UpdateProcessing($iRep, 50)
 
-			Local $eCode = ShellExecuteWait("netsh", "interface ip reset """ & $CIRResLog & """", "", "", @SW_HIDE)
-			If Not $eCode Then
-				_MemoLogWrite("TCP/IP Stack reset successful.", 1)
-				_MemoLogWrite("TCP/IP Reset log located @ [" & $CIRResLog & "]", 1)
-			EndIf
-			Local $eCodeEx = ShellExecuteWait("netsh", "interface reset all", "", "", @SW_HIDE)
-			If Not $eCodeEx Then
-				_MemoLogWrite("TCP/IP interfaces reset successful.", 1)
-			EndIf
-			If $eCode <> 0 Or $eCodeEx <> 0 Then
-				_MemoLogWrite("TCP/IP interfaces reset failed or no user specific settings found.", 2)
-			EndIf
-			$eCode = ShellExecuteWait("netsh", "interface ipv6 reset all", "", "", @SW_HIDE)
-			If Not $eCode Then
-				_MemoLogWrite("TCP/IP v6 interfaces reset successful.", 1)
-			Else
-				_MemoLogWrite("The TCP/IP v6 protocol might not be installed.", 3)
-				_MemoLogWrite("Click on 'Commands' then 'Install IP6 protocol' to install TCP/IP v6.")
-			EndIf
+	If @OSVersion = "WIN_XP" Then
+		_RunCommand("netsh interface ip reset " & Chr(34) & $LOG_IPRESET & Chr(34))
+		_EditLoggingWrite("TCP/IP Reset log located @ [" & $LOG_IPRESET & "]")
+		_EditLoggingWrite("Resetting IP version 4 configurations.")
+		_RunCommand("netsh interface reset all")
+	Else
+		_EditLoggingWrite("Resetting IP version 4 configurations.")
+		_RunCommand("netsh interface ipv4 reset all")
+	EndIf
 
-		Case "WIN_VISTA", "WIN_2008", "WIN_2008R2", "WIN_7", "WIN_8", "WIN_81"
+	_EditLoggingWrite("Resetting IP version 6 configurations.")
+	_RunCommand("netsh interface ipv6 reset all")
+	_EndLogging()
+	_UpdateProcessing($iRep, 100)
 
-			ShellExecuteWait("netsh", "interface ipv4 reset all", "", "", @SW_HIDE)
-			_MemoLogWrite("TCP/IP interfaces reset successful.", 1)
-			ShellExecuteWait("netsh", "interface ipv6 reset all", "", "", @SW_HIDE)
-			_MemoLogWrite("TCP/IP v6 interfaces reset successful.", 1)
-
-	EndSwitch
-	_MemoLogWrite("You may need to restart your computer for the settings to take effect.")
-	_MemoLogWrite("Finished resetting the Internet Protocol (TCP/IP).")
-	_LogWrite("", False)
-	_LogWrite("-----------------------------------------------------------------------------------------", False)
-
-EndFunc
+EndFunc   ;==>_ResetTCPIP
 
 
+Func _RepairWinsock($IsInnerProcess = False)
 
-Func _RepairWinsock()
+	Local Const $iRep = 1
 
-	$ResetWinsock = True
-	_MemoLogWrite("Attempting to reset Winsock catalog, Please wait.....")
-	_LogWrite("-----------------------------------------------------------------------------------------", False)
+	If Not IsDeclared("g_ResetWinsock") Then Local $g_ResetWinsock
+	If Not IsDeclared("g_ResetFirewall") Then Local $g_ResetFirewall
 
-	Switch @OSVersion
-		Case "WIN_XP"
-			Switch @OSServicePack
-				Case "Service Pack 1"
-					_MemoLogWrite("It is recommended that you install Windows XP Service Pack 2 or later.", 3)
-					RegDelete("HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\Winsock")
-					RegDelete("HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\Winsock2")
-				Case Else
-					_ResetWinsock()
-			EndSwitch
-		Case "WIN_2003", "WIN_VISTA", "WIN_2008", "WIN_2008R2", "WIN_7", "WIN_8", "WIN_81"
+	Local Const $ix = 1
+	Local Const $ico = 606
+
+	If Not $IsInnerProcess Then
+		_StartLogging("Attempting to reset Winsock catalog.")
+		_UpdateProcessing($iRep, 50)
+	EndIf
+
+	If @OSVersion = "WIN_XP" Then
+		If @OSServicePack = "Service Pack 1" Then
+			_EditLoggingWrite("It is recommended that you install Windows XP Service Pack 2 or later.")
+			RegDelete("HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\Winsock")
+			RegDelete("HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\Winsock2")
+		Else
 			_ResetWinsock()
-	EndSwitch
-	_MemoLogWrite("Finished repairing Winsock")
-	_LogWrite("", False)
-	_LogWrite("-----------------------------------------------------------------------------------------", False)
+		EndIf
+	Else
+		_ResetWinsock()
+	EndIf
 
-EndFunc
+	If Not $IsInnerProcess Then
+		_UpdateProcessing($iRep, 100)
+		_EndLogging()
+	EndIf
+
+	$g_ResetWinsock = False
+
+EndFunc   ;==>_RepairWinsock
 
 
 Func _ResetWinsock()
-
-	Local $eCode = ShellExecuteWait("netsh", "winsock reset catalog", "", "", @SW_HIDE)
-	Local $eCodeEx = ShellExecuteWait("netsh", "winsock reset", "", "", @SW_HIDE)
-	If $eCode <> 0 Or $eCodeEx <> 0 Then
-		_MemoLogWrite("Could not reset the Winsock Catalog.", 2)
-	Else
-		_MemoLogWrite("Successfully reset the Winsock Catalog.", 1)
-	EndIf
-
-EndFunc
+	_EditLoggingWrite("Resetting Winsock using Method 1.")
+	_RunCommand("netsh winsock reset catalog")
+	_EditLoggingWrite("Resetting Winsock using Method 2.")
+	_RunCommand("netsh winsock reset")
+EndFunc   ;==>_ResetWinsock
 
 
 Func _ReleaseRenewIP()
 
-	_MemoLogWrite("Releasing TCP/IP connections, Please wait.....")
-	_LogWrite("-----------------------------------------------------------------------------------------", False)
-	Local $eCode = ShellExecuteWait("ipconfig", "/release", "", "", @SW_HIDE)
-	If Not $eCode Then
-		_MemoLogWrite("Successfully released TCP/IP connections.", 1)
-	Else
-		_MemoLogWrite("For some reason the TCP/IP connections could not be released.", 2)
-	EndIf
-	_LogWrite("", False)
-	_LogWrite("-----------------------------------------------------------------------------------------", False)
-	_MemoLogWrite("Renewing TCP/IP connections, Please wait.....")
-	_LogWrite("-----------------------------------------------------------------------------------------", False)
-	Local $eCode = ShellExecuteWait("ipconfig", "/renew", "", "", @SW_HIDE)
-	If Not $eCode Then
-		_MemoLogWrite("Successfully renewed TCP/IP adapters.", 1)
-	Else
-		_MemoLogWrite("For some reason the TCP/IP connections could not be renewed.", 2)
-	EndIf
-	_LogWrite("", False)
-	_LogWrite("-----------------------------------------------------------------------------------------", False)
+	Local Const $iRep = 2
 
-EndFunc
+	If Not IsDeclared("g_ResetWinsock") Then Local $g_ResetWinsock
+
+	_StartLogging("Releasing and Renewing TCP/IP connections.")
+	Sleep(100)
+	_EditLoggingWrite("Releasing TCP/IP connections.")
+	_UpdateProcessing($iRep, 25)
+	_RunCommand("ipconfig /release")
+	_UpdateProcessing($iRep, 50)
+	_EditLoggingWrite("Renewing TCP/IP connections.")
+	_UpdateProcessing($iRep, 75)
+	_RunCommand("ipconfig /renew")
+
+	If $g_ResetWinsock Then _RepairWinsock(True)
+
+	_UpdateProcessing($iRep, 100)
+	Sleep(100)
+	_EndLogging()
+
+EndFunc   ;==>_ReleaseRenewIP
 
 
 Func _FlushReDNS()
 
-	If Not $EventLogConfigured Then _ConfigureEventLog()
-	_MemoLogWrite("Flushing DNS Resolver Cache, Please wait.....")
-	_LogWrite("-----------------------------------------------------------------------------------------", False)
-	ShellExecuteWait("ipconfig", "/flushdns", "", "", @SW_HIDE)
-	_MemoLogWrite("Successfully flushed DNS Resolver Cache.", 1)
-	_MemoLogWrite("Refreshing all DHCP leases and re-registering DNS names, Please wait.....")
-	ShellExecuteWait("ipconfig", "/registerdns", "", "", @SW_HIDE)
-	_MemoLogWrite("Registration of the DNS resource records has been initiated.", 1)
-	_MemoLogWrite("Note: Any errors will be reported in the 'Event Viewer' in about 15 minutes.")
-	_MemoLogWrite("Note: Click on 'File' and then 'Event Viewer...' to open the Event Viewer.", 3)
-	_LogWrite("", False)
-	_LogWrite("-----------------------------------------------------------------------------------------", False)
+	Local Const $iRep = 3
 
-EndFunc
+	_StartLogging("Flushing DNS Resolver Cache.")
+	Sleep(100)
+	_UpdateProcessing($iRep, 30)
+	_RunCommand("ipconfig /flushdns")
+	_UpdateProcessing($iRep, 60)
+	_RunCommand("ipconfig /registerdns")
+
+	_UpdateProcessing($iRep, 100)
+	Sleep(100)
+	_EndLogging()
+
+EndFunc   ;==>_FlushReDNS
 
 
-Func _RepairIE()
+Func _RepairInternetExplorer()
 
-	_MemoLogWrite("Repairing Internet Explorer " & $IEXPLORE_VERSION & ", Please wait.....")
-	_LogWrite("-----------------------------------------------------------------------------------------", False)
+	Local Const $iRep = 4
+
+	_StartLogging("Repairing Internet Explorer " & $g_IntExplVersion & ".")
+	Sleep(100)
+	_UpdateProcessing($iRep, 1)
 	If ProcessExists("iexplore.exe") Then
 		MsgBox(48, "Internet Explorer", "Closing Internet Explorer.  Save your work before you press OK")
 		ProcessClose("iexplore.exe")
 	EndIf
 
-	_ReregisterDLL(Chr(34) & @ProgramFilesDir & "\Internet Explorer\DiagnosticsHub_is.dll" & Chr(34))
-	_ReregisterDLL(Chr(34) & @ProgramFilesDir & "\Internet Explorer\DiagnosticsTap.dll" & Chr(34))
-	_ReregisterDLL(Chr(34) & @ProgramFilesDir & "\Internet Explorer\F12.dll" & Chr(34))
-	_ReregisterDLL(Chr(34) & @ProgramFilesDir & "\Internet Explorer\F12Tools.dll" & Chr(34))
-	_ReregisterDLL(Chr(34) & @ProgramFilesDir & "\Internet Explorer\hmmapi.dll" & Chr(34))
-	_ReregisterDLL(Chr(34) & @ProgramFilesDir & "\Internet Explorer\iedvtool.dll" & Chr(34))
-	_ReregisterDLL(Chr(34) & @ProgramFilesDir & "\Internet Explorer\ieproxy.dll" & Chr(34))
-	_ReregisterDLL(Chr(34) & @ProgramFilesDir & "\Internet Explorer\msdbg2.dll" & Chr(34))
-	_ReregisterDLL(Chr(34) & @ProgramFilesDir & "\Internet Explorer\pdm.dll" & Chr(34))
-	_ReregisterDLL(Chr(34) & @ProgramFilesDir & "\Internet Explorer\pdmproxy100.dll" & Chr(34))
-	_ReregisterDLL(Chr(34) & @ProgramFilesDir & "\Internet Explorer\perf_nt.dll" & Chr(34))
-	_ReregisterDLL(Chr(34) & @ProgramFilesDir & "\Internet Explorer\perfcore.dll" & Chr(34))
-	_ReregisterDLL(Chr(34) & @ProgramFilesDir & "\Internet Explorer\Timeline_is.dll" & Chr(34))
+	Local $sIEDlls = "custsat.dll|D3DCompiler_47.dll|DiagnosticsHub_is.dll|DiagnosticsTap.dll|F12.dll|F12Tools.dll|hmmapi.dll|iedvtool.dll|" & _
+			"ieproxy.dll|IEShims.dll|jsdbgui.dll|jsdebuggeride.dll|JSProfilerCore.dll|jsprofilerui.dll|IEShims.dll|" & _
+			"msdbg2.dll|networkinspection.dll|pdm.dll|pdmproxy100.dll|perf_nt.dll|perfcore.dll|sqmapi.dll|Timeline_is.dll"
 
-	;~ Symptom: open in new tab/window not working
+	Local $aIEDlls = StringSplit($sIEDlls, "|")
+	Local $iDllDefCount = $aIEDlls[0]
+	Local $sProcTemp, $iDllKillCount = 0, $iDllKillPerc = 0, $iPercChange = 0
+
+	For $x = 1 To $iDllDefCount
+
+		_SwithIERegDll64Bit($aIEDlls[$x])
+
+		$iDllKillCount = $iDllKillCount + 1
+		$iDllKillPerc = Int($iDllKillCount / $iDllDefCount * 30)
+
+		If $iDllKillPerc <> $iPercChange Then
+			_UpdateProcessing($iRep, Round($iDllKillPerc))
+			$iPercChange = $iDllKillPerc
+		EndIf
+
+	Next
+
+;~ Symptom: open in new tab/window not working
+	_UpdateProcessing($iRep, 33)
+	_EditLoggingWrite("Repairing: open in new tab/window not working.")
 	_ReregisterDLL("actxprxy.dll")
 	_ReregisterDLL("asctrls.ocx")
 	_ReregisterDLL("browseui.dll", "/s /i")
-	;~ regsvr32 /s /i browseui.dll,NI (unnecessary)
+;~ regsvr32 /s /i browseui.dll,NI (unnecessary)
 	_ReregisterDLL("cdfview.dll")
 	_ReregisterDLL("comcat.dll")
 	_ReregisterDLL("comctl32.dll", "/s /i /n")
 	_ReregisterDLL("corpol.dll")
 	_ReregisterDLL("cryptdlg.dll")
-	_ReregisterDLL("""" & @ProgramFilesDir & "\Internet Explorer\custsat.dll""")
-
 	_ReregisterDLL("digest.dll", "/s /i /n")
 	_ReregisterDLL("dispex.dll")
 	_ReregisterDLL("dxtmsft.dll")
 	_ReregisterDLL("dxtrans.dll")
-	;~ Symptom: Add-Ons-Manager menu entry is present but nothing happens
+
+;~ Symptom: Add-Ons-Manager menu entry is present but nothing happens
+	_UpdateProcessing($iRep, 36)
+	_EditLoggingWrite("Repairing: Add-Ons-Manager menu entry is present but nothing happens.")
 	_ReregisterDLL("extmgr.dll")
-	;~ Simple HTML Mail API
-	_ReregisterDLL("""" & @ProgramFilesDir & "\Internet Explorer\hmmapi.dll""")
+
+
+;~ Simple HTML Mail API
+	_UpdateProcessing($iRep, 39)
+	_EditLoggingWrite("Repairing: Simple HTML Mail API.")
 	_ReregisterDLL("hlink.dll")
-	;~ Group policy snap-in
+
+;~ Group policy snap-in
+	_UpdateProcessing($iRep, 42)
+	_EditLoggingWrite("Repairing: Group policy snap-in.")
 	_ReregisterDLL("ieaksie.dll")
-	;~ Smart Screen
+
+;~ Smart Screen
+	_UpdateProcessing($iRep, 45)
+	_EditLoggingWrite("Repairing: Smart Screen.")
 	_ReregisterDLL("ieapfltr.dll")
-	;~ IEAK Branding
+
+;~ IEAK Branding
+	_UpdateProcessing($iRep, 48)
+	_EditLoggingWrite("Repairing: IEAK Branding.")
 	_ReregisterDLL("iedkcs32.dll")
-	;~ Dev Tools
-	_ReregisterDLL("""" & @ProgramFilesDir & "\Internet Explorer\iedvtool.dll""")
+
+;~ Dev Tools
+	_UpdateProcessing($iRep, 51)
+	_EditLoggingWrite("Repairing: Dev Tools.")
 	_ReregisterDLL("iedvtool.dll")
-	;~ IE7 tabbed browser
+
+;~ IE7 tabbed browser
+	_UpdateProcessing($iRep, 54)
 	_ReregisterDLL("ieframe.dll", "/s /i /n")
-	;~ _ReregisterDLL("ieframe.dll", "/s /i")
+;~ _ReregisterDLL("ieframe.dll", "/s /i")
 	_ReregisterDLL("iepeers.dll")
-	;~ Symptom: IE8 closes immediately on launch, missing from IE7
-	_ReregisterDLL("""" & @ProgramFilesDir & "\Internet Explorer\ieproxy.dll""")
+
+;~ Symptom: IE8 closes immediately on launch, missing from IE7
+	_UpdateProcessing($iRep, 57)
+	_EditLoggingWrite("Repairing: IE8 closes immediately on launch.")
 	_ReregisterDLL("ieproxy.dll")
-	;~ iesetup.dll has DllINstall for WinXP,NT4Only,NTx86
+;~ iesetup.dll has DllINstall for WinXP,NT4Only,NTx86
 	_ReregisterDLL("iesetup.dll", "/s /i")
 	_ReregisterDLL("imgutil.dll")
 	_ReregisterDLL("inetcpl.cpl", "/s /i")
@@ -764,16 +1064,25 @@ Func _RepairIE()
 	_ReregisterDLL("initpki.dll", "/s /i:A")
 	_ReregisterDLL("inseng.dll", "/s /i")
 	_ReregisterDLL("jscript.dll")
-	;~ License Manager
+
+;~ License Manager
+	_UpdateProcessing($iRep, 60)
+	_EditLoggingWrite("Repairing: License Manager.")
 	_ReregisterDLL("licmgr10.dll")
 	_ReregisterDLL("mlang.dll")
 	_ReregisterDLL("mobsync.dll")
 	_ReregisterDLL("msapsspc.dll")
-	;~ Symptom: Javascript links don't work (Robin Walker) .NET hub file
+
+;~ Symptom: Javascript links don't work (Robin Walker) .NET hub file
+	_UpdateProcessing($iRep, 63)
+	_EditLoggingWrite("Repairing: Javascript links don't work (Robin Walker) .NET hub file.")
 	_ReregisterDLL("mscoree.dll")
 	_ReregisterDLL("mscorier.dll")
 	_ReregisterDLL("mscories.dll")
-	;~ VS Debugger
+
+;~ VS Debugger
+	_UpdateProcessing($iRep, 66)
+	_EditLoggingWrite("Repairing: VS Debugger.")
 	_ReregisterDLL("msdbg2.dll")
 	_ReregisterDLL("mshta.exe")
 	_ReregisterDLL("mshtml.dll", "/s /i")
@@ -785,14 +1094,22 @@ Func _RepairIE()
 	_ReregisterDLL("msrating.dll")
 	_ReregisterDLL("mstime.dll")
 	_ReregisterDLL("msxml.dll")
-	;~ Symptom: Printing problems, open in new window
+
+;~ Symptom: Printing problems, open in new window
+	_UpdateProcessing($iRep, 69)
+	_EditLoggingWrite("Repairing: Printing problems, open in new window.")
 	_ReregisterDLL("ole32.dll")
-	;~ Symptom: Find on this page is blank
+
+;~ Symptom: Find on this page is blank
+	_UpdateProcessing($iRep, 72)
+	_EditLoggingWrite("Repairing: Find on this page is blank.")
 	_ReregisterDLL("oleacc.dll")
 	_ReregisterDLL("occache.dll", "/s /i")
 	_ReregisterDLL("oleaut32.dll")
-	;~ Process debug manager
-	_ReregisterDLL("""" & @ProgramFilesDir & "\Internet Explorer\pdm.dll""")
+
+;~ Process debug manager
+	_UpdateProcessing($iRep, 75)
+	_EditLoggingWrite("Repairing: Process debug manager.")
 	_ReregisterDLL("plugin.ocx")
 	_ReregisterDLL("pngfilt.dll")
 	_ReregisterDLL("proctexe.ocx")
@@ -800,238 +1117,269 @@ Func _RepairIE()
 	_ReregisterDLL("sendmail.dll")
 	_ReregisterDLL("setupwbv.dll", "/s /i")
 	_ReregisterDLL("shdocvw.dll", "/s /i")
-	;~ regsvr32 /s /i shdocvw.dll,NI
+;~ regsvr32 /s /i shdocvw.dll,NI
 	_ReregisterDLL("tdc.ocx")
 	_ReregisterDLL("url.dll")
 	_ReregisterDLL("urlmon.dll", "/s /i")
-	;~ regsvr32 /s /i urlmon.dll,NI,HKLM
+;~ regsvr32 /s /i urlmon.dll,NI,HKLM
 	_ReregisterDLL("urlmon.dll,NI,HKLM", "/s /i")
 	_ReregisterDLL("vbscript.dll")
-	;~ VML Renderer
-	_ReregisterDLL("""" & @ProgramFilesDir & "\microsoft shared\vgx\vgx.dll""")
+
+;~ VML Renderer
+	_UpdateProcessing($iRep, 78)
+	_EditLoggingWrite("Repairing: VML Renderer.", 1, 1)
+	_ReregisterDLL(Chr(34) & @ProgramFilesDir & "\microsoft shared\vgx\vgx.dll" & Chr(34))
 	_ReregisterDLL("webcheck.dll", "/s /i")
 	;_ReregisterDLL("wininet.dll", "/s /i /n")
-	If @OSVersion = "WIN_XP" Or @OSVersion = "WIN_2003" Then
-		;~ Symptom: new tabs page cannot display content because it cannot access the controls (added 27. 3.2009)
-		;~ This is a result of a bug in shdocvw.dll (see above), probably only on Windows XP
-		_MemoLogWrite("Fixing 'New tabs page cannot display content because it cannot access the controls'.")
-		_MemoLogWrite("This is a result of a bug in shdocvw.dll.")
-		Local $RegReturn = RegWrite("HKEY_CLASSES_ROOT\TypeLib\{EAB22AC0-30C1-11CF-A7EB-0000C05BAE0B}\1.1\0\win32", "", "REG_SZ", "%SystemRoot%\system32\ieframe.dll")
-		If $RegReturn Then
-		Else
-			Switch @error
-				Case 1
-					_MemoLogWrite("Unable to open requested registry key.", 2)
-				Case 2
-					_MemoLogWrite("Unable to open requested main registry key.", 2)
-				Case 3
-					_MemoLogWrite("Unable to remote connect to the registry.", 2)
-				Case -1
-					_MemoLogWrite("Unable to open requested registry value.", 2)
-				Case -2
-					_MemoLogWrite("Registry value type not supported.", 2)
-			EndSwitch
+
+	If @OSVersion = "WIN_XP" Then
+
+;~ Symptom: new tabs page cannot display content because it cannot access the controls (added 27. 3.2009)
+;~ This is a result of a bug in shdocvw.dll (see above), probably only on Windows XP
+		_EditLoggingWrite("Fixing 'New tabs page cannot display content because it cannot access the controls'.")
+		_EditLoggingWrite("This is a result of a bug in shdocvw.dll.")
+		_RegistryWrite("HKEY_CLASSES_ROOT\TypeLib\{EAB22AC0-30C1-11CF-A7EB-0000C05BAE0B}\1.1\0\win32", "", "REG_SZ", "C:\WINDOWS\system32\ieframe.dll")
+
+		_EditLoggingWrite("Repairing Outlook Express.")
+		_ReregisterDLL(Chr(34) & @ProgramFilesDir & "\Outlook Express\msoe.dll" & Chr(34))
+		_ReregisterDLL(Chr(34) & @ProgramFilesDir & "\Outlook Express\oeimport.dll" & Chr(34))
+		_ReregisterDLL(Chr(34) & @ProgramFilesDir & "\Outlook Express\oemiglib.dll" & Chr(34))
+		_ReregisterDLL(Chr(34) & @ProgramFilesDir & "\Outlook Express\wabfind.dll" & Chr(34))
+		_ReregisterDLL(Chr(34) & @ProgramFilesDir & "\Outlook Express\wabimp.dll" & Chr(34))
+
+;~ _MemoLogWrite("Registering Connection Wizard files.....")
+;~ _ReregisterDLL("""" & @ProgramFilesDir & "\Internet Explorer\Connection Wizard\icwconn.dll""")
+;~ _ReregisterDLL("""" & @ProgramFilesDir & "\Internet Explorer\Connection Wizard\icwdl.dll""")
+;~ _ReregisterDLL("""" & @ProgramFilesDir & "\Internet Explorer\Connection Wizard\icwutil.dll""")
+;~ _ReregisterDLL("""" & @ProgramFilesDir & "\Internet Explorer\Connection Wizard\trialoc.dll""")
+
+	EndIf
+
+	_UpdateProcessing($iRep, 100)
+	Sleep(100)
+	_EndLogging()
+
+EndFunc   ;==>_RepairInternetExplorer
+
+
+Func _ClearUpdateHistory($IsInnerProcess = False)
+
+	Local Const $iRep = 5
+
+	If $IsInnerProcess = False Then
+		_StartLogging("Clearing File Stores (Update History).")
+		Sleep(100)
+		_UpdateProcessing($iRep, 25)
+
+	Else
+		_EditLoggingWrite("Clearing File Stores (Update History).")
+	EndIf
+
+	_FileDelete(@AppDataCommonDir & "\Microsoft\Network\Downloader\qmgr*.dat")
+
+	_RemoveDirectory($DIR_SDDOWNLOAD, $DIR_SDDOWNLOAD_OLD)
+	If $IsInnerProcess = False Then _UpdateProcessing($iRep, 50)
+	_RemoveDirectory($DIR_SDDATASTORE, $DIR_SDDATASTORE_OLD)
+	If $IsInnerProcess = False Then _UpdateProcessing($iRep, 75)
+	_RemoveDirectory($DIR_CATROOT2, $DIR_CATROOT2_OLD)
+
+	If $IsInnerProcess = False Then
+
+		_UpdateProcessing($iRep, 100)
+		Sleep(100)
+		_EndLogging()
+
+	EndIf
+
+	$g_ClearWinUpdate = False
+
+EndFunc   ;==>_ClearUpdateHistory
+
+
+Func _RepairWindowsUpdate()
+
+	Local Const $iRep = 6
+
+	If Not IsDeclared("g_ClearWinUpdate") Then Local $g_ClearWinUpdate
+	If Not IsDeclared("g_ResetWinsock") Then Local $g_ResetWinsock
+	If Not IsDeclared("g_ResetFirewall") Then Local $g_ResetFirewall
+	If Not IsDeclared("g_ResetProxy") Then Local $g_ResetProxy
+
+	_StartLogging("Repairing Windows Update / Automatic Updates.")
+	Sleep(100)
+
+	_UpdateProcessing($iRep, 3)
+	If _ProgramFileExists(@ProgramFilesDir & "\Nero\Update\NASvc.exe") Then
+		_EditLoggingWrite("Stopping the Nero Update Service.")
+		_RunCommand("net stop NAUpdate")
+	EndIf
+
+	_UpdateProcessing($iRep, 6)
+	_EditLoggingWrite("Stopping the BITS Service.")
+	_RunCommand("net stop bits")
+
+	_UpdateProcessing($iRep, 9)
+	_EditLoggingWrite("Stopping the Automatic Updates Service.")
+	_RunCommand("net stop wuauserv")
+
+	_UpdateProcessing($iRep, 12)
+	If $g_ClearWinUpdate Then _ClearUpdateHistory(True)
+
+	_UpdateProcessing($iRep, 15)
+	_EditLoggingWrite("Setting BITS Security Descriptor.")
+	_RunCommand("sc sdset bits " & Chr(34) & "D:(A;;CCLCSWRPWPDTLOCRRC;;;SY)(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;BA)(A;;CCLCSWLOCRRC;;;AU)(A;;CCLCSWRPWPDTLOCRRC;;;PU)" & Chr(34))
+
+	_UpdateProcessing($iRep, 18)
+	_EditLoggingWrite("Setting Automatic Updates Service Security Descriptor.")
+	_RunCommand("sc sdset wuauserv " & Chr(34) & "D:(A;;CCLCSWRPWPDTLOCRRC;;;SY)(A;;CCLCSWRPWPDTLOCRSDRCWDWO;;;BA)(A;;CCLCSWLOCRRC;;;AU)(A;;CCLCSWRPWPDTLOCRRC;;;PU)" & Chr(34))
+
+	_UpdateProcessing($iRep, 21)
+	_EditLoggingWrite("Configuring the Automatic Updates Service.")
+	_ConfigureWindowsService("wuauserv", 2)
+	; _RunCommand("sc config wuauserv start= auto")
+
+	_UpdateProcessing($iRep, 24)
+	_EditLoggingWrite("Configuring BITS.")
+	_ConfigureWindowsService("BITS", 2)
+	_RunCommand("sc config bits start= auto")
+
+
+	_UpdateProcessing($iRep, 27)
+	_EditLoggingWrite("Registering Windows Updates Dlls.")
+
+	Local $sWADlls = "actxprxy.dll|atl.dll|browseui.dll|corpol.dll|cryptdlg.dll|dispex.dll|dssenh.dll|gpkcsp.dll|initpki.dll|" & _
+			"jscript.dll|mshtml.dll|msscript.ocx|msxml.dll|msxml2.dll|msxml3.dll|msxml4.dll|msxml6.dll|muweb.dll|" & _
+			"ole.dll|ole32.dll|oleaut.dll|oleaut32.dll|qmgr.dll|qmgrprxy.dll|gpkcsp.dll|rsaenh.dll|sccbase.dll|scrobj.dll|" & _
+			"scrrun.dll|shdocvw.dll|shell.dll|shell32.dll|slbcsp.dll|softpub.dll|urlmon.dll|vbscript.dll|winhttp.dll|" & _
+			"wintrust.dll|wshext.dll|wuapi.dll|wuaueng.dll|wuaueng1.dll|wucltui.dll|wucltux.dll|wups.dll|wups2.dll|wuweb.dll|" & _
+			"wuwebv.dll"
+
+	Local $aWADlls = StringSplit($sWADlls, "|")
+	Local $iDllDefCount = $aWADlls[0]
+	Local $sProcTemp, $iDllKillCount = 0, $iDllKillPerc = 0, $iPercChange = 0
+
+	For $x = 1 To $iDllDefCount
+
+		$iDllKillCount = $iDllKillCount + 1
+		$iDllKillPerc = Int($iDllKillCount / $iDllDefCount * 33)
+
+		If $iDllKillPerc <> $iPercChange Then
+			_UpdateProcessing($iRep, Round($iDllKillPerc) + 27)
+			$iPercChange = $iDllKillPerc
 		EndIf
-		_MemoLogWrite("Registering Outlook Express files.....")
-		_ReregisterDLL("""" & @ProgramFilesDir & "\Outlook Express\msoe.dll""")
-		_ReregisterDLL("""" & @ProgramFilesDir & "\Outlook Express\oeimport.dll""")
-		_ReregisterDLL("""" & @ProgramFilesDir & "\Outlook Express\oemiglib.dll""")
-		_ReregisterDLL("""" & @ProgramFilesDir & "\Outlook Express\wabfind.dll""")
-		_ReregisterDLL("""" & @ProgramFilesDir & "\Outlook Express\wabimp.dll""")
-		;~ _MemoLogWrite("Registering Connection Wizard files.....")
-		;~ _ReregisterDLL("""" & @ProgramFilesDir & "\Internet Explorer\Connection Wizard\icwconn.dll""")
-		;~ _ReregisterDLL("""" & @ProgramFilesDir & "\Internet Explorer\Connection Wizard\icwdl.dll""")
-		;~ _ReregisterDLL("""" & @ProgramFilesDir & "\Internet Explorer\Connection Wizard\icwutil.dll""")
-		;~ _ReregisterDLL("""" & @ProgramFilesDir & "\Internet Explorer\Connection Wizard\trialoc.dll""")
+
+		_ReregisterDLL($aWADlls[$x])
+
+	Next
+
+	If $g_ResetWinsock Then _RepairWinsock(True)
+
+	_UpdateProcessing($iRep, 63)
+	If $g_ResetProxy Then _ResetProxyServer(True)
+	If $g_ResetFirewall Then _ResetFirewall(True)
+
+	_UpdateProcessing($iRep, 66)
+	_EditLoggingWrite("Restarting the Automatic Updates Service.")
+	_RunCommand("net start wuauserv")
+
+	_UpdateProcessing($iRep, 69)
+	_EditLoggingWrite("Restarting the BITS Service.")
+	_RunCommand("net start bits")
+
+	_UpdateProcessing($iRep, 72)
+	If _ProgramFileExists(@ProgramFilesDir & "\Nero\Update\NASvc.exe") Then
+		_EditLoggingWrite("Restarting the Nero Update Service.")
+		_RunCommand("net start NAUpdate")
 	EndIf
-	_MemoLogWrite("Finished repairing Internet Explorer " & $IEXPLORE_VERSION)
-	_LogWrite("", False)
-	_LogWrite("-----------------------------------------------------------------------------------------", False)
 
-EndFunc
+	_UpdateProcessing($iRep, 75)
+	_EditLoggingWrite("Clean transactional metadata on next Transactional Resource Manager mount.")
+	_RunCommand("fsutil resource setautoreset true " & @HomeDrive & ":\")
 
+	If @OSVersion <> "WIN_XP" Then
 
-Func _RepairWUAU()
+		_EditLoggingWrite("Clearing the BITS queue.")
+		_RunCommand("bitsadmin.exe /reset /allusers")
 
-	If Not $EventLogConfigured Then _ConfigureEventLog()
-	_MemoLogWrite("Repairing Windows Update / Automatic Updates, Please wait.....")
-	_LogWrite("-----------------------------------------------------------------------------------------", False)
-	_MemoLogWrite("Stopping the BITS Service.....")
-	If Not _SvcStop("bits") Then
-		_MemoLogWrite("BITS was not started in the first place.", 3)
-	Else
-		_MemoLogWrite("BITS Stopped Successfully.", 1)
 	EndIf
-	_MemoLogWrite("Stopping the Automatic Updates (wuauserv) Service.....")
-	If Not _SvcStop("wuauserv") Then
-		_MemoLogWrite("Automatic Updates (wuauserv) Service was not started in the first place.", 3)
-	Else
-		_MemoLogWrite("Automatic Updates (wuauserv) Service Stopped Successfully.", 1)
-	EndIf
-	If $ClearWinUpHist Then _ClearUpdateHistory()
-	_MemoLogWrite("Setting BITS Security Descriptor.....")
-	ShellExecuteWait("sc", 'sdset bits "D:(A;;CCLCSWRPWPDTLOCRRC;;;SY)(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;BA)(A;;CCLCSWLOCRRC;;;AU)(A;;CCLCSWRPWPDTLOCRRC;;;PU)"', "", "", @SW_HIDE)
-	_MemoLogWrite("BITS Security Descriptor Set.", 1)
-	_MemoLogWrite("Setting Automatic Updates (wuauserv) Service Security Descriptor.....")
-	ShellExecuteWait("sc", 'sdset wuauserv "D:(A;;CCLCSWRPWPDTLOCRRC;;;SY)(A;;CCLCSWRPWPDTLOCRSDRCWDWO;;;BA)(A;;CCLCSWLOCRRC;;;AU)(A;;CCLCSWRPWPDTLOCRRC;;;PU)"', "", "", @SW_HIDE)
-	_MemoLogWrite("Automatic Updates (wuauserv) Security Descriptor Set.", 1)
-	_MemoLogWrite("Configuring the Automatic Updates (wuauserv) Service.....")
-	_SvcSetStartMode("wuauserv","Automatic")
-	_MemoLogWrite("Automatic Updates (wuauserv) Service Configured.", 1)
-	_MemoLogWrite("Configuring BITS.....")
-	_SvcSetStartMode("bits","Automatic")
-	_MemoLogWrite("BITS Configured.", 1)
-	_MemoLogWrite("Registering WUAU DLLs.....")
-	_ReregisterDLL("actxprxy.dll")
-	_ReregisterDLL("atl.dll")
-	_ReregisterDLL("browseui.dll")
-	_ReregisterDLL("corpol.dll")
-	_ReregisterDLL("cryptdlg.dll")
-	_ReregisterDLL("dispex.dll")
-	_ReregisterDLL("dssenh.dll")
-	_ReregisterDLL("gpkcsp.dll")
-	_ReregisterDLL("initpki.dll")
-	_ReregisterDLL("jscript.dll")
-	_ReregisterDLL("mshtml.dll")
-	_ReregisterDLL("msscript.ocx")
-	_ReregisterDLL("msxml.dll")
-	_ReregisterDLL("msxml2.dll")
-	_ReregisterDLL("msxml3.dll")
-	_ReregisterDLL("msxml4.dll")
-	_ReregisterDLL("msxml6.dll")
-	_ReregisterDLL("muweb.dll")
-	_ReregisterDLL("ole.dll")
-	_ReregisterDLL("ole32.dll")
-	_ReregisterDLL("oleaut.dll")
-	_ReregisterDLL("oleaut32.dll")
-	_ReregisterDLL("qmgr.dll")
-	_ReregisterDLL("qmgrprxy.dll")
-	_ReregisterDLL("gpkcsp.dll")
-	_ReregisterDLL("rsaenh.dll")
-	_ReregisterDLL("sccbase.dll")
-	_ReregisterDLL("scrobj.dll")
-	_ReregisterDLL("scrrun.dll")
-	_ReregisterDLL("shdocvw.dll")
-	_ReregisterDLL("shell.dll")
-	_ReregisterDLL("shell32.dll")
-	_ReregisterDLL("slbcsp.dll")
-	_ReregisterDLL("softpub.dll")
-	_ReregisterDLL("urlmon.dll")
-	_ReregisterDLL("vbscript.dll")
-	_ReregisterDLL("winhttp.dll")
-	_ReregisterDLL("wintrust.dll")
-	_ReregisterDLL("wshext.dll")
-	_ReregisterDLL("wuapi.dll")
-	_ReregisterDLL("wuaueng.dll")
-	_ReregisterDLL("wuaueng1.dll")
-	_ReregisterDLL("wucltui.dll")
-	_ReregisterDLL("wucltux.dll")
-	_ReregisterDLL("wups.dll")
-	_ReregisterDLL("wups2.dll")
-	_ReregisterDLL("wuweb.dll")
-	_ReregisterDLL("wuwebv.dll")
-	_MemoLogWrite("WUAU DLLs Reregistered.", 1)
-	If Not $ResetWinsock Then _RepairWinsock()
-	Switch @OSVersion
-		Case "WIN_2000", "WIN_XP", "WIN_XPe", "WIN_2003"
-			_MemoLogWrite("Setting proxy to direct access.....")
-			ShellExecuteWait("proxycfg.exe", "-d", "", "", @SW_HIDE)
-			_MemoLogWrite("Proxy set to direct access.", 1)
-		Case "WIN_VISTA", "WIN_2008", "WIN_7", "WIN_2008R2"
-			_MemoLogWrite("Resetting proxy settings.....")
-			ShellExecuteWait("netsh", "winhttp reset proxy", "", "", @SW_HIDE)
-			_MemoLogWrite("Proxy settings reset successfully.", 1)
-	EndSwitch
-	_MemoLogWrite("Restarting the Automatic Updates (wuauserv) Service.....")
-	If Not _SvcStart("wuauserv") Then
-		_MemoLogWrite("The wuauserv Service could not be started.", 2)
-	Else
-		_MemoLogWrite("Automatic Updates (wuauserv) Service Restarted.", 1)
-	EndIf
-	_MemoLogWrite("Restarting the BITS Service.....")
-	If Not _SvcStart("bits") Then
-		_MemoLogWrite("The BITS Service could not be started.", 2)
-	Else
-		_MemoLogWrite("BITS Service Restarted.", 1)
-	EndIf
-	ShellExecuteWait("fsutil","resource setautoreset true "&@HomeDrive&":\", @SystemDir,Default,@SW_HIDE)
-	If @OSVersion = "WIN_VISTA" Or @OSVersion = "WIN_2008" Or @OSVersion = "WIN_2008R2" Or @OSVersion = "WIN_7" Then
-		_MemoLogWrite("Clearing the BITS queue.....")
-		ShellExecuteWait("bitsadmin.exe", "/reset /allusers", "", "", @SW_HIDE)
-		_MemoLogWrite("BITS queue cleared.", 1)
-	EndIf
-	RegDelete("HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Group Policy Objects\LocalUser\Software\Microsoft\Windows\CurrentVersion\Policies\WindowsUpdate\DisableWindowsUpdateAccess")
-	RegDelete("HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer", "NoWindowsUpdate")
-	RegDelete("HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer", "NoDevMgrUpdate")
-	RegDelete("HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\WindowsUpdate", "DisableWindowsUpdateAccess")
-	RegDelete("HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\WindowsUpdate")
-	RegDelete("HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer", "NoWindowsUpdate")
-	RegDelete("HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU", "NoAutoUpdate")
-	RegDelete("HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU", "AUOptions")
-	RegDelete("HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU", "ScheduledInstallDay")
-	RegDelete("HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU", "ScheduledInstallTime")
-	RegDelete("HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU", "NoAutoRebootWithLoggedOnUsers")
-	RegDelete("HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\WindowsUpdate")
-	RegDelete("HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update", "LastWaitTimeout")
-	RegDelete("HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update", "DetectionStartTime")
-	RegDelete("HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update", "NextDetectionTime")
-	RegDelete("HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update", "ScheduledInstallDate")
-	RegWrite("HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update", "NoAutoUpdate", "REG_DWORD", 0)
-	RegWrite("HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update", "AUOptions", "REG_DWORD", 4)
-	RegWrite("HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update", "ScheduledInstallDay", "REG_DWORD", 0)
-	RegWrite("HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update", "ScheduledInstallTime", "REG_DWORD", 3)
-	RegWrite("HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update", "NoAutoRebootWithLoggedOnUsers", "REG_DWORD", 1)
-	RegWrite("HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\Main", "NoUpdateCheck", "REG_DWORD", 0)
-	_MemoLogWrite("Initiating Windows Updates detection right away.....")
-	RunWait("wuauclt /detectnow", @SystemDir)
-	_MemoLogWrite("Finished repairing Windows Update / Automatic Updates.")
-	_LogWrite("", False)
-	_LogWrite("-----------------------------------------------------------------------------------------", False)
 
-EndFunc
+	_UpdateProcessing($iRep, 78)
+	_RegistryDelete("HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Group Policy Objects\LocalUser\Software\Microsoft\Windows\CurrentVersion\Policies\WindowsUpdate\DisableWindowsUpdateAccess")
+	_RegistryDelete("HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer", "NoWindowsUpdate")
+	_RegistryDelete("HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer", "NoDevMgrUpdate")
+	_RegistryDelete("HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\WindowsUpdate", "DisableWindowsUpdateAccess")
+	_RegistryDelete("HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\WindowsUpdate")
 
-Func _ClearUpdateHistory()
+	_UpdateProcessing($iRep, 81)
+	_RegistryDelete("HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer", "NoWindowsUpdate")
+	_RegistryDelete("HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU", "NoAutoUpdate")
+	_RegistryDelete("HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU", "AUOptions")
+	_RegistryDelete("HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU", "ScheduledInstallDay")
+	_RegistryDelete("HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU", "ScheduledInstallTime")
+	_RegistryDelete("HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU", "NoAutoRebootWithLoggedOnUsers")
+	; _RegistryDelete("HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\WindowsUpdate")
+	_RegistryDelete("HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update", "LastWaitTimeout")
+	_RegistryDelete("HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update", "DetectionStartTime")
+	_RegistryDelete("HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update", "NextDetectionTime")
+	_RegistryDelete("HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update", "ScheduledInstallDate")
 
-	_MemoLogWrite("Clearing File Stores (Update History).....")
-	FileDelete(@AppDataCommonDir & "\Microsoft\Network\Downloader\qmgr*.dat")
-	_MemoLogWrite("Clearing [" & $GDownLoadDir & "].....")
-	If DirRemove($GDownLoadDir, 1) Then
-		_MemoLogWrite("[" & $GDownLoadDir & "] Cleared.", 1)
+	_UpdateProcessing($iRep, 84)
+	_RegistryWrite("HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update", "NoAutoUpdate", "REG_DWORD", 0)
+	_RegistryWrite("HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update", "AUOptions", "REG_DWORD", 4)
+	_RegistryWrite("HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update", "ScheduledInstallDay", "REG_DWORD", 0)
+	_RegistryWrite("HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update", "ScheduledInstallTime", "REG_DWORD", 3)
+	_RegistryWrite("HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update", "NoAutoRebootWithLoggedOnUsers", "REG_DWORD", 1)
+
+	_UpdateProcessing($iRep, 87)
+	_RegistryWrite("HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\Main", "NoUpdateCheck", "REG_DWORD", 0)
+
+	_UpdateProcessing($iRep, 90)
+	If Not @OSVersion = "WIN_10" Then
+		_EditLoggingWrite("Initiating Windows Updates detection right away.", 1, 1)
+		_RunCommand("wuauclt /detectnow")
 	EndIf
-	_MemoLogWrite("Clearing [" & $GDataStoreDir & "].....")
-	If DirRemove($GDataStoreDir, 1) Then
-		_MemoLogWrite("[" & $GDataStoreDir & "] Cleared.", 1)
-	EndIf
-	_MemoLogWrite("Clearing [" & $GCATRootDir & "].....")
-	DirRemove($GCATRootDir, 1)
-	_MemoLogWrite("[" & $GCATRootDir & "] Cleared.", 1)
-	$ClearWinUpHist = False
 
-EndFunc
+	_UpdateProcessing($iRep, 100)
+	Sleep(100)
+	_EndLogging()
 
-Func _RepairSHC()
+EndFunc   ;==>_RepairWindowsUpdate
 
-	If Not $EventLogConfigured Then _ConfigureEventLog()
-	_MemoLogWrite("Repairing SSL / HTTPS / Cryptography service, Please wait.....")
-	_LogWrite("-----------------------------------------------------------------------------------------", False)
-	_MemoLogWrite("Configuring the Cryptographic Service.....")
-	_SvcSetStartMode("CryptSvc","Automatic")
-	_MemoLogWrite("Cryptographic Service Configured.")
-	_MemoLogWrite("Stopping the Cryptographic Service.....")
-	If Not _SvcStop("CryptSvc") Then
-		_MemoLogWrite("Cryptographic service was not started in the first place.", 3)
-	Else
-		_MemoLogWrite("Cryptographic service Stopped Successfully.", 1)
-	EndIf
-	_MemoLogWrite("Clearing [" & @WindowsDir & "\system32\CatRoot].....", 1)
-	;DirRemove(@WindowsDir&"\system32\CatRoot, 1)
-	FileDelete(@WindowsDir & "\system32\CatRoot\{F750E6C3-38EE-11D1-85E5-00C04FC295EE}\tmp*.CAT")
-	FileDelete(@WindowsDir & "\system32\CatRoot\{127D0A1D-4EF2-11D1-8608-00C04FC295EE}\tmp*.CAT")
-	FileDelete(@WindowsDir & "\system32\CatRoot\{F750E6C3-38EE-11D1-85E5-00C04FC295EE}\KB*.CAT")
-	FileDelete(@WindowsDir & "\system32\CatRoot\{127D0A1D-4EF2-11D1-8608-00C04FC295EE}\KB*.CAT")
-	FileDelete(@WindowsDir & "\inf\oem*.*")
-	_MemoLogWrite("[" & @WindowsDir & "\system32\CatRoot] cleared." , 1)
-	_MemoLogWrite("Re-registering SSL / HTTPS / Cryptography DLLs.....")
+
+Func _RepairCryptography()
+
+;~ If Not $EVNTLOG_CONFIGURED Then _ConfigureEventLog()
+
+	Local Const $iRep = 7
+
+	_StartLogging("Repairing SSL / HTTPS / Cryptography service.")
+	Sleep(100)
+
+	_UpdateProcessing($iRep, 5)
+	_EditLoggingWrite("Stopping the Cryptographic Service.")
+	_RunCommand("net stop CryptSvc")
+	_UpdateProcessing($iRep, 7)
+	_EditLoggingWrite("Configuring the Cryptographic Service.")
+	_ConfigureWindowsService("CryptSvc", 2)
+	_RunCommand("sc config CryptSvc start= auto")
+
+	_EditLoggingWrite("Clearing [" & $DIR_CATROOT2 & "].")
+	_RemoveDirectory($DIR_CATROOT2, $DIR_CATROOT2_OLD)
+
+	_EditLoggingWrite("Clearing [" & @WindowsDir & "\system32\CatRoot].")
+	_UpdateProcessing($iRep, 15)
+	_FileDelete(@WindowsDir & "\system32\CatRoot\{F750E6C3-38EE-11D1-85E5-00C04FC295EE}\tmp*.CAT")
+	_UpdateProcessing($iRep, 20)
+	_FileDelete(@WindowsDir & "\system32\CatRoot\{127D0A1D-4EF2-11D1-8608-00C04FC295EE}\tmp*.CAT")
+	_UpdateProcessing($iRep, 25)
+	_FileDelete(@WindowsDir & "\system32\CatRoot\{F750E6C3-38EE-11D1-85E5-00C04FC295EE}\KB*.CAT")
+	_UpdateProcessing($iRep, 30)
+	_FileDelete(@WindowsDir & "\system32\CatRoot\{127D0A1D-4EF2-11D1-8608-00C04FC295EE}\KB*.CAT")
+	_UpdateProcessing($iRep, 35)
+	_FileDelete(@WindowsDir & "\inf\oem*.*")
+	_EditLoggingWrite("[" & @WindowsDir & "\system32\CatRoot] cleared.")
+
+	_EditLoggingWrite("Registering SSL / HTTPS / Cryptography DLLs.")
 	_ReregisterDLL("cryptdlg.dll")
 	_ReregisterDLL("cryptext.dll")
 	_ReregisterDLL("cryptui.dll")
@@ -1050,579 +1398,474 @@ Func _RepairSHC()
 	_ReregisterDLL("softpub.dll")
 	_ReregisterDLL("winhttp.dll")
 	_ReregisterDLL("wintrust.dll")
-	_MemoLogWrite("SSL / HTTPS / Cryptography DLLs re-registered.")
-	FileSetAttrib(@WindowsDir, "-RSH")
-	FileSetAttrib(@SystemDir, "-RSH")
-	FileSetAttrib(@WindowsDir & "\system32\CatRoot", "-RSH", 1)
-	_MemoLogWrite("Restarting the Cryptographic Service.....")
-	If Not _SvcStart("CryptSvc") Then
-		_MemoLogWrite("The Cryptographic Service could not be started.", 2)
+	_EditLoggingWrite("SSL / HTTPS / Cryptography DLLs Registered.")
+	_UpdateProcessing($iRep, 40)
+
+	; FileSetAttrib(@WindowsDir, "-RSH")
+	_UpdateProcessing($iRep, 45)
+	; FileSetAttrib(@WindowsDir & "\System32", "-RSH")
+	_UpdateProcessing($iRep, 50)
+	; FileSetAttrib($DIR_CATROOT2, "-RSH", 1)
+
+	_UpdateProcessing($iRep, 55)
+	_EditLoggingWrite("Restarting the Cryptographic Service.")
+	_RunCommand("net start CryptSvc")
+
+	_UpdateProcessing($iRep, 100)
+	Sleep(100)
+	_EndLogging()
+
+EndFunc   ;==>_RepairCryptography
+
+
+Func _ResetProxyServer($IsInnerProcess = False)
+
+	If Not IsDeclared("g_ResetProxy") Then Local $g_ResetProxy
+	Local Const $iRep = 8
+
+	If Not $IsInnerProcess Then
+		_StartLogging("Resetting proxy settings.")
+		Sleep(100)
+		_UpdateProcessing($iRep, 1)
 	Else
-		_MemoLogWrite("Cryptographic Service restarted.", 1)
+		_EditLoggingWrite("Resetting proxy settings.")
 	EndIf
-	_MemoLogWrite("Finished repairing SSL / HTTPS / Cryptography service.")
-	_LogWrite("", False)
-	_LogWrite("-----------------------------------------------------------------------------------------", False)
 
-EndFunc
-
-
-Func _ResetFirewall()
-
-	Local $ERRORCode
-
-	_MemoLogWrite("Resetting the Windows Firewall configuraton, Please wait.....")
-	_LogWrite("-----------------------------------------------------------------------------------------", False)
-	Switch @OSVersion
-		Case "WIN_2000", "WIN_XP", "WIN_XPe", "WIN_2003"
-			$ERRORCode = ShellExecuteWait("netsh", "firewall reset", "", "", @SW_HIDE)
-		Case "WIN_VISTA", "WIN_2008", "WIN_7", "WIN_2008R2", "WIN_8", "WIN_81"
-			$ERRORCode = ShellExecuteWait("netsh", "advfirewall reset", "", "", @SW_SHOW)
-	EndSwitch
-	If $ERRORCode = 0 Then
-		_MemoLogWrite("Windows Firewall configuration reset successful.", 1)
+	If @OSVersion = "WIN_XP" Or @OSVersion = "WIN_XPe" Or @OSVersion = "WIN_2003" Then
+		_EditLoggingWrite("Setting proxy to direct access.")
+		_RunCommand("proxycfg.exe -d")
 	Else
-		_MemoLogWrite("Could not reset Windows Firewall configuration.", 2)
+		_RunCommand("netsh winhttp reset proxy")
 	EndIf
-	_MemoLogWrite("Finished resetting the Windows Firewall configuraton.")
-	_LogWrite("", False)
-	_LogWrite("-----------------------------------------------------------------------------------------", False)
 
-EndFunc
+	If Not $IsInnerProcess Then
+		_UpdateProcessing($iRep, 100)
+		Sleep(100)
+		_EndLogging()
+	EndIf
+
+	$g_ResetProxy = False
+
+EndFunc   ;==>_ResetProxyServer
 
 
-Func _ConfigureEventLog()
+Func _ResetFirewall($IsInnerProcess = False)
 
-	_MemoLogWrite("Configuring the Windows Event Log Service, Please wait.....")
-	_LogWrite("-----------------------------------------------------------------------------------------", False)
-	_SvcSetStartMode("eventlog","Automatic")
-	_MemoLogWrite("Windows Event Log Service Configured.", 1)
-	_MemoLogWrite("Starting the Windows Event Log Service.....")
-	If Not _SvcStart("eventlog") Then
-		_MemoLogWrite("The Windows Event Log Service could not be started.", 2)
-		_MemoLogWrite("Attempting to repair the Windows Event Log Service.....")
+	If Not IsDeclared("g_ResetFirewall") Then Local $g_ResetFirewall
+	Local Const $iRep = 9
+
+	If Not $IsInnerProcess Then
+		_StartLogging("Resetting the Windows Firewall configuraton.")
+		Sleep(100)
+		_UpdateProcessing($iRep, 50)
+	Else
+		_EditLoggingWrite("Resetting the Windows Firewall configuraton.", 1, 1)
+	EndIf
+
+	If @OSVersion = "WIN_XP" Or @OSVersion = "WIN_XPe" Or @OSVersion = "WIN_2003" Then
+		_RunCommand("netsh firewall reset")
+	Else
+		_RunCommand("netsh advfirewall reset")
+	EndIf
+
+	If Not $IsInnerProcess Then
+		_UpdateProcessing($iRep, 100)
+		Sleep(100)
+		_EndLogging()
+	EndIf
+
+	$g_ResetFirewall = False
+
+EndFunc   ;==>_ResetFirewall
+
+
+Func _RestoreWindowsHosts()
+
+	Local Const $iRep = 10
+	Local Const $lHOSTS = @WindowsDir & "\System32\drivers\etc\hosts"
+
+	_StartLogging("Restoring the default Windows HOSTS file.")
+	Sleep(100)
+	_UpdateProcessing($iRep, 10)
+
+	FileSetAttrib($lHOSTS, "-RASHNOT")
+	_UpdateProcessing($iRep, 20)
+	FileCopy($lHOSTS, @SystemDir & "\drivers\etc\hosts.bak")
+	_UpdateProcessing($iRep, 30)
+	_FileDelete($lHOSTS)
+	_UpdateProcessing($iRep, 50)
+
+	Local $oHOSTS = FileOpen($lHOSTS, 1)
+
+	If $lHOSTS = -1 Then
+		_EditLoggingWrite("An error occurred whilst writing the hosts file.")
+	Else
+
+		_EditLoggingWrite("Writing data to the HOSTS file.")
+
+		FileWrite($oHOSTS, "# Copyright (c) 1993-2009 Microsoft Corp." & @CRLF)
+		FileWrite($oHOSTS, "#" & @CRLF)
+		FileWrite($oHOSTS, "# This is a sample HOSTS file used by Microsoft TCP/IP for Windows." & @CRLF)
+		FileWrite($oHOSTS, "#" & @CRLF)
+		FileWrite($oHOSTS, "# This file contains the mappings of IP addresses to host names. Each" & @CRLF)
+		FileWrite($oHOSTS, "# entry should be kept on an individual line. The IP address should" & @CRLF)
+		FileWrite($oHOSTS, "# be placed in the first column followed by the corresponding host name." & @CRLF)
+		FileWrite($oHOSTS, "# The IP address and the host name should be separated by at least one" & @CRLF)
+		FileWrite($oHOSTS, "# space." & @CRLF)
+		FileWrite($oHOSTS, "#" & @CRLF)
+		FileWrite($oHOSTS, "# Additionally, comments (such as these) may be inserted on individual" & @CRLF)
+		FileWrite($oHOSTS, "# lines or following the machine name denoted by a '#' symbol." & @CRLF)
+		FileWrite($oHOSTS, "#" & @CRLF)
+		FileWrite($oHOSTS, "# For example:" & @CRLF)
+		FileWrite($oHOSTS, "#" & @CRLF)
+		FileWrite($oHOSTS, "#      102.54.94.97     rhino.acme.com          # source server" & @CRLF)
+		FileWrite($oHOSTS, "#       38.25.63.10     x.acme.com              # x client host" & @CRLF)
+		FileWrite($oHOSTS, "" & @CRLF)
+
 		Switch @OSVersion
 			Case "WIN_XP", "WIN_2003"
-				RegWrite(	"HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Eventlog", "Description", "REG_SZ", "Enables event log messages " & _
-							"issued by Windows-based programs and components to be viewed in Event Viewer. This service cannot be stopped.")
-				RegWrite(	"HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Eventlog", "DisplayName", "REG_SZ", "Event Log")
-				RegWrite(	"HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Eventlog", "ErrorControl", "REG_DWORD", 0x00000001)
-				RegWrite(	"HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Eventlog", "Group", "REG_SZ", "Event log")
-				RegWrite(	"HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Eventlog", "ImagePath", "REG_EXPAND_SZ", _
-							"%SystemRoot%\system32\services.exe")
-				RegWrite(	"HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Eventlog", "ObjectName", "REG_SZ", "LocalSystem")
-				RegWrite(	"HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Eventlog", "PlugPlayServiceType", "REG_DWORD", 0x00000003)
-				RegWrite(	"HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Eventlog", "Start", "REG_DWORD", 0x00000002)
-				RegWrite(	"HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Eventlog", "Type", "REG_DWORD", 0x00000020)
-			Case "WIN_VISTA", "WIN_2008", "WIN_7", "WIN_2008R2"
-				_MemoLogWrite("Repairing the Windows Event Log Service.....")
-				RegWrite(	"HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\eventlog", _
-							"ObjectName", "REG_SZ", "NT AUTHORITY\LocalService")
-				Sleep(250)
-				If Not _SvcStart("eventlog") Then
-					_MemoLogWrite("The Windows Event Log Service could not be repaired and started.", 2)
-				Else
-					_MemoLogWrite("Windows Event Log Service repaired Successfully.", 1)
-				EndIf
+				FileWrite($oHOSTS, "127.0.0.1       localhost" & @CRLF)
+			Case "WIN_VISTA", "WIN_2008"
+				FileWrite($oHOSTS, "127.0.0.1       localhost" & @CRLF)
+				FileWrite($oHOSTS, "::1             localhost" & @CRLF)
+			Case Else
+				FileWrite($oHOSTS, "# localhost name resolution is handled within DNS itself." & @CRLF)
+				FileWrite($oHOSTS, "#       127.0.0.1       localhost" & @CRLF)
+				FileWrite($oHOSTS, "#       ::1             localhost" & @CRLF)
 		EndSwitch
-	Else
-		_MemoLogWrite("Windows Event Log Service Started Successfully.", 1)
-	EndIf
-	_LogWrite("", False)
-	_LogWrite("-----------------------------------------------------------------------------------------", False)
-	$EventLogConfigured = True
 
-EndFunc
+		FileClose($oHOSTS)
+
+		_EditLoggingWrite("HOSTS file created successfully.")
+
+	EndIf
+
+	_UpdateProcessing($iRep, 100)
+	Sleep(100)
+	_EndLogging()
+
+EndFunc   ;==>_RestoreWindowsHosts
+
 
 Func _RepairWorkGroups()
 
-	_MemoLogWrite("Repairing Workgroup Computers view, Please wait.....")
-	_LogWrite("-----------------------------------------------------------------------------------------", False)
-	RegDelete("HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\NetBt\Parameters","NodeType")
-	RegDelete("HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\NetBt\Parameters","DhcpNodeType")
-	_MemoLogWrite("Finished repairing Workgroup Computers view.")
-	_LogWrite("", False)
-	_LogWrite("-----------------------------------------------------------------------------------------", False)
+	Local Const $iRep = 11
 
-EndFunc
+	_StartLogging("Repairing Workgroup Computers view.")
+	_UpdateProcessing($iRep, 50)
+	_RegistryDelete("HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\NetBt\Parameters", "NodeType")
+	_RegistryDelete("HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\NetBt\Parameters", "DhcpNodeType")
+	_UpdateProcessing($iRep, 100)
+	_EndLogging()
 
-Func _RestoreHosts()
+EndFunc   ;==>_RepairWorkGroups
 
-	_MemoLogWrite("Restoring the default Windows HOSTS file, Please wait.....")
-	_LogWrite("-----------------------------------------------------------------------------------------", False)
-	Local $lHOSTS = @WindowsDir & "\System32\drivers\etc\hosts"
 
-	FileSetAttrib($lHOSTS, "-RASHNOT")
-	FileMove($lHOSTS, @SystemDir & "\drivers\etc\hosts.bak")
-	FileDelete($lHOSTS)
+;~ Func _RepairNeroUpdate()
 
-	Local $oHOSTS = FileOpen($lHOSTS, 1)
-	If $lHOSTS = -1 Then
-	EndIf
-	_MemoLogWrite("Writing data to the HOSTS file.....")
-	FileWrite($oHOSTS, "# Copyright (c) 1993-1999 Microsoft Corp." & @CRLF)
-	FileWrite($oHOSTS, "#" & @CRLF)
-	FileWrite($oHOSTS, "# This is a sample HOSTS file used by Microsoft TCP/IP for Windows." & @CRLF)
-	FileWrite($oHOSTS, "#" & @CRLF)
-	FileWrite($oHOSTS, "# This file contains the mappings of IP addresses to host names. Each" & @CRLF)
-	FileWrite($oHOSTS, "# entry should be kept on an individual line. The IP address should" & @CRLF)
-	FileWrite($oHOSTS, "# be placed in the first column followed by the corresponding host name." & @CRLF)
-	FileWrite($oHOSTS, "# The IP address and the host name should be separated by at least one" & @CRLF)
-	FileWrite($oHOSTS, "# space." & @CRLF)
-	FileWrite($oHOSTS, "#" & @CRLF)
-	FileWrite($oHOSTS, "# Additionally, comments (such as these) may be inserted on individual" & @CRLF)
-	FileWrite($oHOSTS, "# lines or following the machine name denoted by a '#' symbol." & @CRLF)
-	FileWrite($oHOSTS, "#" & @CRLF)
-	FileWrite($oHOSTS, "# For example:" & @CRLF)
-	FileWrite($oHOSTS, "#" & @CRLF)
-	FileWrite($oHOSTS, "#      102.54.94.97     rhino.acme.com          # source server" & @CRLF)
-	FileWrite($oHOSTS, "#       38.25.63.10     x.acme.com              # x client host" & @CRLF)
-	FileWrite($oHOSTS, "" & @CRLF)
-	Switch @OSVersion
-		Case "WIN_XP", "WIN_2003"
-			FileWrite($oHOSTS, "127.0.0.1       localhost" & @CRLF)
-		Case "WIN_VISTA", "WIN_2008"
-			FileWrite($oHOSTS, "127.0.0.1       localhost" & @CRLF)
-			FileWrite($oHOSTS, "::1             localhost" & @CRLF)
-		Case "WIN_7", "WIN_2008R2", "WIN_8", "WIN_81"
-			FileWrite($oHOSTS, "# localhost name resolution is handle within DNS itself." & @CRLF)
-			FileWrite($oHOSTS, "#       127.0.0.1       localhost" & @CRLF)
-			FileWrite($oHOSTS, "#       ::1             localhost" & @CRLF)
-	EndSwitch
-	FileClose($oHOSTS)
-	_MemoLogWrite("HOSTS file created successfully.")
-	_LogWrite("", False)
-	_LogWrite("-----------------------------------------------------------------------------------------", False)
 
-EndFunc
+;~ 	Local Const $ix = 14
+;~ 	Local Const $ico = 619
 
-;~ Func _RESETHOSTS()
-;~ 	MEMOLOGWRITE("Creating new " & $OSVERSION & " HOSTS file...")
-;~
-;~ 	If $LOCALHOSTFILE3454 = -1 Then
-;~ 		MsgBox(0, "Error", "Unable to open file.")
-;~ 		Exit
+;~ 	_BeginProcess($ICON_INTERNET1[$ix], $CHK_INTERNET1[$ix])
+;~ 	_StartLogging("Repairing Nero Update.")
+;~ 		Sleep(100)
+;~ 	_DrawInternetPage1Progress($ix, 5)
+
+
+;~ 	If _ProgramFileExists(@ProgramFilesDir & "\Nero\Update\NASvc.exe") Then
+
+;~ 		_DrawInternetPage1Progress($ix, 10)
+;~ 		_EditLoggingWrite("Stopping the Nero Update Service.")
+;~ 		_RunCommand("Echo Y|net stop NAUpdate")
+
+;~ 		_DrawInternetPage1Progress($ix, 15)
+;~ 		_EditLoggingWrite("Configuring the Nero Update Service.")
+;~ 		_RunCommand("sc config NAUpdate start= delayed-auto")
+
+;~ 		_DrawInternetPage1Progress($ix, 20)
+;~ 		_EditLoggingWrite("Registering Nero Update DLLs.", 1, 1)
+;~ 		_ReregisterDLL(@ProgramFilesDir & "\Nero\Update\NASvcPS.dll")
+;~ 		_DrawInternetPage1Progress($ix, 25)
+;~ 		_ReregisterDLL(@ProgramFilesDir & "\Nero\Update\SolutionExplorer.dll")
+
+;~ 		_EditLoggingWrite("Use global Nero Update Server to check for updates.")
+;~ 		_RegistryDelete("HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Nero\Agent", "UpdateRepository")
+;~ 		_EditLoggingWrite("Removing fixed update check interval.")
+;~ 		_RegistryDelete("HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Nero\Agent", "CheckInterval")
+;~ 		_EditLoggingWrite("Removing all other Nero update restrictions.")
+;~ 		_RegistryDelete("HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Nero\Agent", "DenyCheck")
+;~ 		_RegistryDelete("HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Nero\Agent", "DenyDownload")
+;~ 		_RegistryDelete("HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Nero\Agent", "DenyInstall")
+;~ 		_RegistryDelete("HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Nero\Agent", "DenyUI")
+;~ 		_RegistryDelete("HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Nero\Agent", "NoLocalCache")
+
+;~ 		_DrawInternetPage1Progress($ix, 95)
+;~ 		_EditLoggingWrite("Restarting the Nero Update Service.")
+;~ 		_RunCommand("net start NAUpdate")
+
+;~ 	Else
+;~ 		_EditLoggingWrite("It looks like Nero is not installed.", 1, 1)
 ;~ 	EndIf
+
+;~ 	_DrawInternetPage1Progress($ix, 100)
+;~ 			Sleep(100)
+;~ 	_EndLogging()
+;~ 	_DrawInternetPage1Progress($ix, 0)
+;~ 	_EndProcess($ICON_INTERNET1[$ix], $CHK_INTERNET1[$ix], $ico)
 
 ;~ EndFunc
 
-Func _ShowWinsockLSPs()
-
-	_StartProcess()
-	_LogWrite("Generating List of Installed Winsock LSPs, Please wait.....", False)
-	_LogWrite("-----------------------------------------------------------------------------------------", False)
-	FileSetAttrib($CIRResLSP, "-RASHNOT")
-	RunWait(@ComSpec & ' /c netsh winsock show catalog >"' & $CIRResLSP & '"', "", @SW_HIDE)
-	If FileExists($CIRResLSP) Then
-		_MemoLogWrite("Winsock LSPs List Saved to '" & $CIRResLSP & "'", 1)
-		_OpenTextFile($CIRResLSP)
-	Else
-		_MemoLogWrite("Could not save LSP list.", 2)
-	EndIf
-	_LogWrite("", False)
-	_LogWrite("-----------------------------------------------------------------------------------------", False)
-	_EndProcess()
-
-EndFunc
-
-
-Func _OpenEventViewer()
-	_StartProcess()
-	If Not $EventLogConfigured Then _ConfigureEventLog()
-	ShellExecute("eventvwr")
-	_EndProcess()
-EndFunc
-
-
-Func _OpenTextFile($TXTFileName)
-	If FileExists($TXTFileName) Then
-		_MemoLogWrite("Opening [" & $TXTFileName & "]")
-		If FileExists($Note2EXE) Then
-			ShellExecute($Note2EXE, $TXTFileName)
-		Else
-			ShellExecute($TXTFileName)
-		EndIf
-	Else
-		_MemoLogWrite("Could not find the [" & $TXTFileName & "] file.", 2)
-	EndIf
-EndFunc
-
-Func _Options()
-	_OptionsDlg($mForm)
-EndFunc
-
-Func _SpeedTest()
-	ShellExecute("http://www.speedtest.net")
-EndFunc
-
-Func _GetRouterPasswords()
-	ShellExecute("http://www.routerpasswords.com")
-EndFunc
-
-
-Func _OptionsDlg($hParent = 0)
-
-	_LoadSettings()
-
-	Local $ODlg, $ChkCREvent, $ChkEnLogging, $inLogSize, $lblOpLSize, $BtnDelLog, $BtnOpSave, $BtnOpCancel, $nMsg
-
-	Opt("GUIOnEventMode", 0)
-	WinSetOnTop($hParent, "", 0)
-	GUISetState(@SW_DISABLE, $hParent)
-
-	$ODlg = GUICreate("Preferences", 450, 300, -1, -1)
-	GUISetFont(8.5, 400, 0, "Verdana")
-	GUISetIcon(@ScriptFullPath, 215)
-
-	GUICtrlCreateLabel("Logging", 10, 53, 60, 20)
-	GUICtrlCreateLabel("", 70, 60, 350, 2, $SS_ETCHEDHORZ)
-	$ChkEnLogging = GUICtrlCreateCheckbox("Enable logging", 20, 80, 360, 20)
-	GUICtrlCreateLabel("Log size must not exceed :", 20, 107, 160, 20)
-	$inLogSize = GUICtrlCreateInput($LOGGING_MAXSIZE, 180, 105, 100, 20, $ES_RIGHT)
-	GUICtrlSetFont(-1, 9, 400, 0, "Verdana")
-	GUICtrlCreateLabel("KB", 290, 107, 50, 20)
-	$lblOpLSize = GUICtrlCreateLabel(	"Log size: " & Round(FileGetSize($LOGGING_COMINTREP) / 1024, 2) & _
-										" KB", 20, 130, 250, 20)
-	GUICtrlSetColor(-1, 0x066186)
-	$BtnDelLog = GUICtrlCreateButton("Delete", 340, 110, 100, 30, $WS_GROUP)
-	$BtnOpSave = GUICtrlCreateButton("Save", 230, 250, 100, 30, $WS_GROUP)
-	$BtnOpCancel = GUICtrlCreateButton("Cancel", 340, 250, 100, 30, $WS_GROUP)
-
-	If $LOGGING_ENABLE = 1 Then GuiCtrlSetState($ChkEnLogging, $GUI_CHECKED)
-	If GUICtrlRead($ChkEnLogging) = $GUI_UNCHECKED Then GUICtrlSetState($inLogSize, $GUI_DISABLE)
-
-	GUISetState(@SW_SHOW)
-
-	GuiCtrlSetState($BtnOpSave, $GUI_FOCUS)
-
-	While 1
-		Local $nMsg = GUIGetMsg()
-		Switch $nMsg
-			Case $GUI_EVENT_CLOSE, $BtnOpCancel
-				ExitLoop
-			Case $ChkEnLogging
-				If GUICtrlRead($ChkEnLogging) = $GUI_CHECKED Then
-					GUICtrlSetState($inLogSize, $GUI_ENABLE)
-				Else
-					GUICtrlSetState($inLogSize, $GUI_DISABLE)
-				EndIf
-			Case $BtnOpSave
-				Local $lMS = GUICtrlRead($inLogSize)
-				If GUICtrlRead($ChkEnLogging) = $GUI_CHECKED Then
-					IniWrite(@ScriptDir & "\CIntRep.ini", "Logging", "LogEnabled", 1)
-					If StringIsInt($lMS) = 1 Then
-						IniWrite(@ScriptDir & "\CIntRep.ini", "Logging", "LogMaxSize", $lMS)
-					EndIf
-				Else
-					IniWrite(@ScriptDir & "\CIntRep.ini", "Logging", "LogEnabled", 0)
-				EndIf
-				_LoadSettings()
-			Case $BtnDelLog
-				FileDelete($LOGGING_COMINTREP)
-				GuiCtrlSetData($lblOpLSize, "Log size: " & Round(FileGetSize($LOGGING_COMINTREP) / 1024, 2) & " KB")
-
-		EndSwitch
-	WEnd
-
-	Opt("GUIOnEventMode", 1)
-	GUISetState(@SW_ENABLE, $hParent)
-	GUIDelete($ODlg)
-
-EndFunc
-
-
-Func _RegistryWriter($KeyName, $ValueName, $Type, $Value)
-
-	Local $RegReturn = RegWrite($KeyName, $ValueName, $Type, $Value)
-	If Not $RegReturn Then
-		Switch @error
-			Case 1
-				_MemoLogWrite("Unable to open requested registry key.", 2)
-			Case 2
-				_MemoLogWrite("Unable to open requested main registry key.", 2)
-			Case 3
-				_MemoLogWrite("Unable to remote connect to the registry.", 2)
-			Case -1
-				_MemoLogWrite("Unable to open requested registry value.", 2)
-			Case -2
-				_MemoLogWrite("Registry value type not supported.", 2)
-		EndSwitch
-	EndIf
-
-EndFunc
-
-Func _ReregisterDLL($FilePath, $Param = "/s")
-
-	Local $RSVR32Error
-	If Not $Cancel Then
-		;~ _MemoLogWrite("RegSvr32.exe: Registering '" & $FilePath & "'.....")
-		$RSVR32Error = ShellExecuteWait("regsvr32.exe", " " & $Param & " " & $FilePath, "")
-		Switch $RSVR32Error
-			Case 0
-				_MemoLogWrite("RegSvr32.exe: " & $FilePath & "' registration succeeded.", 1)
-			Case 1
-				_MemoLogWrite("RegSvr32.exe: " & $FilePath & "' To register a module, you must provide a binary name.", 2)
-			Case 3
-				_MemoLogWrite("RegSvr32.exe: " & $FilePath & "' Specified module not found", 2)
-			Case 4
-				_MemoLogWrite("RegSvr32.exe: " & $FilePath & "' Module loaded but entry-point DllRegisterServer was not found.")
-			Case 5
-				_MemoLogWrite("RegSvr32.exe: " & $FilePath & "' Error number: 0x80070005", 2)
-		EndSwitch
-	EndIf
-	If $RSVR32Error >= 1 Then
-		Return 0
-	Else
-		Return 1
-	EndIf
-
-EndFunc   ;==>_ReregisterDLL
-
-
-Func _MemoLogWrite($Message = "", $iWarning = 0, $bTStamp = True)
-
-	Local $sPrefix = ""
-
-	Select
-		Case $iWarning = 1
-			GuiCtrlSetColor($eStatus, 0x006EC3)
-		Case $iWarning = 2
-			GuiCtrlSetColor($eStatus, 0xA23538)
-		Case $iWarning = 3
-			GuiCtrlSetColor($eStatus, 0xD14424)
-	EndSelect
-	Sleep(10)
-
-	_GUICtrlEdit_AppendText($eStatus, $sPrefix & "--> " & $Message & @CRLF)
-	_LogWrite($sPrefix & $Message, $bTStamp)
-
-EndFunc
-
-
-Func _LogWrite($Message = "", $bTStamp = True)
-
-	Local $OpenLog, $sTStamp = ""
-
-	If $LOGGING_ENABLE = 1 Then
-
-		$OpenLog = FileOpen($LOGGING_COMINTREP, 1)
-		If $OpenLog = -1 Then
-		EndIf
-
-		If $bTStamp Then $sTStamp = "[" & @MDAY & "/" & @MON & "/" & @YEAR & _
-									" " & @HOUR & ":" & @MIN & ":" & @SEC & "] "
-		FileWrite($OpenLog, $sTStamp & $Message & @CRLF)
-		FileClose($OpenLog)
-
-	EndIf
-
-EndFunc
-
-Func _OpenLoggingDirectory()
-
-	ShellExecute(@ScriptDir & "\Logging")
-	If @error Then
-		_MemoLogWrite("Could not open [" & @ScriptDir & "\Logging].", 2)
-	Else
-		_MemoLogWrite("The 'logging' directory should now be open.", 1)
-	EndIf
-
-EndFunc
-
-Func _OpenCIRLog()
-	_OpenTextFile($LOGGING_COMINTREP)
-EndFunc
-
-
-Func _OpenCIRResetLog()
-	_OpenTextFile($CIRResLog)
-EndFunc
-
-Func _StartProcess()
-
-	GuiCtrlSetState($FileMenu, $GUI_DISABLE)
-	GuiCtrlSetState($CommMenu, $GUI_DISABLE)
-	GuiCtrlSetState($OpMenu, $GUI_DISABLE)
-	GuiCtrlSetState($HelpMenu, $GUI_DISABLE)
-	GUICtrlSetState($AppIcon, $GUI_HIDE)
-	GUICtrlSetState($PrAni, $GUI_SHOW)
-
-	GUICtrlSetData($eStatus, "")
-	GUICtrlSetData($BtnGo, "Stop!")
-	GuiCtrlSetState($BtnGo, $GUI_FOCUS)
-	GUISetCursor(15)
-	For $i = 0 To $RepCount
-		GuiCtrlSetState($BtnRep[$i], $GUI_DISABLE)
-	Next
-
-EndFunc
-
-Func _EndProcess()
-
-	GuiCtrlSetState($FileMenu, $GUI_ENABLE)
-	GuiCtrlSetState($CommMenu, $GUI_ENABLE)
-	GuiCtrlSetState($OpMenu, $GUI_ENABLE)
-	GuiCtrlSetState($HelpMenu, $GUI_ENABLE)
-	GUICtrlSetState($PrAni, $GUI_HIDE)
-	GUICtrlSetState($AppIcon, $GUI_SHOW)
-
-	GUICtrlSetData($BtnGo, "Go!")
-	GuiCtrlSetData($lblWelc,	"All tasks completed. You can ignore most of the errors, because not all " & _
-								"the files being re-registered are the same on every computer. The errors are " & _
-								"displayed to keep track with what is happening to your computer.")
-	GuiCtrlSetColor($lblWelc, 0x066186)
-
-	For $i = 0 To $RepCount - 7
-		GuiCtrlSetState($ChkRep[$i], $GUI_ENABLE)
-	Next
-
-	For $i = 0 To $RepCount
-		GUICtrlSetImage($IcoRep[$i], @ScriptFullPath, 201 + $i)
-		GuiCtrlSetState($IcoRep[$i], $GUI_ENABLE)
-		GuiCtrlSetState($ChkRep[$i], $GUI_ENABLE)
-		GuiCtrlSetState($BtnRep[$i], $GUI_ENABLE)
-	Next
-
-	GUISetCursor(-1)
-
-	GuiCtrlSetState($BtnGo, $GUI_FOCUS)
-	SoundPlay(@ScriptDir & "\Sounds\complete.wav")
-
-EndFunc
 
 Func _BootMessage()
 
-	Local $MBox
-	_MemoLogWrite("You will need to reboot your computer before the settings will take effect.", False)
-	_LogWrite("-----------------------------------------------------------------------------------------", False)
-	$MBox = MsgBox(65,	"Reboot required!","You will need to reboot your computer before the settings will take effect. " & _
-						"Answer 'OK' to reboot your computer or 'Cancel' if you would like to reboot later. " & _
-						"Note that some settings might not take effect or some components might not function correctly until you reboot." & @CRLF & @CRLF & _
-						"Your computer will reboot automatically in 60 seconds.", 60)
-						;_MemoLogWrite("You will need to reboot your computer before the settings will take effect.", 3)
-	Switch $MBox
+	_EditLoggingWrite("^ You need to reboot your computer before the settings will take effect.")
+	_EditLoggingWrite("^ Note that some components might not function correctly until you reboot.")
+	_EditLoggingWrite("Click on File and then Reboot Windows to Reboot your computer.")
+
+EndFunc   ;==>_BootMessage
+
+
+Func _RebootWindows()
+
+	_StartLogging("Rebooting Windows")
+
+	Local $iMBox = MsgBox(65, "Rebooting Windows!", "Make sure your work is saved before continuing. " & _
+			"Answer 'OK' to reboot your computer or 'Cancel' if you would like to reboot later." & @CRLF & @CRLF & _
+			"Your computer will reboot automatically in 60 seconds.", 60)
+	Switch $iMBox
 		Case 1, -1
-			_MemoLogWrite("Your computer is restarting now.....", 1)
-			_Reboot()
+			_EditLoggingWrite("Your computer is restarting now...")
+			_EndLogging()
+			Shutdown(18)
 		Case 2
-			_MemoLogWrite("Reboot Canceled.", 3)
+			_EditLoggingWrite("Reboot Canceled.")
+			_EndLogging()
 	EndSwitch
-	_LogWrite("", False)
-	_LogWrite("-----------------------------------------------------------------------------------------", False)
+
+EndFunc   ;==>_RebootWindows
+
+
+Func _SwithIERegDll64Bit($sDllName)
+
+	Local $sProgFiles86 = StringReplace(@ProgramFilesDir, "Program Files", "Program Files (x86)", 1, $STR_NOCASESENSE)
+	_ReregisterDLL(Chr(34) & @ProgramFilesDir & "\Internet Explorer\" & $sDllName & Chr(34))
+
+	If @OSArch = "X64" Then
+		_ReregisterDLL(Chr(34) & $sProgFiles86 & "\Internet Explorer\" & $sDllName & Chr(34))
+	EndIf
+
+EndFunc   ;==>_SwithIERegDll64Bit
+
+
+Func _OnMainIconHover()
+
+	Local $iCursor = GUIGetCursorInfo()
+
+	If Not @error Then
+
+		If $iCursor[4] = $g_ReBarGuiIcon And $g_ReBarIcoHovering = 1 Then
+			$g_ReBarIcoHovering = 0
+			GUICtrlSetImage($g_ReBarGuiIcon, $g_ReBarIconHover, 201)
+		ElseIf $iCursor[4] <> $g_ReBarGuiIcon And $g_ReBarIcoHovering = 0 Then
+			$g_ReBarIcoHovering = 1
+			GUICtrlSetImage($g_ReBarGuiIcon, $g_ReBarIcon, 99)
+		EndIf
+
+		For $iRepair = 0 To $COUNT_REPAIR - 1
+			If $iCursor[4] = $g_BtnGoRepair[$iRepair] And $g_BtnGoRepairH[$iRepair] = 1 Then
+				$g_BtnGoRepairH[$iRepair] = 0
+				GUICtrlSetImage($g_BtnGoRepair[$iRepair], $g_ReBarResFugue, 107)
+			ElseIf $iCursor[4] <> $g_BtnGoRepair[$iRepair] And $g_BtnGoRepairH[$iRepair] = 0 Then
+				$g_BtnGoRepairH[$iRepair] = 1
+				GUICtrlSetImage($g_BtnGoRepair[$iRepair], $g_ReBarResFugue, 108)
+			EndIf
+		Next
+
+		For $iRepair = 0 To $COUNT_REPAIR - 1
+			If $iCursor[4] = $g_BtnHlpRepair[$iRepair] And $g_BtnHlpRepairH[$iRepair] = 1 Then
+				$g_BtnHlpRepairH[$iRepair] = 0
+				GUICtrlSetImage($g_BtnHlpRepair[$iRepair], $g_ReBarResFugue, 103)
+			ElseIf $iCursor[4] <> $g_BtnHlpRepair[$iRepair] And $g_BtnHlpRepairH[$iRepair] = 0 Then
+				$g_BtnHlpRepairH[$iRepair] = 1
+				GUICtrlSetImage($g_BtnHlpRepair[$iRepair], $g_ReBarResFugue, 104)
+			EndIf
+		Next
+
+	EndIf
+
+EndFunc   ;==>_OnMainIconHover
+
+
+Func _GUIExtender()
+	If IsArray($g_CoreGuiCoords) Then
+		If $g_GuiRetracted = False Then
+			_GUIRetract()
+		ElseIf $g_GuiRetracted = True Then
+			_GUIExpand(150)
+		EndIf
+	EndIf
+EndFunc   ;==>_GUIExtender
+
+
+Func _GUIRetract()
+
+	WinMove($g_CoreGuiHandle, "", Default, Default, $g_CoreGuiCoords[2], $g_CoreGuiCoords[3])
+	GUICtrlSetData($g_BtnExtend, 6)
+	GUICtrlSetState($g_BtnExtend, $GUI_UNCHECKED)
+	GUICtrlSetTip($g_BtnExtend, "Show Status")
+	$g_GuiRetracted = True
+
+EndFunc   ;==>_GUIRetract
+
+
+Func _GUIExpand($iSize)
+
+	WinMove($g_CoreGuiHandle, "", Default, Default, $g_CoreGuiCoords[2], $g_CoreGuiCoords[3] + $iSize)
+	GUICtrlSetData($g_BtnExtend, 5)
+	GUICtrlSetState($g_BtnExtend, $GUI_CHECKED)
+	GUICtrlSetTip($g_BtnExtend, "Hide Status")
+	$g_GuiRetracted = False
+
+EndFunc   ;==>_GUIExpand
+
+
+Func MY_WM_COMMAND($hWnd, $iMsg, $wParam, $lParam)
+
+	Switch BitAND($wParam, 0xFFFF) ;LoWord = IDFrom
+		Case $g_BtnGo
+			Switch BitShift($wParam, 16) ;HiWord = Code
+				Case $BN_CLICKED
+					If GUICtrlRead($g_BtnGo) = "Stop!" Then
+						$g_Cancel = True
+					EndIf
+			EndSwitch
+	EndSwitch
+
+	Return $GUI_RUNDEFMSG
+EndFunc   ;==>MY_WM_COMMAND
+
+
+Func _ShowOptionsDlg()
+
+	_LoadSettings()
+
+	Local $BtnClearLog, $BtnSettCancel
+
+	WinSetTrans($g_ReBarCoreGui, Default, 200)
+	GUISetState(@SW_DISABLE, $g_ReBarCoreGui)
+
+	$g_OptionsGui = GUICreate($g_ReBarProgName & " Preferences", 450, 500, -1, -1, BitOR($WS_CAPTION, $WS_POPUPWINDOW), $WS_EX_TOPMOST)
+	GUISetFont($g_ReBarFontSize, 400, 0, $g_ReBarFontName, $g_OptionsGui, 5)
+	GUISetIcon($g_ReBarResFugue, 131)
+
+	GUISetOnEvent($GUI_EVENT_CLOSE, "_CloseOptionsDlg", $g_OptionsGui)
+
+	GUICtrlCreateGroup("Redundancy", 10, 10, 430, 60)
+	GUICtrlSetFont(-1, 10, 700, 2)
+	$g_ChkBackupFolders = GUICtrlCreateCheckbox("Backup Folders Before Removing", 20, 35, 410, 20)
+	GUICtrlCreateGroup("", -99, -99, 1, 1) ;close group
+
+	GUICtrlCreateGroup("Logging", 10, 80, 430, 140)
+	GUICtrlSetFont(-1, 10, 700, 2)
+	$g_ChkLogEnabled = GUICtrlCreateCheckbox("Enable logging", 20, 110, 360, 20)
+	GUICtrlCreateLabel("Log size must not exceed :", 20, 140, 160, 20)
+	$g_InLogSize = GUICtrlCreateInput(Round($g_ReBarLogStorage / 1024, 2), 180, 138, 100, 20)
+	GUICtrlSetStyle($g_InLogSize, BitOr($ES_RIGHT, $ES_NUMBER))
+	GUICtrlSetFont(-1, 9, 400, 0, "Verdana")
+	GUICtrlCreateLabel("KB", 290, 140, 50, 20)
+	$g_InLogSizeTemp = Int(GUICtrlRead($g_InLogSize))
+	$g_LabelLogSize = GUICtrlCreateLabel("Log size: " & Round(FileGetSize($g_ReBarLogPath) / 1024, 2) & " KB", 20, 190, 250, 20)
+	GUICtrlSetColor(-1, 0x066186)
+	$BtnClearLog = GUICtrlCreateButton("Clear Logging", 280, 180, 150, 30, $WS_GROUP)
+	GUICtrlCreateGroup("", -99, -99, 1, 1) ;close group
+
+	GUICtrlSetOnEvent($g_ChkBackupFolders, "_EnableSaveSettingsButton")
+	GUICtrlSetOnEvent($g_ChkLogEnabled, "_EnableSaveSettingsButton")
+	GUICtrlSetOnEvent($BtnClearLog, "_RemoveLoggingFile")
+
+	GUICtrlSetState($g_ChkBackupFolders, $g_OptionBackupData)
+	GUICtrlSetState($g_ChkLogEnabled, $g_ReBarLogEnabled)
+
+	$g_BtnSaveSettings = GUICtrlCreateButton("Save", 230, 450, 100, 30, $WS_GROUP)
+	$BtnSettCancel = GUICtrlCreateButton("Cancel", 340, 450, 100, 30, $WS_GROUP)
+	GUICtrlSetState($g_BtnSaveSettings, $GUI_FOCUS)
+	GUICtrlSetState($g_BtnSaveSettings, $GUI_DISABLE)
+
+	GUICtrlSetOnEvent($g_BtnSaveSettings, "_SaveSettings")
+	GUICtrlSetOnEvent($BtnSettCancel, "_CloseOptionsDlg")
+
+	GUISetState(@SW_SHOW, $g_OptionsGui)
+	AdlibRegister("_CheckLogSizeChange", 500)
+
+EndFunc   ;==>_ShowOptionsDlg
+
+
+Func _EnableSaveSettingsButton()
+	GUICtrlSetState($g_BtnSaveSettings, $GUI_ENABLE)
+EndFunc
+
+
+Func _RemoveLoggingFile()
+	FileDelete($g_ReBarLogPath)
+	GuiCtrlSetData($g_LabelLogSize, "Log size: " & Round(FileGetSize($g_ReBarLogPath) / 1024, 2) & " KB")
+EndFunc
+
+
+Func _CheckLogSizeChange()
+
+	Local $iLogTemp = Int(GUICtrlRead($g_InLogSize))
+
+	If $g_InLogSizeTemp <> $iLogTemp Then
+		GUICtrlSetState($g_BtnSaveSettings, $GUI_ENABLE)
+		$g_InLogSizeTemp = $iLogTemp
+	EndIf
 
 EndFunc
 
 
-Func _AboutDlg()
+Func _CloseOptionsDlg()
 
-	GuiCtrlSetState($HlpAbout, $GUI_DISABLE)
+	GUIDelete($g_OptionsGui)
+	WinSetTrans($g_ReBarCoreGui, Default, 255)
+	GUISetState(@SW_ENABLE, $g_ReBarCoreGui)
+	WinActivate($g_ReBarCoreGui)
 
-	Local $abTitle, $abVersion, $abCopyright
-	Local $abHome, $abGNU
-	Local $abSpaceLabel, $abSpaceProg, $abBtnOK
-	Local $abPayPal, $abFacebook, $abTwittter
-	Local $abLinkedIn, $abGoogle
+EndFunc   ;==>_CloseOptionsDlg
 
-	$aboutDlg = GUICreate("About " & $APPSET_TITLE, 400, 500, -1, -1, BitOr($WS_CAPTION, $WS_POPUPWINDOW), $WS_EX_TOPMOST)
-	GUISetFont(8.5, 400, 0, "Verdana", $AboutDlg, 5)
-	GUISetIcon(@ScriptFullPath, 221)
 
-	GUISetOnEvent($GUI_EVENT_CLOSE, "_CloseAboutDlg", $AboutDlg)
+Func _LoadSettings()
 
-	GUICtrlCreateIcon(@ScriptFullPath, 99, 10, 10, 64, 64)
-	$abPayPal = GUICtrlCreateIcon(@ScriptFullPath, 220, 320, 0, 64, 64)
-	GUICtrlSetTip($abPayPal, "Help us keep our software free.")
-	GUICtrlSetCursor($abPayPal, 0)
-	$abTitle = GUICtrlCreateLabel($APPSET_TITLE, 88, 16, 220, 18)
-	GuiCtrlSetFont($abTitle, 10)
-	$abVersion = GUICtrlCreateLabel("Version " & FileGetVersion(@ScriptFullPath), 88, 40, 220, 20)
-	$abCopyright = GUICtrlCreateLabel("Copyright © 2014 Rizonesoft", 88, 55, 220, 20)
-	GuiCtrlSetColor($abCopyright, 0x555555)
+	$g_OptionBackupData = IniRead($g_ReBarIniFileName, $g_ReBarShortName, "BackupFolders", 0)
+	$g_ReBarLogEnabled = IniRead($g_ReBarIniFileName, $g_ReBarShortName, "LoggingEnabled", 1)
+	$g_ReBarLogStorage = IniRead($g_ReBarIniFileName, $g_ReBarShortName, "LoggingStorageSize", 5242880)
 
-	GUICtrlCreateLabel("Rizonesoft Home: ", 20, 90, 130, 15, $SS_RIGHT)
-	$abHome = GUICtrlCreateLabel("www.rizonesoft.com", 155, 90, 200, 15)
-	GuiCtrlSetFont($abHome, -1, -1, 4) ;Underlined
-	GuiCtrlSetColor($abHome, 0x0000FF)
-	GuiCtrlSetCursor($abHome, 0)
-	$abGNU = GUICtrlCreateLabel("This program is free software: you can redistribute it and/or modify " & _
-								"it under the terms of the GNU General Public License as published by " & _
-								"the Free Software Foundation, either version 3 of the License, or " & _
-								"(at your option) any later version." & @CRLF & @CRLF & _
-								"This program is distributed in the hope that it will be useful, " & _
-								"but WITHOUT ANY WARRANTY; without even the implied warranty of " & _
-								"MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the " & _
-								"GNU General Public License for more details.", 20, 125, 350, 180)
-	GuiCtrlSetColor($abGNU, 0x555555)
-	GUICtrlCreateLabel(	"Contributors: Derick Payne (Rizonesoft), Matthew McMullan (NerdFencer), Saunders", 20, 280, 350, 100)
+EndFunc   ;==>_LoadSettings
 
-	Local $ScriptDirSplt = StringSplit(@ScriptDir, "\")
-	Local $ScriptDrive  = $ScriptDirSplt[1]
-	Local $drvSpaceUsed = DriveSpaceTotal($ScriptDrive) - DriveSpaceFree($ScriptDrive)
 
-	$abSpaceLabel = GUICtrlCreateLabel("(" & $ScriptDrive & ") " & Round(DriveSpaceFree($ScriptDrive) / 1024, 1) & " GB free of " & _
-					Round(DriveSpaceTotal($ScriptDrive) / 1024, 1) & " GB", 15, 380, 300, 15)
-	$abSpaceProg = GUICtrlCreateProgress(15, 400, 350, 15)
-	GUICtrlSetData($abSpaceProg, ($drvSpaceUsed / DriveSpaceTotal($ScriptDrive)) * 100)
-	$abBtnOK = GUICtrlCreateButton("OK", 250, 450, 123, 33, $BS_DEFPUSHBUTTON)
+Func _SaveSettings()
 
-	$abFacebook = GUICtrlCreateIcon(@ScriptFullPath, 216, 20, 450, 32, 32)
-	GUICtrlSetTip($abFacebook, "Like us on Facebook and stay updated.")
-	GUICtrlSetCursor($abFacebook, 0)
-	$abTwittter = GUICtrlCreateIcon(@ScriptFullPath, 217, 55, 450, 32, 32)
-	GUICtrlSetTip($abTwittter, "Follow us on Twitter for the latest updates.")
-	GUICtrlSetCursor($abTwittter, 0)
-	$abLinkedIn = GUICtrlCreateIcon(@ScriptFullPath, 218, 90, 450, 32, 32)
-	GUICtrlSetTip($abLinkedIn, "Find us on LinkedIn.")
-	GUICtrlSetCursor($abLinkedIn, 0)
-	$abGoogle = GUICtrlCreateIcon(@ScriptFullPath, 219, 125, 450, 32, 32)
-	GUICtrlSetTip($abGoogle, "Find us on Google.")
-	GUICtrlSetCursor($abGoogle, 0)
+	If GUICtrlRead($g_ChkBackupFolders) = $GUI_CHECKED Then
+		IniWrite($g_ReBarIniFileName, $g_ReBarShortName, "BackupFolders", 1)
+	Else
+		IniWrite($g_ReBarIniFileName, $g_ReBarShortName, "BackupFolders", 0)
+	EndIf
 
-	GUICtrlSetOnEvent($abHome, "_HomePageClicked")
-	GUICtrlSetOnEvent($abFacebook, "_OpenFacebook")
-	GUICtrlSetOnEvent($abTwittter, "_FollowOnTwitter")
-	GUICtrlSetOnEvent($abLinkedIn, "_OpenLinkedIn")
-	GUICtrlSetOnEvent($abGoogle, "_OpenGoogle")
-	GUICtrlSetOnEvent($abBtnOK, "_CloseAboutDlg")
-	GUICtrlSetOnEvent($abPayPal, "_DonateSomething")
+	If GUICtrlRead($g_ChkLogEnabled) = $GUI_CHECKED Then
+		IniWrite($g_ReBarIniFileName, $g_ReBarShortName, "LoggingEnabled", 1)
+	Else
+		IniWrite($g_ReBarIniFileName, $g_ReBarShortName, "LoggingEnabled", 0)
+	EndIf
 
-	GUISetState(@SW_SHOW, $AboutDlg)
+	$g_ReBarLogStorage = Int(GUICtrlRead($g_InLogSize)) * 1024
+	IniWrite($g_ReBarIniFileName, $g_ReBarShortName, "LoggingStorageSize", $g_ReBarLogStorage)
 
+	GUICtrlSetState($g_BtnSaveSettings, $GUI_DISABLE)
+
+	 _LoadSettings()
+	 If $g_ReBarLogEnabled = 1 Then _LoggingInitialize()
 
 EndFunc
 
-Func _CloseAboutDlg()
 
-	GuiCtrlSetState($HlpAbout, $GUI_ENABLE)
-	GUIDelete($aboutDlg)
-
-EndFunc
-
-Func _HomePageClicked()
-	ShellExecute("http://www.rizonesoft.com")
-EndFunc
-
-
-Func _OpenFacebook()
-	ShellExecute("https://www.facebook.com/rizonesoft")
-EndFunc
-
-
-Func _FollowOnTwitter()
-	ShellExecute("https://twitter.com/rizonesoft")
-EndFunc
-
-
-Func _OpenLinkedIn()
-	ShellExecute("http://www.linkedin.com/in/rizonesoft")
-EndFunc
-
-
-Func _OpenGoogle()
-	ShellExecute("https://plus.google.com/+Rizonesoftsa/posts")
-EndFunc
-
-
-Func _DonateSomething()
-	ShellExecute("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7UGGCSDUZJPFE")
-EndFunc
+#include "Includes\ReBar_End.au3"
