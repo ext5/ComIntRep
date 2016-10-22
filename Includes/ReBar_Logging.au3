@@ -181,7 +181,7 @@ EndFunc
 
 Func _ValidateError($sMessage)
 
-	Local $sErrorStrings = "error:|error |failed"
+	Local $sErrorStrings = "error:|error |failed|1 error"
 	Local $aErrorStrings = StringSplit($sErrorStrings, "|")
 
 	For $s = 1 To $aErrorStrings[0]

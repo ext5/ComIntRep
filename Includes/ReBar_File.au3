@@ -177,3 +177,7 @@ Func __RemoveDirectory($sDirPath)
 	EndIf
 
 EndFunc
+
+
+Func _CopyDirectoryWithExcl($sDirPath, $sExcludes = "")
+EndFunc

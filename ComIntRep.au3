@@ -54,7 +54,7 @@
 	;===============================================================================================================
 	#AutoIt3Wrapper_Res_Comment=Complete Internet Repair				 ;~ Comment field
 	#AutoIt3Wrapper_Res_Description=Complete Internet Repair	      	 ;~ Description field
-	#AutoIt3Wrapper_Res_Fileversion=3.0.2.2596
+	#AutoIt3Wrapper_Res_Fileversion=3.0.2.2601
 	#AutoIt3Wrapper_Res_FileVersion_AutoIncrement=Y  					 ;~ (Y/N/P) AutoIncrement FileVersion. Default=N
 	#AutoIt3Wrapper_Res_FileVersion_First_Increment=N					 ;~ (Y/N) AutoIncrement Y=Before; N=After compile. Default=N
 	#AutoIt3Wrapper_Res_HiDpi=Y                      					 ;~ (Y/N) Compile for high DPI. Default=N
@@ -384,19 +384,6 @@ Func _StartCoreGUI()
 
 	$g_IntExplVersion = _GetInternetExplorerVersion()
 
-	; Switch @OSVersion
-	; Case "WIN_7", "WIN_8", "WIN_81", "WIN_10", "WIN_2008", "WIN_2008R2", "WIN_2012", "WIN_2012R2"
-	; $lblNetDiagWeb = GUICtrlCreateLabel(".", 20, 100, 400, 20)
-;~ GuiCtrlSetFont($lblNetDiagWeb, 9, -1, 4) ;Underlined
-	; GuiCtrlSetColor($lblNetDiagWeb, 0x295496)
-	; GuiCtrlSetCursor($lblNetDiagWeb, 0)
-	; Case Else
-	; $lblSysRestore = GUICtrlCreateLabel("Click here to create a System Restore Point.", 20, 100, 400, 20)
-;~ GuiCtrlSetFont($lblSysRestore, 9, -1, 4) ;Underlined
-	; GuiCtrlSetColor($lblSysRestore, 0x295496)
-	; GuiCtrlSetCursor($lblSysRestore, 0)
-	; EndSwitch
-
 	GUICtrlCreateGroup("", 10, 95, $g_ReBarFormWidth - 20, 280)
 
 	For $iRepair = 0 To $COUNT_REPAIR - 1
@@ -470,7 +457,6 @@ Func _StartCoreGUI()
 
 	$g_EditInfo = GUICtrlCreateEdit("", 10, 445, $g_ReBarFormWidth - 20, 120, BitOR($WS_VSCROLL, $ES_READONLY, $ES_AUTOVSCROLL))
 	GUICtrlSetBkColor($g_EditInfo, 0xFFFFE1)
-;~ 	GuiCtrlSetFont(-1, 9, 400, -1, "Courier New")
 
 	GUICtrlSetData($g_EditInfo, "Before you start; it is recommended that you create a System Restore Point to roll " & _
 			"back any changes made by Complete Internet Repair. Furthermore, run the build-in " & _
@@ -489,7 +475,6 @@ Func _StartCoreGUI()
 
 	While 1
 		Sleep(55)
-		; _OnMainIconHover()
 	WEnd
 
 EndFunc   ;==>_StartCoreGUI

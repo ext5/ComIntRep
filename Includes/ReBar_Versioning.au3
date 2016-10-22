@@ -34,6 +34,7 @@
 #Region Functions list
 ; #CURRENT# =====================================================================================================================
 ; _GetProgramVersion
+; _GetProgramVersionFromFile
 ; _GUIGetTitle
 ; ===============================================================================================================================
 #EndRegion Functions list
@@ -48,22 +49,31 @@ Func _GetProgramVersion($iFlag = 1)
 	Local $sReturn = ""
 
 	If @Compiled Then
-
-		Local $sFullVersion = FileGetVersion(@ScriptFullPath)
-
-		If $iFlag == 0 Then
-			$sReturn = $sFullVersion
-		EndIf
-
-		Local $sPltReturn = StringSplit($sFullVersion, ".")
-		If $iFlag <= $sPltReturn[0] Then
-			$sReturn = $sPltReturn[$iFlag]
-		Else
-			Return SetError(1, 2, 0)
-		EndIf
-
+		$sReturn = _GetProgramVersionFromFile(@ScriptFullPath, $iFlag)
+		If @error Then Return SetError(1, 0, 0)
 	Else
 		$sReturn = _AutoIt3Script_GetVersion(@ScriptFullPath, $iFlag)
+	EndIf
+
+	Return $sReturn
+
+EndFunc   ;==>_GetProgramVersion
+
+
+Func _GetProgramVersionFromFile($sFileName, $iFlag = 1)
+
+	Local $sReturn = ""
+	Local $sFullVersion = FileGetVersion($sFileName)
+
+	If $iFlag == 0 Then
+		$sReturn = $sFullVersion
+	EndIf
+
+	Local $sPltReturn = StringSplit($sFullVersion, ".")
+	If $iFlag <= $sPltReturn[0] Then
+		$sReturn = $sPltReturn[$iFlag]
+	Else
+		Return SetError(1, 0, 0)
 	EndIf
 
 	Return $sReturn
@@ -151,6 +161,7 @@ Func _SoftwareUpdateCheck()
 	If $iBytesSize = $iUpdateFileSize Then
 
 		Local $iLocalBuild = Number(_GetProgramVersion(4))
+		; MsgBox(0, "", $iLocalBuild)
 		Local $iRemoteBuild = IniRead($sLocalFile, "Update", "LatestBuild", $iLocalBuild)
 		$g_ReBarUpdateURL = IniRead($sLocalFile, "Update", "UpdateURL", $g_ReBarAboutHome)
 
