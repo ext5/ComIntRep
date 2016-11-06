@@ -54,7 +54,7 @@
 	;===============================================================================================================
 	#AutoIt3Wrapper_Res_Comment=Complete Internet Repair				 ;~ Comment field
 	#AutoIt3Wrapper_Res_Description=Complete Internet Repair	      	 ;~ Description field
-	#AutoIt3Wrapper_Res_Fileversion=3.0.2.2601
+	#AutoIt3Wrapper_Res_Fileversion=3.0.2.2626
 	#AutoIt3Wrapper_Res_FileVersion_AutoIncrement=Y  					 ;~ (Y/N/P) AutoIncrement FileVersion. Default=N
 	#AutoIt3Wrapper_Res_FileVersion_First_Increment=N					 ;~ (Y/N) AutoIncrement Y=Before; N=After compile. Default=N
 	#AutoIt3Wrapper_Res_HiDpi=Y                      					 ;~ (Y/N) Compile for high DPI. Default=N
@@ -105,7 +105,7 @@
 	;===============================================================================================================
 	; Au3Stripper Settings
 	;===============================================================================================================
-	#AutoIt3Wrapper_Run_Au3Stripper=N								 ;~ (Y/N) Run Au3Stripper before compilation. default=N
+	#AutoIt3Wrapper_Run_Au3Stripper=Y								 ;~ (Y/N) Run Au3Stripper before compilation. default=N
 	;#Au3Stripper_Parameters=										;~ Au3Stripper parameters...see SciTE4AutoIt3 Helpfile for options
 	;#Au3Stripper_Ignore_Variables=
 	;===============================================================================================================
@@ -209,7 +209,7 @@ Global Const $DIR_SDDOWNLOAD = @WindowsDir & "\SoftwareDistribution\Download"
 Global Const $DIR_SDDOWNLOAD_OLD = @WindowsDir & "\SoftwareDistribution\Download.Old"
 Global Const $DIR_CATROOT2 = @SystemDir & "\CatRoot2"
 Global Const $DIR_CATROOT2_OLD = @SystemDir & "\CatRoot2.Old"
-Global Const $COUNT_REPAIR = 12
+Global Const $COUNT_REPAIR = 13
 Global Const $LINESPACING = 20
 
 Global $g_aniProcessing, $g_CoreGuiHandle, $g_CoreGuiCoords, $g_BtnExtend, $g_GuiRetracted = True
@@ -269,7 +269,7 @@ Func _StartCoreGUI()
 	Local $mnuLogging, $miLogDir, $miOpenLog, $miTcpResLog
 	Local $miMaintRestore
 	Local $miTrIntSpeed, $miTrRouterPass
-	Local $miComShowIPConf, $miComShowLSP, $miComIP6Install, $miComIP6Uninstall
+	Local $miComShowIPConf, $miComShowLSP, $miComShowARP, $miComIP6Install, $miComIP6Uninstall
 	Local $miToolRDP, $miToolIEP, $miTrIntTrouble
 	Local $miHlpHome, $miHlpSupport
 	Local $lblHeading, $lblWelcome, $lblNetDiagWeb, $lblSysRestore
@@ -335,8 +335,8 @@ Func _StartCoreGUI()
 	GUICtrlSetOnEvent($miMaintRestore, "_OpenWindowsSystemRestore")
 
 	$miComShowIPConf = GUICtrlCreateMenuItem("Show &TCP/IP configuration", $g_MenuCommands)
-	GUICtrlCreateMenuItem("", $g_MenuCommands)
 	$miComShowLSP = GUICtrlCreateMenuItem("Show Winsock &LSPs", $g_MenuCommands)
+	$miComShowARP = GUICtrlCreateMenuItem("Display all ARP entries", $g_MenuCommands)
 	If @OSVersion = "WIN_XP" Or @OSVersion = "WIN_2003" Then
 		GUICtrlCreateMenuItem("", $g_MenuCommands)
 		$miComIP6Install = GUICtrlCreateMenuItem("&Install IP6 protocol", $g_MenuCommands)
@@ -347,6 +347,7 @@ Func _StartCoreGUI()
 
 	GUICtrlSetOnEvent($miComShowIPConf, "_GetIPConfiguration")
 	GUICtrlSetOnEvent($miComShowLSP, "_ShowWinsockLSPs")
+	GUICtrlSetOnEvent($miComShowARP, "_ShowAllArpEntries")
 
 	$miToolRDP = GUICtrlCreateMenuItem("Open Remote Desktop Connection", $g_MenuTools)
 	$miToolIEP = GUICtrlCreateMenuItem("Open Internet Explorer properties", $g_MenuTools)
@@ -384,7 +385,7 @@ Func _StartCoreGUI()
 
 	$g_IntExplVersion = _GetInternetExplorerVersion()
 
-	GUICtrlCreateGroup("", 10, 95, $g_ReBarFormWidth - 20, 280)
+	GUICtrlCreateGroup("", 10, 95, $g_ReBarFormWidth - 20, 290)
 
 	For $iRepair = 0 To $COUNT_REPAIR - 1
 		$g_IconRepair[$iRepair] = GUICtrlCreateIcon($g_ReBarResFugue, 147 + $iRepair, 20, 113 + ($iRepair * $LINESPACING), 16, 16)
@@ -408,23 +409,24 @@ Func _StartCoreGUI()
 	GUICtrlSetData($g_ChkRepair[0], " Reset Internet Protocol (TCP/IP)")
 	GUICtrlSetData($g_ChkRepair[1], " Repair Winsock (Reset Catalog)")
 	GUICtrlSetData($g_ChkRepair[2], " Renew Internet Connections")
-	GUICtrlSetData($g_ChkRepair[3], " Flush DNS Resolver Cache")
-	GUICtrlSetData($g_ChkRepair[4], " Repair Internet Explorer " & $g_IntExplVersion)
-	GUICtrlSetData($g_ChkRepair[5], " Clear Windows Update History")
-	GUICtrlSetData($g_ChkRepair[6], " Repair Windows / Automatic Updates")
-	GUICtrlSetData($g_ChkRepair[7], " Repair SSL / HTTPS / Cryptography")
-	GUICtrlSetData($g_ChkRepair[8], " Reset Proxy Server Configuration")
-	GUICtrlSetData($g_ChkRepair[9], " Reset Windows Firewall Configuration")
-	GUICtrlSetData($g_ChkRepair[10], " Restore the default hosts file")
-	GUICtrlSetData($g_ChkRepair[11], " Repair Workgroup Computers view")
+	GUICtrlSetData($g_ChkRepair[3], " Flush DNS Resolver Cache (Domain Name System)")
+	GUICtrlSetData($g_ChkRepair[4], " Flush ARP Cache (Address Resolution Protocol)")
+	GUICtrlSetData($g_ChkRepair[5], " Repair Internet Explorer " & $g_IntExplVersion)
+	GUICtrlSetData($g_ChkRepair[6], " Clear Windows Update History")
+	GUICtrlSetData($g_ChkRepair[7], " Repair Windows / Automatic Updates")
+	GUICtrlSetData($g_ChkRepair[8], " Repair SSL / HTTPS / Cryptography")
+	GUICtrlSetData($g_ChkRepair[9], " Reset Proxy Server Configuration")
+	GUICtrlSetData($g_ChkRepair[10], " Reset Windows Firewall Configuration")
+	GUICtrlSetData($g_ChkRepair[11], " Restore the default hosts file")
+	GUICtrlSetData($g_ChkRepair[12], " Repair Workgroup Computers view")
 
 	GUICtrlCreateGroup("", -99, -99, 1, 1) ;close group
 
-	$g_BtnExtend = GUICtrlCreateCheckbox(6, 10, 395, 30, 28, $BS_PUSHLIKE)
+	$g_BtnExtend = GUICtrlCreateCheckbox(6, 10, 405, 30, 28, $BS_PUSHLIKE)
 	GUICtrlSetFont($g_BtnExtend, 10, 400, 0, "Webdings")
 	GUICtrlSetTip($g_BtnExtend, "Show Logging")
 
-	$g_BtnGo = GUICtrlCreateButton("Go!", 300, 380, 190, 43)
+	$g_BtnGo = GUICtrlCreateButton("Go!", 300, 390, 190, 43)
 	GUICtrlSetState($g_BtnGo, $GUI_FOCUS)
 	GUICtrlSetFont($g_BtnGo, 11, 400, 0, "Verdana")
 	GUICtrlSetOnEvent($g_BtnGo, "_RunRepairOption")
@@ -618,6 +620,13 @@ Func _ShowWinsockLSPs()
 EndFunc   ;==>_ShowWinsockLSPs
 
 
+Func _ShowAllArpEntries()
+	_StartLogging("Display all ARP entries.")
+	Run(@ComSpec & " /k arp -a", "", @SW_SHOW)
+	_EndLogging()
+EndFunc
+
+
 Func _InstallIP6()
 	_StartLogging("Installing the TCP/IP v6 protocol.")
 	_RunCommand("netsh int ipv6 install")
@@ -651,29 +660,35 @@ Func _ShowRepairInfo()
 			GUICtrlSetData($g_EditInfo, "Flush DNS Resolver Cache, refresh all DHCP leases and " & _
 					"re-register DNS names.")
 		Case $g_BtnHlpRepair[4]
+			GUICtrlSetData($g_EditInfo, "ARP (Address Resolution Protocol) Cache is a technique used to store 'mappings' of " & _
+					"OSI Model Network Layer addresses (IP addresses) to corresponding OSI Model Data Link addresses " & _
+					"(MAC addresses). Due to a variety of possible circumstances, ARP cache can become damaged." & @CRLF & @CRLF & _
+					"Symptoms include: numerous websites fail to load, and interruptions in network or internet " & _
+					"connectivity. The Ping command will also fail to work for communicating with two or more remote hosts.")
+		Case $g_BtnHlpRepair[5]
 			GUICtrlSetData($g_EditInfo, "Re-registers all the concerned dll and ocx files required for " & _
 					"the smooth operation of Microsoft Internet Explorer " & $g_IntExplVersion & ".")
-		Case $g_BtnHlpRepair[5]
+		Case $g_BtnHlpRepair[6]
 			GUICtrlSetData($g_EditInfo, "This option will clear the Windows Update History. " & _
 					"It will do this by emptying the [" & $DIR_SDDATASTORE & "] " & _
 					"and [" & $DIR_SDDOWNLOAD & "] directories.")
-		Case $g_BtnHlpRepair[6]
+		Case $g_BtnHlpRepair[7]
 			GUICtrlSetData($g_EditInfo, "This option will try and fix Windows Update / Automatic Updates. " & _
 					"Try this when you are unable to download or install updates.")
-		Case $g_BtnHlpRepair[7]
+		Case $g_BtnHlpRepair[8]
 			GUICtrlSetData($g_EditInfo, "If you are having trouble connecting to SSL / Secured websites " & _
 					"(Ex. Banking) then this option could help.")
-		Case $g_BtnHlpRepair[8]
+		Case $g_BtnHlpRepair[9]
 			GUICtrlSetData($g_EditInfo, "Many malware infections create proxy servers and then set Windows to route all " & _
 					"web traffic through the virus proxy. For example, an attempt to access Rizonesoft.com, " & _
 					"will redirect to a malware site." & @CRLF & @CRLF & _
 					"This option will attempt to reset all proxy configurations, including persistent " & _
 					"WinHTTP proxy configuration.")
-		Case $g_BtnHlpRepair[9]
-			GUICtrlSetData($g_EditInfo, "Reset the Windows Firewall configuration to its default state.")
 		Case $g_BtnHlpRepair[10]
-			GUICtrlSetData($g_EditInfo, "Reset the Windows hosts file to its default state.")
+			GUICtrlSetData($g_EditInfo, "Reset the Windows Firewall configuration to its default state.")
 		Case $g_BtnHlpRepair[11]
+			GUICtrlSetData($g_EditInfo, "Reset the Windows hosts file to its default state.")
+		Case $g_BtnHlpRepair[12]
 			GUICtrlSetData($g_EditInfo, "Select this option if you cannot view other workgroup computers on the network.")
 
 	EndSwitch
@@ -711,6 +726,8 @@ Func _RunRepairOption()
 			_ProcessSelectedOptions(10)
 		Case $g_BtnGoRepair[11]
 			_ProcessSelectedOptions(11)
+		Case $g_BtnGoRepair[12]
+			_ProcessSelectedOptions(12)
 		Case $g_BtnGo
 			GUICtrlSetData($g_BtnGo, "Stop!")
 			$g_Singlelarity = False
@@ -732,14 +749,8 @@ EndFunc   ;==>_RunRepairOption
 
 Func _ProcessSelectedOptions($iOption)
 
-
 	_SetGUIState($GUI_DISABLE)
 	GUICtrlSetImage($g_IconRepair[$iOption], @ScriptDir & "\Themes\Processing\16\Process.ani", 0)
-
-;~ 	For $x = 1 To 100
-;~ 		_UpdateProcessing($iOption, $x)
-;~ 		Sleep(1000)
-;~ 	Next
 
 	Switch $iOption
 		Case 0
@@ -751,20 +762,22 @@ Func _ProcessSelectedOptions($iOption)
 		Case 3
 			_FlushReDNS()
 		Case 4
-			_RepairInternetExplorer()
+			_FlushARPCache()
 		Case 5
-			_ClearUpdateHistory()
+			_RepairInternetExplorer()
 		Case 6
-			_RepairWindowsUpdate()
+			_ClearUpdateHistory()
 		Case 7
-			_RepairCryptography()
+			_RepairWindowsUpdate()
 		Case 8
-			_ResetProxyServer()
+			_RepairCryptography()
 		Case 9
-			_ResetFirewall()
+			_ResetProxyServer()
 		Case 10
-			_RestoreWindowsHosts()
+			_ResetFirewall()
 		Case 11
+			_RestoreWindowsHosts()
+		Case 12
 			_RepairWorkGroups()
 	EndSwitch
 
@@ -949,9 +962,23 @@ Func _FlushReDNS()
 EndFunc   ;==>_FlushReDNS
 
 
-Func _RepairInternetExplorer()
+Func _FlushARPCache()
 
 	Local Const $iRep = 4
+	_StartLogging("Flushing ARP (Address Resolution Protocol) Cache.")
+	Sleep(100)
+	_UpdateProcessing($iRep, 50)
+	_RunCommand("netsh interface ip delete arpcache")
+	_UpdateProcessing($iRep, 100)
+	Sleep(100)
+	_EndLogging()
+
+EndFunc
+
+
+Func _RepairInternetExplorer()
+
+	Local Const $iRep = 5
 
 	_StartLogging("Repairing Internet Explorer " & $g_IntExplVersion & ".")
 	Sleep(100)
@@ -1149,7 +1176,7 @@ EndFunc   ;==>_RepairInternetExplorer
 
 Func _ClearUpdateHistory($IsInnerProcess = False)
 
-	Local Const $iRep = 5
+	Local Const $iRep = 6
 
 	If $IsInnerProcess = False Then
 		_StartLogging("Clearing File Stores (Update History).")
@@ -1183,7 +1210,7 @@ EndFunc   ;==>_ClearUpdateHistory
 
 Func _RepairWindowsUpdate()
 
-	Local Const $iRep = 6
+	Local Const $iRep = 7
 
 	If Not IsDeclared("g_ClearWinUpdate") Then Local $g_ClearWinUpdate
 	If Not IsDeclared("g_ResetWinsock") Then Local $g_ResetWinsock
@@ -1335,7 +1362,7 @@ Func _RepairCryptography()
 
 ;~ If Not $EVNTLOG_CONFIGURED Then _ConfigureEventLog()
 
-	Local Const $iRep = 7
+	Local Const $iRep = 8
 
 	_StartLogging("Repairing SSL / HTTPS / Cryptography service.")
 	Sleep(100)
@@ -1406,7 +1433,7 @@ EndFunc   ;==>_RepairCryptography
 Func _ResetProxyServer($IsInnerProcess = False)
 
 	If Not IsDeclared("g_ResetProxy") Then Local $g_ResetProxy
-	Local Const $iRep = 8
+	Local Const $iRep = 9
 
 	If Not $IsInnerProcess Then
 		_StartLogging("Resetting proxy settings.")
@@ -1437,7 +1464,7 @@ EndFunc   ;==>_ResetProxyServer
 Func _ResetFirewall($IsInnerProcess = False)
 
 	If Not IsDeclared("g_ResetFirewall") Then Local $g_ResetFirewall
-	Local Const $iRep = 9
+	Local Const $iRep = 10
 
 	If Not $IsInnerProcess Then
 		_StartLogging("Resetting the Windows Firewall configuraton.")
@@ -1466,7 +1493,7 @@ EndFunc   ;==>_ResetFirewall
 
 Func _RestoreWindowsHosts()
 
-	Local Const $iRep = 10
+	Local Const $iRep = 11
 	Local Const $lHOSTS = @WindowsDir & "\System32\drivers\etc\hosts"
 
 	_StartLogging("Restoring the default Windows HOSTS file.")
@@ -1534,7 +1561,7 @@ EndFunc   ;==>_RestoreWindowsHosts
 
 Func _RepairWorkGroups()
 
-	Local Const $iRep = 11
+	Local Const $iRep = 12
 
 	_StartLogging("Repairing Workgroup Computers view.")
 	_UpdateProcessing($iRep, 50)
@@ -1849,6 +1876,13 @@ Func _SaveSettings()
 
 	 _LoadSettings()
 	 If $g_ReBarLogEnabled = 1 Then _LoggingInitialize()
+
+EndFunc
+
+
+Func _OnCoreClosing()
+
+	AdlibUnRegister("_OnMainIconHover")
 
 EndFunc
 

@@ -3,6 +3,16 @@ Rizonesoft Complete Internet Repair CHANGES
 ==================================================
 
 --------------------------------------------------
+Version 3.0.2.2625 (November 07, 2016)
+--------------------------------------------------
+
+- Updated the ReBar Framework.
+- New Display ARP entries command.
+- New flush ARP Cache function.
+- Smaller total size (about 1MB smaller in total).
+- Minor bug fixes and cosmetic changes.
+
+--------------------------------------------------
 Version 3.0.2.2600 (October 22, 2016)
 --------------------------------------------------
 
