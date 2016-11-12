@@ -1,7 +1,8 @@
 #include-once
 
-Global $g_ReBarRunProgName = "Complete Internet Repair"
-Global $g_ReBarRunIcon = @ScriptDir & "\Themes\Icons\ComIntRep.ico"
-Global $g_ReBarRunIconHover = @ScriptDir & "\Themes\Icons\ComIntRepH.ico"
-Global $g_ReBarFormWidth = 500
-Global $g_ReBarFormHeight = 455
+$g_ReBarTitleShowAdmin = 0
+$g_ReBarRunProgName = "Complete Internet Repair"
+$g_ReBarRunIcon = @ScriptDir & "\Themes\Icons\ComIntRep.ico"
+$g_ReBarRunIconHover = @ScriptDir & "\Themes\Icons\ComIntRepH.ico"
+$g_ReBarFormWidth = 500
+$g_ReBarFormHeight = 460

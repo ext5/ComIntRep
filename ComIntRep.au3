@@ -54,7 +54,7 @@
 	;===============================================================================================================
 	#AutoIt3Wrapper_Res_Comment=Complete Internet Repair				 ;~ Comment field
 	#AutoIt3Wrapper_Res_Description=Complete Internet Repair	      	 ;~ Description field
-	#AutoIt3Wrapper_Res_Fileversion=3.0.2.2626
+	#AutoIt3Wrapper_Res_Fileversion=3.0.2.2683
 	#AutoIt3Wrapper_Res_FileVersion_AutoIncrement=Y  					 ;~ (Y/N/P) AutoIncrement FileVersion. Default=N
 	#AutoIt3Wrapper_Res_FileVersion_First_Increment=N					 ;~ (Y/N) AutoIncrement Y=Before; N=After compile. Default=N
 	#AutoIt3Wrapper_Res_HiDpi=Y                      					 ;~ (Y/N) Compile for high DPI. Default=N
@@ -99,21 +99,21 @@
 	;===============================================================================================================
 	; Tidy Settings
 	;===============================================================================================================
-	#AutoIt3Wrapper_Run_Tidy=N										 ;~ (Y/N) Run Tidy before compilation. Default=N
+	#AutoIt3Wrapper_Run_Tidy=N										;~ (Y/N) Run Tidy before compilation. Default=N
 	;#AutoIt3Wrapper_Tidy_Stop_OnError=              				;~ (Y/N) Continue when only Warnings. Default=Y
 	;#Tidy_Parameters=                               				;~ Tidy Parameters...see SciTE4AutoIt3 Helpfile for options
 	;===============================================================================================================
 	; Au3Stripper Settings
 	;===============================================================================================================
-	#AutoIt3Wrapper_Run_Au3Stripper=Y								 ;~ (Y/N) Run Au3Stripper before compilation. default=N
+	#AutoIt3Wrapper_Run_Au3Stripper=Y								;~ (Y/N) Run Au3Stripper before compilation. default=N
 	;#Au3Stripper_Parameters=										;~ Au3Stripper parameters...see SciTE4AutoIt3 Helpfile for options
 	;#Au3Stripper_Ignore_Variables=
 	;===============================================================================================================
 	; AU3Check settings
 	;===============================================================================================================
-	#AutoIt3Wrapper_Run_AU3Check=Y									 ;~ (Y/N) Run au3check before compilation. Default=Y
+	#AutoIt3Wrapper_Run_AU3Check=Y									;~ (Y/N) Run au3check before compilation. Default=Y
 	;#AutoIt3Wrapper_AU3Check_Parameters=							;~ Au3Check parameters...see SciTE4AutoIt3 Helpfile for options
-	#AutoIt3Wrapper_AU3Check_Stop_OnWarning=Y 						 ;~ (Y/N) Continue/Stop on Warnings.(Default=N)
+	#AutoIt3Wrapper_AU3Check_Stop_OnWarning=Y 						;~ (Y/N) Continue/Stop on Warnings.(Default=N)
 	;===============================================================================================================
 	; Versioning Settings
 	;===============================================================================================================
@@ -222,8 +222,11 @@ Global $g_ResetWinsock = True, $g_ResetFirewall = True, $g_ClearWinUpdate = True
 Global $g_Cancel, $g_Singlelarity = True
 
 Global $g_OptionsGui, $g_ChkBackupFolders, $g_ChkLogEnabled, $g_InLogSize, $g_LabelLogSize
-Global $g_OptionBackupData = 0, $g_InLogSizeTemp = 0, $g_BtnSaveSettings
+Global $g_OptionBackupData = 0, $g_InLogSizeTemp = 0, $g_BtnSaveSettings, $g_LabelDownSubinacl
+Global $g_ChkRestServPerm, $g_BtnOptSetPerm, $g_SubinaclPath = ""
 ;===============================================================================================================
+
+Global Const $REG_SERVICES = "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services"
 
 
 If Not @AutoItX64 And @OSArch = "X64" Then
@@ -313,7 +316,7 @@ Func _StartCoreGUI()
 
 	GUICtrlSetOnEvent($miFileEvView, "_StartEventLog")
 	GUICtrlSetOnEvent($miLogDir, "_OpenLoggingDirectory")
-	GUICtrlSetOnEvent($miOpenLog, "_OpenLogging")
+	GUICtrlSetOnEvent($miOpenLog, "_OpenLoggingFile")
 	GUICtrlSetOnEvent($miTcpResLog, "_OpenIPResetLog")
 	GUICtrlSetOnEvent($miFileReboot, "_RebootWindows")
 	GUICtrlSetOnEvent($miFileOptions, "_ShowOptionsDlg")
@@ -433,7 +436,7 @@ Func _StartCoreGUI()
 
 	GUICtrlSetOnEvent($g_BtnExtend, "_GUIExtender")
 
-	$g_ListStatus = GUICtrlCreateListView("", 10, 445, $g_ReBarFormWidth - 20, 120, BitOR($LVS_REPORT, $LVS_NOCOLUMNHEADER))
+	$g_ListStatus = GUICtrlCreateListView("", 10, 450, $g_ReBarFormWidth - 20, 120, BitOR($LVS_REPORT, $LVS_NOCOLUMNHEADER))
 	_GUICtrlListView_SetExtendedListViewStyle($g_ListStatus, BitOR($LVS_EX_FULLROWSELECT, $LVS_EX_DOUBLEBUFFER, _
 			$LVS_EX_SUBITEMIMAGES, $LVS_EX_INFOTIP, _
 			$WS_EX_CLIENTEDGE))
@@ -457,7 +460,7 @@ Func _StartCoreGUI()
 	GUICtrlSetColor($g_ListStatus, 0x222222)
 	GUICtrlSetState($g_ListStatus, $GUI_HIDE)
 
-	$g_EditInfo = GUICtrlCreateEdit("", 10, 445, $g_ReBarFormWidth - 20, 120, BitOR($WS_VSCROLL, $ES_READONLY, $ES_AUTOVSCROLL))
+	$g_EditInfo = GUICtrlCreateEdit("", 10, 450, $g_ReBarFormWidth - 20, 120, BitOR($WS_VSCROLL, $ES_READONLY, $ES_AUTOVSCROLL))
 	GUICtrlSetBkColor($g_EditInfo, 0xFFFFE1)
 
 	GUICtrlSetData($g_EditInfo, "Before you start; it is recommended that you create a System Restore Point to roll " & _
@@ -480,26 +483,6 @@ Func _StartCoreGUI()
 	WEnd
 
 EndFunc   ;==>_StartCoreGUI
-
-
-Func _OpenLoggingDirectory()
-
-	_StartLogging("Opening logging Directory.")
-	_EditLoggingWrite("[" & $g_ReBarLogBase & "]")
-	ShellExecute($g_ReBarLogBase)
-	If @error Then
-		_EditLoggingWrite("Error: Could not open [" & $g_ReBarLogBase & "].")
-	Else
-		_EditLoggingWrite("Success: The 'logging' directory should now be open.")
-	EndIf
-	_EndLogging()
-
-EndFunc   ;==>_OpenLoggingDirectory
-
-
-Func _OpenLogging()
-	_OpenTextFile($g_ReBarLogPath)
-EndFunc   ;==>_OpenLogging
 
 
 Func _OpenIPResetLog()
@@ -1248,7 +1231,7 @@ Func _RepairWindowsUpdate()
 	_UpdateProcessing($iRep, 21)
 	_EditLoggingWrite("Configuring the Automatic Updates Service.")
 	_ConfigureWindowsService("wuauserv", 2)
-	; _RunCommand("sc config wuauserv start= auto")
+	_RunCommand("sc config wuauserv start= auto")
 
 	_UpdateProcessing($iRep, 24)
 	_EditLoggingWrite("Configuring BITS.")
@@ -1792,6 +1775,25 @@ Func _ShowOptionsDlg()
 	$BtnClearLog = GUICtrlCreateButton("Clear Logging", 280, 180, 150, 30, $WS_GROUP)
 	GUICtrlCreateGroup("", -99, -99, 1, 1) ;close group
 
+	GUICtrlCreateGroup("Permissions (Experimental)", 10, 230, 430, 200)
+	GUICtrlSetFont(-1, 10, 700, 2)
+	GUICtrlCreateLabel("Permission options require Subinacl.exe be installed on your computer. " & _
+		"Click the link bellow to download it.", 20, 260, 410, 30)
+	GUICtrlSetColor(-1, 0x333333)
+	$g_LabelDownSubinacl = GUICtrlCreateLabel("Download Subinacl.exe", 20, 300, 200, 15)
+	GUICtrlSetFont($g_LabelDownSubinacl, 8.5, -1, 4) ;Underlined
+	GUICtrlSetColor($g_LabelDownSubinacl, 0x186FC3)
+	GUICtrlSetCursor($g_LabelDownSubinacl, 0)
+
+	$g_ChkRestServPerm = GUICtrlCreateCheckbox("Restore Windows Service Permissions", 20, 340, 310, 20)
+	$g_BtnOptSetPerm = GUICtrlCreateButton("Restore", 310, 390, 120, 30)
+
+	GUICtrlCreateGroup("", -99, -99, 1, 1) ;close group
+
+	GUICtrlSetOnEvent($g_LabelDownSubinacl, "_SubinaclOpenDownload")
+	GUICtrlSetOnEvent($g_ChkRestServPerm, "_CheckSubinaclStatus")
+	GUICtrlSetOnEvent($g_BtnOptSetPerm, "_RestorePermissions")
+
 	GUICtrlSetOnEvent($g_ChkBackupFolders, "_EnableSaveSettingsButton")
 	GUICtrlSetOnEvent($g_ChkLogEnabled, "_EnableSaveSettingsButton")
 	GUICtrlSetOnEvent($BtnClearLog, "_RemoveLoggingFile")
@@ -1831,6 +1833,26 @@ Func _CheckLogSizeChange()
 	If $g_InLogSizeTemp <> $iLogTemp Then
 		GUICtrlSetState($g_BtnSaveSettings, $GUI_ENABLE)
 		$g_InLogSizeTemp = $iLogTemp
+	EndIf
+
+EndFunc
+
+
+Func _RestorePermissions()
+
+	If GUICtrlRead($g_ChkRestServPerm) = $GUI_CHECKED Then
+		_SubinaclSetRegPermission($REG_SERVICES, "grant", "Administrator", "f")
+		; _SubinaclSetRegPermission($REG_SERVICES, "grant", "SYSTEM", "f")
+	EndIf
+
+EndFunc
+
+
+Func _CheckSubinaclStatus()
+
+	If GUICtrlRead($g_ChkRestServPerm) = $GUI_CHECKED _
+		And Not _SubinaclGetInstall() Then
+		_SubinaclShowMessage()
 	EndIf
 
 EndFunc
@@ -1876,6 +1898,57 @@ Func _SaveSettings()
 
 	 _LoadSettings()
 	 If $g_ReBarLogEnabled = 1 Then _LoggingInitialize()
+
+EndFunc
+
+
+Func _SubinaclGetInstall()
+
+	If @OSArch = "X64" Then
+		$g_SubinaclPath = "C:\Program Files (x86)\Windows Resource Kits\Tools\subinacl.exe"
+	Else
+		$g_SubinaclPath = "C:\Program Files (x86)\Windows Resource Kits\Tools\subinacl.exe"
+	EndIf
+
+	; MsgBox(0, "", $g_SubinaclPath)
+	If FileExists($g_SubinaclPath) Then
+		Return True
+	EndIf
+
+	Return False
+
+EndFunc
+
+
+Func _SubinaclOpenDownload()
+	ShellExecute("https://www.microsoft.com/en-us/download/details.aspx?id=23510")
+EndFunc
+
+
+Func _SubinaclSetRegPermission($sRegKey, $sAction, $sUsername, _
+	$sPermissions, $iShowFlag = @SW_SHOW)
+
+	ShellExecute($g_SubinaclPath, "/nostatistic /subkeyreg " & $sRegKey & _
+		" /" & $sAction & "=" & $sUsername & "=" & $sPermissions, "", "", $iShowFlag)
+EndFunc
+
+
+Func _SubinaclShowMessage()
+
+	If Not IsDeclared("iMsgBoxAnswer") Then Local $iMsgBoxAnswer
+	$iMsgBoxAnswer = MsgBox($MB_YESNO + $MB_ICONEXCLAMATION, "Install Subinacl.exe", _
+		"For this function to work you need to install Subinacl.exe on your computer. " & _
+		"Press Yes to go to the download page. Installing Subinacl.exe should be painless, " & _
+		"I think, but if you get lost, leave a comment on " & _
+		"Rizonesoft and I will lend a helping hand. ", 60)
+	Select
+		Case $iMsgBoxAnswer = $IDYES
+			_SubinaclOpenDownload()
+		Case $iMsgBoxAnswer = $IDNO
+			Return False
+		Case $iMsgBoxAnswer = -1 ;Timeout
+			Return False
+	EndSelect
 
 EndFunc
 

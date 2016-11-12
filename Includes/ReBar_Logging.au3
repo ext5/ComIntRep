@@ -14,6 +14,7 @@
 
 #include "ReBar_Declarations.au3"
 #include "ReBar_Functions.au3"
+#include "ReBar_File.au3"
 
 
 ; #INDEX# =======================================================================================================================
@@ -320,6 +321,37 @@ Func __GenerateTimePrefix($iFlag = 0, $bFormat = 1)
 	EndIf
 
 EndFunc
+
+
+Func _OpenLoggingDirectory()
+
+	_StartLogging("Opening logging Directory.")
+	_EditLoggingWrite("[" & $g_ReBarLogBase & "]")
+	ShellExecute($g_ReBarLogBase)
+	If @error Then
+		_EditLoggingWrite("Error: Could not open [" & $g_ReBarLogBase & "].")
+	Else
+		_EditLoggingWrite("Success: The 'logging' directory should now be open.")
+	EndIf
+	_EndLogging()
+
+EndFunc   ;==>_OpenLoggingDirectory
+
+
+Func _OpenLoggingFile()
+
+	_StartLogging("Opening [" & $g_ReBarLogPath & "]")
+	If FileExists($g_ReBarLogPath) Then
+		ShellExecute($g_ReBarLogPath)
+		_EditLoggingWrite("Success: Showing [" & $g_ReBarLogPath & "] file.")
+		Return SetError(0, 0, 1)
+	Else
+		_EditLoggingWrite("Error: Could not find the [" & $g_ReBarLogPath & "] file.")
+		Return SetError(1, 0, 0)
+	EndIf
+	_EndLogging()
+
+EndFunc   ;==>_OpenLogging
 
 
 ; #FUNCTION# ====================================================================================================================

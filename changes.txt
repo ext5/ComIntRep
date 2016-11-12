@@ -3,6 +3,14 @@ Rizonesoft Complete Internet Repair CHANGES
 ==================================================
 
 --------------------------------------------------
+Version 3.0.2.2682 (November 13, 2016)
+--------------------------------------------------
+
+- Opening the Downloads page after installation, now optional.
+- Restore Windows Service Permissions option (Experimental).
+- Minor Bug fixes and interface tweaks.
+
+--------------------------------------------------
 Version 3.0.2.2625 (November 07, 2016)
 --------------------------------------------------
 
