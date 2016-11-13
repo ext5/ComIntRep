@@ -39,23 +39,23 @@ If Not IsDeclared("g_ImgStatus") Then Global $g_ImgStatus = ""
 ; ===============================================================================================================================
 Func _LoggingInitialize()
 
-	_GUICtrlListView_SetExtendedListViewStyle($g_ListStatus, BitOR($LVS_EX_FULLROWSELECT, $LVS_EX_DOUBLEBUFFER, _
-		$LVS_EX_SUBITEMIMAGES, $LVS_EX_INFOTIP, _
-		$WS_EX_CLIENTEDGE))
-	_GUICtrlListView_AddColumn($g_ListStatus, "", 800)
-	_WinAPI_SetWindowTheme(GUICtrlGetHandle($g_ListStatus), "Explorer")
+;~ 	_GUICtrlListView_SetExtendedListViewStyle($g_ListStatus, BitOR($LVS_EX_FULLROWSELECT, $LVS_EX_DOUBLEBUFFER, _
+;~ 		$LVS_EX_SUBITEMIMAGES, $LVS_EX_INFOTIP, _
+;~ 		$WS_EX_CLIENTEDGE))
+;~ 	_GUICtrlListView_AddColumn($g_ListStatus, "", 800)
+;~ 	_WinAPI_SetWindowTheme(GUICtrlGetHandle($g_ListStatus), "Explorer")
 
-	$g_ImgStatus = _GUIImageList_Create(16, 16, 5, 1, 8, 8)
-	_GUIImageList_AddIcon($g_ImgStatus, $g_ReBarResFugue, -103)
-	_GUIImageList_AddIcon($g_ImgStatus, $g_ReBarResFugue, -130)
-	_GUIImageList_AddIcon($g_ImgStatus, $g_ReBarResFugue, -122)
-	_GUIImageList_AddIcon($g_ImgStatus, $g_ReBarResFugue, -134)
-	_GUIImageList_AddIcon($g_ImgStatus, $g_ReBarResFugue, -133)
-	_GUIImageList_AddIcon($g_ImgStatus, $g_ReBarResFugue, -135)
-	_GUIImageList_AddIcon($g_ImgStatus, $g_ReBarResFugue, -136)
-	_GUIImageList_AddIcon($g_ImgStatus, $g_ReBarResFugue, -138)
-	_GUIImageList_AddIcon($g_ImgStatus, $g_ReBarResFugue, -999)
-	_GUICtrlListView_SetImageList($g_ListStatus, $g_ImgStatus, 1)
+;~ 	$g_ImgStatus = _GUIImageList_Create(16, 16, 5, 1, 8, 8)
+;~ 	_GUIImageList_AddIcon($g_ImgStatus, $g_ReBarResFugue, -103)
+;~ 	_GUIImageList_AddIcon($g_ImgStatus, $g_ReBarResFugue, -130)
+;~ 	_GUIImageList_AddIcon($g_ImgStatus, $g_ReBarResFugue, -122)
+;~ 	_GUIImageList_AddIcon($g_ImgStatus, $g_ReBarResFugue, -134)
+;~ 	_GUIImageList_AddIcon($g_ImgStatus, $g_ReBarResFugue, -133)
+;~ 	_GUIImageList_AddIcon($g_ImgStatus, $g_ReBarResFugue, -135)
+;~ 	_GUIImageList_AddIcon($g_ImgStatus, $g_ReBarResFugue, -136)
+;~ 	_GUIImageList_AddIcon($g_ImgStatus, $g_ReBarResFugue, -138)
+;~ 	_GUIImageList_AddIcon($g_ImgStatus, $g_ReBarResFugue, -999)
+;~ 	_GUICtrlListView_SetImageList($g_ListStatus, $g_ImgStatus, 1)
 
 	; When run from a CD, we cannot perform logging.
 	If DriveGetType(StringLeft(@ScriptFullPath, 3)) = "CDROM" Then
@@ -144,8 +144,6 @@ Func _EditLoggingWrite($sMessage = "", $bTimePrex = True, $UseListBox = True)
 		ElseIf StringLeft($sMessage, 1) = "^" Or _
 			_ValidateWarning($sMessage) Then
 			$iImage = 6
-		ElseIf _ValidateFolder($sMessage) Then
-			$iImage = 8
 		ElseIf StringStripWS($sMessage, 8) = "" Then
 			$iImage = 10
 		EndIf
@@ -201,20 +199,6 @@ Func _ValidateWarning($sMessage)
 
 	For $s = 1 To $aWarningStrings[0]
 		If StringInStr($sMessage, $aWarningStrings[$s]) Then
-			Return True
-		EndIf
-	Next
-
-EndFunc
-
-
-Func _ValidateFolder($sMessage)
-
-	Local $sFolderStrings = "Saving [|Deleting [|Removing [|Clearing ["
-	Local $aFolderStrings = StringSplit($sFolderStrings, "|")
-
-	For $s = 1 To $aFolderStrings[0]
-		If StringInStr($sMessage, $aFolderStrings[$s]) Then
 			Return True
 		EndIf
 	Next

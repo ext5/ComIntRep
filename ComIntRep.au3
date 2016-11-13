@@ -54,7 +54,7 @@
 	;===============================================================================================================
 	#AutoIt3Wrapper_Res_Comment=Complete Internet Repair				 ;~ Comment field
 	#AutoIt3Wrapper_Res_Description=Complete Internet Repair	      	 ;~ Description field
-	#AutoIt3Wrapper_Res_Fileversion=3.0.2.2683
+	#AutoIt3Wrapper_Res_Fileversion=3.1.3.2801
 	#AutoIt3Wrapper_Res_FileVersion_AutoIncrement=Y  					 ;~ (Y/N/P) AutoIncrement FileVersion. Default=N
 	#AutoIt3Wrapper_Res_FileVersion_First_Increment=N					 ;~ (Y/N) AutoIncrement Y=Before; N=After compile. Default=N
 	#AutoIt3Wrapper_Res_HiDpi=Y                      					 ;~ (Y/N) Compile for high DPI. Default=N
@@ -217,13 +217,13 @@ Global $g_IconRepair[$COUNT_REPAIR], $g_ChkRepair[$COUNT_REPAIR], $g_BtnHlpRepai
 Global $g_PrTopRepair[$COUNT_REPAIR], $g_LineRepair[$COUNT_REPAIR], $g_ProgressRepair[$COUNT_REPAIR]
 Global $g_BtnHlpRepairH[$COUNT_REPAIR], $g_BtnGoRepairH[$COUNT_REPAIR]
 Global $g_ListStatus, $g_ImgStatus, $g_EditInfo, $g_BtnGo, $g_Cancel, $g_IntExplVersion
-Global $g_MenuFile, $g_MenuMaintenance, $g_MenuTrouble, $g_MenuCommands, $g_MenuTools, $g_MenuHelp
+Global $g_MenuFile, $g_MenuMaintenance, $g_MenuTrouble, $g_MenuTools, $g_MenuAdvanced, $g_MenuHelp
 Global $g_ResetWinsock = True, $g_ResetFirewall = True, $g_ClearWinUpdate = True, $g_ResetProxy = True, $g_ResetFirewall = True
 Global $g_Cancel, $g_Singlelarity = True
 
-Global $g_OptionsGui, $g_ChkBackupFolders, $g_ChkLogEnabled, $g_InLogSize, $g_LabelLogSize
+Global $g_OptionsGui, $g_ChkBackupFolders, $g_ChkLogEnabled, $g_InLogSize, $g_LabelLogSize, $g_LabelCacheSize
 Global $g_OptionBackupData = 0, $g_InLogSizeTemp = 0, $g_BtnSaveSettings, $g_LabelDownSubinacl
-Global $g_ChkRestServPerm, $g_BtnOptSetPerm, $g_SubinaclPath = ""
+Global $g_ChkRestServPerm, $g_BtnOptSetPerm, $g_BtnClearCache
 ;===============================================================================================================
 
 Global Const $REG_SERVICES = "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services"
@@ -271,9 +271,11 @@ Func _StartCoreGUI()
 	Local $miFileEvView, $miFileClose, $miFileReboot, $miFileOptions
 	Local $mnuLogging, $miLogDir, $miOpenLog, $miTcpResLog
 	Local $miMaintRestore
-	Local $miTrIntSpeed, $miTrRouterPass
-	Local $miComShowIPConf, $miComShowLSP, $miComShowARP, $miComIP6Install, $miComIP6Uninstall
+	Local $miTrShowIPConf, $miTrShowLSP, $miTrShowARP, $miTrIP6Install, $miTrIP6Uninstall
+	Local $miTrIntSpeed, $miTrRouterPass, $miNetBIOSStats
+	Local $miAdGoogleDNS, $miAdEnableLan, $miAdEnableWiFi, $miAdClearIEOptions
 	Local $miToolRDP, $miToolIEP, $miTrIntTrouble
+	Local $miRepWorkView
 	Local $miHlpHome, $miHlpSupport
 	Local $lblHeading, $lblWelcome, $lblNetDiagWeb, $lblSysRestore
 
@@ -295,8 +297,10 @@ Func _StartCoreGUI()
 	$g_MenuFile = GUICtrlCreateMenu("&File")
 	$g_MenuMaintenance = GUICtrlCreateMenu("&Maintenance")
 	$g_MenuTrouble = GUICtrlCreateMenu("&Troubleshoot")
-	$g_MenuCommands = GUICtrlCreateMenu("&Commands")
 	$g_MenuTools = GUICtrlCreateMenu("T&ools")
+	If @OSVersion = "WIN_XP" Or @OSVersion = "WIN_2003" Then
+		$g_MenuAdvanced = GUICtrlCreateMenu("&Advanced")
+	EndIf
 	$g_MenuHelp = GUICtrlCreateMenu("&Help")
 
 	$miFileEvView = GUICtrlCreateMenuItem("Open &Event Viewer", $g_MenuFile)
@@ -328,35 +332,51 @@ Func _StartCoreGUI()
 			GUICtrlCreateMenuItem("", $g_MenuTrouble)
 			GUICtrlSetOnEvent($miTrIntTrouble, "_OpenNetworkDiagnosticsWeb")
 	EndSwitch
+
+	$miTrShowIPConf = GUICtrlCreateMenuItem("Show &IP Configuration", $g_MenuTrouble)
+	$miTrShowLSP = GUICtrlCreateMenuItem("Show Winsock &LSPs", $g_MenuTrouble)
+	$miTrShowARP = GUICtrlCreateMenuItem("Show all ARP entries", $g_MenuTrouble)
+	$miNetBIOSStats = GUICtrlCreateMenuItem("Show NetBIOS Statistics", $g_MenuTrouble)
+	If @OSVersion = "WIN_XP" Or @OSVersion = "WIN_2003" Then
+		GUICtrlCreateMenuItem("", $g_MenuTrouble)
+		$miTrIP6Install = GUICtrlCreateMenuItem("&Install IP6 protocol", $g_MenuTrouble)
+		$miTrIP6Uninstall = GUICtrlCreateMenuItem("&Uninstall IP6 protocol", $g_MenuTrouble)
+		GUICtrlSetOnEvent($miTrIP6Install, "_InstallIP6")
+		GUICtrlSetOnEvent($miTrIP6Uninstall, "_UnInstallIP6")
+	EndIf
+	GUICtrlCreateMenuItem("", $g_MenuTrouble)
 	$miTrIntSpeed = GUICtrlCreateMenuItem("&Internet Speed Test", $g_MenuTrouble)
 	$miTrRouterPass = GUICtrlCreateMenuItem("Get &Router Passwords", $g_MenuTrouble)
 
+	GUICtrlSetOnEvent($miTrShowIPConf, "_GetIPConfiguration")
+	GUICtrlSetOnEvent($miTrShowLSP, "_ShowWinsockLSPs")
+	GUICtrlSetOnEvent($miTrShowARP, "_ShowAllArpEntries")
+	GUICtrlSetOnEvent($miNetBIOSStats, "_ShowNetBIOSStats")
 	GUICtrlSetOnEvent($miTrIntSpeed, "_SpeedTest")
 	GUICtrlSetOnEvent($miTrRouterPass, "_GetRouterPasswords")
 
 	$miMaintRestore = GUICtrlCreateMenuItem("System &Restore", $g_MenuMaintenance)
 	GUICtrlSetOnEvent($miMaintRestore, "_OpenWindowsSystemRestore")
 
-	$miComShowIPConf = GUICtrlCreateMenuItem("Show &TCP/IP configuration", $g_MenuCommands)
-	$miComShowLSP = GUICtrlCreateMenuItem("Show Winsock &LSPs", $g_MenuCommands)
-	$miComShowARP = GUICtrlCreateMenuItem("Display all ARP entries", $g_MenuCommands)
-	If @OSVersion = "WIN_XP" Or @OSVersion = "WIN_2003" Then
-		GUICtrlCreateMenuItem("", $g_MenuCommands)
-		$miComIP6Install = GUICtrlCreateMenuItem("&Install IP6 protocol", $g_MenuCommands)
-		$miComIP6Uninstall = GUICtrlCreateMenuItem("&Uninstall IP6 protocol", $g_MenuCommands)
-		GUICtrlSetOnEvent($miComIP6Install, "_InstallIP6")
-		GUICtrlSetOnEvent($miComIP6Uninstall, "_UnInstallIP6")
-	EndIf
-
-	GUICtrlSetOnEvent($miComShowIPConf, "_GetIPConfiguration")
-	GUICtrlSetOnEvent($miComShowLSP, "_ShowWinsockLSPs")
-	GUICtrlSetOnEvent($miComShowARP, "_ShowAllArpEntries")
-
 	$miToolRDP = GUICtrlCreateMenuItem("Open Remote Desktop Connection", $g_MenuTools)
 	$miToolIEP = GUICtrlCreateMenuItem("Open Internet Explorer properties", $g_MenuTools)
 
 	GUICtrlSetOnEvent($miToolRDP, "_OpenRDP")
 	GUICtrlSetOnEvent($miToolIEP, "_OpenIEProperties")
+
+	; $miAdGoogleDNS = GUICtrlCreateMenuItem("Use &Google DNS (All Adapters)", $g_MenuAdvanced)
+	; GUICtrlCreateMenuItem("", $g_MenuAdvanced)
+	; $miAdEnableLan = GUICtrlCreateMenuItem("Enable all &LAN Adapters", $g_MenuAdvanced)
+	; $miAdEnableWiFi = GUICtrlCreateMenuItem("Enable all &Wifi Adapters", $g_MenuAdvanced)
+	; GUICtrlCreateMenuItem("", $g_MenuAdvanced)
+	; $miAdClearIEOptions = GUICtrlCreateMenuItem("&Reset Internet Options", $g_MenuAdvanced)
+	If @OSVersion = "WIN_XP" Or @OSVersion = "WIN_2003" Then
+		GUICtrlCreateMenuItem("", $g_MenuAdvanced)
+		$miRepWorkView = GUICtrlCreateMenuItem("Repair Workgroup Computers view", $g_MenuAdvanced)
+		GUICtrlSetOnEvent($miRepWorkView, "_RepairWorkGroups")
+	EndIf
+
+	GUICtrlSetOnEvent($miAdGoogleDNS, "_UseGoogleDNS")
 
 	$g_ReBarAboutMenu = GUICtrlCreateMenuItem("&About " & $g_ReBarProgName, $g_MenuHelp)
 	$miHlpHome = GUICtrlCreateMenuItem($g_ReBarCompName & " &Home", $g_MenuHelp)
@@ -409,7 +429,7 @@ Func _StartCoreGUI()
 
 	Next
 
-	GUICtrlSetData($g_ChkRepair[0], " Reset Internet Protocol (TCP/IP)")
+	GUICtrlSetData($g_ChkRepair[0], " Reset Internet Protocols (TCP/IP)")
 	GUICtrlSetData($g_ChkRepair[1], " Repair Winsock (Reset Catalog)")
 	GUICtrlSetData($g_ChkRepair[2], " Renew Internet Connections")
 	GUICtrlSetData($g_ChkRepair[3], " Flush DNS Resolver Cache (Domain Name System)")
@@ -421,7 +441,7 @@ Func _StartCoreGUI()
 	GUICtrlSetData($g_ChkRepair[9], " Reset Proxy Server Configuration")
 	GUICtrlSetData($g_ChkRepair[10], " Reset Windows Firewall Configuration")
 	GUICtrlSetData($g_ChkRepair[11], " Restore the default hosts file")
-	GUICtrlSetData($g_ChkRepair[12], " Repair Workgroup Computers view")
+	GUICtrlSetData($g_ChkRepair[12], " Renew Wins Client Registrations")
 
 	GUICtrlCreateGroup("", -99, -99, 1, 1) ;close group
 
@@ -452,7 +472,6 @@ Func _StartCoreGUI()
 	_GUIImageList_AddIcon($g_ImgStatus, $g_ReBarResFugue, -135)
 	_GUIImageList_AddIcon($g_ImgStatus, $g_ReBarResFugue, -136)
 	_GUIImageList_AddIcon($g_ImgStatus, $g_ReBarResFugue, -138)
-	_GUIImageList_AddIcon($g_ImgStatus, $g_ReBarResFugue, -159)
 	_GUIImageList_AddIcon($g_ImgStatus, $g_ReBarResFugue, -999)
 	_GUICtrlListView_SetImageList($g_ListStatus, $g_ImgStatus, 1)
 
@@ -604,11 +623,17 @@ EndFunc   ;==>_ShowWinsockLSPs
 
 
 Func _ShowAllArpEntries()
-	_StartLogging("Display all ARP entries.")
+	_StartLogging("Showing all ARP entries.")
 	Run(@ComSpec & " /k arp -a", "", @SW_SHOW)
 	_EndLogging()
 EndFunc
 
+
+Func _ShowNetBIOSStats()
+	_StartLogging("Showing NetBIOS Names Resolution and Resgistration Statistics.")
+	Run(@ComSpec & " /k Nbtstat.exe -r", "", @SW_SHOW)
+	_EndLogging()
+EndFunc
 
 Func _InstallIP6()
 	_StartLogging("Installing the TCP/IP v6 protocol.")
@@ -672,7 +697,13 @@ Func _ShowRepairInfo()
 		Case $g_BtnHlpRepair[11]
 			GUICtrlSetData($g_EditInfo, "Reset the Windows hosts file to its default state.")
 		Case $g_BtnHlpRepair[12]
-			GUICtrlSetData($g_EditInfo, "Select this option if you cannot view other workgroup computers on the network.")
+			GUICtrlSetData($g_EditInfo, "It is sometimes necessary that clients or servers on your network need to " & _
+				"reregister their NetBIOS names with a Windows Internet Name Service (WINS) server." & @CRLF & @CRLF & _
+				"Here are some situations where renewing WINS client registrations would be necessary: " & _
+				"The registration has been lost or deleted in WINS and needs to be refreshed by " & _
+				"the client. The registration exists in some WINS servers but not in others. " & _
+				"A reregistration is useful here to increment the WINS version Ids, " & _
+				"which will help in causing a WINS server replication to occur.")
 
 	EndSwitch
 
@@ -761,7 +792,7 @@ Func _ProcessSelectedOptions($iOption)
 		Case 11
 			_RestoreWindowsHosts()
 		Case 12
-			_RepairWorkGroups()
+			_RenewWinsClient()
 	EndSwitch
 
 	_EndProcessing()
@@ -816,7 +847,7 @@ Func _SetGUIState($iState)
 	GUICtrlSetState($g_MenuFile, $iState)
 	GUICtrlSetState($g_MenuMaintenance, $iState)
 	GUICtrlSetState($g_MenuTrouble, $iState)
-	GUICtrlSetState($g_MenuCommands, $iState)
+	GUICtrlSetState($g_MenuAdvanced, $iState)
 	GUICtrlSetState($g_MenuTools, $iState)
 	GUICtrlSetState($g_MenuHelp, $iState)
 
@@ -1172,11 +1203,11 @@ Func _ClearUpdateHistory($IsInnerProcess = False)
 
 	_FileDelete(@AppDataCommonDir & "\Microsoft\Network\Downloader\qmgr*.dat")
 
-	_RemoveDirectory($DIR_SDDOWNLOAD, $DIR_SDDOWNLOAD_OLD)
+	_BackupRemoveDirectory($DIR_SDDOWNLOAD, $DIR_SDDOWNLOAD_OLD)
 	If $IsInnerProcess = False Then _UpdateProcessing($iRep, 50)
-	_RemoveDirectory($DIR_SDDATASTORE, $DIR_SDDATASTORE_OLD)
+	_BackupRemoveDirectory($DIR_SDDATASTORE, $DIR_SDDATASTORE_OLD)
 	If $IsInnerProcess = False Then _UpdateProcessing($iRep, 75)
-	_RemoveDirectory($DIR_CATROOT2, $DIR_CATROOT2_OLD)
+	_BackupRemoveDirectory($DIR_CATROOT2, $DIR_CATROOT2_OLD)
 
 	If $IsInnerProcess = False Then
 
@@ -1359,7 +1390,7 @@ Func _RepairCryptography()
 	_RunCommand("sc config CryptSvc start= auto")
 
 	_EditLoggingWrite("Clearing [" & $DIR_CATROOT2 & "].")
-	_RemoveDirectory($DIR_CATROOT2, $DIR_CATROOT2_OLD)
+	_BackupRemoveDirectory($DIR_CATROOT2, $DIR_CATROOT2_OLD)
 
 	_EditLoggingWrite("Clearing [" & @WindowsDir & "\system32\CatRoot].")
 	_UpdateProcessing($iRep, 15)
@@ -1542,18 +1573,41 @@ Func _RestoreWindowsHosts()
 EndFunc   ;==>_RestoreWindowsHosts
 
 
-Func _RepairWorkGroups()
+Func _RenewWinsClient()
 
 	Local Const $iRep = 12
 
+	_StartLogging("Renewing Wins Client Registrations.")
+	_UpdateProcessing($iRep, 33)
+	_RunCommand("Nbtstat.exe -R")
+	_UpdateProcessing($iRep, 66)
+	_RunCommand("Nbtstat.exe -RR")
+	_UpdateProcessing($iRep, 99)
+	_EndLogging()
+	_UpdateProcessing($iRep, 100)
+
+EndFunc
+
+
+Func _RepairWorkGroups()
+
+	; Local Const $iRep = 12
+
 	_StartLogging("Repairing Workgroup Computers view.")
-	_UpdateProcessing($iRep, 50)
+	; _UpdateProcessing($iRep, 50)
 	_RegistryDelete("HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\NetBt\Parameters", "NodeType")
 	_RegistryDelete("HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\NetBt\Parameters", "DhcpNodeType")
-	_UpdateProcessing($iRep, 100)
+	; _UpdateProcessing($iRep, 100)
 	_EndLogging()
 
 EndFunc   ;==>_RepairWorkGroups
+
+
+Func _UseGoogleDNS()
+
+
+
+EndFunc
 
 
 ;~ Func _RepairNeroUpdate()
@@ -1756,47 +1810,55 @@ Func _ShowOptionsDlg()
 
 	GUISetOnEvent($GUI_EVENT_CLOSE, "_CloseOptionsDlg", $g_OptionsGui)
 
-	GUICtrlCreateGroup("Redundancy", 10, 10, 430, 60)
+	GUICtrlCreateGroup("Redundancy", 10, 20, 430, 60)
 	GUICtrlSetFont(-1, 10, 700, 2)
-	$g_ChkBackupFolders = GUICtrlCreateCheckbox("Backup Folders Before Removing", 20, 35, 410, 20)
+	$g_ChkBackupFolders = GUICtrlCreateCheckbox("Backup Folders Before Removing", 20, 45, 410, 20)
 	GUICtrlCreateGroup("", -99, -99, 1, 1) ;close group
 
-	GUICtrlCreateGroup("Logging", 10, 80, 430, 140)
+	GUICtrlCreateGroup("Logging and Cache", 10, 90, 430, 180)
 	GUICtrlSetFont(-1, 10, 700, 2)
-	$g_ChkLogEnabled = GUICtrlCreateCheckbox("Enable logging", 20, 110, 360, 20)
-	GUICtrlCreateLabel("Log size must not exceed :", 20, 140, 160, 20)
-	$g_InLogSize = GUICtrlCreateInput(Round($g_ReBarLogStorage / 1024, 2), 180, 138, 100, 20)
+	$g_ChkLogEnabled = GUICtrlCreateCheckbox("Enable logging", 20, 120, 360, 20)
+	GUICtrlCreateLabel("Log size must not exceed :", 20, 150, 160, 20)
+	$g_InLogSize = GUICtrlCreateInput(Round($g_ReBarLogStorage / 1024, 2), 180, 148, 100, 20)
 	GUICtrlSetStyle($g_InLogSize, BitOr($ES_RIGHT, $ES_NUMBER))
 	GUICtrlSetFont(-1, 9, 400, 0, "Verdana")
-	GUICtrlCreateLabel("KB", 290, 140, 50, 20)
+	GUICtrlCreateLabel("KB", 290, 150, 50, 20)
 	$g_InLogSizeTemp = Int(GUICtrlRead($g_InLogSize))
-	$g_LabelLogSize = GUICtrlCreateLabel("Log size: " & Round(FileGetSize($g_ReBarLogPath) / 1024, 2) & " KB", 20, 190, 250, 20)
-	GUICtrlSetColor(-1, 0x066186)
-	$BtnClearLog = GUICtrlCreateButton("Clear Logging", 280, 180, 150, 30, $WS_GROUP)
+	GUICtrlCreateLabel("Logging Size:", 20, 200, 80, 20)
+	GUICtrlSetColor(-1, 0x555555)
+	$g_LabelLogSize = GUICtrlCreateLabel(Round(FileGetSize($g_ReBarLogPath) / 1024, 2) & " KB", 103, 200, 100, 20)
+	GUICtrlSetColor($g_LabelLogSize, 0x066186)
+	GUICtrlCreateLabel("Cache Size:", 220, 200, 75, 20)
+	GUICtrlSetColor(-1, 0x555555)
+	$g_LabelCacheSize = GUICtrlCreateLabel(Round(DirGetSize($g_ReBarCachePath) / 1024, 2) & " KB", 295, 200, 100, 20)
+	GUICtrlSetColor($g_LabelCacheSize, 0x066186)
+	$BtnClearLog = GUICtrlCreateButton("Clear Logging", 20, 220, 150, 30)
+	$g_BtnClearCache = GUICtrlCreateButton("Clear Cache", 220, 220, 150, 30)
 	GUICtrlCreateGroup("", -99, -99, 1, 1) ;close group
 
-	GUICtrlCreateGroup("Permissions (Experimental)", 10, 230, 430, 200)
-	GUICtrlSetFont(-1, 10, 700, 2)
-	GUICtrlCreateLabel("Permission options require Subinacl.exe be installed on your computer. " & _
-		"Click the link bellow to download it.", 20, 260, 410, 30)
-	GUICtrlSetColor(-1, 0x333333)
-	$g_LabelDownSubinacl = GUICtrlCreateLabel("Download Subinacl.exe", 20, 300, 200, 15)
-	GUICtrlSetFont($g_LabelDownSubinacl, 8.5, -1, 4) ;Underlined
-	GUICtrlSetColor($g_LabelDownSubinacl, 0x186FC3)
-	GUICtrlSetCursor($g_LabelDownSubinacl, 0)
+;~ 	GUICtrlCreateGroup("Permissions (Experimental)", 10, 230, 430, 200)
+;~ 	GUICtrlSetFont(-1, 10, 700, 2)
+;~ 	GUICtrlCreateLabel("Permission options require Subinacl.exe be installed on your computer. " & _
+;~ 		"Click the link bellow to download it.", 20, 260, 410, 30)
+;~ 	GUICtrlSetColor(-1, 0x333333)
+;~ 	$g_LabelDownSubinacl = GUICtrlCreateLabel("Download Subinacl.exe", 20, 300, 200, 15)
+;~ 	GUICtrlSetFont($g_LabelDownSubinacl, 8.5, -1, 4) ;Underlined
+;~ 	GUICtrlSetColor($g_LabelDownSubinacl, 0x186FC3)
+;~ 	GUICtrlSetCursor($g_LabelDownSubinacl, 0)
 
-	$g_ChkRestServPerm = GUICtrlCreateCheckbox("Restore Windows Service Permissions", 20, 340, 310, 20)
-	$g_BtnOptSetPerm = GUICtrlCreateButton("Restore", 310, 390, 120, 30)
+;~ 	$g_ChkRestServPerm = GUICtrlCreateCheckbox("Restore Windows Service Permissions", 20, 340, 310, 20)
+;~ 	$g_BtnOptSetPerm = GUICtrlCreateButton("Restore", 310, 390, 120, 30)
 
-	GUICtrlCreateGroup("", -99, -99, 1, 1) ;close group
+;~ 	GUICtrlCreateGroup("", -99, -99, 1, 1) ;close group
 
-	GUICtrlSetOnEvent($g_LabelDownSubinacl, "_SubinaclOpenDownload")
-	GUICtrlSetOnEvent($g_ChkRestServPerm, "_CheckSubinaclStatus")
-	GUICtrlSetOnEvent($g_BtnOptSetPerm, "_RestorePermissions")
+;~ 	GUICtrlSetOnEvent($g_LabelDownSubinacl, "_SubinaclOpenDownload")
+;~ 	GUICtrlSetOnEvent($g_ChkRestServPerm, "_CheckSubinaclStatus")
+;~ 	GUICtrlSetOnEvent($g_BtnOptSetPerm, "_RestorePermissions")
 
 	GUICtrlSetOnEvent($g_ChkBackupFolders, "_EnableSaveSettingsButton")
 	GUICtrlSetOnEvent($g_ChkLogEnabled, "_EnableSaveSettingsButton")
 	GUICtrlSetOnEvent($BtnClearLog, "_RemoveLoggingFile")
+	GUICtrlSetOnEvent($g_BtnClearCache, "_ClearCacheFolder")
 
 	GUICtrlSetState($g_ChkBackupFolders, $g_OptionBackupData)
 	GUICtrlSetState($g_ChkLogEnabled, $g_ReBarLogEnabled)
@@ -1822,7 +1884,7 @@ EndFunc
 
 Func _RemoveLoggingFile()
 	FileDelete($g_ReBarLogPath)
-	GuiCtrlSetData($g_LabelLogSize, "Log size: " & Round(FileGetSize($g_ReBarLogPath) / 1024, 2) & " KB")
+	GuiCtrlSetData($g_LabelLogSize, Round(FileGetSize($g_ReBarLogPath) / 1024, 2) & " KB")
 EndFunc
 
 
@@ -1838,24 +1900,53 @@ Func _CheckLogSizeChange()
 EndFunc
 
 
-Func _RestorePermissions()
+Func _ClearCacheFolder()
 
-	If GUICtrlRead($g_ChkRestServPerm) = $GUI_CHECKED Then
-		_SubinaclSetRegPermission($REG_SERVICES, "grant", "Administrator", "f")
-		; _SubinaclSetRegPermission($REG_SERVICES, "grant", "SYSTEM", "f")
+	GUICtrlSetState($g_BtnClearCache, $GUI_DISABLE)
+	Local $sPath
+
+	If FileExists($g_ReBarCachePath) Then
+
+		Local $aDirFiles = _FileListToArray($g_ReBarCachePath, "*")
+		If Not @error = 1 Or Not @error = 4 Then
+			If IsArray($aDirFiles) Then
+				For $x = 1 To $aDirFiles[0]
+					$sPath = $g_ReBarCachePath & "\" & $aDirFiles[$x]
+					If StringInStr(FileGetAttrib($sPath), "D") Then
+						DirRemove($sPath, 1)
+					Else
+						FileDelete($sPath)
+					EndIf
+				Next
+			EndIf
+		EndIf
+
 	EndIf
+
+	GuiCtrlSetData($g_LabelCacheSize, Round(DirGetSize($g_ReBarCachePath) / 1024, 2) & " KB")
+	GUICtrlSetState($g_BtnClearCache, $GUI_ENABLE)
 
 EndFunc
 
 
-Func _CheckSubinaclStatus()
+;~ Func _RestorePermissions()
 
-	If GUICtrlRead($g_ChkRestServPerm) = $GUI_CHECKED _
-		And Not _SubinaclGetInstall() Then
-		_SubinaclShowMessage()
-	EndIf
+;~ 	If GUICtrlRead($g_ChkRestServPerm) = $GUI_CHECKED Then
+;~ 		_SubinaclSetRegPermission($REG_SERVICES, "grant", "Administrator", "f")
+;~ 		; _SubinaclSetRegPermission($REG_SERVICES, "grant", "SYSTEM", "f")
+;~ 	EndIf
 
-EndFunc
+;~ EndFunc
+
+
+;~ Func _CheckSubinaclStatus()
+
+;~ 	If GUICtrlRead($g_ChkRestServPerm) = $GUI_CHECKED _
+;~ 		And Not _SubinaclGetInstall() Then
+;~ 		_SubinaclShowMessage()
+;~ 	EndIf
+
+;~ EndFunc
 
 
 Func _CloseOptionsDlg()
@@ -1902,55 +1993,55 @@ Func _SaveSettings()
 EndFunc
 
 
-Func _SubinaclGetInstall()
+;~ Func _SubinaclGetInstall()
 
-	If @OSArch = "X64" Then
-		$g_SubinaclPath = "C:\Program Files (x86)\Windows Resource Kits\Tools\subinacl.exe"
-	Else
-		$g_SubinaclPath = "C:\Program Files (x86)\Windows Resource Kits\Tools\subinacl.exe"
-	EndIf
+;~ 	If @OSArch = "X64" Then
+;~ 		$g_SubinaclPath = "C:\Program Files (x86)\Windows Resource Kits\Tools\subinacl.exe"
+;~ 	Else
+;~ 		$g_SubinaclPath = "C:\Program Files (x86)\Windows Resource Kits\Tools\subinacl.exe"
+;~ 	EndIf
 
-	; MsgBox(0, "", $g_SubinaclPath)
-	If FileExists($g_SubinaclPath) Then
-		Return True
-	EndIf
+;~ 	; MsgBox(0, "", $g_SubinaclPath)
+;~ 	If FileExists($g_SubinaclPath) Then
+;~ 		Return True
+;~ 	EndIf
 
-	Return False
+;~ 	Return False
 
-EndFunc
-
-
-Func _SubinaclOpenDownload()
-	ShellExecute("https://www.microsoft.com/en-us/download/details.aspx?id=23510")
-EndFunc
+;~ EndFunc
 
 
-Func _SubinaclSetRegPermission($sRegKey, $sAction, $sUsername, _
-	$sPermissions, $iShowFlag = @SW_SHOW)
-
-	ShellExecute($g_SubinaclPath, "/nostatistic /subkeyreg " & $sRegKey & _
-		" /" & $sAction & "=" & $sUsername & "=" & $sPermissions, "", "", $iShowFlag)
-EndFunc
+;~ Func _SubinaclOpenDownload()
+;~ 	ShellExecute("https://www.microsoft.com/en-us/download/details.aspx?id=23510")
+;~ EndFunc
 
 
-Func _SubinaclShowMessage()
+;~ Func _SubinaclSetRegPermission($sRegKey, $sAction, $sUsername, _
+;~ 	$sPermissions, $iShowFlag = @SW_SHOW)
 
-	If Not IsDeclared("iMsgBoxAnswer") Then Local $iMsgBoxAnswer
-	$iMsgBoxAnswer = MsgBox($MB_YESNO + $MB_ICONEXCLAMATION, "Install Subinacl.exe", _
-		"For this function to work you need to install Subinacl.exe on your computer. " & _
-		"Press Yes to go to the download page. Installing Subinacl.exe should be painless, " & _
-		"I think, but if you get lost, leave a comment on " & _
-		"Rizonesoft and I will lend a helping hand. ", 60)
-	Select
-		Case $iMsgBoxAnswer = $IDYES
-			_SubinaclOpenDownload()
-		Case $iMsgBoxAnswer = $IDNO
-			Return False
-		Case $iMsgBoxAnswer = -1 ;Timeout
-			Return False
-	EndSelect
+;~ 	ShellExecute($g_SubinaclPath, "/nostatistic /subkeyreg " & $sRegKey & _
+;~ 		" /" & $sAction & "=" & $sUsername & "=" & $sPermissions, "", "", $iShowFlag)
+;~ EndFunc
 
-EndFunc
+
+;~ Func _SubinaclShowMessage()
+
+;~ 	If Not IsDeclared("iMsgBoxAnswer") Then Local $iMsgBoxAnswer
+;~ 	$iMsgBoxAnswer = MsgBox($MB_YESNO + $MB_ICONEXCLAMATION, "Install Subinacl.exe", _
+;~ 		"For this function to work you need to install Subinacl.exe on your computer. " & _
+;~ 		"Press Yes to go to the download page. Installing Subinacl.exe should be painless, " & _
+;~ 		"I think, but if you get lost, leave a comment on " & _
+;~ 		"Rizonesoft and I will lend a helping hand. ", 60)
+;~ 	Select
+;~ 		Case $iMsgBoxAnswer = $IDYES
+;~ 			_SubinaclOpenDownload()
+;~ 		Case $iMsgBoxAnswer = $IDNO
+;~ 			Return False
+;~ 		Case $iMsgBoxAnswer = -1 ;Timeout
+;~ 			Return False
+;~ 	EndSelect
+
+;~ EndFunc
 
 
 Func _OnCoreClosing()

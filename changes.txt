@@ -3,6 +3,24 @@ Rizonesoft Complete Internet Repair CHANGES
 ==================================================
 
 --------------------------------------------------
+Version 3.1.3.2800 (November 13, 2016)
+--------------------------------------------------
+
+- Moved Command Menu Items to Troubleshooting Menu.
+- Moved Workgroup view repair to Troubleshooting Menu.
+- Workgroup view repair now only visible on Windows XP.
+- New Renew Wins Client Registrations option.
+- New ReBar Cache management function (Clear Cache).
+- Fixed critical bug that stopped Update History from being removed.
+
+--------------------------------------------------
+Version 3.0.2.2683 (November 13, 2016)
+--------------------------------------------------
+
+- Removed the Restore Windows Service permissions function.
+  Working on safer troubleshooting guide.
+
+--------------------------------------------------
 Version 3.0.2.2682 (November 13, 2016)
 --------------------------------------------------
 
