@@ -39,45 +39,31 @@ If Not IsDeclared("g_ImgStatus") Then Global $g_ImgStatus = ""
 ; ===============================================================================================================================
 Func _LoggingInitialize()
 
-;~ 	_GUICtrlListView_SetExtendedListViewStyle($g_ListStatus, BitOR($LVS_EX_FULLROWSELECT, $LVS_EX_DOUBLEBUFFER, _
-;~ 		$LVS_EX_SUBITEMIMAGES, $LVS_EX_INFOTIP, _
-;~ 		$WS_EX_CLIENTEDGE))
-;~ 	_GUICtrlListView_AddColumn($g_ListStatus, "", 800)
-;~ 	_WinAPI_SetWindowTheme(GUICtrlGetHandle($g_ListStatus), "Explorer")
+	If $g_ReBarLogEnabled == 1 Then
 
-;~ 	$g_ImgStatus = _GUIImageList_Create(16, 16, 5, 1, 8, 8)
-;~ 	_GUIImageList_AddIcon($g_ImgStatus, $g_ReBarResFugue, -103)
-;~ 	_GUIImageList_AddIcon($g_ImgStatus, $g_ReBarResFugue, -130)
-;~ 	_GUIImageList_AddIcon($g_ImgStatus, $g_ReBarResFugue, -122)
-;~ 	_GUIImageList_AddIcon($g_ImgStatus, $g_ReBarResFugue, -134)
-;~ 	_GUIImageList_AddIcon($g_ImgStatus, $g_ReBarResFugue, -133)
-;~ 	_GUIImageList_AddIcon($g_ImgStatus, $g_ReBarResFugue, -135)
-;~ 	_GUIImageList_AddIcon($g_ImgStatus, $g_ReBarResFugue, -136)
-;~ 	_GUIImageList_AddIcon($g_ImgStatus, $g_ReBarResFugue, -138)
-;~ 	_GUIImageList_AddIcon($g_ImgStatus, $g_ReBarResFugue, -999)
-;~ 	_GUICtrlListView_SetImageList($g_ListStatus, $g_ImgStatus, 1)
-
-	; When run from a CD, we cannot perform logging.
-	If DriveGetType(StringLeft(@ScriptFullPath, 3)) = "CDROM" Then
-		$g_ReBarLogFileWrite = 0
-	Else
-
-		If BitAND(__LoggingDirCreate(), __LoggingFileReset()) Then
-
-			; Log file and directory seems valid. Enable logging.
-			$g_ReBarLogFileWrite = 1
-
-			_LoggingWrite("", False)
-			_LoggingWrite("", False)
-			_LoggingWrite("                                            ./", False)
-			_LoggingWrite("                                          (o o)", False)
-			_LoggingWrite("--------------------------------------oOOo-(-)-oOOo--------------------------------------", False)
-			_LoggingWrite("", False)
-			_LoggingGetSystemInfo()
-
-		Else
-			; Log file could not be created. Disable logging.
+		; When run from a CD, we cannot perform logging.
+		If DriveGetType(StringLeft(@ScriptFullPath, 3)) = "CDROM" Then
 			$g_ReBarLogFileWrite = 0
+		Else
+
+			If BitAND(__LoggingDirCreate(), __LoggingFileReset()) Then
+
+				; Log file and directory seems valid. Enable logging.
+				$g_ReBarLogFileWrite = 1
+
+				_LoggingWrite("", False)
+				_LoggingWrite("", False)
+				_LoggingWrite("                                            ./", False)
+				_LoggingWrite("                                          (o o)", False)
+				_LoggingWrite("--------------------------------------oOOo-(-)-oOOo--------------------------------------", False)
+				_LoggingWrite("", False)
+				_LoggingGetSystemInfo()
+
+			Else
+				; Log file could not be created. Disable logging.
+				$g_ReBarLogFileWrite = 0
+			EndIf
+
 		EndIf
 
 	EndIf
@@ -324,14 +310,15 @@ EndFunc   ;==>_OpenLoggingDirectory
 
 Func _OpenLoggingFile()
 
-	_StartLogging("Opening [" & $g_ReBarLogPath & "]")
+	_StartLogging("Opening the logging file.")
+	_EditLoggingWrite("[" & $g_ReBarLogPath & "]")
 	If FileExists($g_ReBarLogPath) Then
 		ShellExecute($g_ReBarLogPath)
 		_EditLoggingWrite("Success: Showing [" & $g_ReBarLogPath & "] file.")
-		Return SetError(0, 0, 1)
+		; Return SetError(0, 0, 1)
 	Else
 		_EditLoggingWrite("Error: Could not find the [" & $g_ReBarLogPath & "] file.")
-		Return SetError(1, 0, 0)
+		; Return SetError(1, 0, 0)
 	EndIf
 	_EndLogging()
 
@@ -399,12 +386,10 @@ Func __LoggingDirCreate()
 
 	If FileExists($g_ReBarWorkingDir) Then
 
-		Local $dirLogging = $g_ReBarLogBase
-
-		If  FileExists($dirLogging) Then
+		If  FileExists($g_ReBarLogBase) Then
 			Return 1
 		Else
-			If DirCreate($dirLogging) Then Return 1
+			If DirCreate($g_ReBarLogBase) Then Return 1
 		EndIf
 
 		Return 0

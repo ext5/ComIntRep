@@ -54,7 +54,7 @@
 	;===============================================================================================================
 	#AutoIt3Wrapper_Res_Comment=Complete Internet Repair				 ;~ Comment field
 	#AutoIt3Wrapper_Res_Description=Complete Internet Repair	      	 ;~ Description field
-	#AutoIt3Wrapper_Res_Fileversion=3.1.3.2801
+	#AutoIt3Wrapper_Res_Fileversion=3.1.3.2819
 	#AutoIt3Wrapper_Res_FileVersion_AutoIncrement=Y  					 ;~ (Y/N/P) AutoIncrement FileVersion. Default=N
 	#AutoIt3Wrapper_Res_FileVersion_First_Increment=N					 ;~ (Y/N) AutoIncrement Y=Before; N=After compile. Default=N
 	#AutoIt3Wrapper_Res_HiDpi=Y                      					 ;~ (Y/N) Compile for high DPI. Default=N
@@ -221,9 +221,8 @@ Global $g_MenuFile, $g_MenuMaintenance, $g_MenuTrouble, $g_MenuTools, $g_MenuAdv
 Global $g_ResetWinsock = True, $g_ResetFirewall = True, $g_ClearWinUpdate = True, $g_ResetProxy = True, $g_ResetFirewall = True
 Global $g_Cancel, $g_Singlelarity = True
 
-Global $g_OptionsGui, $g_ChkBackupFolders, $g_ChkLogEnabled, $g_InLogSize, $g_LabelLogSize, $g_LabelCacheSize
-Global $g_OptionBackupData = 0, $g_InLogSizeTemp = 0, $g_BtnSaveSettings, $g_LabelDownSubinacl
-Global $g_ChkRestServPerm, $g_BtnOptSetPerm, $g_BtnClearCache
+Global $g_ChkBackupFolders, $g_ChkLogEnabled
+Global $g_PrefsBackupData = 0
 ;===============================================================================================================
 
 Global Const $REG_SERVICES = "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services"
@@ -250,10 +249,12 @@ Else
 	_SplashStart("Initializing " & $g_ReBarProgName)
 	_SplashUpdate("Setting Working Directories", 1)
 	_SetWorkingDirectories()
-	Global Const $LOG_LSP = $g_ReBarLogBase & "\LSPs.log"
+
+	Global Const $LOG_LSP = $g_ReBarCachePath & "\LSPs.log"
 	Global Const $LOG_IPRESET = $g_ReBarLogBase & "\IP_Reset.log"
+
 	_SplashUpdate("Loading Settings", 2)
-	_LoadSettings()
+	_ReBar_LoadPreferences()
 	_SplashUpdate("Initializing Logging Subsystem", 3)
 	_LoggingInitialize()
 	_SplashUpdate("Checking Integrity", 4)
@@ -323,7 +324,7 @@ Func _StartCoreGUI()
 	GUICtrlSetOnEvent($miOpenLog, "_OpenLoggingFile")
 	GUICtrlSetOnEvent($miTcpResLog, "_OpenIPResetLog")
 	GUICtrlSetOnEvent($miFileReboot, "_RebootWindows")
-	GUICtrlSetOnEvent($miFileOptions, "_ShowOptionsDlg")
+	GUICtrlSetOnEvent($miFileOptions, "_ShowPreferencesDlg")
 	GUICtrlSetOnEvent($miFileClose, "_ShutdownProgram")
 
 	Switch @OSVersion
@@ -1795,253 +1796,47 @@ Func MY_WM_COMMAND($hWnd, $iMsg, $wParam, $lParam)
 EndFunc   ;==>MY_WM_COMMAND
 
 
-Func _ShowOptionsDlg()
-
-	_LoadSettings()
-
-	Local $BtnClearLog, $BtnSettCancel
-
-	WinSetTrans($g_ReBarCoreGui, Default, 200)
-	GUISetState(@SW_DISABLE, $g_ReBarCoreGui)
-
-	$g_OptionsGui = GUICreate($g_ReBarProgName & " Preferences", 450, 500, -1, -1, BitOR($WS_CAPTION, $WS_POPUPWINDOW), $WS_EX_TOPMOST)
-	GUISetFont($g_ReBarFontSize, 400, 0, $g_ReBarFontName, $g_OptionsGui, 5)
-	GUISetIcon($g_ReBarResFugue, 131)
-
-	GUISetOnEvent($GUI_EVENT_CLOSE, "_CloseOptionsDlg", $g_OptionsGui)
-
-	GUICtrlCreateGroup("Redundancy", 10, 20, 430, 60)
-	GUICtrlSetFont(-1, 10, 700, 2)
-	$g_ChkBackupFolders = GUICtrlCreateCheckbox("Backup Folders Before Removing", 20, 45, 410, 20)
-	GUICtrlCreateGroup("", -99, -99, 1, 1) ;close group
-
-	GUICtrlCreateGroup("Logging and Cache", 10, 90, 430, 180)
-	GUICtrlSetFont(-1, 10, 700, 2)
-	$g_ChkLogEnabled = GUICtrlCreateCheckbox("Enable logging", 20, 120, 360, 20)
-	GUICtrlCreateLabel("Log size must not exceed :", 20, 150, 160, 20)
-	$g_InLogSize = GUICtrlCreateInput(Round($g_ReBarLogStorage / 1024, 2), 180, 148, 100, 20)
-	GUICtrlSetStyle($g_InLogSize, BitOr($ES_RIGHT, $ES_NUMBER))
-	GUICtrlSetFont(-1, 9, 400, 0, "Verdana")
-	GUICtrlCreateLabel("KB", 290, 150, 50, 20)
-	$g_InLogSizeTemp = Int(GUICtrlRead($g_InLogSize))
-	GUICtrlCreateLabel("Logging Size:", 20, 200, 80, 20)
-	GUICtrlSetColor(-1, 0x555555)
-	$g_LabelLogSize = GUICtrlCreateLabel(Round(FileGetSize($g_ReBarLogPath) / 1024, 2) & " KB", 103, 200, 100, 20)
-	GUICtrlSetColor($g_LabelLogSize, 0x066186)
-	GUICtrlCreateLabel("Cache Size:", 220, 200, 75, 20)
-	GUICtrlSetColor(-1, 0x555555)
-	$g_LabelCacheSize = GUICtrlCreateLabel(Round(DirGetSize($g_ReBarCachePath) / 1024, 2) & " KB", 295, 200, 100, 20)
-	GUICtrlSetColor($g_LabelCacheSize, 0x066186)
-	$BtnClearLog = GUICtrlCreateButton("Clear Logging", 20, 220, 150, 30)
-	$g_BtnClearCache = GUICtrlCreateButton("Clear Cache", 220, 220, 150, 30)
-	GUICtrlCreateGroup("", -99, -99, 1, 1) ;close group
-
-;~ 	GUICtrlCreateGroup("Permissions (Experimental)", 10, 230, 430, 200)
-;~ 	GUICtrlSetFont(-1, 10, 700, 2)
-;~ 	GUICtrlCreateLabel("Permission options require Subinacl.exe be installed on your computer. " & _
-;~ 		"Click the link bellow to download it.", 20, 260, 410, 30)
-;~ 	GUICtrlSetColor(-1, 0x333333)
-;~ 	$g_LabelDownSubinacl = GUICtrlCreateLabel("Download Subinacl.exe", 20, 300, 200, 15)
-;~ 	GUICtrlSetFont($g_LabelDownSubinacl, 8.5, -1, 4) ;Underlined
-;~ 	GUICtrlSetColor($g_LabelDownSubinacl, 0x186FC3)
-;~ 	GUICtrlSetCursor($g_LabelDownSubinacl, 0)
-
-;~ 	$g_ChkRestServPerm = GUICtrlCreateCheckbox("Restore Windows Service Permissions", 20, 340, 310, 20)
-;~ 	$g_BtnOptSetPerm = GUICtrlCreateButton("Restore", 310, 390, 120, 30)
-
-;~ 	GUICtrlCreateGroup("", -99, -99, 1, 1) ;close group
-
-;~ 	GUICtrlSetOnEvent($g_LabelDownSubinacl, "_SubinaclOpenDownload")
-;~ 	GUICtrlSetOnEvent($g_ChkRestServPerm, "_CheckSubinaclStatus")
-;~ 	GUICtrlSetOnEvent($g_BtnOptSetPerm, "_RestorePermissions")
-
-	GUICtrlSetOnEvent($g_ChkBackupFolders, "_EnableSaveSettingsButton")
-	GUICtrlSetOnEvent($g_ChkLogEnabled, "_EnableSaveSettingsButton")
-	GUICtrlSetOnEvent($BtnClearLog, "_RemoveLoggingFile")
-	GUICtrlSetOnEvent($g_BtnClearCache, "_ClearCacheFolder")
-
-	GUICtrlSetState($g_ChkBackupFolders, $g_OptionBackupData)
-	GUICtrlSetState($g_ChkLogEnabled, $g_ReBarLogEnabled)
-
-	$g_BtnSaveSettings = GUICtrlCreateButton("Save", 230, 450, 100, 30, $WS_GROUP)
-	$BtnSettCancel = GUICtrlCreateButton("Cancel", 340, 450, 100, 30, $WS_GROUP)
-	GUICtrlSetState($g_BtnSaveSettings, $GUI_FOCUS)
-	GUICtrlSetState($g_BtnSaveSettings, $GUI_DISABLE)
-
-	GUICtrlSetOnEvent($g_BtnSaveSettings, "_SaveSettings")
-	GUICtrlSetOnEvent($BtnSettCancel, "_CloseOptionsDlg")
-
-	GUISetState(@SW_SHOW, $g_OptionsGui)
-	AdlibRegister("_CheckLogSizeChange", 500)
-
-EndFunc   ;==>_ShowOptionsDlg
+Func _LoadPrefsExtended()
+	$g_PrefsBackupData = IniRead($g_ReBarIniFileName, $g_ReBarShortName, "BackupFolders", 0)
+EndFunc   ;==>_LoadPrefsExtended
 
 
-Func _EnableSaveSettingsButton()
-	GUICtrlSetState($g_BtnSaveSettings, $GUI_ENABLE)
-EndFunc
-
-
-Func _RemoveLoggingFile()
-	FileDelete($g_ReBarLogPath)
-	GuiCtrlSetData($g_LabelLogSize, Round(FileGetSize($g_ReBarLogPath) / 1024, 2) & " KB")
-EndFunc
-
-
-Func _CheckLogSizeChange()
-
-	Local $iLogTemp = Int(GUICtrlRead($g_InLogSize))
-
-	If $g_InLogSizeTemp <> $iLogTemp Then
-		GUICtrlSetState($g_BtnSaveSettings, $GUI_ENABLE)
-		$g_InLogSizeTemp = $iLogTemp
-	EndIf
-
-EndFunc
-
-
-Func _ClearCacheFolder()
-
-	GUICtrlSetState($g_BtnClearCache, $GUI_DISABLE)
-	Local $sPath
-
-	If FileExists($g_ReBarCachePath) Then
-
-		Local $aDirFiles = _FileListToArray($g_ReBarCachePath, "*")
-		If Not @error = 1 Or Not @error = 4 Then
-			If IsArray($aDirFiles) Then
-				For $x = 1 To $aDirFiles[0]
-					$sPath = $g_ReBarCachePath & "\" & $aDirFiles[$x]
-					If StringInStr(FileGetAttrib($sPath), "D") Then
-						DirRemove($sPath, 1)
-					Else
-						FileDelete($sPath)
-					EndIf
-				Next
-			EndIf
-		EndIf
-
-	EndIf
-
-	GuiCtrlSetData($g_LabelCacheSize, Round(DirGetSize($g_ReBarCachePath) / 1024, 2) & " KB")
-	GUICtrlSetState($g_BtnClearCache, $GUI_ENABLE)
-
-EndFunc
-
-
-;~ Func _RestorePermissions()
-
-;~ 	If GUICtrlRead($g_ChkRestServPerm) = $GUI_CHECKED Then
-;~ 		_SubinaclSetRegPermission($REG_SERVICES, "grant", "Administrator", "f")
-;~ 		; _SubinaclSetRegPermission($REG_SERVICES, "grant", "SYSTEM", "f")
-;~ 	EndIf
-
-;~ EndFunc
-
-
-;~ Func _CheckSubinaclStatus()
-
-;~ 	If GUICtrlRead($g_ChkRestServPerm) = $GUI_CHECKED _
-;~ 		And Not _SubinaclGetInstall() Then
-;~ 		_SubinaclShowMessage()
-;~ 	EndIf
-
-;~ EndFunc
-
-
-Func _CloseOptionsDlg()
-
-	GUIDelete($g_OptionsGui)
-	WinSetTrans($g_ReBarCoreGui, Default, 255)
-	GUISetState(@SW_ENABLE, $g_ReBarCoreGui)
-	WinActivate($g_ReBarCoreGui)
-
-EndFunc   ;==>_CloseOptionsDlg
-
-
-Func _LoadSettings()
-
-	$g_OptionBackupData = IniRead($g_ReBarIniFileName, $g_ReBarShortName, "BackupFolders", 0)
-	$g_ReBarLogEnabled = IniRead($g_ReBarIniFileName, $g_ReBarShortName, "LoggingEnabled", 1)
-	$g_ReBarLogStorage = IniRead($g_ReBarIniFileName, $g_ReBarShortName, "LoggingStorageSize", 5242880)
-
-EndFunc   ;==>_LoadSettings
-
-
-Func _SaveSettings()
-
+Func _SavePrefsExtended()
 	If GUICtrlRead($g_ChkBackupFolders) = $GUI_CHECKED Then
-		IniWrite($g_ReBarIniFileName, $g_ReBarShortName, "BackupFolders", 1)
+		$g_PrefsBackupData = 1
 	Else
-		IniWrite($g_ReBarIniFileName, $g_ReBarShortName, "BackupFolders", 0)
+		$g_PrefsBackupData = 0
 	EndIf
 
-	If GUICtrlRead($g_ChkLogEnabled) = $GUI_CHECKED Then
-		IniWrite($g_ReBarIniFileName, $g_ReBarShortName, "LoggingEnabled", 1)
-	Else
-		IniWrite($g_ReBarIniFileName, $g_ReBarShortName, "LoggingEnabled", 0)
-	EndIf
+	IniWrite($g_ReBarIniFileName, $g_ReBarShortName, "BackupFolders", $g_PrefsBackupData)
 
-	$g_ReBarLogStorage = Int(GUICtrlRead($g_InLogSize)) * 1024
-	IniWrite($g_ReBarIniFileName, $g_ReBarShortName, "LoggingStorageSize", $g_ReBarLogStorage)
+EndFunc   ;==>_SavePrefsExtended
 
-	GUICtrlSetState($g_BtnSaveSettings, $GUI_DISABLE)
 
-	 _LoadSettings()
-	 If $g_ReBarLogEnabled = 1 Then _LoggingInitialize()
+Func _PreferencesExtended()
+
+	GUICtrlCreateTabItem(" General ")
+	GUICtrlCreateGroup("Redundancy", 25, 50, 400, 90)
+	GUICtrlSetFont(-1, 10, 700, 2)
+	$g_ChkBackupFolders = GUICtrlCreateCheckbox("Backup Folders Before Removing", 35, 100, 300, 20)
+	GUICtrlSetState($g_ChkBackupFolders, $g_PrefsBackupData)
+	GUICtrlCreateGroup("", -99, -99, 1, 1) ;close group
+	GUICtrlCreateTabItem("") ; end tabitem definition
+
+	GUICtrlSetOnEvent($g_ChkBackupFolders, "_CheckPreferenceChange")
 
 EndFunc
 
 
-;~ Func _SubinaclGetInstall()
+Func _CheckPrefsChangeExtended()
 
-;~ 	If @OSArch = "X64" Then
-;~ 		$g_SubinaclPath = "C:\Program Files (x86)\Windows Resource Kits\Tools\subinacl.exe"
-;~ 	Else
-;~ 		$g_SubinaclPath = "C:\Program Files (x86)\Windows Resource Kits\Tools\subinacl.exe"
-;~ 	EndIf
+	If _CheckBoxChanged("BackupFolders", $g_ChkBackupFolders) = True Then
+		GUICtrlSetState($g_ReBarBtnSavePrefs, $GUI_ENABLE)
+	Else
+		GUICtrlSetState($g_ReBarBtnSavePrefs, $GUI_DISABLE)
+	EndIf
 
-;~ 	; MsgBox(0, "", $g_SubinaclPath)
-;~ 	If FileExists($g_SubinaclPath) Then
-;~ 		Return True
-;~ 	EndIf
-
-;~ 	Return False
-
-;~ EndFunc
-
-
-;~ Func _SubinaclOpenDownload()
-;~ 	ShellExecute("https://www.microsoft.com/en-us/download/details.aspx?id=23510")
-;~ EndFunc
-
-
-;~ Func _SubinaclSetRegPermission($sRegKey, $sAction, $sUsername, _
-;~ 	$sPermissions, $iShowFlag = @SW_SHOW)
-
-;~ 	ShellExecute($g_SubinaclPath, "/nostatistic /subkeyreg " & $sRegKey & _
-;~ 		" /" & $sAction & "=" & $sUsername & "=" & $sPermissions, "", "", $iShowFlag)
-;~ EndFunc
-
-
-;~ Func _SubinaclShowMessage()
-
-;~ 	If Not IsDeclared("iMsgBoxAnswer") Then Local $iMsgBoxAnswer
-;~ 	$iMsgBoxAnswer = MsgBox($MB_YESNO + $MB_ICONEXCLAMATION, "Install Subinacl.exe", _
-;~ 		"For this function to work you need to install Subinacl.exe on your computer. " & _
-;~ 		"Press Yes to go to the download page. Installing Subinacl.exe should be painless, " & _
-;~ 		"I think, but if you get lost, leave a comment on " & _
-;~ 		"Rizonesoft and I will lend a helping hand. ", 60)
-;~ 	Select
-;~ 		Case $iMsgBoxAnswer = $IDYES
-;~ 			_SubinaclOpenDownload()
-;~ 		Case $iMsgBoxAnswer = $IDNO
-;~ 			Return False
-;~ 		Case $iMsgBoxAnswer = -1 ;Timeout
-;~ 			Return False
-;~ 	EndSelect
-
-;~ EndFunc
+EndFunc
 
 
 Func _OnCoreClosing()
@@ -2051,4 +1846,5 @@ Func _OnCoreClosing()
 EndFunc
 
 
+#include "Includes\ReBar_Preferences.au3"
 #include "Includes\ReBar_End.au3"

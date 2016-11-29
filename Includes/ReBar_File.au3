@@ -34,9 +34,9 @@ Func _BackupRemoveDirectory($sDirSource, $sDirDest, $overwrite = 1)
 	If Not IsDeclared("g_ReBarRepairMode") Then Global $g_ReBarRepairMode = 1
 	If FileExists($sDirSource) Then
 
-		If Not IsDeclared("g_OptionBackupData") Then Global $g_OptionBackupData = 0
+		If Not IsDeclared("g_PrefsBackupData") Then Global $g_PrefsBackupData = 0
 
-		If $g_OptionBackupData  = 1 Then
+		If $g_PrefsBackupData  = 1 Then
 			_EditLoggingWrite("Saving [" & $sDirSource & "].")
 			If DirCopy($sDirSource, $sDirDest, $overwrite) Then
 				_EditLoggingWrite("The directory was successfully saved to [" & $sDirDest & "].")
