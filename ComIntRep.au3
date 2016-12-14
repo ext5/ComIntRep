@@ -54,7 +54,7 @@
 	;===============================================================================================================
 	#AutoIt3Wrapper_Res_Comment=Complete Internet Repair				 ;~ Comment field
 	#AutoIt3Wrapper_Res_Description=Complete Internet Repair	      	 ;~ Description field
-	#AutoIt3Wrapper_Res_Fileversion=3.1.3.2819
+	#AutoIt3Wrapper_Res_Fileversion=3.1.3.2826
 	#AutoIt3Wrapper_Res_FileVersion_AutoIncrement=Y  					 ;~ (Y/N/P) AutoIncrement FileVersion. Default=N
 	#AutoIt3Wrapper_Res_FileVersion_First_Increment=N					 ;~ (Y/N) AutoIncrement Y=Before; N=After compile. Default=N
 	#AutoIt3Wrapper_Res_HiDpi=Y                      					 ;~ (Y/N) Compile for high DPI. Default=N
@@ -250,7 +250,7 @@ Else
 	_SplashUpdate("Setting Working Directories", 1)
 	_SetWorkingDirectories()
 
-	Global Const $LOG_LSP = $g_ReBarCachePath & "\LSPs.log"
+	Global Const $LOG_LSP = $g_ReBarCachePath & "\Winsock.txt"
 	Global Const $LOG_IPRESET = $g_ReBarLogBase & "\IP_Reset.log"
 
 	_SplashUpdate("Loading Settings", 2)
@@ -608,6 +608,8 @@ EndFunc   ;==>_StartEventLog
 
 
 Func _ShowWinsockLSPs()
+
+	If Not FileExists($g_ReBarCachePath) Then DirCreate($g_ReBarCachePath)
 
 	_StartLogging("Generating List of Installed Winsock LSPs.")
 	FileSetAttrib($LOG_LSP, "-RASHNOT")
