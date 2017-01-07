@@ -54,7 +54,7 @@
 	;===============================================================================================================
 	#AutoIt3Wrapper_Res_Comment=Complete Internet Repair				 ;~ Comment field
 	#AutoIt3Wrapper_Res_Description=Complete Internet Repair	      	 ;~ Description field
-	#AutoIt3Wrapper_Res_Fileversion=3.1.3.2826
+	#AutoIt3Wrapper_Res_Fileversion=3.1.3.2853
 	#AutoIt3Wrapper_Res_FileVersion_AutoIncrement=Y  					 ;~ (Y/N/P) AutoIncrement FileVersion. Default=N
 	#AutoIt3Wrapper_Res_FileVersion_First_Increment=N					 ;~ (Y/N) AutoIncrement Y=Before; N=After compile. Default=N
 	#AutoIt3Wrapper_Res_HiDpi=Y                      					 ;~ (Y/N) Compile for high DPI. Default=N
@@ -95,7 +95,7 @@
 	; Add files to the resources - can be compressed
 	; #AutoIt3Wrapper_Res_Remove=
 	; Remove resources
-	#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\ComIntRepH.ico
+	#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\ComIntRepH.ico		; 201
 	;===============================================================================================================
 	; Tidy Settings
 	;===============================================================================================================
@@ -218,6 +218,8 @@ Global $g_PrTopRepair[$COUNT_REPAIR], $g_LineRepair[$COUNT_REPAIR], $g_ProgressR
 Global $g_BtnHlpRepairH[$COUNT_REPAIR], $g_BtnGoRepairH[$COUNT_REPAIR]
 Global $g_ListStatus, $g_ImgStatus, $g_EditInfo, $g_BtnGo, $g_Cancel, $g_IntExplVersion
 Global $g_MenuFile, $g_MenuMaintenance, $g_MenuTrouble, $g_MenuTools, $g_MenuAdvanced, $g_MenuHelp
+Global $g_ItemTrouble1, $g_ItemTrouble2, $g_ItemTrouble3, $g_ItemTrouble4, $g_ItemTrouble5, $g_ItemTrouble6
+Global $g_ItemTrouble7, $g_ItemTrouble8, $g_ItemTrouble9
 Global $g_ResetWinsock = True, $g_ResetFirewall = True, $g_ClearWinUpdate = True, $g_ResetProxy = True, $g_ResetFirewall = True
 Global $g_Cancel, $g_Singlelarity = True
 
@@ -258,8 +260,10 @@ Else
 	_SplashUpdate("Initializing Logging Subsystem", 3)
 	_LoggingInitialize()
 	_SplashUpdate("Checking Integrity", 4)
-	_CheckResources($g_ReBarResFugue)
-	_CheckResources($g_ReBarResDoors)
+
+	; _CheckResources($g_ReBarResFugue)
+	; _CheckResources($g_ReBarResDoors)
+
 	_SplashUpdate("Building Interface", 5)
 	_StartCoreGUI()
 
@@ -275,7 +279,7 @@ Func _StartCoreGUI()
 	Local $miTrShowIPConf, $miTrShowLSP, $miTrShowARP, $miTrIP6Install, $miTrIP6Uninstall
 	Local $miTrIntSpeed, $miTrRouterPass, $miNetBIOSStats
 	Local $miAdGoogleDNS, $miAdEnableLan, $miAdEnableWiFi, $miAdClearIEOptions
-	Local $miToolRDP, $miToolIEP, $miTrIntTrouble
+	Local $miToolRDP, $miToolIEP
 	Local $miRepWorkView
 	Local $miHlpHome, $miHlpSupport
 	Local $lblHeading, $lblWelcome, $lblNetDiagWeb, $lblSysRestore
@@ -329,9 +333,30 @@ Func _StartCoreGUI()
 
 	Switch @OSVersion
 		Case "WIN_7", "WIN_8", "WIN_81", "WIN_10", "WIN_2008", "WIN_2008R2", "WIN_2012", "WIN_2012R2"
-			$miTrIntTrouble = GUICtrlCreateMenuItem("Start Windows Internet &Troubleshooter", $g_MenuTrouble)
-			GUICtrlCreateMenuItem("", $g_MenuTrouble)
-			GUICtrlSetOnEvent($miTrIntTrouble, "_OpenNetworkDiagnosticsWeb")
+
+			$g_ItemTrouble1 = GUICtrlCreateMenuItem("Network Diagnostics &Web (Internet)", $g_MenuTrouble)
+			$g_ItemTrouble2 = GUICtrlCreateMenuItem("Network Diagnostics Network &Adapter", $g_MenuTrouble)
+			$g_ItemTrouble3 = GUICtrlCreateMenuItem("Network Diagnostics &Direct Access", $g_MenuTrouble)
+			$g_ItemTrouble4 = GUICtrlCreateMenuItem("Network Diagnostics &Inbound", $g_MenuTrouble)
+			$g_ItemTrouble5 = GUICtrlCreateMenuItem("&Home Group Diagnostic", $g_MenuTrouble)
+			$g_ItemTrouble6 = GUICtrlCreateMenuItem("Network Diagnostics &File Share", $g_MenuTrouble)
+			GUICtrlCreateMenuItem("", $g_ItemTrouble1)
+			$g_ItemTrouble9 = GUICtrlCreateMenuItem("Windows &Update Diagnostic", $g_MenuTrouble)
+			GUICtrlCreateMenuItem("", $g_ItemTrouble1)
+			$g_ItemTrouble7 = GUICtrlCreateMenuItem("Internet E&xplorer Diagnostic", $g_MenuTrouble)
+			$g_ItemTrouble8 = GUICtrlCreateMenuItem("Internet Explorer &Security Diagnostic", $g_MenuTrouble)
+			GUICtrlCreateMenuItem("", $g_ItemTrouble1)
+
+			GUICtrlSetOnEvent($g_ItemTrouble1, "_OpenTroubleshootingID")
+			GUICtrlSetOnEvent($g_ItemTrouble2, "_OpenTroubleshootingID")
+			GUICtrlSetOnEvent($g_ItemTrouble3, "_OpenTroubleshootingID")
+			GUICtrlSetOnEvent($g_ItemTrouble4, "_OpenTroubleshootingID")
+			GUICtrlSetOnEvent($g_ItemTrouble5, "_OpenTroubleshootingID")
+			GUICtrlSetOnEvent($g_ItemTrouble6, "_OpenTroubleshootingID")
+			GUICtrlSetOnEvent($g_ItemTrouble7, "_OpenTroubleshootingID")
+			GUICtrlSetOnEvent($g_ItemTrouble8, "_OpenTroubleshootingID")
+			GUICtrlSetOnEvent($g_ItemTrouble9, "_OpenTroubleshootingID")
+
 	EndSwitch
 
 	$miTrShowIPConf = GUICtrlCreateMenuItem("Show &IP Configuration", $g_MenuTrouble)
@@ -510,9 +535,30 @@ Func _OpenIPResetLog()
 EndFunc   ;==>_OpenIPResetLog
 
 
-Func _OpenNetworkDiagnosticsWeb()
-	Run("msdt.exe /id NetworkDiagnosticsWeb")
-EndFunc   ;==>_OpenNetworkDiagnosticsWeb
+Func _OpenTroubleshootingID()
+
+	Switch @GUI_CtrlId
+		Case $g_ItemTrouble1
+			Run("msdt.exe /id NetworkDiagnosticsWeb")
+		Case $g_ItemTrouble2
+			Run("msdt.exe /id NetworkDiagnosticsNetworkAdapter")
+		Case $g_ItemTrouble3
+			Run("msdt.exe /id NetworkDiagnosticsDA")
+		Case $g_ItemTrouble4
+			Run("msdt.exe /id NetworkDiagnosticsInbound")
+		Case $g_ItemTrouble5
+			Run("msdt.exe /id HomeGroupDiagnostic")
+		Case $g_ItemTrouble6
+			Run("msdt.exe /id NetworkDiagnosticsFileShare")
+		Case $g_ItemTrouble7
+			Run("msdt.exe /id IEDiagnostic")
+		Case $g_ItemTrouble8
+			Run("msdt.exe /id IESecurityDiagnostic")
+		Case $g_ItemTrouble9
+			Run("msdt.exe /id WindowsUpdateDiagnostic")
+	EndSwitch
+
+EndFunc   ;==>_OpenTroubleshootingID
 
 
 Func _SpeedTest()
@@ -534,7 +580,7 @@ Func _GetIPConfiguration()
 	_StartLogging("Showing TCP/IP Configuration.")
 	Run(@ComSpec & " /k ipconfig /all", "", @SW_SHOW)
 	_EndLogging()
-EndFunc
+EndFunc   ;==>_GetIPConfiguration
 
 
 Func _OpenRDP()
@@ -544,7 +590,7 @@ Func _OpenRDP()
 		_EditLoggingWrite("Error: Could not open Remote Desktop Connection.")
 	EndIf
 	_EndLogging()
-EndFunc
+EndFunc   ;==>_OpenRDP
 
 
 Func _OpenIEProperties()
@@ -554,12 +600,12 @@ Func _OpenIEProperties()
 		_EditLoggingWrite("Error: Could not open Internet Explorer Properties.")
 	EndIf
 	_EndLogging()
-EndFunc
+EndFunc   ;==>_OpenIEProperties
 
 
 Func _OpenRizonesoftDownloads()
 	ShellExecute("http://www.rizonesoft.com/downloads/")
-EndFunc
+EndFunc   ;==>_OpenRizonesoftDownloads
 
 
 Func _StartEventLog()
@@ -629,26 +675,26 @@ Func _ShowAllArpEntries()
 	_StartLogging("Showing all ARP entries.")
 	Run(@ComSpec & " /k arp -a", "", @SW_SHOW)
 	_EndLogging()
-EndFunc
+EndFunc   ;==>_ShowAllArpEntries
 
 
 Func _ShowNetBIOSStats()
 	_StartLogging("Showing NetBIOS Names Resolution and Resgistration Statistics.")
 	Run(@ComSpec & " /k Nbtstat.exe -r", "", @SW_SHOW)
 	_EndLogging()
-EndFunc
+EndFunc   ;==>_ShowNetBIOSStats
 
 Func _InstallIP6()
 	_StartLogging("Installing the TCP/IP v6 protocol.")
 	_RunCommand("netsh int ipv6 install")
 	_EndLogging()
-EndFunc
+EndFunc   ;==>_InstallIP6
 
 Func _UnInstallIP6()
 	_StartLogging("Uninstalling the TCP/IP v6 protocol.")
 	_RunCommand("netsh int ipv6 uninstall")
 	_EndLogging()
-EndFunc
+EndFunc   ;==>_UnInstallIP6
 
 
 Func _ShowRepairInfo()
@@ -701,12 +747,12 @@ Func _ShowRepairInfo()
 			GUICtrlSetData($g_EditInfo, "Reset the Windows hosts file to its default state.")
 		Case $g_BtnHlpRepair[12]
 			GUICtrlSetData($g_EditInfo, "It is sometimes necessary that clients or servers on your network need to " & _
-				"reregister their NetBIOS names with a Windows Internet Name Service (WINS) server." & @CRLF & @CRLF & _
-				"Here are some situations where renewing WINS client registrations would be necessary: " & _
-				"The registration has been lost or deleted in WINS and needs to be refreshed by " & _
-				"the client. The registration exists in some WINS servers but not in others. " & _
-				"A reregistration is useful here to increment the WINS version Ids, " & _
-				"which will help in causing a WINS server replication to occur.")
+					"reregister their NetBIOS names with a Windows Internet Name Service (WINS) server." & @CRLF & @CRLF & _
+					"Here are some situations where renewing WINS client registrations would be necessary: " & _
+					"The registration has been lost or deleted in WINS and needs to be refreshed by " & _
+					"the client. The registration exists in some WINS servers but not in others. " & _
+					"A reregistration is useful here to increment the WINS version Ids, " & _
+					"which will help in causing a WINS server replication to occur.")
 
 	EndSwitch
 
@@ -990,7 +1036,7 @@ Func _FlushARPCache()
 	Sleep(100)
 	_EndLogging()
 
-EndFunc
+EndFunc   ;==>_FlushARPCache
 
 
 Func _RepairInternetExplorer()
@@ -1589,7 +1635,7 @@ Func _RenewWinsClient()
 	_EndLogging()
 	_UpdateProcessing($iRep, 100)
 
-EndFunc
+EndFunc   ;==>_RenewWinsClient
 
 
 Func _RepairWorkGroups()
@@ -1610,7 +1656,7 @@ Func _UseGoogleDNS()
 
 
 
-EndFunc
+EndFunc   ;==>_UseGoogleDNS
 
 
 ;~ Func _RepairNeroUpdate()
@@ -1827,7 +1873,7 @@ Func _PreferencesExtended()
 
 	GUICtrlSetOnEvent($g_ChkBackupFolders, "_CheckPreferenceChange")
 
-EndFunc
+EndFunc   ;==>_PreferencesExtended
 
 
 Func _CheckPrefsChangeExtended()
@@ -1838,14 +1884,14 @@ Func _CheckPrefsChangeExtended()
 		GUICtrlSetState($g_ReBarBtnSavePrefs, $GUI_DISABLE)
 	EndIf
 
-EndFunc
+EndFunc   ;==>_CheckPrefsChangeExtended
 
 
 Func _OnCoreClosing()
 
 	AdlibUnRegister("_OnMainIconHover")
 
-EndFunc
+EndFunc   ;==>_OnCoreClosing
 
 
 #include "Includes\ReBar_Preferences.au3"

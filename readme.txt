@@ -3,8 +3,8 @@ Complete Internet Repair
 © Rizonesoft. All rights reserved
 http://www.rizonesoft.com
 ==================================================
-Version: 3.1.3.2825
-Release Date: 14 December, 2016
+Version: 3.1.3.2852
+Release Date: 07 January, 2017
 System Requirements: Windows XP, Vista, 2008, 7, 8, 8.1, 10 
 Disk Space: 2 MB
 ==================================================
