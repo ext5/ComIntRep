@@ -1,0 +1,230 @@
+==================================================
+%{:COMPANY:} %{:RELEASE:} CHANGES
+==================================================
+
+--------------------------------------------------
+Version %{VERSION} (%{MONTH} %{DAY}, %{YEAR})
+--------------------------------------------------
+
+- Fixed crash if Windows Taskbar is not docked at the bottom.
+- Updated translation headings. More descriptive.
+- Translated Preferences to Afrikaans.
+
+--------------------------------------------------
+Version 5.0.0.3706 (November 21, 2017)
+--------------------------------------------------
+
+- Cleaner optimized code.
+- Removed unsupported Win10 AutoIt directive.
+- New menus design with icons.
+- Moved Event Viewer and Reboot Windows options to the Maintenance menu.
+- Resources now embedded in main Executable. No more external resource Dlls.
+- Improved update notification system with option to disable update checks.
+- Added update animation.
+- Added GitHub link to the Help menu to quickly create an issue.
+- Added GitHub link on the About Dialog.
+- Added Downloads, Contact and Donate links to the Help menu.
+- New PayPal.me donation link (PayPal.me/rizonesoft).
+- New none-intrusive Donate prompt after a set time. (120 Hours Default)
+  The Donate prompt will only be shown once.
+- Improved custom Progress Bar. 
+- Improved About Dialog (New Mouse Hover Effects for Image Buttons).
+- Improved Splash Screen (New custom Progress Bar).
+- Added Localization (Translations).
+- Added Afrikaans language file.
+- Alt+F4 now closes the program and not Esc. (Safer)
+- New Global error count for the logging subsystem.
+- Moved Documents to Documents folder.
+- New Help (chm) file.
+- Mouse over event now not firing on disabled Options.
+- Errors now indicated on progress display.
+- Smoother _GUIExtender() function on startup.
+- Improved Dll registration functions.
+- Improved reboot messages. Only if a reboot is required.
+- Improved Internet Explorer Repair function.
+- HOSTS file backup now working correctly on 64Bit system.
+- Added BITS Diagnostic to the Troubleshooting menu.
+- Windows Troubleshooting modules now detected and menu updated accordingly.
+- Minor Interface Tweaks and enhancements.
+
+--------------------------------------------------
+Version 3.1.3.2854 (January 08, 2017)
+--------------------------------------------------
+
+- Added Windows Update Troubleshooter
+
+--------------------------------------------------
+Version 3.1.3.2850 (January 01, 2017)
+--------------------------------------------------
+
+- More troubleshooting options.
+- No more errors on missing recource Dlls.
+
+--------------------------------------------------
+Version 3.1.3.2825 (December 14, 2016)
+--------------------------------------------------
+
+- Critical Update Notification Fix.
+
+--------------------------------------------------
+Version 3.1.3.2822 (December 04, 2016)
+--------------------------------------------------
+
+- LSP Temporary File now Winsock.txt and located in the Cache Folder.
+- Minor Bug Fixes.
+
+--------------------------------------------------
+Version 3.1.3.2818 (November 27, 2016)
+--------------------------------------------------
+
+- Cleaned the Source Code a little.
+- Improved Preferences, Cache and Logging management.
+- Minor Bug Fixes and interface updates.
+
+--------------------------------------------------
+Version 3.1.3.2800 (November 13, 2016)
+--------------------------------------------------
+
+- Moved Command Menu Items to Troubleshooting Menu.
+- Moved Workgroup view repair to Troubleshooting Menu.
+- Workgroup view repair now only visible on Windows XP.
+- New Renew Wins Client Registrations option.
+- New ReBar Cache management function (Clear Cache).
+- Fixed critical bug that stopped Update History from being removed.
+
+--------------------------------------------------
+Version 3.0.2.2683 (November 13, 2016)
+--------------------------------------------------
+
+- Removed the Restore Windows Service permissions function.
+  Working on safer troubleshooting guide.
+
+--------------------------------------------------
+Version 3.0.2.2682 (November 13, 2016)
+--------------------------------------------------
+
+- Opening the Downloads page after installation, now optional.
+- Restore Windows Service Permissions option (Experimental).
+- Minor Bug fixes and interface tweaks.
+
+--------------------------------------------------
+Version 3.0.2.2625 (November 07, 2016)
+--------------------------------------------------
+
+- Updated the ReBar Framework.
+- New Display ARP entries command.
+- New flush ARP Cache function.
+- Smaller total size (about 1MB smaller in total).
+- Minor bug fixes and cosmetic changes.
+
+--------------------------------------------------
+Version 3.0.2.2600 (October 22, 2016)
+--------------------------------------------------
+
+- Important Update Notification Fix
+
+--------------------------------------------------
+Version 3.0.2.2595 (October 17, 2016)
+--------------------------------------------------
+
+- Exes are now signed.
+- New installation utility.
+- Now built on the ReBar Framework.
+- New Update Notification System.
+- Resources moved to external Dll files.
+- Added support for Windows 10.
+- New Interface.
+- New Logging System.
+- New Reset Rroxy Server Configuration.
+- New Registry based Method for configuring Services.
+  Also uses the old command method just in case.
+- Cleaner Optimized Code.
+
+--------------------------------------------------
+Version 2.1.0.2103 (August 31, 2014)
+--------------------------------------------------
+
+- Now Open Source (GNU General Public License version 3)
+
+--------------------------------------------------
+Version 2.0.6.2080 (May 20, 2014)
+--------------------------------------------------
+
+- New interface design with new Icons
+- Added Open Internet Troubleshooter Command
+- Added Open Windows System Restore Command
+- Updated links and about information
+- Added a 64Bit version (Better support for 64Bit Windows)
+- Added support for Windows 8 and Windows 8.1
+- Fixed Reset Firewall Function
+- Fixed some minor bugs
+- Updated Documentation
+
+--------------------------------------------------
+Version 2.0.0.1502 (September 18, 2013)
+--------------------------------------------------
+
+- Cleaned the code a little
+
+--------------------------------------------------
+Version 2.0.0.1490 (September 17, 2013)
+--------------------------------------------------
+
+- Minor bug fixes
+- New icons for bottom toolbar
+- Some other cosmetic changes
+
+--------------------------------------------------
+Version 2.0.0.1468 (September 10, 2013)
+--------------------------------------------------
+
+- New “Show TCP/IP configuration” command
+- New “Open Remote Desktop” command
+- New “Open Internet Explorer Properties” command
+- New SpeedTest.net link
+- New Icons and Donate button
+- Sorted out the wuauclt bug
+- Some other minor bug fixes
+- Some cosmetic changes
+
+--------------------------------------------------
+Version 1.3.5.1359 (August 13, 2013)
+--------------------------------------------------
+
+- Some minor bug fixes
+
+--------------------------------------------------
+Version 1.3.2.1322 (April 3, 2013)
+--------------------------------------------------
+
+- Some minor cosmetic changes
+- A few bug fixes
+
+--------------------------------------------------
+Version 1.3.1.1315 (May 27, 2012)
+--------------------------------------------------
+
+- Updated the about page and all links to point to the new Datum website
+- New link to default router password database on the help menu.
+
+--------------------------------------------------
+Version 1.2.5.1258 (June 14, 2011)
+--------------------------------------------------
+
+- Will not open the Datum home page when launched anymore.
+- The reference path to the hosts file has been updated to redirect correctly on 64Bit Windows.
+
+--------------------------------------------------
+Version 0.9.5.955 (January 7, 2011)
+--------------------------------------------------
+
+- The executable can now be renamed
+- Some minor bug fixes.
+
+--------------------------------------------------
+Version 0.9.3.935 (December 7, 2010)
+--------------------------------------------------
+
+No history recorded.
+
+==================================================
