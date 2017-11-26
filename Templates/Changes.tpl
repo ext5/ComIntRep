@@ -8,7 +8,10 @@ Version %{VERSION} (%{MONTH} %{DAY}, %{YEAR})
 
 - Fixed crash if Windows Taskbar is not docked at the bottom.
 - Updated translation headings. More descriptive.
-- Translated Preferences to Afrikaans.
+- Translated Preferences.
+- Tweaked the PReferences Dialog a little.
+- Added en.ini Language file.
+- Innitial 'DPI aware' tests.
 
 --------------------------------------------------
 Version 5.0.0.3706 (November 21, 2017)

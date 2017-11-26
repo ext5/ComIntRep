@@ -273,4 +273,30 @@ Func _Localization_Preferences()
 	If StringLen($g_aLangPreferences[0]) > 0 Then
 		Return
 	EndIf
+
+	$g_aLangPreferences[0]  = _Localization_ReplaceVar(IniRead($g_sLanguageFile, "Preferences", "Window_Title", "Preferences"))
+	$g_aLangPreferences[1]  = _Localization_ReplaceVar(IniRead($g_sLanguageFile, "Preferences", "Tab_General", "General"))
+	$g_aLangPreferences[2]  = _Localization_ReplaceVar(IniRead($g_sLanguageFile, "Preferences", "Tab_Cache", "Cache"))
+	$g_aLangPreferences[3]  = _Localization_ReplaceVar(IniRead($g_sLanguageFile, "Preferences", "Tab_Language", "Language"))
+	$g_aLangPreferences[4]  = _Localization_ReplaceVar(IniRead($g_sLanguageFile, "Preferences", "Group_Redundancy", "Redundancy"))
+	$g_aLangPreferences[5]  = _Localization_ReplaceVar(IniRead($g_sLanguageFile, "Preferences", "Group_Cache", "Cache"))
+	$g_aLangPreferences[6]  = _Localization_ReplaceVar(IniRead($g_sLanguageFile, "Preferences", "Group_Logging", "Logging"))
+	$g_aLangPreferences[7]  = _Localization_ReplaceVar(IniRead($g_sLanguageFile, "Preferences", "Group_Language", "Language"))
+	$g_aLangPreferences[8]  = _Localization_ReplaceVar(IniRead($g_sLanguageFile, "Preferences", "Checkbox_Backup_Folders", " Backup Folders Before Removing"))
+	$g_aLangPreferences[9]  = _Localization_ReplaceVar(IniRead($g_sLanguageFile, "Preferences", "Checkbox_Cache_Exit", " Clear cache on exit"))
+	$g_aLangPreferences[10] = _Localization_ReplaceVar(IniRead($g_sLanguageFile, "Preferences", "Label_Cache_Size", "Cache Size: %s KB"))
+	$g_aLangPreferences[11] = _Localization_ReplaceVar(IniRead($g_sLanguageFile, "Preferences", "Button_Cache_Clear", "Clear Cache"))
+	$g_aLangPreferences[12] = _Localization_ReplaceVar(IniRead($g_sLanguageFile, "Preferences", "Checkbox_Enable_Logging", " Enable logging"))
+	$g_aLangPreferences[13] = _Localization_ReplaceVar(IniRead($g_sLanguageFile, "Preferences", "Label_Log_Exceed", "Log size must not exceed :"))
+	$g_aLangPreferences[14] = _Localization_ReplaceVar(IniRead($g_sLanguageFile, "Preferences", "Label_Logging_Size", "Logging Size: %s KB"))
+	$g_aLangPreferences[15] = _Localization_ReplaceVar(IniRead($g_sLanguageFile, "Preferences", "Button_Logging_Clear", "Clear Logging"))
+	$g_aLangPreferences[16] = _Localization_ReplaceVar(IniRead($g_sLanguageFile, "Preferences", "Label_Language_Message", "Select the language you prefer and press the %s button to continue. (Restart Required)"))
+	$g_aLangPreferences[17] = _Localization_ReplaceVar(IniRead($g_sLanguageFile, "Preferences", "Button_Save", "Save"))
+	$g_aLangPreferences[18] = _Localization_ReplaceVar(IniRead($g_sLanguageFile, "Preferences", "Button_Cancel", "Cancel"))
+	$g_aLangPreferences[19] = _Localization_ReplaceVar(IniRead($g_sLanguageFile, "Preferences", "Label_Updated", "Preferences Updated"))
+	$g_aLangPreferences[20] = _Localization_ReplaceVar(IniRead($g_sLanguageFile, "Preferences", "Label_Cache_Cleared", "Cache cleared"))
+	$g_aLangPreferences[21] = _Localization_ReplaceVar(IniRead($g_sLanguageFile, "Preferences", "Label_Logging_Cleared", "Logging cleared"))
+	$g_aLangPreferences[22] = _Localization_ReplaceVar(IniRead($g_sLanguageFile, "Preferences", "MsgBox_Language_Title", "Language Changed"))
+	$g_aLangPreferences[23] = _Localization_ReplaceVar(IniRead($g_sLanguageFile, "Preferences", "MsgBox_Language_Message", "The selected language has changed. Complete Internet Repair should be restarted for the chosen language to take effect."))
+
 EndFunc

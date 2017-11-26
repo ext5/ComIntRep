@@ -30,7 +30,7 @@
 ;===============================================================================================================
 #AutoIt3Wrapper_Res_Comment=Complete Internet Repair			;~ Comment field
 #AutoIt3Wrapper_Res_Description=Complete Internet Repair      	;~ Description field
-#AutoIt3Wrapper_Res_Fileversion=5.0.0.3723
+#AutoIt3Wrapper_Res_Fileversion=5.0.0.3759
 #AutoIt3Wrapper_Res_FileVersion_AutoIncrement=Y  				;~ (Y/N/P) AutoIncrement FileVersion. Default=N
 #AutoIt3Wrapper_Res_FileVersion_First_Increment=N				;~ (Y/N) AutoIncrement Y=Before; N=After compile. Default=N
 #AutoIt3Wrapper_Res_HiDpi=Y                      				;~ (Y/N) Compile for high DPI. Default=N
@@ -2604,6 +2604,7 @@ EndFunc   ;==>_About_Twitter
 
 Func _ShowPreferencesDlg()
 
+	_Localization_Preferences()	;~ Load Preferences Language Strings
 	Local $iLangCount = 1
 
 	$g_iParentState = WinGetState($g_hCoreGui)
@@ -2612,50 +2613,45 @@ Func _ShowPreferencesDlg()
 		GUISetState(@SW_DISABLE, $g_hCoreGui)
 	EndIf
 
-	$g_hOptionsGui = GUICreate("Preferences", 450, 500, -1, -1, BitOR($WS_CAPTION, $WS_POPUPWINDOW), $WS_EX_TOPMOST)
+	$g_hOptionsGui = GUICreate($g_aLangPreferences[0], 450, 500, -1, -1, BitOR($WS_CAPTION, $WS_POPUPWINDOW), $WS_EX_TOPMOST)
 	GUISetFont(Default, Default, Default, "Verdana", $g_hOptionsGui, 5)
 	If $g_iParentState > 0 Then GUISetIcon($g_sDlgAboutIcon, $g_iDialogIconStart + 2, $g_hAboutGui)
 	GUISetOnEvent($GUI_EVENT_CLOSE, "__CloseOptionsDlg", $g_hOptionsGui)
 	GUIRegisterMsg($WM_NOTIFY, "__LanguageListEvents")
 
 	GUICtrlCreateTab(10, 10, 430, 430)
-	GUICtrlCreateTabItem(" General ")
-	GUICtrlCreateGroup("Redundancy", 25, 50, 400, 90)
+	GUICtrlCreateTabItem(StringFormat(" %s ", $g_aLangPreferences[1]))
+	GUICtrlCreateGroup($g_aLangPreferences[4], 25, 50, 400, 90)
 	GUICtrlSetFont(-1, 10, 700, 2)
-	$g_hOChkBackupData = GUICtrlCreateCheckbox("Backup Folders Before Removing", 35, 100, 300, 20)
+	$g_hOChkBackupData = GUICtrlCreateCheckbox($g_aLangPreferences[8], 35, 100, 300, 20)
 	GUICtrlSetState($g_hOChkBackupData, $g_iBackupData)
 	GUICtrlCreateGroup("", -99, -99, 1, 1) ;close group
 	GUICtrlCreateTabItem("") ; end tabitem definition
 
 	GUICtrlSetOnEvent($g_hOChkBackupData, "__CheckPreferenceChange")
 
-	GUICtrlCreateTabItem(" Cache ")
-	GUICtrlCreateGroup("Cache", 25, 50, 400, 100)
+	GUICtrlCreateTabItem(StringFormat(" %s ", $g_aLangPreferences[2]))
+	GUICtrlCreateGroup($g_aLangPreferences[5], 25, 50, 400, 100)
 	GUICtrlSetFont(-1, 10, 700, 2)
-	$g_hOChkClearCacheOnExit = GUICtrlCreateCheckbox(" Clear cache on exit", 35, 80, 200, 20)
+	$g_hOChkClearCacheOnExit = GUICtrlCreateCheckbox($g_aLangPreferences[9], 35, 80, 300, 20)
 	GUICtrlSetState($g_hOChkClearCacheOnExit, $g_iClearCacheOnExit)
-	GUICtrlCreateLabel("Cache Size:", 255, 80, 75, 20)
-	GUICtrlSetColor(-1, 0x555555)
-	$g_hOLblCacheSize = GUICtrlCreateLabel(Round(DirGetSize($g_sCacheRoot) / 1024, 2) & " KB", 330, 80, 100, 20)
-	GUICtrlSetColor($g_hOLblCacheSize, 0x008000)
-	$g_hOBtnClearCache = GUICtrlCreateButton("Clear Cache", 255, 100, 150, 30)
+	$g_hOLblCacheSize = GUICtrlCreateLabel(StringFormat($g_aLangPreferences[10], Round(DirGetSize($g_sCacheRoot) / 1024, 2)), 35, 115, 200, 20)
+	GUICtrlSetColor($g_hOLblCacheSize, 0x555555)
+	$g_hOBtnClearCache = GUICtrlCreateButton($g_aLangPreferences[11], 255, 105, 150, 30)
 	GUICtrlCreateGroup("", -99, -99, 1, 1) ;close group
-	GUICtrlCreateGroup("Logging", 25, 160, 400, 180)
+	GUICtrlCreateGroup($g_aLangPreferences[6], 25, 160, 400, 160)
 	GUICtrlSetFont(-1, 10, 700, 2)
-	$g_hOChkLogEnabled = GUICtrlCreateCheckbox(" Enable logging", 35, 200, 200, 20)
+	$g_hOChkLogEnabled = GUICtrlCreateCheckbox($g_aLangPreferences[12], 35, 200, 200, 20)
 	GUICtrlSetState($g_hOChkLogEnabled, $g_iLoggingEnabled)
-	GUICtrlCreateLabel("Log size must not exceed :", 35, 230, 160, 20)
-	$g_hOInLogSize = GUICtrlCreateInput(Round($g_iLoggingStorage / 1024, 2), 195, 228, 100, 20)
+	GUICtrlCreateLabel($g_aLangPreferences[13], 35, 230, 180, 20)
+	$g_hOInLogSize = GUICtrlCreateInput(Round($g_iLoggingStorage / 1024, 2), 215, 228, 100, 20)
 	GUICtrlSetStyle($g_hOInLogSize, BitOr($ES_RIGHT, $ES_NUMBER))
 	GUICtrlSetFont(-1, 9, 400, 0, "Verdana")
-	GUICtrlCreateLabel("KB", 305, 230, 50, 20)
+	GUICtrlCreateLabel("KB", 325, 230, 50, 20)
 	$g_hOInLogSizeTemp = Int(GUICtrlRead($g_hOInLogSize))
-	GUICtrlCreateLabel("Logging Size:", 255, 270, 80, 20)
-	GUICtrlSetColor(-1, 0x555555)
-	$g_hOLblLogSize = GUICtrlCreateLabel("0 KB", 338, 270, 100, 20)
-	__SetLoggingSizeLabel()
-	GUICtrlSetColor($g_hOLblLogSize, 0x008000)
-	$g_hOBtnLogClear = GUICtrlCreateButton("Clear Logging", 255, 290, 150, 30)
+	$g_hOLblLogSize = GUICtrlCreateLabel(StringFormat($g_aLangPreferences[14], __GetLoggingSize()), 35, 270, 200, 20)
+	GUICtrlSetColor($g_hOLblLogSize, 0x555555)
+	$g_hOBtnLogClear = GUICtrlCreateButton($g_aLangPreferences[15], 255, 265, 150, 30)
 	GUICtrlCreateGroup("", -99, -99, 1, 1) ;close group
 
 	GUICtrlSetOnEvent($g_hOChkClearCacheOnExit, "__CheckPreferenceChange")
@@ -2666,8 +2662,8 @@ Func _ShowPreferencesDlg()
 	__CheckLoggingStateChanged()
 	GUICtrlCreateTabItem("") ; end tabitem definition
 
-	GUICtrlCreateTabItem(" Language ")
-	GUICtrlCreateGroup("Language", 25, 50, 400, 350)
+	GUICtrlCreateTabItem(StringFormat(" %s ", $g_aLangPreferences[3]))
+	GUICtrlCreateGroup($g_aLangPreferences[7], 25, 50, 400, 350)
 	GUICtrlSetFont(-1, 10, 700, 2)
 
 	Local $aSelLangInfo = __ISO639CodeToIndex($g_sSelectedLanguage)
@@ -2719,22 +2715,22 @@ Func _ShowPreferencesDlg()
 	Local $iSelLangItem = __FindLanguageItem(3300 + $aSelLangInfo[1])
 	_GUICtrlListView_SetItemSelected($g_hOListLanguage, $iSelLangItem, True, True)
 	_GUICtrlListView_EnsureVisible($g_hOListLanguage, $iSelLangItem)
-	GUICtrlCreateLabel("Select the language you prefer and press the Save button to continue. (Restart Required)", 40, 350, 365, 35)
+	GUICtrlCreateLabel(StringFormat($g_aLangPreferences[16], $g_aLangPreferences[17]), 40, 350, 365, 35)
 	GUICtrlSetColor(-1, 0x555555)
 	GUICtrlSetFont(-1, 9)
 	GUICtrlCreateGroup("", -99, -99, 1, 1) ;close group
 	GUICtrlCreateTabItem("") ; end tabitem definition
 
-	$g_hOLblPrefsUpdated = GUICtrlCreateLabel("Preferences Updated", 25, 455, 200, 20)
+	$g_hOLblPrefsUpdated = GUICtrlCreateLabel($g_aLangPreferences[19], 25, 455, 200, 20)
 	GUICtrlSetColor($g_hOLblPrefsUpdated, 0x008000)
 	GUICtrlSetState($g_hOLblPrefsUpdated, $GUI_HIDE)
-	$g_hOBtnSave = GUICtrlCreateButton("Save", 210, 450, 100, 30)
+	$g_hOBtnSave = GUICtrlCreateButton($g_aLangPreferences[17], 210, 450, 100, 30)
 	GUICtrlSetFont($g_hOBtnSave, 10)
 	GUICtrlSetState($g_hOBtnSave, $GUI_FOCUS)
 	GUICtrlSetState($g_hOBtnSave, $GUI_DISABLE)
 	GUICtrlSetOnEvent($g_hOBtnSave, "__SavePreferences")
 
-	$g_hOBtnCancel = GUICtrlCreateButton("Cancel", 320, 450, 100, 30)
+	$g_hOBtnCancel = GUICtrlCreateButton($g_aLangPreferences[18], 320, 450, 100, 30)
 	GUICtrlSetFont($g_hOBtnCancel, 10)
 	GUICtrlSetOnEvent($g_hOBtnCancel, "__CloseOptionsDlg")
 
@@ -2750,8 +2746,8 @@ Func __ClearCacheFolder()
 	DirRemove($g_sCacheRoot, 1)
 	DirCreate($g_sCacheRoot)
 
-	GUICtrlSetData($g_hOLblCacheSize, Round(DirGetSize($g_sCacheRoot) / 1024, 2) & " KB")
-	GUICtrlSetData($g_hOLblPrefsUpdated, "Cache cleared")
+	GUICtrlSetData($g_hOLblCacheSize, StringFormat($g_aLangPreferences[10], Round(DirGetSize($g_sCacheRoot) / 1024, 2)))
+	GUICtrlSetData($g_hOLblPrefsUpdated, $g_aLangPreferences[20])
 	GUICtrlSetState($g_hOLblPrefsUpdated, $GUI_SHOW)
 	GUICtrlSetState($g_hOBtnClearCache, $GUI_ENABLE)
 
@@ -2767,20 +2763,20 @@ Func __RemoveLoggingFile()
 		_Logging_Initialize()
 	EndIf
 
-	__SetLoggingSizeLabel()
-	GUICtrlSetData($g_hOLblPrefsUpdated, "Cache cleared")
+	GUICtrlSetData($g_hOLblLogSize, StringFormat($g_aLangPreferences[14], __GetLoggingSize()))
+	GUICtrlSetData($g_hOLblPrefsUpdated, $g_aLangPreferences[21])
 	GUICtrlSetState($g_hOLblPrefsUpdated, $GUI_SHOW)
 	GUICtrlSetState($g_hOBtnLogClear, $GUI_ENABLE)
 
 EndFunc
 
 
-Func __SetLoggingSizeLabel()
+Func __GetLoggingSize()
 
 	If FileExists($g_sLoggingRoot) Then
-		GUICtrlSetData($g_hOLblLogSize, Round(DirGetSize($g_sLoggingRoot) / 1024, 2) & " KB")
+		Return Round(DirGetSize($g_sLoggingRoot) / 1024, 2)
 	Else
-		GUICtrlSetData($g_hOLblLogSize, "0 KB")
+		Return 0
 	EndIf
 
 EndFunc
@@ -2846,8 +2842,7 @@ EndFunc
 Func __SavePreferences()
 
 	If $g_tSelectedLanguage <> $g_sSelectedLanguage Then
-		Local $iMsgBoxResult = MsgBox($MB_OKCANCEL + $MB_ICONINFORMATION, "Language Changed", _
-			"The selected language has changed. Complete Internet Repair should be restarted for the chosen language to take effect.", 0, $g_hOptionsGui)
+		Local $iMsgBoxResult = MsgBox($MB_OKCANCEL + $MB_ICONINFORMATION, $g_aLangPreferences[22], $g_aLangPreferences[23], 0, $g_hOptionsGui)
 		Switch $iMsgBoxResult
 			Case 1
 				IniWrite($g_sPathIni, $g_sProgShortName, "Language", $g_tSelectedLanguage)
@@ -2880,7 +2875,7 @@ Func __SavePreferences()
 	IniWrite($g_sPathIni, $g_sProgShortName, "LoggingEnabled", $g_iLoggingEnabled)
 	IniWrite($g_sPathIni, $g_sProgShortName, "LoggingStorageSize", $g_iLoggingStorage)
 
-	GUICtrlSetData($g_hOLblPrefsUpdated, "Preferences Saved")
+	GUICtrlSetData($g_hOLblPrefsUpdated, $g_aLangPreferences[19])
 	GUICtrlSetState($g_hOLblPrefsUpdated, $GUI_SHOW)
 	GUICtrlSetState($g_hOBtnSave, $GUI_DISABLE)
 
