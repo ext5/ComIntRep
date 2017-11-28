@@ -30,7 +30,7 @@
 ;===============================================================================================================
 #AutoIt3Wrapper_Res_Comment=Complete Internet Repair			;~ Comment field
 #AutoIt3Wrapper_Res_Description=Complete Internet Repair      	;~ Description field
-#AutoIt3Wrapper_Res_Fileversion=5.0.0.3759
+#AutoIt3Wrapper_Res_Fileversion=5.0.0.3768
 #AutoIt3Wrapper_Res_FileVersion_AutoIncrement=Y  				;~ (Y/N/P) AutoIncrement FileVersion. Default=N
 #AutoIt3Wrapper_Res_FileVersion_First_Increment=N				;~ (Y/N) AutoIncrement Y=Before; N=After compile. Default=N
 #AutoIt3Wrapper_Res_HiDpi=Y                      				;~ (Y/N) Compile for high DPI. Default=N
@@ -536,10 +536,11 @@ Func _StartCoreGui()
 
 	$g_hCoreGui = GUICreate($g_sProgramTitle, $g_iCoreGuiWidth, $g_iCoreGuiHeight, -1, 25)
 	If Not @Compiled Then GUISetIcon($g_aCoreIcons[0])
-	GUISetFont(8.5 * _GDIPlus_GraphicsGetDPIRatio()[0], 400, -1, "Verdana", $g_hCoreGui, $CLEARTYPE_QUALITY)
+	GUISetFont(8.5, 400, -1, "Verdana", $g_hCoreGui, $CLEARTYPE_QUALITY)
 	GUISetOnEvent($GUI_EVENT_CLOSE, "_ShutdownProgram", $g_hCoreGui)
 
 	$g_hMenuFile = GUICtrlCreateMenu($g_aLangMenus[0])
+	GUICtrlSetFont($g_hMenuFile, 8.5)
 	$g_hMenuMaintenance = GUICtrlCreateMenu($g_aLangMenus[14])
 	$g_hMenuTrouble = GUICtrlCreateMenu($g_aLangMenus[16])
 	$g_hMenuTools = GUICtrlCreateMenu($g_aLangMenus[29])
