@@ -6,6 +6,18 @@
 Version %{VERSION} (%{MONTH} %{DAY}, %{YEAR})
 --------------------------------------------------
 
+- Improved Language update functions.
+- New Russian language.
+- New Turkish language.
+
+## Language Strings
+- New: MsgBox_Closing_Title = Closing %{Program.Name}
+- New: MsgBox_Closing_Messag = Would you like to close %{Program.Name} now?
+
+--------------------------------------------------
+Version 5.0.0.3758 (November 26, 2017)
+--------------------------------------------------
+
 - Fixed crash if Windows Taskbar is not docked at the bottom.
 - Updated translation headings. More descriptive.
 - Translated Preferences.

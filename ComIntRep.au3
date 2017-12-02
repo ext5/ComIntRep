@@ -30,7 +30,7 @@
 ;===============================================================================================================
 #AutoIt3Wrapper_Res_Comment=Complete Internet Repair			;~ Comment field
 #AutoIt3Wrapper_Res_Description=Complete Internet Repair      	;~ Description field
-#AutoIt3Wrapper_Res_Fileversion=5.0.0.3768
+#AutoIt3Wrapper_Res_Fileversion=5.0.0.3793
 #AutoIt3Wrapper_Res_FileVersion_AutoIncrement=Y  				;~ (Y/N/P) AutoIncrement FileVersion. Default=N
 #AutoIt3Wrapper_Res_FileVersion_First_Increment=N				;~ (Y/N) AutoIncrement Y=Before; N=After compile. Default=N
 #AutoIt3Wrapper_Res_HiDpi=Y                      				;~ (Y/N) Compile for high DPI. Default=N
@@ -188,7 +188,7 @@
 ; Au3Stripper Settings
 ;===============================================================================================================
 #AutoIt3Wrapper_Run_Au3Stripper=N								;~ (Y/N) Run Au3Stripper before compilation. default=N
-;#Au3Stripper_Parameters=										;~ Au3Stripper parameters...see SciTE4AutoIt3 Helpfile for options
+;#Au3Stripper_Parameters=MergeOnly								;~ Au3Stripper parameters...see SciTE4AutoIt3 Helpfile for options
 ;#Au3Stripper_Ignore_Variables=
 ;===============================================================================================================
 ; AU3Check settings
@@ -441,8 +441,6 @@ Global $g_iClearWinUpdate = True
 Global $g_iResetProxy = True
 Global $g_iResetFirewall = True
 Global $g_iShowCwrMessage = False
-
-
 
 
 _Localization_Messages()   		;~ Load Message Language Strings
@@ -2606,6 +2604,8 @@ EndFunc   ;==>_About_Twitter
 Func _ShowPreferencesDlg()
 
 	_Localization_Preferences()	;~ Load Preferences Language Strings
+	_LoadConfiguration()
+	$g_sSelectedLanguage = IniRead($g_sPathIni, $g_sProgShortName, "Language", "en")
 	Local $iLangCount = 1
 
 	$g_iParentState = WinGetState($g_hCoreGui)
@@ -2842,13 +2842,20 @@ EndFunc
 
 Func __SavePreferences()
 
+	Local $iLangChanged = False
+
 	If $g_tSelectedLanguage <> $g_sSelectedLanguage Then
 		Local $iMsgBoxResult = MsgBox($MB_OKCANCEL + $MB_ICONINFORMATION, $g_aLangPreferences[22], $g_aLangPreferences[23], 0, $g_hOptionsGui)
 		Switch $iMsgBoxResult
 			Case 1
 				IniWrite($g_sPathIni, $g_sProgShortName, "Language", $g_tSelectedLanguage)
+				GUICtrlSetData($g_hOLblPrefsUpdated, $g_aLangPreferences[22])
+				GUICtrlSetState($g_hOLblPrefsUpdated, $GUI_SHOW)
+				GUICtrlSetState($g_hOBtnSave, $GUI_DISABLE)
+				$iLangChanged = True
 			Case 2
-				$g_tSelectedLanguage = $g_sSelectedLanguage
+				GUICtrlSetState($g_hOBtnSave, $GUI_ENABLE)
+				Return 0
 		EndSwitch
 	EndIf
 
@@ -2876,9 +2883,20 @@ Func __SavePreferences()
 	IniWrite($g_sPathIni, $g_sProgShortName, "LoggingEnabled", $g_iLoggingEnabled)
 	IniWrite($g_sPathIni, $g_sProgShortName, "LoggingStorageSize", $g_iLoggingStorage)
 
-	GUICtrlSetData($g_hOLblPrefsUpdated, $g_aLangPreferences[19])
-	GUICtrlSetState($g_hOLblPrefsUpdated, $GUI_SHOW)
-	GUICtrlSetState($g_hOBtnSave, $GUI_DISABLE)
+	If $iLangChanged = True Then
+		$iMsgBoxResult = MsgBox($MB_OKCANCEL + $MB_ICONINFORMATION, $g_aLangPreferences[24], $g_aLangPreferences[25], 0, $g_hOptionsGui)
+		Switch $iMsgBoxResult
+			Case 1
+				_ShutdownProgram()
+			Case 2
+				; GUICtrlSetState($g_hOBtnSave, $GUI_ENABLE)
+				$iLangChanged = False
+		EndSwitch
+	Else
+		GUICtrlSetData($g_hOLblPrefsUpdated, $g_aLangPreferences[19])
+		GUICtrlSetState($g_hOLblPrefsUpdated, $GUI_SHOW)
+		GUICtrlSetState($g_hOBtnSave, $GUI_DISABLE)
+	EndIf
 
 EndFunc
 
