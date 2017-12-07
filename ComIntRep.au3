@@ -30,7 +30,7 @@
 ;===============================================================================================================
 #AutoIt3Wrapper_Res_Comment=Complete Internet Repair			;~ Comment field
 #AutoIt3Wrapper_Res_Description=Complete Internet Repair      	;~ Description field
-#AutoIt3Wrapper_Res_Fileversion=5.0.0.3793
+#AutoIt3Wrapper_Res_Fileversion=5.0.1.3809
 #AutoIt3Wrapper_Res_FileVersion_AutoIncrement=Y  				;~ (Y/N/P) AutoIncrement FileVersion. Default=N
 #AutoIt3Wrapper_Res_FileVersion_First_Increment=N				;~ (Y/N) AutoIncrement Y=Before; N=After compile. Default=N
 #AutoIt3Wrapper_Res_HiDpi=Y                      				;~ (Y/N) Compile for high DPI. Default=N
@@ -292,7 +292,6 @@ Global $g_sProgShortName		= "ComIntRep"
 Global $g_sProgShortName_X64	= $g_sProgShortName & "_X64"
 Global $g_sProgName				= "Complete Internet Repair"
 Global $g_iSingleton			= True
-Global $g_iShowSubErrors		= False
 
 ;~ Links
 Global $g_sUrlCompHomePage		= "https://goo.gl/m4Bhqe|www.rizonesoft.com"							; https://www.rizonesoft.com
@@ -1139,9 +1138,7 @@ Func _MinimizeProgram()
 EndFunc
 
 
-;===============================================================================================================
-; Menu Events
-;===============================================================================================================
+#Region "Menu Events"
 
 Func _StartEventLog()
 	ShellExecute("eventvwr")
@@ -1340,8 +1337,7 @@ Func __ExportNetBIOSStatistics()
 
 EndFunc
 
-
-;===============================================================================================================
+#EndRegion "Menu Events"
 
 
 #Region "Processing"
@@ -2456,7 +2452,7 @@ Func _BootMessage()
 				_Logging_EditWrite($g_aLangMessages2[6])
 				_Logging_EditWrite($g_aLangMessages2[7])
 				_Logging_EditWrite(StringFormat($g_aLangMessages2[8], StringReplace($g_aLangMenus[0], "&", ""), _
-					StringReplace($g_aLangMenus[6], "&", "")))
+					StringReplace($g_aLangMenus[12], "&", "")))
 
 		EndSelect
 
