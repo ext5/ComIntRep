@@ -6,11 +6,37 @@
 Version %{VERSION} (%{MONTH} %{DAY}, %{YEAR})
 --------------------------------------------------
 
+- Export IP Configuration Before Resetting.
+
+## Language File Changes
+- New: [Preferences] Checkbox_Export_IP = Export IP Configuration before resetting.
+
+--------------------------------------------------
+Version 5.0.1.3828 (December 28, 2017)
+--------------------------------------------------
+
+- Removed unnecessary _Localization_Messages() call.
+- Fix: Dialog Parent set when Parent not active.
+- Fix: Wrong Preferences dialog icon at runtime when not compiled.
+- Changed DPI Awareness Mode to Unaware for now.
+
+--------------------------------------------------
+Version 5.0.1.3812 (December 10, 2017)
+--------------------------------------------------
+
+- Improved language file loading.
+- New: Update check during installation.
+- New: Chinese language
+
+--------------------------------------------------
+Version 5.0.1.3808 (December 07, 2017)
+--------------------------------------------------
+
 - Improved Language update functions.
 - New French, Italian, Russian and Turkish Languages.
 - Fixed logging Error/Final message display.
 
-## Language Strings
+## Language File Changes
 - Change: [Messages2] Boot_06 = Click on '%s' and then '%s' to Reboot your computer later.
 - Change: Boot_08 -> MsgBox_Boot_Title
 - Change: Boot_09 -> MsgBox_boot_Message

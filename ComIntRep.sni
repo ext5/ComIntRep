@@ -5,16 +5,14 @@ Script = ComIntRep.au3
 [Modules]
 Build = 1
 Compress = 1
-Sign = 1
+Sign = 0
 Documentation = 1
 Import = 0
 Distribute = 1
 Portable = 1
 Installation = 1
-SignInstall = 1
-Tidy = 0
+SignInstall = 0
 Sourcecode = 1
-GitHub = 1
 SourcePackage = 1
 UpdateFile = 1
 
@@ -44,11 +42,11 @@ File=Themes\Sounds\Welcome.wav
 [Sources]
 
 [Links]
+GetMoreURL=https://goo.gl/Ua2ooa
 CompanyURL=https://www.rizonesoft.com
-ThanksURL=https://goo.gl/tGtJ6a
 SupportURL=https://www.rizonesoft.com/support/
 ContactURL=https://www.rizonesoft.com/contact
-UpdateURL=https://www.rizonesoft.com/downloads/complete-internet-repair/
+UpdateURL=https://goo.gl/gK3TAQ
 
 [Environment]
 ScriptPath=D:\Rizonesoft\SDK\Concrete\ComIntRep\ComIntRep.au3
@@ -59,10 +57,10 @@ ShortName=ComIntRep
 Description=Complete Internet Repair
 Type=N
 Icon=D:\Rizonesoft\SDK\Concrete\ComIntRep\Themes\Icons\ComIntRep.ico
-Version=5.0.1.3808
+Version=5.0.1.3828
 VersionMajor=5
 VersionMaintenance=1
-VersionBuild=3808
+VersionBuild=3828
 UseBeta=B
 UseX64=Y
 CompileBoth=Y
@@ -70,11 +68,11 @@ OutFile=ComIntRep.exe
 OutFileX64=ComIntRep_X64.exe
 OutFilePath=D:\Rizonesoft\SDK\Concrete\ComIntRep\ComIntRep.exe
 OutFileX64Path=D:\Rizonesoft\SDK\Concrete\ComIntRep\ComIntRep_X64.exe
-InstallScriptPath=D:\Rizonesoft\SDK\Concrete\ComIntRep\Distribution\3808\ComIntRep_3808_Setup.iss
-InstallOutputPath=D:\Rizonesoft\SDK\Concrete\ComIntRep\Distribution\3808\ComIntRep_3808_Setup.exe
+InstallScriptPath=0
+InstallOutputPath=0
 InstallSize=0
-DistributionPath=D:\Rizonesoft\SDK\Concrete\ComIntRep\Distribution\3808
-DistributionName=ComIntRep_3808
-FullDistributionPath=D:\Rizonesoft\SDK\Concrete\ComIntRep\Distribution\3808\ComIntRep_3808
-DistroSourceName=ComIntRep_3808_Source
-DistroSourceFullPath=D:\Rizonesoft\SDK\Concrete\ComIntRep\Distribution\3808\ComIntRep_3808_Source
+DistributionPath=D:\Rizonesoft\SDK\Concrete\ComIntRep\Distribution\3828
+DistributionName=ComIntRep_3828
+FullDistributionPath=D:\Rizonesoft\SDK\Concrete\ComIntRep\Distribution\3828\ComIntRep_3828
+DistroSourceName=ComIntRep_3828_Source
+DistroSourceFullPath=D:\Rizonesoft\SDK\Concrete\ComIntRep\Distribution\3828\ComIntRep_3828_Source

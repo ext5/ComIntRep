@@ -30,10 +30,10 @@
 ;===============================================================================================================
 #AutoIt3Wrapper_Res_Comment=Complete Internet Repair			;~ Comment field
 #AutoIt3Wrapper_Res_Description=Complete Internet Repair      	;~ Description field
-#AutoIt3Wrapper_Res_Fileversion=5.0.1.3809
+#AutoIt3Wrapper_Res_Fileversion=5.0.1.3842
 #AutoIt3Wrapper_Res_FileVersion_AutoIncrement=Y  				;~ (Y/N/P) AutoIncrement FileVersion. Default=N
 #AutoIt3Wrapper_Res_FileVersion_First_Increment=N				;~ (Y/N) AutoIncrement Y=Before; N=After compile. Default=N
-#AutoIt3Wrapper_Res_HiDpi=Y                      				;~ (Y/N) Compile for high DPI. Default=N
+#AutoIt3Wrapper_Res_HiDpi=N                      				;~ (Y/N) Compile for high DPI. Default=N
 #AutoIt3Wrapper_Res_ProductVersion=5             				;~ Product Version
 #AutoIt3Wrapper_Res_Language=2057								;~ Resource Language code . Default 2057=English (United Kingdom)
 #AutoIt3Wrapper_Res_LegalCopyright=© 2018 Rizonesoft			;~ Copyright field
@@ -258,6 +258,9 @@ EndFunc   ;==>_ReBarStartUp
 
 
 #include <GuiConstantsEx.au3>
+#include <GuiImageList.au3>
+#include <GuiListView.au3>
+#include <WinAPITheme.au3>
 #include <WindowsConstants.au3>
 #include <Misc.au3>
 
@@ -331,7 +334,8 @@ Global $g_sCatroot2 		= @WindowsDir & "\System32\CatRoot2"
 Global $g_sCatroot2Old 		= @WindowsDir & "\System32\CatRoot2.Old"
 
 ; Configuration Settings
-Global $g_iBackupData	= 0
+Global $g_iBackupData		= 0
+Global $g_iBackupIPData 	= 1
 Global $g_iClearCacheOnExit = 0
 
 ;~ Language Settings
@@ -352,6 +356,7 @@ Global $g_iSizeIcon						= 64
 Global $g_aLognIcons[$CNT_LOGICONS]
 Global $g_aMenuIcons[$CNT_MENUICONS]
 Global $g_aCommIcons[$CNT_COMMICONS]
+Global $g_sDlgOptionsIcon
 
 ;~ Logging Settings
 Global $g_sLoggingRoot		= $g_sWorkingDir & "\Logging\" & $g_sProgShortName
@@ -365,10 +370,9 @@ Global $g_iUpdateSubStatus	= True
 Global $g_sCacheRoot		= $g_sWorkingDir & "\Cache\" & $g_sProgShortName
 Global $g_iEnableCache		= 1
 
-
 ;~ Splash Page Settings
-Global $g_SplashAnimation 	= $g_sThemesDir & "\Processing\32\Stroke.ani"
-Global $g_iSplashDelay		= 100
+Global $g_SplashAnimation
+Global $g_iSplashDelay
 
 ;~ Update Notification Settings
 Global $g_sUpdateAnimation	= $g_sThemesDir & "\Processing\" & $g_iSizeIcon & "\Globe.ani"
@@ -410,8 +414,12 @@ Global $g_hSubHeading
 Global $g_hSubNotice
 Global $g_hCoreGuiCoords, $g_hBtnExtend, $g_hGuiExpanded = True
 
+If Not IsDeclared("g_iParentState") Then Global $g_iParentState
+If Not IsDeclared("g_iParent") Then Global $g_iParent
+
 Global $g_hOptionsGui
 Global $g_hOChkBackupData
+Global $g_hOChkExportIP
 Global $g_hOChkClearCacheOnExit
 Global $g_hOLblCacheSize
 Global $g_hOBtnClearCache
@@ -485,9 +493,11 @@ Else
 
 	Else
 
+		$g_SplashAnimation 	= $g_sThemesDir & "\Processing\32\Stroke.ani"
+		$g_iSplashDelay		= 100
+
 		_Splash_Start($g_aLangMessages[7])
 		_Splash_Update($g_aLangMessages[8], 2)
-		_Localization_Messages()    ;~ Load Message Language Strings
 		_Localization_Messages2()	;~ Load Custom Message Language Strings
 		_Localization_Menus()		;~ Load Menu Language Strings
 		_Localization_Custom()		;~ Load Custom Language Strings
@@ -902,6 +912,8 @@ Func _SetResources()
 			$g_aCommIcons[$iCi] = @ScriptFullPath
 		Next
 
+		$g_sDlgOptionsIcon = @ScriptFullPath
+
 	Else
 
 		$g_aCoreIcons[0] = $g_sThemesDir & "\Icons\" & $g_sProgShortName & ".ico"
@@ -957,6 +969,8 @@ Func _SetResources()
 		$g_aCommIcons[16] = $g_sThemesDir & "\Icons\Commands\Repair-10.ico"
 		$g_aCommIcons[17] = $g_sThemesDir & "\Icons\Commands\Repair-11.ico"
 		$g_aCommIcons[18] = $g_sThemesDir & "\Icons\Commands\Repair-12.ico"
+
+		$g_sDlgOptionsIcon = $g_sThemesDir & "\Icons\Dialogs\Gear.ico"
 
 	EndIf
 
@@ -1027,6 +1041,7 @@ EndFunc   ;==>_GenerateIniFile
 Func _LoadConfiguration()
 
 	$g_iBackupData = Int(IniRead($g_sPathIni, $g_sProgShortName, "BackupData", 0))
+	$g_iBackupIPData  = Int(IniRead($g_sPathIni, $g_sProgShortName, "BackupIPData", 1))
 	$g_iCheckForUpdates = Int(IniRead($g_sPathIni, $g_sProgShortName, "CheckForUpdates", 4))
 	$g_iClearCacheOnExit = Int(IniRead($g_sPathIni, $g_sProgShortName, "ClearCacheOnExit", 0))
 	$g_iLoggingEnabled = Int(IniRead($g_sPathIni, $g_sProgShortName, "LoggingEnabled", 1))
@@ -1274,12 +1289,20 @@ Func __ExportIPConfiguration()
 
 	Local $sTimeStamp =  @YEAR & @MON & @MDAY & @HOUR & @MIN
 	Local $sExportPath = $g_sExportRoot & "\IP-" & $sTimeStamp & ".txt"
-	_Logging_Start($g_aLangMessages2[96])
+
+	If @GUI_CtrlId = $g_miExport[0] Then
+		_Logging_Start($g_aLangMessages2[96])
+	Else
+		_Logging_EditWrite($g_aLangMessages2[96])
+	EndIf
+
 	RunWait(@ComSpec & " /c ipconfig /all >" & Chr(34) & $sExportPath & Chr(34), "", @SW_HIDE)
 
 	If FileExists($sExportPath) Then
 		_Logging_EditWrite(StringFormat($g_aLangMessages2[97], $sExportPath))
-		_FileEx_OpenTextFile($sExportPath)
+		If @GUI_CtrlId = $g_miExport[0] Then
+			_FileEx_OpenTextFile($sExportPath)
+		EndIf
 	Else
 		_Logging_EditWrite(_Logging_SetLevel($g_aLangMessages2[98], "ERROR"))
 	EndIf
@@ -1437,8 +1460,12 @@ EndFunc
 
 Func _ResetTCPIP($iRow)
 
-	_StartSoloProcess($iRow)
 	_Logging_Start($g_aLangMessages2[14])
+	_StartSoloProcess($iRow)
+	If $g_iBackupIPData Then
+
+		__ExportIPConfiguration()
+	EndIf
 	If @OSVersion = "WIN_XP" And @OSVersion = "WIN_2003" Then
 		_RunCommand("netsh interface ip reset " & Chr(34) & $g_sLogIpResetPath & Chr(34))
 		_Logging_EditWrite(StringFormat($g_aLangMessages2[15], $g_sLogIpResetPath))
@@ -1499,6 +1526,7 @@ EndFunc
 Func _ReleaseRenewIP($iRow)
 
 	_StartSoloProcess($iRow)
+
 	_Logging_Start($g_aLangMessages2[23])
 		Sleep(100)
 	_Logging_EditWrite($g_aLangMessages2[24])
@@ -2606,49 +2634,55 @@ Func _ShowPreferencesDlg()
 
 	$g_iParentState = WinGetState($g_hCoreGui)
 	If $g_iParentState > 0 Then
+		$g_iParent = $g_hCoreGui
 		WinSetTrans($g_hCoreGui, Default, 200)
 		GUISetState(@SW_DISABLE, $g_hCoreGui)
+	Else
+		$g_iParent = 0
 	EndIf
 
-	$g_hOptionsGui = GUICreate($g_aLangPreferences[0], 450, 500, -1, -1, BitOR($WS_CAPTION, $WS_POPUPWINDOW), $WS_EX_TOPMOST)
+	$g_hOptionsGui = GUICreate($g_aLangPreferences[0], 450, 500, -1, -1, BitOR($WS_CAPTION, $WS_POPUPWINDOW), $WS_EX_TOPMOST, $g_iParent)
 	GUISetFont(Default, Default, Default, "Verdana", $g_hOptionsGui, 5)
-	If $g_iParentState > 0 Then GUISetIcon($g_sDlgAboutIcon, $g_iDialogIconStart + 2, $g_hAboutGui)
+	If $g_iParentState > 0 Then GUISetIcon($g_sDlgOptionsIcon, $g_iDialogIconStart + 2, $g_hAboutGui)
 	GUISetOnEvent($GUI_EVENT_CLOSE, "__CloseOptionsDlg", $g_hOptionsGui)
 	GUIRegisterMsg($WM_NOTIFY, "__LanguageListEvents")
 
 	GUICtrlCreateTab(10, 10, 430, 430)
 	GUICtrlCreateTabItem(StringFormat(" %s ", $g_aLangPreferences[1]))
-	GUICtrlCreateGroup($g_aLangPreferences[4], 25, 50, 400, 90)
+	GUICtrlCreateGroup($g_aLangPreferences[4], 25, 50, 400, 120)
 	GUICtrlSetFont(-1, 10, 700, 2)
 	$g_hOChkBackupData = GUICtrlCreateCheckbox($g_aLangPreferences[8], 35, 100, 300, 20)
 	GUICtrlSetState($g_hOChkBackupData, $g_iBackupData)
+	$g_hOChkExportIP = GUICtrlCreateCheckbox($g_aLangPreferences[9], 35, 120, 300, 20)
+	GUICtrlSetState($g_hOChkExportIP, $g_iBackupIPData)
 	GUICtrlCreateGroup("", -99, -99, 1, 1) ;close group
 	GUICtrlCreateTabItem("") ; end tabitem definition
 
 	GUICtrlSetOnEvent($g_hOChkBackupData, "__CheckPreferenceChange")
+	GUICtrlSetOnEvent($g_hOChkExportIP, "__CheckPreferenceChange")
 
 	GUICtrlCreateTabItem(StringFormat(" %s ", $g_aLangPreferences[2]))
 	GUICtrlCreateGroup($g_aLangPreferences[5], 25, 50, 400, 100)
 	GUICtrlSetFont(-1, 10, 700, 2)
-	$g_hOChkClearCacheOnExit = GUICtrlCreateCheckbox($g_aLangPreferences[9], 35, 80, 300, 20)
+	$g_hOChkClearCacheOnExit = GUICtrlCreateCheckbox($g_aLangPreferences[10], 35, 80, 300, 20)
 	GUICtrlSetState($g_hOChkClearCacheOnExit, $g_iClearCacheOnExit)
-	$g_hOLblCacheSize = GUICtrlCreateLabel(StringFormat($g_aLangPreferences[10], Round(DirGetSize($g_sCacheRoot) / 1024, 2)), 35, 115, 200, 20)
+	$g_hOLblCacheSize = GUICtrlCreateLabel(StringFormat($g_aLangPreferences[11], Round(DirGetSize($g_sCacheRoot) / 1024, 2)), 35, 115, 200, 20)
 	GUICtrlSetColor($g_hOLblCacheSize, 0x555555)
-	$g_hOBtnClearCache = GUICtrlCreateButton($g_aLangPreferences[11], 255, 105, 150, 30)
+	$g_hOBtnClearCache = GUICtrlCreateButton($g_aLangPreferences[12], 255, 105, 150, 30)
 	GUICtrlCreateGroup("", -99, -99, 1, 1) ;close group
 	GUICtrlCreateGroup($g_aLangPreferences[6], 25, 160, 400, 160)
 	GUICtrlSetFont(-1, 10, 700, 2)
-	$g_hOChkLogEnabled = GUICtrlCreateCheckbox($g_aLangPreferences[12], 35, 200, 200, 20)
+	$g_hOChkLogEnabled = GUICtrlCreateCheckbox($g_aLangPreferences[13], 35, 200, 200, 20)
 	GUICtrlSetState($g_hOChkLogEnabled, $g_iLoggingEnabled)
-	GUICtrlCreateLabel($g_aLangPreferences[13], 35, 230, 180, 20)
+	GUICtrlCreateLabel($g_aLangPreferences[14], 35, 230, 180, 20)
 	$g_hOInLogSize = GUICtrlCreateInput(Round($g_iLoggingStorage / 1024, 2), 215, 228, 100, 20)
 	GUICtrlSetStyle($g_hOInLogSize, BitOr($ES_RIGHT, $ES_NUMBER))
 	GUICtrlSetFont(-1, 9, 400, 0, "Verdana")
 	GUICtrlCreateLabel("KB", 325, 230, 50, 20)
 	$g_hOInLogSizeTemp = Int(GUICtrlRead($g_hOInLogSize))
-	$g_hOLblLogSize = GUICtrlCreateLabel(StringFormat($g_aLangPreferences[14], __GetLoggingSize()), 35, 270, 200, 20)
+	$g_hOLblLogSize = GUICtrlCreateLabel(StringFormat($g_aLangPreferences[15], __GetLoggingSize()), 35, 270, 200, 20)
 	GUICtrlSetColor($g_hOLblLogSize, 0x555555)
-	$g_hOBtnLogClear = GUICtrlCreateButton($g_aLangPreferences[15], 255, 265, 150, 30)
+	$g_hOBtnLogClear = GUICtrlCreateButton($g_aLangPreferences[16], 255, 265, 150, 30)
 	GUICtrlCreateGroup("", -99, -99, 1, 1) ;close group
 
 	GUICtrlSetOnEvent($g_hOChkClearCacheOnExit, "__CheckPreferenceChange")
@@ -2712,22 +2746,22 @@ Func _ShowPreferencesDlg()
 	Local $iSelLangItem = __FindLanguageItem(3300 + $aSelLangInfo[1])
 	_GUICtrlListView_SetItemSelected($g_hOListLanguage, $iSelLangItem, True, True)
 	_GUICtrlListView_EnsureVisible($g_hOListLanguage, $iSelLangItem)
-	GUICtrlCreateLabel(StringFormat($g_aLangPreferences[16], $g_aLangPreferences[17]), 40, 350, 365, 35)
+	GUICtrlCreateLabel(StringFormat($g_aLangPreferences[17], $g_aLangPreferences[18]), 40, 350, 365, 35)
 	GUICtrlSetColor(-1, 0x555555)
 	GUICtrlSetFont(-1, 9)
 	GUICtrlCreateGroup("", -99, -99, 1, 1) ;close group
 	GUICtrlCreateTabItem("") ; end tabitem definition
 
-	$g_hOLblPrefsUpdated = GUICtrlCreateLabel($g_aLangPreferences[19], 25, 455, 200, 20)
+	$g_hOLblPrefsUpdated = GUICtrlCreateLabel($g_aLangPreferences[20], 25, 455, 200, 20)
 	GUICtrlSetColor($g_hOLblPrefsUpdated, 0x008000)
 	GUICtrlSetState($g_hOLblPrefsUpdated, $GUI_HIDE)
-	$g_hOBtnSave = GUICtrlCreateButton($g_aLangPreferences[17], 210, 450, 100, 30)
+	$g_hOBtnSave = GUICtrlCreateButton($g_aLangPreferences[18], 210, 450, 100, 30)
 	GUICtrlSetFont($g_hOBtnSave, 10)
 	GUICtrlSetState($g_hOBtnSave, $GUI_FOCUS)
 	GUICtrlSetState($g_hOBtnSave, $GUI_DISABLE)
 	GUICtrlSetOnEvent($g_hOBtnSave, "__SavePreferences")
 
-	$g_hOBtnCancel = GUICtrlCreateButton($g_aLangPreferences[18], 320, 450, 100, 30)
+	$g_hOBtnCancel = GUICtrlCreateButton($g_aLangPreferences[19], 320, 450, 100, 30)
 	GUICtrlSetFont($g_hOBtnCancel, 10)
 	GUICtrlSetOnEvent($g_hOBtnCancel, "__CloseOptionsDlg")
 
@@ -2743,8 +2777,8 @@ Func __ClearCacheFolder()
 	DirRemove($g_sCacheRoot, 1)
 	DirCreate($g_sCacheRoot)
 
-	GUICtrlSetData($g_hOLblCacheSize, StringFormat($g_aLangPreferences[10], Round(DirGetSize($g_sCacheRoot) / 1024, 2)))
-	GUICtrlSetData($g_hOLblPrefsUpdated, $g_aLangPreferences[20])
+	GUICtrlSetData($g_hOLblCacheSize, StringFormat($g_aLangPreferences[11], Round(DirGetSize($g_sCacheRoot) / 1024, 2)))
+	GUICtrlSetData($g_hOLblPrefsUpdated, $g_aLangPreferences[21])
 	GUICtrlSetState($g_hOLblPrefsUpdated, $GUI_SHOW)
 	GUICtrlSetState($g_hOBtnClearCache, $GUI_ENABLE)
 
@@ -2760,8 +2794,8 @@ Func __RemoveLoggingFile()
 		_Logging_Initialize()
 	EndIf
 
-	GUICtrlSetData($g_hOLblLogSize, StringFormat($g_aLangPreferences[14], __GetLoggingSize()))
-	GUICtrlSetData($g_hOLblPrefsUpdated, $g_aLangPreferences[21])
+	GUICtrlSetData($g_hOLblLogSize, StringFormat($g_aLangPreferences[15], __GetLoggingSize()))
+	GUICtrlSetData($g_hOLblPrefsUpdated, $g_aLangPreferences[22])
 	GUICtrlSetState($g_hOLblPrefsUpdated, $GUI_SHOW)
 	GUICtrlSetState($g_hOBtnLogClear, $GUI_ENABLE)
 
@@ -2783,7 +2817,8 @@ Func __CheckPreferenceChange()
 
 	If __CheckBoxChanged("ClearCacheOnExit", $g_hOChkClearCacheOnExit) = True Or _
 			__CheckBoxChanged("LoggingEnabled", $g_hOChkLogEnabled) = True Or _
-			__CheckBoxChanged("BackupData", $g_hOChkBackupData) = True Then
+			__CheckBoxChanged("BackupData", $g_hOChkBackupData) = True Or _
+			__CheckBoxChanged("BackupIPData", $g_hOChkExportIP) = True Then
 		GUICtrlSetState($g_hOBtnSave, $GUI_ENABLE)
 	Else
 		GUICtrlSetState($g_hOBtnSave, $GUI_DISABLE)
@@ -2841,11 +2876,11 @@ Func __SavePreferences()
 	Local $iLangChanged = False
 
 	If $g_tSelectedLanguage <> $g_sSelectedLanguage Then
-		Local $iMsgBoxResult = MsgBox($MB_OKCANCEL + $MB_ICONINFORMATION, $g_aLangPreferences[22], $g_aLangPreferences[23], 0, $g_hOptionsGui)
+		Local $iMsgBoxResult = MsgBox($MB_OKCANCEL + $MB_ICONINFORMATION, $g_aLangPreferences[23], $g_aLangPreferences[24], 0, $g_hOptionsGui)
 		Switch $iMsgBoxResult
 			Case 1
 				IniWrite($g_sPathIni, $g_sProgShortName, "Language", $g_tSelectedLanguage)
-				GUICtrlSetData($g_hOLblPrefsUpdated, $g_aLangPreferences[22])
+				GUICtrlSetData($g_hOLblPrefsUpdated, $g_aLangPreferences[23])
 				GUICtrlSetState($g_hOLblPrefsUpdated, $GUI_SHOW)
 				GUICtrlSetState($g_hOBtnSave, $GUI_DISABLE)
 				$iLangChanged = True
@@ -2859,6 +2894,12 @@ Func __SavePreferences()
 		$g_iBackupData = 1
 	ElseIf GUICtrlRead($g_hOChkBackupData) = $GUI_UNCHECKED Then
 		$g_iBackupData = 0
+	EndIf
+
+	If GUICtrlRead($g_hOChkExportIP) = $GUI_CHECKED Then
+		$g_iBackupIPData = 1
+	ElseIf GUICtrlRead($g_hOChkExportIP) = $GUI_UNCHECKED Then
+		$g_iBackupIPData = 0
 	EndIf
 
 	If GUICtrlRead($g_hOChkLogEnabled) = $GUI_CHECKED Then
@@ -2875,12 +2916,13 @@ Func __SavePreferences()
 	$g_iLoggingStorage = Int(GUICtrlRead($g_hOInLogSize)) * 1024
 
 	IniWrite($g_sPathIni, $g_sProgShortName, "BackupData", $g_iBackupData)
+	IniWrite($g_sPathIni, $g_sProgShortName, "BackupIPData", $g_iBackupIPData)
 	IniWrite($g_sPathIni, $g_sProgShortName, "ClearCacheOnExit", $g_iClearCacheOnExit)
 	IniWrite($g_sPathIni, $g_sProgShortName, "LoggingEnabled", $g_iLoggingEnabled)
 	IniWrite($g_sPathIni, $g_sProgShortName, "LoggingStorageSize", $g_iLoggingStorage)
 
 	If $iLangChanged = True Then
-		$iMsgBoxResult = MsgBox($MB_OKCANCEL + $MB_ICONINFORMATION, $g_aLangPreferences[24], $g_aLangPreferences[25], 0, $g_hOptionsGui)
+		$iMsgBoxResult = MsgBox($MB_OKCANCEL + $MB_ICONINFORMATION, $g_aLangPreferences[25], $g_aLangPreferences[26], 0, $g_hOptionsGui)
 		Switch $iMsgBoxResult
 			Case 1
 				_ShutdownProgram()
@@ -2889,7 +2931,7 @@ Func __SavePreferences()
 				$iLangChanged = False
 		EndSwitch
 	Else
-		GUICtrlSetData($g_hOLblPrefsUpdated, $g_aLangPreferences[19])
+		GUICtrlSetData($g_hOLblPrefsUpdated, $g_aLangPreferences[20])
 		GUICtrlSetState($g_hOLblPrefsUpdated, $GUI_SHOW)
 		GUICtrlSetState($g_hOBtnSave, $GUI_DISABLE)
 	EndIf
