@@ -6,6 +6,13 @@
 Version %{VERSION} (%{MONTH} %{DAY}, %{YEAR})
 --------------------------------------------------
 
+- Uncompressed (UPX) version to battle anti-virus false positives.
+- Fix: Simplified Chinese language file (zh-CN.ini) noe distributed.
+
+--------------------------------------------------
+Version 5.0.1.3850 (January 05, 2018)
+--------------------------------------------------
+
 - Export IP Configuration Before Resetting.
 
 ## Language File Changes
