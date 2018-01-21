@@ -3,11 +3,11 @@ RIZONESOFT COMPLETE INTERNET REPAIR CHANGES
 ==================================================
 
 --------------------------------------------------
-Version 5.0.1.3852 (January 16, 2018)
+Version 5.0.1.3852 (January 21, 2018)
 --------------------------------------------------
 
 - Uncompressed (UPX) version to battle anti-virus false positives.
-- Fix: Simplified Chinese language file (zh-CN.ini) noe distributed.
+- Fix: Simplified Chinese language file (zh-CN.ini) now distributed.
 
 --------------------------------------------------
 Version 5.0.1.3850 (January 05, 2018)

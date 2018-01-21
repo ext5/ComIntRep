@@ -4,7 +4,7 @@ COMPLETE INTERNET REPAIR
 https://www.rizonesoft.com
 ==================================================
 Version: 5.0.1.3852
-Release Date: 16 2018, 2018
+Release Date: 21 2018, 2018
 System Requirements: Windows XP, Vista, 2008, 7, 8, 8.1, 10 
 Disk Space: 5 MB
 ==================================================
