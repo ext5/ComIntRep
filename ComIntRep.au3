@@ -30,7 +30,7 @@
 ;===============================================================================================================
 #AutoIt3Wrapper_Res_Comment=Complete Internet Repair			;~ Comment field
 #AutoIt3Wrapper_Res_Description=Complete Internet Repair      	;~ Description field
-#AutoIt3Wrapper_Res_Fileversion=5.0.1.3853
+#AutoIt3Wrapper_Res_Fileversion=5.1.0.3891
 #AutoIt3Wrapper_Res_FileVersion_AutoIncrement=Y  				;~ (Y/N/P) AutoIncrement FileVersion. Default=N
 #AutoIt3Wrapper_Res_FileVersion_First_Increment=N				;~ (Y/N) AutoIncrement Y=Before; N=After compile. Default=N
 #AutoIt3Wrapper_Res_HiDpi=N                      				;~ (Y/N) Compile for high DPI. Default=N
@@ -115,67 +115,68 @@
 #AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\fr.ico					; 237
 #AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\hi.ico					; 238
 #AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\hr.ico					; 239
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\id.ico					; 240
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\is.ico					; 241
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\it.ico					; 242
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\iw.ico					; 243
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\ja.ico					; 244
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\ko.ico					; 245
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\nl.ico					; 246
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\no.ico					; 247
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\pl.ico					; 248
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\pt.ico					; 249
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\ro.ico					; 250
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\ru.ico					; 251
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\sk.ico					; 252
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\sv.ico					; 253
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\th.ico					; 254
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\tr.ico					; 255
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\vi.ico					; 256
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\zh-CN.ico				; 257
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\hu.ico					; 240
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\id.ico					; 241
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\is.ico					; 242
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\it.ico					; 243
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\iw.ico					; 244
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\ja.ico					; 245
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\ko.ico					; 246
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\nl.ico					; 247
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\no.ico					; 248
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\pl.ico					; 249
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\pt.ico					; 250
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\ro.ico					; 251
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\ru.ico					; 252
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\sk.ico					; 253
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\sv.ico					; 254
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\th.ico					; 255
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\tr.ico					; 256
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\vi.ico					; 257
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\zh-CN.ico				; 258
 
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Information-D.ico	; 258
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Information.ico		; 259
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Run-D.ico			; 260
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Run.ico				; 261
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Complete.ico			; 262
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Cross.ico			; 263
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-0.ico			; 264
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-1.ico			; 265
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-2.ico			; 266
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-3.ico			; 267
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-4.ico			; 268
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-5.ico			; 269
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-6.ico			; 270
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-7.ico			; 271
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-8.ico			; 272
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-9.ico			; 273
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-10.ico		; 274
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-11.ico		; 275
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-12.ico		; 276
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Information-D.ico	; 259
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Information.ico		; 260
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Run-D.ico			; 261
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Run.ico				; 262
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Complete.ico			; 263
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Cross.ico			; 264
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-0.ico			; 265
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-1.ico			; 266
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-2.ico			; 267
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-3.ico			; 268
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-4.ico			; 269
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-5.ico			; 270
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-6.ico			; 271
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-7.ico			; 272
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-8.ico			; 273
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-9.ico			; 274
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-10.ico		; 275
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-11.ico		; 276
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-12.ico		; 277
 
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\Eventvwr.ico			; 277
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\Gear.ico				; 278
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\Logbook.ico				; 279
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\IPProperties.ico		; 280
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\Close.ico				; 281
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\RestorePoint.ico		; 282
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\NdWeb.ico				; 283
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\NdNetworkAdapter.ico	; 284
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\InternetDiagnostic.ico	; 285
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\NdInbound.ico			; 286
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\HomeGroupDiag.ico		; 287
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\NdFileShare.ico			; 288
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\WinUpdateDiag.ico		; 289
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\SpeedTest.ico			; 290
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\RouterPass.ico			; 291
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\RemoteDesktop.ico		; 292
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\InternetProperties.ico	; 293
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\Update.ico				; 294
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\Home.ico				; 295
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\Mail.ico				; 296
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\GitHub.ico				; 297
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\About.ico				; 298
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\Eventvwr.ico			; 278
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\Gear.ico				; 279
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\Logbook.ico				; 280
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\IPProperties.ico		; 281
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\Close.ico				; 282
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\RestorePoint.ico		; 283
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\NdWeb.ico				; 284
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\NdNetworkAdapter.ico	; 285
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\InternetDiagnostic.ico	; 286
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\NdInbound.ico			; 287
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\HomeGroupDiag.ico		; 288
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\NdFileShare.ico			; 289
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\WinUpdateDiag.ico		; 290
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\SpeedTest.ico			; 291
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\RouterPass.ico			; 292
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\RemoteDesktop.ico		; 293
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\InternetProperties.ico	; 294
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\Update.ico				; 295
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\Home.ico				; 296
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\Mail.ico				; 297
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\GitHub.ico				; 298
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\About.ico				; 299
 
 
 ;===============================================================================================================
@@ -297,19 +298,20 @@ Global $g_sProgName				= "Complete Internet Repair"
 Global $g_iSingleton			= True
 
 ;~ Links
-Global $g_sUrlCompHomePage		= "https://goo.gl/m4Bhqe|www.rizonesoft.com"							; https://www.rizonesoft.com
-Global $g_sUrlContact			= "https://goo.gl/X1kR2a|www.rizonesoft.com/contact"					; https://www.rizonesoft.com/contact
-Global $g_sUrlDownloads			= "https://goo.gl/BWhZ4G|www.rizonesoft.com/downloads"					; https://www.rizonesoft.com/downloads/
-Global $g_sUrlFacebook			= "https://goo.gl/o1wRdC|Facebook.com/rizonesoft"						; https://www.facebook.com/rizonesoft
-Global $g_sUrlTwitter			= "https://goo.gl/Rcc5Wz|Twitter.com/Rizonesoft"						; https://twitter.com/Rizonesoft
-Global $g_sUrlGooglePlus		= "https://goo.gl/oNirJT|Plus.google.com/+Rizonesoftsa" 				; https://plus.google.com/+Rizonesoftsa/posts
-Global $g_sUrlRSS				= "https://goo.gl/s1kUi4|www.rizonesoft.com/feed"						; https://www.rizonesoft.com/feed
-Global $g_sUrlPayPal			= "https://goo.gl/WkkaUm|PayPal.me/rizonesoft"							; https://www.paypal.me/rizonesoft
-Global $g_sUrlGitHub			= "https://goo.gl/paEYBg|GitHub.com/rizonesoft/ComIntRep"
-Global $g_sUrlGitHubIssues		= "https://goo.gl/Xc1eyW|GitHub.com/rizonesoft/ComIntRep/issues"
-Global $g_sUrlSA				= "https://goo.gl/Fn6UKQ|Wikipedia.org/wiki/South_Africa"				; https://en.wikipedia.org/wiki/South_Africa
-Global $g_sUrlProgPage			= "https://goo.gl/3Shqgs|www.rizonesoft.com/downloads/complete-internet-repair/"
-Global $g_sUrlWinRepair			= "https://goo.gl/Cw8pfc|www.rizonesoft.com/downloads/complete-windows-repair/"
+Global $g_sUrlCompHomePage		= "https://rizone.tech/2Eoo9O1|www.rizonesoft.com"							; https://www.rizonesoft.com
+Global $g_sUrlContact			= "https://rizone.tech/2EhlYHF|www.rizonesoft.com/contact"					; https://www.rizonesoft.com/contact
+Global $g_sUrlDownloads			= "https://rizone.tech/2EWMZRO|www.rizonesoft.com/downloads"				; https://www.rizonesoft.com/downloads/
+Global $g_sUrlFacebook			= "https://rizone.tech/2nZTR92|Facebook.com/rizonesoft"						; https://www.facebook.com/rizonesoft
+Global $g_sUrlTwitter			= "https://rizone.tech/2EZE7ej|Twitter.com/Rizonesoft"						; https://twitter.com/Rizonesoft
+Global $g_sUrlGooglePlus		= "https://rizone.tech/2BqYKR1|Plus.google.com/+Rizonesoftsa" 				; https://plus.google.com/+Rizonesoftsa/posts
+Global $g_sUrlRSS				= "https://rizone.tech/2nY4SIP|www.rizonesoft.com/feed"						; https://www.rizonesoft.com/feed
+Global $g_sUrlPayPal			= "https://rizone.tech/2G8CL0g|PayPal.me/rizonesoft"						; https://www.paypal.me/rizonesoft
+Global $g_sUrlGitHub			= "https://rizone.tech/2EXrMHp|GitHub.com/rizonesoft/ComIntRep"				; https://github.com/rizonesoft/ComIntRep
+Global $g_sUrlGitHubIssues		= "https://rizone.tech/2EYcen3|GitHub.com/rizonesoft/ComIntRep/issues"		; https://github.com/rizonesoft/ComIntRep/issues
+Global $g_sUrlSA				= "https://rizone.tech/2Brk7lf|Wikipedia.org/wiki/South_Africa"				; https://en.wikipedia.org/wiki/South_Africa
+Global $g_sUrlProgPage			= "https://rizone.tech/2nVuCFF|www.rizonesoft.com/downloads/complete-internet-repair/"
+Global $g_sUrlProgUpdate		= "https://rizone.tech/2BYNooi|www.rizonesoft.com/downloads/complete-internet-repair/update/"
+Global $g_sUrlWinRepair         = "https://rizone.tech/2BpEm2y|www.rizonesoft.com/downloads/complete-windows-repair/"
 
 ;~ Path Settings
 Global $g_sWorkingDir		= @ScriptDir ;~ Working Directory
@@ -336,7 +338,6 @@ Global $g_sCatroot2Old 		= @WindowsDir & "\System32\CatRoot2.Old"
 ; Configuration Settings
 Global $g_iBackupData		= 0
 Global $g_iBackupIPData 	= 1
-Global $g_iClearCacheOnExit = 0
 
 ;~ Language Settings
 Global $g_sLanguageDir		= $g_sRootDir & "\Language\" & $g_sProgShortName
@@ -348,8 +349,8 @@ Global $g_sLanguageFile		= $g_sLanguageDir & "\" & $g_sSelectedLanguage & ".ini"
 Global $g_iUpdateIconStart				= 209
 Global $g_iDialogIconStart				= 211
 Global $g_iAboutIconStart				= 216
-Global $g_iComIconStart					= 258
-Global $g_iMenuIconsStart				= 277
+Global $g_iComIconStart					= 259
+Global $g_iMenuIconsStart				= 278
 Global $g_iLangIconStart				= 228
 Global $g_aCoreIcons[3]
 Global $g_iSizeIcon						= 64
@@ -365,10 +366,6 @@ Global $g_sLogIpResetPath	= $g_sLoggingRoot & "\IP_Reset.log"
 Global $g_GuiLogBoxHeight	= 120
 Global $g_iLogIconStart		= -202
 Global $g_iUpdateSubStatus	= True
-
-;~ Cache Settings
-Global $g_sCacheRoot		= $g_sWorkingDir & "\Cache\" & $g_sProgShortName
-Global $g_iEnableCache		= 1
 
 ;~ Splash Page Settings
 Global $g_SplashAnimation
@@ -420,9 +417,6 @@ If Not IsDeclared("g_iParent") Then Global $g_iParent
 Global $g_hOptionsGui
 Global $g_hOChkBackupData
 Global $g_hOChkExportIP
-Global $g_hOChkClearCacheOnExit
-Global $g_hOLblCacheSize
-Global $g_hOBtnClearCache
 Global $g_hOChkLogEnabled
 Global $g_hOInLogSize
 Global $g_hOInLogSizeTemp
@@ -986,15 +980,10 @@ EndFunc   ;==>_SetResources
 Func _ResetWorkingDirectories()
 
 	$g_sPathIni = $g_sWorkingDir & "\" & $g_sProgShortName & ".ini"
-	$g_sCacheRoot = $g_sWorkingDir & "\Cache\" & $g_sProgShortName
 	$g_sExportRoot = $g_sWorkingDir & "\Export"
 	$g_sLoggingRoot = $g_sWorkingDir & "\Logging\" & $g_sProgShortName
 	$g_sLoggingPath = $g_sLoggingRoot & "\" & $g_sProgShortName & ".log"
 	$g_sLogIpResetPath	= $g_sLoggingRoot & "\IP_Reset.log"
-
-	If $g_iEnableCache == 1 Then
-		DirCreate($g_sCacheRoot)
-	EndIf
 
 EndFunc   ;==>_ResetWorkingDirectories
 
@@ -1043,7 +1032,6 @@ Func _LoadConfiguration()
 	$g_iBackupData = Int(IniRead($g_sPathIni, $g_sProgShortName, "BackupData", 0))
 	$g_iBackupIPData  = Int(IniRead($g_sPathIni, $g_sProgShortName, "BackupIPData", 1))
 	$g_iCheckForUpdates = Int(IniRead($g_sPathIni, $g_sProgShortName, "CheckForUpdates", 4))
-	$g_iClearCacheOnExit = Int(IniRead($g_sPathIni, $g_sProgShortName, "ClearCacheOnExit", 0))
 	$g_iLoggingEnabled = Int(IniRead($g_sPathIni, $g_sProgShortName, "LoggingEnabled", 1))
 	$g_iLoggingStorage = Int(IniRead($g_sPathIni, $g_sProgShortName, "LoggingStorageSize", 5242880))
 	$g_iUptimeMonitor = Int(IniRead($g_sPathIni, "Donate", "Seconds", 0))
@@ -1124,7 +1112,6 @@ Func _ShutdownProgram()
 		IniWrite($g_sPathIni, "Donate", "DonateTime", $g_iUptimeMonitor)
 		_Donate_ShowDialog()
 	Else
-		If $g_iClearCacheOnExit == 1 Then DirRemove($g_sCacheRoot, 1)
 		WinSetTrans($g_hCoreGui, Default, 255)
 		_TerminateProgram()
 	EndIf
@@ -1463,7 +1450,6 @@ Func _ResetTCPIP($iRow)
 	_Logging_Start($g_aLangMessages2[14])
 	_StartSoloProcess($iRow)
 	If $g_iBackupIPData Then
-
 		__ExportIPConfiguration()
 	EndIf
 	If @OSVersion = "WIN_XP" And @OSVersion = "WIN_2003" Then
@@ -1537,10 +1523,10 @@ Func _ReleaseRenewIP($iRow)
 	_RunCommand("ipconfig /renew")
 
 	If $g_iResetWinsock Then
-		_Logging_EditWrite($g_aLangMessages2[26])
-		_UpdateSoloProcess($iRow, 80)
-		_RepairWinsock($iRow, True)
-		If $g_iSoloProcess = True Then _BootMessage()
+;~ 		_Logging_EditWrite($g_aLangMessages2[26])
+;~ 		_UpdateSoloProcess($iRow, 80)
+;~ 		_RepairWinsock($iRow, True)
+;~ 		If $g_iSoloProcess = True Then _BootMessage()
 	EndIf
 
 	_Logging_FinalMessage($g_aLangMessages2[27])
@@ -2662,32 +2648,22 @@ Func _ShowPreferencesDlg()
 	GUICtrlSetOnEvent($g_hOChkExportIP, "__CheckPreferenceChange")
 
 	GUICtrlCreateTabItem(StringFormat(" %s ", $g_aLangPreferences[2]))
-	GUICtrlCreateGroup($g_aLangPreferences[5], 25, 50, 400, 100)
+	GUICtrlCreateGroup($g_aLangPreferences[6], 25, 50, 400, 160)
 	GUICtrlSetFont(-1, 10, 700, 2)
-	$g_hOChkClearCacheOnExit = GUICtrlCreateCheckbox($g_aLangPreferences[10], 35, 80, 300, 20)
-	GUICtrlSetState($g_hOChkClearCacheOnExit, $g_iClearCacheOnExit)
-	$g_hOLblCacheSize = GUICtrlCreateLabel(StringFormat($g_aLangPreferences[11], Round(DirGetSize($g_sCacheRoot) / 1024, 2)), 35, 115, 200, 20)
-	GUICtrlSetColor($g_hOLblCacheSize, 0x555555)
-	$g_hOBtnClearCache = GUICtrlCreateButton($g_aLangPreferences[12], 255, 105, 150, 30)
-	GUICtrlCreateGroup("", -99, -99, 1, 1) ;close group
-	GUICtrlCreateGroup($g_aLangPreferences[6], 25, 160, 400, 160)
-	GUICtrlSetFont(-1, 10, 700, 2)
-	$g_hOChkLogEnabled = GUICtrlCreateCheckbox($g_aLangPreferences[13], 35, 200, 200, 20)
+	$g_hOChkLogEnabled = GUICtrlCreateCheckbox($g_aLangPreferences[10], 35, 90, 200, 20)
 	GUICtrlSetState($g_hOChkLogEnabled, $g_iLoggingEnabled)
-	GUICtrlCreateLabel($g_aLangPreferences[14], 35, 230, 180, 20)
-	$g_hOInLogSize = GUICtrlCreateInput(Round($g_iLoggingStorage / 1024, 2), 215, 228, 100, 20)
+	GUICtrlCreateLabel($g_aLangPreferences[11], 35, 120, 180, 20)
+	$g_hOInLogSize = GUICtrlCreateInput(Round($g_iLoggingStorage / 1024, 2), 215, 118, 100, 20)
 	GUICtrlSetStyle($g_hOInLogSize, BitOr($ES_RIGHT, $ES_NUMBER))
 	GUICtrlSetFont(-1, 9, 400, 0, "Verdana")
-	GUICtrlCreateLabel("KB", 325, 230, 50, 20)
+	GUICtrlCreateLabel("KB", 325, 120, 50, 20)
 	$g_hOInLogSizeTemp = Int(GUICtrlRead($g_hOInLogSize))
-	$g_hOLblLogSize = GUICtrlCreateLabel(StringFormat($g_aLangPreferences[15], __GetLoggingSize()), 35, 270, 200, 20)
+	$g_hOLblLogSize = GUICtrlCreateLabel(StringFormat($g_aLangPreferences[12], __GetLoggingSize()), 35, 160, 200, 20)
 	GUICtrlSetColor($g_hOLblLogSize, 0x555555)
-	$g_hOBtnLogClear = GUICtrlCreateButton($g_aLangPreferences[16], 255, 265, 150, 30)
+	$g_hOBtnLogClear = GUICtrlCreateButton($g_aLangPreferences[13], 255, 155, 150, 30)
 	GUICtrlCreateGroup("", -99, -99, 1, 1) ;close group
 
-	GUICtrlSetOnEvent($g_hOChkClearCacheOnExit, "__CheckPreferenceChange")
 	GUICtrlSetOnEvent($g_hOChkLogEnabled, "__CheckPreferenceChange")
-	GUICtrlSetOnEvent($g_hOBtnClearCache, "__ClearCacheFolder")
 	GUICtrlSetOnEvent($g_hOBtnLogClear, "__RemoveLoggingFile")
 		;GUICtrlSetState($g_ReBarChkLogEnabled, $g_ReBarLogEnabled)
 	__CheckLoggingStateChanged()
@@ -2708,7 +2684,7 @@ Func _ShowPreferencesDlg()
 			$WS_EX_CLIENTEDGE, $LVS_EX_FLATSB, $LVS_EX_INFOTIP))
 
 	$g_hOImgLanguage = _GUIImageList_Create(16, 16, 5, 3)
-	For $l = 0 To 29
+	For $l = 0 To 30
 		_GUIImageList_AddIcon($g_hOImgLanguage, @ScriptFullPath, 0 - $g_iLangIconStart - $l)
 	Next
 	_GUICtrlListView_SetImageList($g_hOListLanguage, $g_hOImgLanguage, 1)
@@ -2746,41 +2722,27 @@ Func _ShowPreferencesDlg()
 	Local $iSelLangItem = __FindLanguageItem(3300 + $aSelLangInfo[1])
 	_GUICtrlListView_SetItemSelected($g_hOListLanguage, $iSelLangItem, True, True)
 	_GUICtrlListView_EnsureVisible($g_hOListLanguage, $iSelLangItem)
-	GUICtrlCreateLabel(StringFormat($g_aLangPreferences[17], $g_aLangPreferences[18]), 40, 350, 365, 35)
+	GUICtrlCreateLabel(StringFormat($g_aLangPreferences[14], $g_aLangPreferences[15]), 40, 350, 365, 35)
 	GUICtrlSetColor(-1, 0x555555)
 	GUICtrlSetFont(-1, 9)
 	GUICtrlCreateGroup("", -99, -99, 1, 1) ;close group
 	GUICtrlCreateTabItem("") ; end tabitem definition
 
-	$g_hOLblPrefsUpdated = GUICtrlCreateLabel($g_aLangPreferences[20], 25, 455, 200, 20)
+	$g_hOLblPrefsUpdated = GUICtrlCreateLabel($g_aLangPreferences[17], 25, 455, 200, 20)
 	GUICtrlSetColor($g_hOLblPrefsUpdated, 0x008000)
 	GUICtrlSetState($g_hOLblPrefsUpdated, $GUI_HIDE)
-	$g_hOBtnSave = GUICtrlCreateButton($g_aLangPreferences[18], 210, 450, 100, 30)
+	$g_hOBtnSave = GUICtrlCreateButton($g_aLangPreferences[15], 210, 450, 100, 30)
 	GUICtrlSetFont($g_hOBtnSave, 10)
 	GUICtrlSetState($g_hOBtnSave, $GUI_FOCUS)
 	GUICtrlSetState($g_hOBtnSave, $GUI_DISABLE)
 	GUICtrlSetOnEvent($g_hOBtnSave, "__SavePreferences")
 
-	$g_hOBtnCancel = GUICtrlCreateButton($g_aLangPreferences[19], 320, 450, 100, 30)
+	$g_hOBtnCancel = GUICtrlCreateButton($g_aLangPreferences[16], 320, 450, 100, 30)
 	GUICtrlSetFont($g_hOBtnCancel, 10)
 	GUICtrlSetOnEvent($g_hOBtnCancel, "__CloseOptionsDlg")
 
 	GUISetState(@SW_SHOW, $g_hOptionsGui)
 	AdlibRegister("__CheckLoggingSizeChange", 500)
-
-EndFunc
-
-
-Func __ClearCacheFolder()
-
-	GUICtrlSetState($g_hOBtnClearCache, $GUI_DISABLE)
-	DirRemove($g_sCacheRoot, 1)
-	DirCreate($g_sCacheRoot)
-
-	GUICtrlSetData($g_hOLblCacheSize, StringFormat($g_aLangPreferences[11], Round(DirGetSize($g_sCacheRoot) / 1024, 2)))
-	GUICtrlSetData($g_hOLblPrefsUpdated, $g_aLangPreferences[21])
-	GUICtrlSetState($g_hOLblPrefsUpdated, $GUI_SHOW)
-	GUICtrlSetState($g_hOBtnClearCache, $GUI_ENABLE)
 
 EndFunc
 
@@ -2794,8 +2756,8 @@ Func __RemoveLoggingFile()
 		_Logging_Initialize()
 	EndIf
 
-	GUICtrlSetData($g_hOLblLogSize, StringFormat($g_aLangPreferences[15], __GetLoggingSize()))
-	GUICtrlSetData($g_hOLblPrefsUpdated, $g_aLangPreferences[22])
+	GUICtrlSetData($g_hOLblLogSize, StringFormat($g_aLangPreferences[12], __GetLoggingSize()))
+	GUICtrlSetData($g_hOLblPrefsUpdated, $g_aLangPreferences[18])
 	GUICtrlSetState($g_hOLblPrefsUpdated, $GUI_SHOW)
 	GUICtrlSetState($g_hOBtnLogClear, $GUI_ENABLE)
 
@@ -2815,8 +2777,7 @@ EndFunc
 
 Func __CheckPreferenceChange()
 
-	If __CheckBoxChanged("ClearCacheOnExit", $g_hOChkClearCacheOnExit) = True Or _
-			__CheckBoxChanged("LoggingEnabled", $g_hOChkLogEnabled) = True Or _
+	If __CheckBoxChanged("LoggingEnabled", $g_hOChkLogEnabled) = True Or _
 			__CheckBoxChanged("BackupData", $g_hOChkBackupData) = True Or _
 			__CheckBoxChanged("BackupIPData", $g_hOChkExportIP) = True Then
 		GUICtrlSetState($g_hOBtnSave, $GUI_ENABLE)
@@ -2876,11 +2837,11 @@ Func __SavePreferences()
 	Local $iLangChanged = False
 
 	If $g_tSelectedLanguage <> $g_sSelectedLanguage Then
-		Local $iMsgBoxResult = MsgBox($MB_OKCANCEL + $MB_ICONINFORMATION, $g_aLangPreferences[23], $g_aLangPreferences[24], 0, $g_hOptionsGui)
+		Local $iMsgBoxResult = MsgBox($MB_OKCANCEL + $MB_ICONINFORMATION, $g_aLangPreferences[19], $g_aLangPreferences[20], 0, $g_hOptionsGui)
 		Switch $iMsgBoxResult
 			Case 1
 				IniWrite($g_sPathIni, $g_sProgShortName, "Language", $g_tSelectedLanguage)
-				GUICtrlSetData($g_hOLblPrefsUpdated, $g_aLangPreferences[23])
+				GUICtrlSetData($g_hOLblPrefsUpdated, $g_aLangPreferences[19])
 				GUICtrlSetState($g_hOLblPrefsUpdated, $GUI_SHOW)
 				GUICtrlSetState($g_hOBtnSave, $GUI_DISABLE)
 				$iLangChanged = True
@@ -2908,21 +2869,15 @@ Func __SavePreferences()
 		$g_iLoggingEnabled = 0
 	EndIf
 
-	If GUICtrlRead($g_hOChkClearCacheOnExit) = $GUI_CHECKED Then
-		$g_iClearCacheOnExit = 1
-	ElseIf GUICtrlRead($g_hOChkClearCacheOnExit) = $GUI_UNCHECKED Then
-		$g_iClearCacheOnExit = 0
-	EndIf
 	$g_iLoggingStorage = Int(GUICtrlRead($g_hOInLogSize)) * 1024
 
 	IniWrite($g_sPathIni, $g_sProgShortName, "BackupData", $g_iBackupData)
 	IniWrite($g_sPathIni, $g_sProgShortName, "BackupIPData", $g_iBackupIPData)
-	IniWrite($g_sPathIni, $g_sProgShortName, "ClearCacheOnExit", $g_iClearCacheOnExit)
 	IniWrite($g_sPathIni, $g_sProgShortName, "LoggingEnabled", $g_iLoggingEnabled)
 	IniWrite($g_sPathIni, $g_sProgShortName, "LoggingStorageSize", $g_iLoggingStorage)
 
 	If $iLangChanged = True Then
-		$iMsgBoxResult = MsgBox($MB_OKCANCEL + $MB_ICONINFORMATION, $g_aLangPreferences[25], $g_aLangPreferences[26], 0, $g_hOptionsGui)
+		$iMsgBoxResult = MsgBox($MB_OKCANCEL + $MB_ICONINFORMATION, $g_aLangPreferences[21], $g_aLangPreferences[22], 0, $g_hOptionsGui)
 		Switch $iMsgBoxResult
 			Case 1
 				_ShutdownProgram()
@@ -2931,7 +2886,7 @@ Func __SavePreferences()
 				$iLangChanged = False
 		EndSwitch
 	Else
-		GUICtrlSetData($g_hOLblPrefsUpdated, $g_aLangPreferences[20])
+		GUICtrlSetData($g_hOLblPrefsUpdated, $g_aLangPreferences[17])
 		GUICtrlSetState($g_hOLblPrefsUpdated, $GUI_SHOW)
 		GUICtrlSetState($g_hOBtnSave, $GUI_DISABLE)
 	EndIf
@@ -3008,60 +2963,63 @@ Func __ISO639CodeToIndex($i639 = "en")
 		Case "hr"
 			$aLangInfo[0] = "Croatian"
 			$aLangInfo[1] = 11
+		Case "hu"
+			$aLangInfo[0] = "Hungarian"
+			$aLangInfo[1] = 12
 		Case "id"
 			$aLangInfo[0] = "Indonesian"
-			$aLangInfo[1] = 12
+			$aLangInfo[1] = 13
 		Case "is"
 			$aLangInfo[0] = "Icelandic"
-			$aLangInfo[1] = 13
+			$aLangInfo[1] = 14
 		Case "it"
 			$aLangInfo[0] = "Italian"
-			$aLangInfo[1] = 14
+			$aLangInfo[1] = 15
 		Case "iw"
 			$aLangInfo[0] = "Hebrew"
-			$aLangInfo[1] = 15
+			$aLangInfo[1] = 16
 		Case "ja"
 			$aLangInfo[0] = "Japanese"
-			$aLangInfo[1] = 16
+			$aLangInfo[1] = 17
 		Case "ko"
 			$aLangInfo[0] = "Korean"
-			$aLangInfo[1] = 17
+			$aLangInfo[1] = 18
 		Case "nl"
 			$aLangInfo[0] = "Dutch"
-			$aLangInfo[1] = 18
+			$aLangInfo[1] = 19
 		Case "no"
 			$aLangInfo[0] = "Norwegian"
-			$aLangInfo[1] = 19
+			$aLangInfo[1] = 20
 		Case "pl"
 			$aLangInfo[0] = "Polish"
-			$aLangInfo[1] = 20
+			$aLangInfo[1] = 21
 		Case "pt"
 			$aLangInfo[0] = "Portuguese"
-			$aLangInfo[1] = 21
+			$aLangInfo[1] = 22
 		Case "ro"
 			$aLangInfo[0] = "Romanian"
-			$aLangInfo[1] = 22
+			$aLangInfo[1] = 23
 		Case "ru"
 			$aLangInfo[0] = "Russian"
-			$aLangInfo[1] = 23
+			$aLangInfo[1] = 24
 		Case "sk"
 			$aLangInfo[0] = "Slovak"
-			$aLangInfo[1] = 24
+			$aLangInfo[1] = 25
 		Case "sv"
 			$aLangInfo[0] = "Swedish"
-			$aLangInfo[1] = 25
+			$aLangInfo[1] = 26
 		Case "th"
 			$aLangInfo[0] = "Thai"
-			$aLangInfo[1] = 26
+			$aLangInfo[1] = 27
 		Case "tr"
 			$aLangInfo[0] = "Turkish"
-			$aLangInfo[1] = 27
+			$aLangInfo[1] = 28
 		Case "vi"
 			$aLangInfo[0] = "Vietnamese"
-			$aLangInfo[1] = 28
+			$aLangInfo[1] = 29
 		Case "zh-CN"
 			$aLangInfo[0] = "Chinese"
-			$aLangInfo[1] = 29
+			$aLangInfo[1] = 30
 	EndSwitch
 
 	Return $aLangInfo

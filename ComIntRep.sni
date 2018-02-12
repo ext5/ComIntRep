@@ -23,13 +23,14 @@ Website = https://www.rizonesoft.com
 [Distribute]
 File=ComIntRep.exe
 File=ComIntRep_X64.exe
-File=ComIntRep.ini
+File=~ComIntRep.ini
 File=Docs\Changes.txt
 File=Docs\License.txt
 File=Docs\Readme.txt
 File=Language\ComIntRep\af.ini
 File=Language\ComIntRep\en.ini
 File=Language\ComIntRep\fr.ini
+File=Language\ComIntRep\hu.ini
 File=Language\ComIntRep\it.ini
 File=Language\ComIntRep\ru.ini
 File=Language\ComIntRep\tr.ini
@@ -43,11 +44,11 @@ File=Themes\Sounds\Welcome.wav
 [Sources]
 
 [Links]
-GetMoreURL=https://goo.gl/Ua2ooa
+GetMoreURL=https://rizone.tech/2BUTzcO
 CompanyURL=https://www.rizonesoft.com
 SupportURL=https://www.rizonesoft.com/support/
 ContactURL=https://www.rizonesoft.com/contact
-UpdateURL=https://goo.gl/gK3TAQ
+UpdateURL=https://rizone.tech/2BYNooi
 
 [Environment]
 ScriptPath=D:\Rizonesoft\SDK\Concrete\ComIntRep\ComIntRep.au3
@@ -58,10 +59,10 @@ ShortName=ComIntRep
 Description=Complete Internet Repair
 Type=N
 Icon=D:\Rizonesoft\SDK\Concrete\ComIntRep\Themes\Icons\ComIntRep.ico
-Version=5.0.1.3852
+Version=5.1.0.3890
 VersionMajor=5
-VersionMaintenance=1
-VersionBuild=3852
+VersionMaintenance=0
+VersionBuild=3890
 UseBeta=B
 UseX64=Y
 CompileBoth=Y
@@ -69,11 +70,11 @@ OutFile=ComIntRep.exe
 OutFileX64=ComIntRep_X64.exe
 OutFilePath=D:\Rizonesoft\SDK\Concrete\ComIntRep\ComIntRep.exe
 OutFileX64Path=D:\Rizonesoft\SDK\Concrete\ComIntRep\ComIntRep_X64.exe
-InstallScriptPath=0
-InstallOutputPath=0
-InstallSize=0
-DistributionPath=D:\Rizonesoft\SDK\Concrete\ComIntRep\Distribution\3852
-DistributionName=ComIntRep_3852
-FullDistributionPath=D:\Rizonesoft\SDK\Concrete\ComIntRep\Distribution\3852\ComIntRep_3852
-DistroSourceName=ComIntRep_3852_Source
-DistroSourceFullPath=D:\Rizonesoft\SDK\Concrete\ComIntRep\Distribution\3852\ComIntRep_3852_Source
+InstallScriptPath=D:\Rizonesoft\SDK\Concrete\ComIntRep\Distribution\3890\ComIntRep_3890_Setup.iss
+InstallOutputPath=D:\Rizonesoft\SDK\Concrete\ComIntRep\Distribution\3890\ComIntRep_3890_Setup.exe
+InstallSize=3782236
+DistributionPath=D:\Rizonesoft\SDK\Concrete\ComIntRep\Distribution\3890
+DistributionName=ComIntRep_3890
+FullDistributionPath=D:\Rizonesoft\SDK\Concrete\ComIntRep\Distribution\3890\ComIntRep_3890
+DistroSourceName=ComIntRep_3890_Source
+DistroSourceFullPath=D:\Rizonesoft\SDK\Concrete\ComIntRep\Distribution\3890\ComIntRep_3890_Source
