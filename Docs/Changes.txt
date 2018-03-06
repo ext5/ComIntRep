@@ -3,18 +3,27 @@ RIZONESOFT COMPLETE INTERNET REPAIR CHANGES
 ==================================================
 
 --------------------------------------------------
+Version 5.1.0.3895 (March 06, 2018)
+--------------------------------------------------
+
+- Added German language file.
+- Added support for Slovenian language.
+
+--------------------------------------------------
 Version 5.1.0.3890 (February 13, 2018)
 --------------------------------------------------
 
+- Fix: Not able to select language with installed version.
 - Removed Winsock Fix and Boot Message from Renew TCP/IP.
-- Removed the caching folder, including related functions. (Redundant)
 - Update files are now downloaded to the Windows Temp directory.
+- Removed the caching folder, including related functions. (Redundant)
 - UPX Compressed. (was not causing the false malware detections)
 
 ## Language Changes
 
 - Added language name translations next to english name.
 - Added instructions (comments) to help with translating in language files.
+- Fixed Hungarian language variables.
 
 --------------------------------------------------
 Version 5.0.1.3860 (February 02, 2018)

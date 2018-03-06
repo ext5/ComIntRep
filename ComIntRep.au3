@@ -30,7 +30,7 @@
 ;===============================================================================================================
 #AutoIt3Wrapper_Res_Comment=Complete Internet Repair			;~ Comment field
 #AutoIt3Wrapper_Res_Description=Complete Internet Repair      	;~ Description field
-#AutoIt3Wrapper_Res_Fileversion=5.1.0.3891
+#AutoIt3Wrapper_Res_Fileversion=5.1.0.3896
 #AutoIt3Wrapper_Res_FileVersion_AutoIncrement=Y  				;~ (Y/N/P) AutoIncrement FileVersion. Default=N
 #AutoIt3Wrapper_Res_FileVersion_First_Increment=N				;~ (Y/N) AutoIncrement Y=Before; N=After compile. Default=N
 #AutoIt3Wrapper_Res_HiDpi=N                      				;~ (Y/N) Compile for high DPI. Default=N
@@ -128,55 +128,56 @@
 #AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\pt.ico					; 250
 #AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\ro.ico					; 251
 #AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\ru.ico					; 252
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\sk.ico					; 253
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\sv.ico					; 254
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\th.ico					; 255
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\tr.ico					; 256
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\vi.ico					; 257
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\zh-CN.ico				; 258
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\si.ico					; 253
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\sk.ico					; 254
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\sv.ico					; 255
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\th.ico					; 256
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\tr.ico					; 257
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\vi.ico					; 258
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\zh-CN.ico				; 259
 
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Information-D.ico	; 259
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Information.ico		; 260
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Run-D.ico			; 261
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Run.ico				; 262
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Complete.ico			; 263
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Cross.ico			; 264
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-0.ico			; 265
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-1.ico			; 266
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-2.ico			; 267
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-3.ico			; 268
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-4.ico			; 269
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-5.ico			; 270
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-6.ico			; 271
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-7.ico			; 272
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-8.ico			; 273
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-9.ico			; 274
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-10.ico		; 275
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-11.ico		; 276
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-12.ico		; 277
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Information-D.ico	; 260
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Information.ico		; 261
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Run-D.ico			; 262
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Run.ico				; 263
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Complete.ico			; 264
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Cross.ico			; 265
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-0.ico			; 266
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-1.ico			; 267
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-2.ico			; 268
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-3.ico			; 269
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-4.ico			; 270
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-5.ico			; 271
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-6.ico			; 272
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-7.ico			; 273
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-8.ico			; 274
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-9.ico			; 275
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-10.ico		; 276
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-11.ico		; 277
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-12.ico		; 278
 
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\Eventvwr.ico			; 278
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\Gear.ico				; 279
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\Logbook.ico				; 280
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\IPProperties.ico		; 281
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\Close.ico				; 282
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\RestorePoint.ico		; 283
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\NdWeb.ico				; 284
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\NdNetworkAdapter.ico	; 285
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\InternetDiagnostic.ico	; 286
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\NdInbound.ico			; 287
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\HomeGroupDiag.ico		; 288
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\NdFileShare.ico			; 289
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\WinUpdateDiag.ico		; 290
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\SpeedTest.ico			; 291
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\RouterPass.ico			; 292
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\RemoteDesktop.ico		; 293
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\InternetProperties.ico	; 294
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\Update.ico				; 295
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\Home.ico				; 296
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\Mail.ico				; 297
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\GitHub.ico				; 298
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\About.ico				; 299
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\Eventvwr.ico			; 279
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\Gear.ico				; 280
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\Logbook.ico				; 281
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\IPProperties.ico		; 282
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\Close.ico				; 283
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\RestorePoint.ico		; 284
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\NdWeb.ico				; 285
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\NdNetworkAdapter.ico	; 286
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\InternetDiagnostic.ico	; 287
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\NdInbound.ico			; 288
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\HomeGroupDiag.ico		; 289
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\NdFileShare.ico			; 290
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\WinUpdateDiag.ico		; 291
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\SpeedTest.ico			; 292
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\RouterPass.ico			; 293
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\RemoteDesktop.ico		; 294
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\InternetProperties.ico	; 295
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\Update.ico				; 296
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\Home.ico				; 297
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\Mail.ico				; 298
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\GitHub.ico				; 299
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\About.ico				; 300
 
 
 ;===============================================================================================================
@@ -189,7 +190,7 @@
 ; Au3Stripper Settings
 ;===============================================================================================================
 #AutoIt3Wrapper_Run_Au3Stripper=N								;~ (Y/N) Run Au3Stripper before compilation. default=N
-;#Au3Stripper_Parameters=MergeOnly								;~ Au3Stripper parameters...see SciTE4AutoIt3 Helpfile for options
+#Au3Stripper_Parameters=/MergeOnly								;~ Au3Stripper parameters...see SciTE4AutoIt3 Helpfile for options
 ;#Au3Stripper_Ignore_Variables=
 ;===============================================================================================================
 ; AU3Check settings
@@ -339,6 +340,17 @@ Global $g_sCatroot2Old 		= @WindowsDir & "\System32\CatRoot2.Old"
 Global $g_iBackupData		= 0
 Global $g_iBackupIPData 	= 1
 
+;~ Logging Settings
+Global $g_sLoggingRoot		= $g_sWorkingDir & "\Logging\" & $g_sProgShortName
+Global $g_sLoggingPath		= $g_sLoggingRoot & "\" & $g_sProgShortName & ".log"
+Global $g_sLogIpResetPath	= $g_sLoggingRoot & "\IP_Reset.log"
+Global $g_GuiLogBoxHeight	= 120
+Global $g_iLogIconStart		= -202
+Global $g_iUpdateSubStatus	= True
+
+;~ Working Directories needs to be set before language is loaded.
+_SetWorkingDirectories()
+
 ;~ Language Settings
 Global $g_sLanguageDir		= $g_sRootDir & "\Language\" & $g_sProgShortName
 Global $g_sSelectedLanguage = IniRead($g_sPathIni, $g_sProgShortName, "Language", "en")
@@ -349,8 +361,8 @@ Global $g_sLanguageFile		= $g_sLanguageDir & "\" & $g_sSelectedLanguage & ".ini"
 Global $g_iUpdateIconStart				= 209
 Global $g_iDialogIconStart				= 211
 Global $g_iAboutIconStart				= 216
-Global $g_iComIconStart					= 259
-Global $g_iMenuIconsStart				= 278
+Global $g_iComIconStart					= 260
+Global $g_iMenuIconsStart				= 279
 Global $g_iLangIconStart				= 228
 Global $g_aCoreIcons[3]
 Global $g_iSizeIcon						= 64
@@ -358,14 +370,6 @@ Global $g_aLognIcons[$CNT_LOGICONS]
 Global $g_aMenuIcons[$CNT_MENUICONS]
 Global $g_aCommIcons[$CNT_COMMICONS]
 Global $g_sDlgOptionsIcon
-
-;~ Logging Settings
-Global $g_sLoggingRoot		= $g_sWorkingDir & "\Logging\" & $g_sProgShortName
-Global $g_sLoggingPath		= $g_sLoggingRoot & "\" & $g_sProgShortName & ".log"
-Global $g_sLogIpResetPath	= $g_sLoggingRoot & "\IP_Reset.log"
-Global $g_GuiLogBoxHeight	= 120
-Global $g_iLogIconStart		= -202
-Global $g_iUpdateSubStatus	= True
 
 ;~ Splash Page Settings
 Global $g_SplashAnimation
@@ -491,23 +495,21 @@ Else
 		$g_iSplashDelay		= 100
 
 		_Splash_Start($g_aLangMessages[7])
-		_Splash_Update($g_aLangMessages[8], 2)
+		_Splash_Update($g_aLangMessages[8], 3)
 		_Localization_Messages2()	;~ Load Custom Message Language Strings
 		_Localization_Menus()		;~ Load Menu Language Strings
 		_Localization_Custom()		;~ Load Custom Language Strings
 		_Localization_About()		;~ Load About Language Strings
 		_Localization_File()		;~ Load File Language Strings
-		_Splash_Update($g_aLangMessages[9], 4)
+		_Splash_Update($g_aLangMessages[9], 6)
 		_SetResources()
-		_Splash_Update($g_aLangMessages[10], 6)
-		_SetWorkingDirectories()
-		_Splash_Update($g_aLangMessages[11], 8)
+		_Splash_Update($g_aLangMessages[11], 9)
 		_LoadConfiguration()
-		_Splash_Update($g_aLangMessages[12], 10)
+		_Splash_Update($g_aLangMessages[12], 12)
 		_Logging_Initialize($g_sProgName)
-		_Splash_Update($g_aLangMessages[13], 12)
+		_Splash_Update($g_aLangMessages[13], 15)
 		_SetHotKeys()
-		_Splash_Update($g_aLangMessages[14], 14)
+		_Splash_Update($g_aLangMessages[14], 18)
 		_StartCoreGui()
 
 	EndIf
@@ -2684,7 +2686,7 @@ Func _ShowPreferencesDlg()
 			$WS_EX_CLIENTEDGE, $LVS_EX_FLATSB, $LVS_EX_INFOTIP))
 
 	$g_hOImgLanguage = _GUIImageList_Create(16, 16, 5, 3)
-	For $l = 0 To 30
+	For $l = 0 To 31
 		_GUIImageList_AddIcon($g_hOImgLanguage, @ScriptFullPath, 0 - $g_iLangIconStart - $l)
 	Next
 	_GUICtrlListView_SetImageList($g_hOListLanguage, $g_hOImgLanguage, 1)
@@ -3002,24 +3004,27 @@ Func __ISO639CodeToIndex($i639 = "en")
 		Case "ru"
 			$aLangInfo[0] = "Russian"
 			$aLangInfo[1] = 24
+		Case "si"
+			$aLangInfo[0] = "Slovenian"
+			$aLangInfo[1] = 25
 		Case "sk"
 			$aLangInfo[0] = "Slovak"
-			$aLangInfo[1] = 25
+			$aLangInfo[1] = 26
 		Case "sv"
 			$aLangInfo[0] = "Swedish"
-			$aLangInfo[1] = 26
+			$aLangInfo[1] = 27
 		Case "th"
 			$aLangInfo[0] = "Thai"
-			$aLangInfo[1] = 27
+			$aLangInfo[1] = 28
 		Case "tr"
 			$aLangInfo[0] = "Turkish"
-			$aLangInfo[1] = 28
+			$aLangInfo[1] = 29
 		Case "vi"
 			$aLangInfo[0] = "Vietnamese"
-			$aLangInfo[1] = 29
+			$aLangInfo[1] = 30
 		Case "zh-CN"
 			$aLangInfo[0] = "Chinese"
-			$aLangInfo[1] = 30
+			$aLangInfo[1] = 31
 	EndSwitch
 
 	Return $aLangInfo
