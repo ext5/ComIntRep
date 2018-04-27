@@ -6,6 +6,20 @@
 Version %{VERSION} (%{MONTH} %{DAY}, %{YEAR})
 --------------------------------------------------
 
+- Added Spanish Language File.
+- Fix: Bug in loading Language Strings.
+
+--------------------------------------------------
+Version 5.1.0.3896 (March 12, 2018)
+--------------------------------------------------
+
+- Fix: Wrong Slovenian language code.
+- Added Slovenian language file.
+
+--------------------------------------------------
+Version 5.1.0.3895 (March 06, 2018)
+--------------------------------------------------
+
 - Added German language file.
 - Added support for Slovenian language.
 

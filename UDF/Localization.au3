@@ -146,8 +146,8 @@ Func _Localization_Messages2()
 		Return
 	EndIf
 
-	$g_aLangMessages2[0]   = _Localization_Load("Messages2", "Select.Something.Title", "Select Something")
-	$g_aLangMessages2[1]   = _Localization_Load("Messages2", "Select.Something.Message", "How about selecting something first?")
+	$g_aLangMessages2[0]   = _Localization_Load("Messages2", "Select_Something_Title", "Select Something")
+	$g_aLangMessages2[1]   = _Localization_Load("Messages2", "Select_Something_Message", "How about selecting something first?")
 	$g_aLangMessages2[2]   = _Localization_Load("Messages2", "Stopping", "Stopping, Please wait!")
 	$g_aLangMessages2[3]   = _Localization_Load("Messages2", "Boot_01", "A system reboot may be required before the settings will take effect.")
 	$g_aLangMessages2[4]   = _Localization_Load("Messages2", "Boot_02", "To Reboot or not to Reboot?")

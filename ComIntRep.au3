@@ -30,7 +30,7 @@
 ;===============================================================================================================
 #AutoIt3Wrapper_Res_Comment=Complete Internet Repair			;~ Comment field
 #AutoIt3Wrapper_Res_Description=Complete Internet Repair      	;~ Description field
-#AutoIt3Wrapper_Res_Fileversion=5.1.0.3896
+#AutoIt3Wrapper_Res_Fileversion=5.1.0.3906
 #AutoIt3Wrapper_Res_FileVersion_AutoIncrement=Y  				;~ (Y/N/P) AutoIncrement FileVersion. Default=N
 #AutoIt3Wrapper_Res_FileVersion_First_Increment=N				;~ (Y/N) AutoIncrement Y=Before; N=After compile. Default=N
 #AutoIt3Wrapper_Res_HiDpi=N                      				;~ (Y/N) Compile for high DPI. Default=N
@@ -128,8 +128,8 @@
 #AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\pt.ico					; 250
 #AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\ro.ico					; 251
 #AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\ru.ico					; 252
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\si.ico					; 253
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\sk.ico					; 254
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\sk.ico					; 253
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\sl.ico					; 254
 #AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\sv.ico					; 255
 #AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\th.ico					; 256
 #AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\tr.ico					; 257
@@ -299,20 +299,20 @@ Global $g_sProgName				= "Complete Internet Repair"
 Global $g_iSingleton			= True
 
 ;~ Links
-Global $g_sUrlCompHomePage		= "https://rizone.tech/2Eoo9O1|www.rizonesoft.com"							; https://www.rizonesoft.com
-Global $g_sUrlContact			= "https://rizone.tech/2EhlYHF|www.rizonesoft.com/contact"					; https://www.rizonesoft.com/contact
-Global $g_sUrlDownloads			= "https://rizone.tech/2EWMZRO|www.rizonesoft.com/downloads"				; https://www.rizonesoft.com/downloads/
-Global $g_sUrlFacebook			= "https://rizone.tech/2nZTR92|Facebook.com/rizonesoft"						; https://www.facebook.com/rizonesoft
-Global $g_sUrlTwitter			= "https://rizone.tech/2EZE7ej|Twitter.com/Rizonesoft"						; https://twitter.com/Rizonesoft
-Global $g_sUrlGooglePlus		= "https://rizone.tech/2BqYKR1|Plus.google.com/+Rizonesoftsa" 				; https://plus.google.com/+Rizonesoftsa/posts
-Global $g_sUrlRSS				= "https://rizone.tech/2nY4SIP|www.rizonesoft.com/feed"						; https://www.rizonesoft.com/feed
-Global $g_sUrlPayPal			= "https://rizone.tech/2G8CL0g|PayPal.me/rizonesoft"						; https://www.paypal.me/rizonesoft
+Global $g_sUrlCompHomePage		= "https://rizone.tech/home|www.rizonesoft.com"								; https://www.rizonesoft.com
+Global $g_sUrlContact			= "https://rizone.tech/contact|www.rizonesoft.com/contact"					; https://www.rizonesoft.com/contact
+Global $g_sUrlDownloads			= "https://rizone.tech/downloads|www.rizonesoft.com/downloads"				; https://www.rizonesoft.com/downloads/
+Global $g_sUrlFacebook			= "https://rizone.tech/facebook|Facebook.com/rizonesoft"					; https://www.facebook.com/rizonesoft
+Global $g_sUrlTwitter			= "https://rizone.tech/twitter|Twitter.com/Rizonesoft"						; https://twitter.com/Rizonesoft
+Global $g_sUrlGooglePlus		= "https://rizone.tech/google|Plus.google.com/+Rizonesoftsa" 				; https://plus.google.com/+Rizonesoftsa/posts
+Global $g_sUrlRSS				= "https://rizone.tech/feed|www.rizonesoft.com/feed"						; https://www.rizonesoft.com/feed
+Global $g_sUrlPayPal			= "https://rizone.tech/paypal|PayPal.me/rizonesoft"							; https://www.paypal.me/rizonesoft
 Global $g_sUrlGitHub			= "https://rizone.tech/2EXrMHp|GitHub.com/rizonesoft/ComIntRep"				; https://github.com/rizonesoft/ComIntRep
 Global $g_sUrlGitHubIssues		= "https://rizone.tech/2EYcen3|GitHub.com/rizonesoft/ComIntRep/issues"		; https://github.com/rizonesoft/ComIntRep/issues
 Global $g_sUrlSA				= "https://rizone.tech/2Brk7lf|Wikipedia.org/wiki/South_Africa"				; https://en.wikipedia.org/wiki/South_Africa
-Global $g_sUrlProgPage			= "https://rizone.tech/2nVuCFF|www.rizonesoft.com/downloads/complete-internet-repair/"
+Global $g_sUrlProgPage			= "https://rizone.tech/comintrep|www.rizonesoft.com/downloads/complete-internet-repair/"
 Global $g_sUrlProgUpdate		= "https://rizone.tech/2BYNooi|www.rizonesoft.com/downloads/complete-internet-repair/update/"
-Global $g_sUrlWinRepair         = "https://rizone.tech/2BpEm2y|www.rizonesoft.com/downloads/complete-windows-repair/"
+Global $g_sUrlWinRepair         = "https://rizone.tech/winrepair|www.rizonesoft.com/downloads/complete-windows-repair/"
 
 ;~ Path Settings
 Global $g_sWorkingDir		= @ScriptDir ;~ Working Directory
@@ -3004,11 +3004,11 @@ Func __ISO639CodeToIndex($i639 = "en")
 		Case "ru"
 			$aLangInfo[0] = "Russian"
 			$aLangInfo[1] = 24
-		Case "si"
-			$aLangInfo[0] = "Slovenian"
-			$aLangInfo[1] = 25
 		Case "sk"
 			$aLangInfo[0] = "Slovak"
+			$aLangInfo[1] = 25
+		Case "sl"
+			$aLangInfo[0] = "Slovenian"
 			$aLangInfo[1] = 26
 		Case "sv"
 			$aLangInfo[0] = "Swedish"
