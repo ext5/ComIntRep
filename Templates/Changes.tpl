@@ -6,6 +6,18 @@
 Version %{VERSION} (%{MONTH} %{DAY}, %{YEAR})
 --------------------------------------------------
 
+- Change: Help -> Contact to Help -> Get Support.
+- Change: Contact links to Support page links.
+
+## Language Changes
+
+- Help_Contact = &Contact %{Company.Name} changed to Help_Support = &Get Support.
+- Change: About -> Label_Support = Contact Us changed to Label_Support = Get Support.
+
+--------------------------------------------------
+Version 5.1.0.3905 (April 27, 2018)
+--------------------------------------------------
+
 - Added Spanish Language File.
 - Fix: Bug in loading Language Strings.
 

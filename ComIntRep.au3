@@ -30,7 +30,7 @@
 ;===============================================================================================================
 #AutoIt3Wrapper_Res_Comment=Complete Internet Repair			;~ Comment field
 #AutoIt3Wrapper_Res_Description=Complete Internet Repair      	;~ Description field
-#AutoIt3Wrapper_Res_Fileversion=5.1.0.3906
+#AutoIt3Wrapper_Res_Fileversion=5.1.0.3912
 #AutoIt3Wrapper_Res_FileVersion_AutoIncrement=Y  				;~ (Y/N/P) AutoIncrement FileVersion. Default=N
 #AutoIt3Wrapper_Res_FileVersion_First_Increment=N				;~ (Y/N) AutoIncrement Y=Before; N=After compile. Default=N
 #AutoIt3Wrapper_Res_HiDpi=N                      				;~ (Y/N) Compile for high DPI. Default=N
@@ -175,7 +175,7 @@
 #AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\InternetProperties.ico	; 295
 #AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\Update.ico				; 296
 #AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\Home.ico				; 297
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\Mail.ico				; 298
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\Support.ico				; 298
 #AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\GitHub.ico				; 299
 #AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\About.ico				; 300
 
@@ -190,7 +190,7 @@
 ; Au3Stripper Settings
 ;===============================================================================================================
 #AutoIt3Wrapper_Run_Au3Stripper=N								;~ (Y/N) Run Au3Stripper before compilation. default=N
-#Au3Stripper_Parameters=/MergeOnly								;~ Au3Stripper parameters...see SciTE4AutoIt3 Helpfile for options
+;#Au3Stripper_Parameters=/MergeOnly								;~ Au3Stripper parameters...see SciTE4AutoIt3 Helpfile for options
 ;#Au3Stripper_Ignore_Variables=
 ;===============================================================================================================
 ; AU3Check settings
@@ -300,7 +300,7 @@ Global $g_iSingleton			= True
 
 ;~ Links
 Global $g_sUrlCompHomePage		= "https://rizone.tech/home|www.rizonesoft.com"								; https://www.rizonesoft.com
-Global $g_sUrlContact			= "https://rizone.tech/contact|www.rizonesoft.com/contact"					; https://www.rizonesoft.com/contact
+Global $g_sUrlSupport			= "https://rizone.tech/support|www.rizonesoft.com/support"					; https://www.rizonesoft.com/contact
 Global $g_sUrlDownloads			= "https://rizone.tech/downloads|www.rizonesoft.com/downloads"				; https://www.rizonesoft.com/downloads/
 Global $g_sUrlFacebook			= "https://rizone.tech/facebook|Facebook.com/rizonesoft"					; https://www.facebook.com/rizonesoft
 Global $g_sUrlTwitter			= "https://rizone.tech/twitter|Twitter.com/Rizonesoft"						; https://twitter.com/Rizonesoft
@@ -457,10 +457,10 @@ EndIf
 
 If @OSVersion = "WIN_2000" Or @OSVersion = "WIN_XPe" Or @OSVersion = "WIN_2003" Then
 	Local $iMsgBoxResult = MsgBox($MB_YESNO + $MB_ICONERROR + $MB_TOPMOST, $g_aLangMessages[3], StringFormat($g_aLangMessages[5], _
-				_Link_Split($g_sUrlContact, 2)), $g_iMsgBoxTimeOut)
+				_Link_Split($g_sUrlSupport, 2)), $g_iMsgBoxTimeOut)
 	Switch $iMsgBoxResult
 		Case $IDYES
-			ShellExecute(_Link_Split($g_sUrlContact))
+			ShellExecute(_Link_Split($g_sUrlSupport))
 			_TerminateProgram()
 		Case -1, $IDNO
 			_TerminateProgram()
@@ -530,7 +530,7 @@ Func _StartCoreGui()
 	Local $mnuFileExport, $miExportIP, $miExportLSP, $miExportARP, $miExportNetBIOS, $miMaintRestore
 	Local $miTroubleHomeGroup, $miNdFileShare, $miTroubleUpdate, $miTroubleIEDiag, $miTroubleIESecDiag, $miTroubleSpeed, $miTroubleRoutPass
 	Local $miToolsInIP6, $miToolsUnIP6, $miToolsWorkGroups, $miToolsRDP, $miToolsIEP
-	Local $miHelpHome, $miHelpDownloads, $miHelpContact, $miHelpGitHub, $miHelpDonate, $miHelpAbout
+	Local $miHelpHome, $miHelpDownloads, $miHelpSupport, $miHelpGitHub, $miHelpDonate, $miHelpAbout
 	Local $hHeading
 
 	If @DesktopHeight <= 600 Then
@@ -651,7 +651,7 @@ Func _StartCoreGui()
 	_GuiCtrlMenuEx_CreateMenuItem("", $g_hMenuHelp)
 	$miHelpHome = _GuiCtrlMenuEx_CreateMenuItem($g_aLangMenus[37], $g_hMenuHelp, $g_aMenuIcons[18], $g_iMenuIconsStart + 18)
 	$miHelpDownloads = _GuiCtrlMenuEx_CreateMenuItem($g_aLangMenus[38], $g_hMenuHelp)
-	$miHelpContact = _GuiCtrlMenuEx_CreateMenuItem($g_aLangMenus[39], $g_hMenuHelp, $g_aMenuIcons[19], $g_iMenuIconsStart + 19)
+	$miHelpSupport = _GuiCtrlMenuEx_CreateMenuItem($g_aLangMenus[39], $g_hMenuHelp, $g_aMenuIcons[19], $g_iMenuIconsStart + 19)
 	_GuiCtrlMenuEx_CreateMenuItem("", $g_hMenuHelp)
 	$miHelpGitHub = _GuiCtrlMenuEx_CreateMenuItem($g_aLangMenus[40], $g_hMenuHelp, $g_aMenuIcons[20], $g_iMenuIconsStart + 20)
 	$miHelpDonate = _GuiCtrlMenuEx_CreateMenuItem($g_aLangMenus[41], $g_hMenuHelp)
@@ -661,7 +661,7 @@ Func _StartCoreGui()
 	GUICtrlSetOnEvent($g_hUpdateMenuItem, "_CheckForUpdates")
 	GUICtrlSetOnEvent($miHelpHome, "_About_HomePage")
 	GUICtrlSetOnEvent($miHelpDownloads, "_About_Downloads")
-	GUICtrlSetOnEvent($miHelpContact, "_About_Contact")
+	GUICtrlSetOnEvent($miHelpSupport, "_About_Support")
 	GUICtrlSetOnEvent($miHelpGitHub, "_About_GitHubIssues")
 	GUICtrlSetOnEvent($miHelpDonate, "_About_PayPal")
 	GUICtrlSetOnEvent($miHelpAbout, "_About_ShowDialog")
@@ -942,7 +942,7 @@ Func _SetResources()
 		$g_aMenuIcons[16] = $g_sThemesDir & "\Icons\Menus\InternetProperties.ico"
 		$g_aMenuIcons[17] = $g_sThemesDir & "\Icons\Menus\Update.ico"
 		$g_aMenuIcons[18] = $g_sThemesDir & "\Icons\Menus\Home.ico"
-		$g_aMenuIcons[19] = $g_sThemesDir & "\Icons\Menus\Mail.ico"
+		$g_aMenuIcons[19] = $g_sThemesDir & "\Icons\Menus\Support.ico"
 		$g_aMenuIcons[20] = $g_sThemesDir & "\Icons\Menus\GitHub.ico"
 		$g_aMenuIcons[21] = $g_sThemesDir & "\Icons\Menus\About.ico"
 
