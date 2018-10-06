@@ -6,11 +6,99 @@
 Version %{VERSION} (%{MONTH} %{DAY}, %{YEAR})
 --------------------------------------------------
 
+- New Make Network Computers Visible function.
+- Updated Afrikaans Translation.
+- Fixed wrong Korean flag.
+- Fixed "Open Event Viewer" status strings.
+
+Language File Changes:
+--------------------------------------------------
+- Checkbox_Repair_14 = Make Network Computers Visible in File Explorer
+- Info_15 = By default, computers in your local network should be visible when browsing for a network device with File Explorer. With Windows 10 build 1803 some computers are only accessible via their names or IP addresses.
+- Make_Computers_Visible_01 = Making Network Computers Visible.
+- Make_Computers_Visible_02 = Configuring the Function Discovery Resource Publication Service.
+- Make_Computers_Visible_03 = Network Computers should now be visible in File Explorer.
+
+--------------------------------------------------
+Version 5.1.0.3955 (September 16, 2018)
+--------------------------------------------------
+
+Updated to AutoIt version 3.3.14.5 (16 March, 2018)
+
+--------------------------------------------------
+Version 5.1.0.3950 (June 10, 2018)
+--------------------------------------------------
+
+- Removed shortened links to comply with GDPR.
+- Added Arabic Translation.
+- Updated Greek Translation.
+
+--------------------------------------------------
+Version 5.1.0.3943 (June 06, 2018)
+--------------------------------------------------
+
+- Updated Slovenian language file.
+- Fixed Traditional Chinese language file distribution.
+
+--------------------------------------------------
+Version 5.1.0.3942 (May 31, 2018)
+--------------------------------------------------
+
+- Updated Simplified Chinese language file.
+- Added Traditional Chinese language.
+- Fixed Traditional Chinese (Taiwan) flag icon.
+
+--------------------------------------------------
+Version 5.1.0.3939 (May 23, 2018)
+--------------------------------------------------
+
+- Fixed Automatically closing applications during update install.
+- Optimized calling Terminate versus Exit functions.
+
+--------------------------------------------------
+Version 5.1.0.3935 (May 17, 2018)
+--------------------------------------------------
+
+- New process priority setting.
+- New "Reduce Memory on low memory systems" feature.
+- Fixed "Logging Cleared" displaying wrong message.
+- Fixed some language string variables.
+- Added support for Traditional Chinese (zh-TW).
+- Added [Preferences] Tab_Performance = Performance.
+- Added [Preferences] Group_Priority = Priority.
+- Added [Preferences] Group_Memory = Memory.
+- Added [Preferences] Label_SetPriority = Set process priority:
+- Added [Preferences] Checkbox_SaveRealtime = Save priority above high (not recommended).
+- Added [Preferences] Checkbox_ReduceMemory = Reduce memory on low memory systems.
+- Renamed [Preferences] Tab_Logging = Logging to Tab_Cache = Cache.
+- Renamed [Update] Button_Update = Download new version to Button_Update = Read more.
+
+--------------------------------------------------
+Version 5.1.0.3925 (May 09, 2018)
+--------------------------------------------------
+
+- Fix: Automatically closing applications produces an error during update install.
+- New Processing animation. 
+- Added Support for Brazilian Portuguese (pt-BR).
+- Fixed Brazilian Portuguese language file encoding.
+- Changed current Portuguese Translation to Brazilian Portuguese.
+
+--------------------------------------------------
+Version 5.1.0.3916 (May 07, 2018)
+--------------------------------------------------
+
+- Optimize: Registry write error return.
+- Fix: Double registry error return.
+- Fix: Logging final message with error count.
+- Fix: Windows 10 manifest compatibility. Detecting Windows 10 as Windows 8.1.
+- Added Portuguese Translation
+
+--------------------------------------------------
+Version 5.1.0.3911 (May 01, 2018)
+--------------------------------------------------
+
 - Change: Help -> Contact to Help -> Get Support.
 - Change: Contact links to Support page links.
-
-## Language Changes
-
 - Help_Contact = &Contact %{Company.Name} changed to Help_Support = &Get Support.
 - Change: About -> Label_Support = Contact Us changed to Label_Support = Get Support.
 
@@ -44,9 +132,6 @@ Version 5.1.0.3890 (February 13, 2018)
 - Update files are now downloaded to the Windows Temp directory.
 - Removed the caching folder, including related functions. (Redundant)
 - UPX Compressed. (was not causing the false malware detections)
-
-## Language Changes
-
 - Added language name translations next to english name.
 - Added instructions (comments) to help with translating in language files.
 - Fixed Hungarian language variables.
@@ -71,8 +156,6 @@ Version 5.0.1.3850 (January 05, 2018)
 --------------------------------------------------
 
 - Export IP Configuration Before Resetting.
-
-## Language File Changes
 - New: [Preferences] Checkbox_Export_IP = Export IP Configuration before resetting.
 
 --------------------------------------------------
@@ -99,8 +182,6 @@ Version 5.0.1.3808 (December 07, 2017)
 - Improved Language update functions.
 - New French, Italian, Russian and Turkish Languages.
 - Fixed logging Error/Final message display.
-
-## Language File Changes
 - Change: [Messages2] Boot_06 = Click on '%s' and then '%s' to Reboot your computer later.
 - Change: Boot_08 -> MsgBox_Boot_Title
 - Change: Boot_09 -> MsgBox_boot_Message

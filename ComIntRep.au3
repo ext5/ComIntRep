@@ -8,7 +8,7 @@
 ; AutoIt3 Settings
 ;===============================================================================================================
 #AutoIt3Wrapper_UseX64=Y										;~ (Y/N) Use AutoIt3_x64 or Aut2Exe_x64. Default=N
-#AutoIt3Wrapper_Version=B                        				;~ (B/P) Use Beta or Production for AutoIt3 and Aut2Eex. Default is P
+#AutoIt3Wrapper_Version=P                        				;~ (B/P) Use Beta or Production for AutoIt3 and Aut2Eex. Default is P
 #AutoIt3Wrapper_Run_Debug_Mode=N								;~ (Y/N) Run Script with console debugging. Default=N
 ;#AutoIt3Wrapper_Autoit3Dir=									;~ Optionally override the AutoIt3 install directory to use.
 ;#AutoIt3Wrapper_Aut2exe=										;~ Optionally override the Aut2exe.exe to use for this script
@@ -30,7 +30,7 @@
 ;===============================================================================================================
 #AutoIt3Wrapper_Res_Comment=Complete Internet Repair			;~ Comment field
 #AutoIt3Wrapper_Res_Description=Complete Internet Repair      	;~ Description field
-#AutoIt3Wrapper_Res_Fileversion=5.1.0.3912
+#AutoIt3Wrapper_Res_Fileversion=5.2.3.3989
 #AutoIt3Wrapper_Res_FileVersion_AutoIncrement=Y  				;~ (Y/N/P) AutoIncrement FileVersion. Default=N
 #AutoIt3Wrapper_Res_FileVersion_First_Increment=N				;~ (Y/N) AutoIncrement Y=Before; N=After compile. Default=N
 #AutoIt3Wrapper_Res_HiDpi=N                      				;~ (Y/N) Compile for high DPI. Default=N
@@ -38,7 +38,7 @@
 #AutoIt3Wrapper_Res_Language=2057								;~ Resource Language code . Default 2057=English (United Kingdom)
 #AutoIt3Wrapper_Res_LegalCopyright=© 2018 Rizonesoft			;~ Copyright field
 #AutoIt3Wrapper_res_requestedExecutionLevel=highestAvailable	;~ asInvoker, highestAvailable, requireAdministrator or None (remove the trsutInfo section).  Default is the setting from Aut2Exe (asInvoker)
-#AutoIt3Wrapper_res_Compatibility=Vista,Win7,Win8,Win81			;~ Vista/Windows7/win7/win8/win81 allowed separated by a comma     (Default=Win81)
+;#AutoIt3Wrapper_res_Compatibility=Vista,Win7,Win8,Win81			;~ Vista/Windows7/win7/win8/win81 allowed separated by a comma     (Default=Win81)
 ;#AutoIt3Wrapper_Res_SaveSource=N								;~ (Y/N) Save a copy of the Script_source in the EXE resources. Default=N
 ; If _Res_SaveSource=Y the content of Script_source depends on the _Run_Au3Stripper and #Au3Stripper_parameters directives:
 ;    If _Run_Au3Stripper=Y then
@@ -126,58 +126,68 @@
 #AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\no.ico					; 248
 #AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\pl.ico					; 249
 #AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\pt.ico					; 250
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\ro.ico					; 251
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\ru.ico					; 252
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\sk.ico					; 253
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\pt-BR.ico				; 251
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\ro.ico					; 252
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\ru.ico					; 253
 #AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\sl.ico					; 254
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\sv.ico					; 255
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\th.ico					; 256
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\tr.ico					; 257
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\vi.ico					; 258
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\zh-CN.ico				; 259
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\sk.ico					; 255
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\sv.ico					; 256
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\th.ico					; 257
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\tr.ico					; 258
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\vi.ico					; 259
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\zh-CN.ico				; 260
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Flags\zh-TW.ico				; 261
 
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Information-D.ico	; 260
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Information.ico		; 261
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Run-D.ico			; 262
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Run.ico				; 263
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Complete.ico			; 264
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Cross.ico			; 265
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-0.ico			; 266
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-1.ico			; 267
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-2.ico			; 268
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-3.ico			; 269
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-4.ico			; 270
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-5.ico			; 271
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-6.ico			; 272
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-7.ico			; 273
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-8.ico			; 274
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-9.ico			; 275
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-10.ico		; 276
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-11.ico		; 277
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-12.ico		; 278
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Power\Power-0.ico				; 262
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Power\Power-1.ico				; 263
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Power\Power-2.ico				; 264
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Power\Power-3.ico				; 265
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Power\Power-4.ico				; 266
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Power\Power-5.ico				; 267
 
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\Eventvwr.ico			; 279
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\Gear.ico				; 280
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\Logbook.ico				; 281
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\IPProperties.ico		; 282
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\Close.ico				; 283
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\RestorePoint.ico		; 284
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\NdWeb.ico				; 285
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\NdNetworkAdapter.ico	; 286
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\InternetDiagnostic.ico	; 287
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\NdInbound.ico			; 288
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\HomeGroupDiag.ico		; 289
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\NdFileShare.ico			; 290
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\WinUpdateDiag.ico		; 291
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\SpeedTest.ico			; 292
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\RouterPass.ico			; 293
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\RemoteDesktop.ico		; 294
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\InternetProperties.ico	; 295
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\Update.ico				; 296
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\Home.ico				; 297
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\Support.ico				; 298
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\GitHub.ico				; 299
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\About.ico				; 300
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Information-D.ico	; 268
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Information.ico		; 269
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Run-D.ico			; 270
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Run.ico				; 271
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Complete.ico			; 272
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Cross.ico			; 273
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-0.ico			; 274
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-1.ico			; 275
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-2.ico			; 276
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-3.ico			; 277
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-4.ico			; 278
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-5.ico			; 279
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-6.ico			; 280
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-7.ico			; 281
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-8.ico			; 282
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-9.ico			; 283
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-10.ico		; 284
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-11.ico		; 285
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-12.ico		; 286
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Commands\Repair-13.ico		; 287
+
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\Eventvwr.ico			; 288
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\Gear.ico				; 289
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\Logbook.ico				; 290
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\IPProperties.ico		; 291
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\Close.ico				; 292
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\RestorePoint.ico		; 293
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\NdWeb.ico				; 294
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\NdNetworkAdapter.ico	; 295
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\InternetDiagnostic.ico	; 296
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\NdInbound.ico			; 297
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\HomeGroupDiag.ico		; 298
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\NdFileShare.ico			; 299
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\WinUpdateDiag.ico		; 300
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\SpeedTest.ico			; 301
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\RouterPass.ico			; 302
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\RemoteDesktop.ico		; 303
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\InternetProperties.ico	; 304
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\Update.ico				; 305
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\Home.ico				; 306
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\Support.ico				; 307
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\GitHub.ico				; 308
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\About.ico				; 309
 
 
 ;===============================================================================================================
@@ -262,33 +272,38 @@ EndFunc   ;==>_ReBarStartUp
 #include <GuiConstantsEx.au3>
 #include <GuiImageList.au3>
 #include <GuiListView.au3>
+#include <Process.au3>
 #include <WinAPITheme.au3>
+#include <WinAPIProc.au3>
 #include <WindowsConstants.au3>
 #include <Misc.au3>
 
-#include "..\..\Includes\About.au3"
-#include "..\..\Includes\Donate.au3"
-#include "..\..\Includes\GDIPlusEx.au3"
-#include "..\..\Includes\FileEx.au3"
-#include "..\..\Includes\GuiMenuEx.au3"
-#include "..\..\Includes\ImageListEx.au3"
-#include "..\..\Includes\Link.au3"
-#include "..\..\Includes\Logging.au3"
-#include "..\..\Includes\Registry.au3"
-#include "..\..\Includes\Splash.au3"
-#include "..\..\Includes\StringEx.au3"
-#include "..\..\Includes\Update.au3"
-#include "..\..\Includes\Versioning.au3"
+#include "Includes\About.au3"
+#include "Includes\Donate.au3"
+#include "Includes\GDIPlusEx.au3"
+#include "Includes\FileEx.au3"
+#include "Includes\GuiMenuEx.au3"
+#include "Includes\ImageListEx.au3"
+#include "Includes\Link.au3"
+#include "Includes\Logging.au3"
+#include "Includes\Registry.au3"
+#include "Includes\Splash.au3"
+#include "Includes\StringEx.au3"
+#include "Includes\Update.au3"
+#include "Includes\Versioning.au3"
 
 #include "UDF\Localization.au3"
 
 
+;~ Developer Constants
+Global Const $DEBUG_UPDATE		= False
 ;~ Constants
 Global Const $CNT_MENUICONS		= 25
 Global Const $CNT_LOGICONS		= 7
-Global Const $CNT_COMMICONS		= 19
+Global Const $CNT_LANGICONS		= 34
+Global Const $CNT_COMMICONS		= 20
 
-Global Const $CNT_REPAIR 		= 13
+Global Const $CNT_REPAIR 		= 14
 Global Const $SPACING_LINE		= 20
 
 ;~ General Settings
@@ -299,20 +314,20 @@ Global $g_sProgName				= "Complete Internet Repair"
 Global $g_iSingleton			= True
 
 ;~ Links
-Global $g_sUrlCompHomePage		= "https://rizone.tech/home|www.rizonesoft.com"								; https://www.rizonesoft.com
-Global $g_sUrlSupport			= "https://rizone.tech/support|www.rizonesoft.com/support"					; https://www.rizonesoft.com/contact
-Global $g_sUrlDownloads			= "https://rizone.tech/downloads|www.rizonesoft.com/downloads"				; https://www.rizonesoft.com/downloads/
-Global $g_sUrlFacebook			= "https://rizone.tech/facebook|Facebook.com/rizonesoft"					; https://www.facebook.com/rizonesoft
-Global $g_sUrlTwitter			= "https://rizone.tech/twitter|Twitter.com/Rizonesoft"						; https://twitter.com/Rizonesoft
-Global $g_sUrlGooglePlus		= "https://rizone.tech/google|Plus.google.com/+Rizonesoftsa" 				; https://plus.google.com/+Rizonesoftsa/posts
-Global $g_sUrlRSS				= "https://rizone.tech/feed|www.rizonesoft.com/feed"						; https://www.rizonesoft.com/feed
-Global $g_sUrlPayPal			= "https://rizone.tech/paypal|PayPal.me/rizonesoft"							; https://www.paypal.me/rizonesoft
-Global $g_sUrlGitHub			= "https://rizone.tech/2EXrMHp|GitHub.com/rizonesoft/ComIntRep"				; https://github.com/rizonesoft/ComIntRep
-Global $g_sUrlGitHubIssues		= "https://rizone.tech/2EYcen3|GitHub.com/rizonesoft/ComIntRep/issues"		; https://github.com/rizonesoft/ComIntRep/issues
-Global $g_sUrlSA				= "https://rizone.tech/2Brk7lf|Wikipedia.org/wiki/South_Africa"				; https://en.wikipedia.org/wiki/South_Africa
-Global $g_sUrlProgPage			= "https://rizone.tech/comintrep|www.rizonesoft.com/downloads/complete-internet-repair/"
-Global $g_sUrlProgUpdate		= "https://rizone.tech/2BYNooi|www.rizonesoft.com/downloads/complete-internet-repair/update/"
-Global $g_sUrlWinRepair         = "https://rizone.tech/winrepair|www.rizonesoft.com/downloads/complete-windows-repair/"
+Global $g_sUrlCompHomePage		= "https://www.rizonesoft.com|www.rizonesoft.com"												; https://www.rizonesoft.com
+Global $g_sUrlSupport			= "https://www.rizonesoft.com/support|www.rizonesoft.com/support"								; https://www.rizonesoft.com/contact
+Global $g_sUrlDownloads			= "https://www.rizonesoft.com/downloads|www.rizonesoft.com/downloads"							; https://www.rizonesoft.com/downloads/
+Global $g_sUrlFacebook			= "https://www.facebook.com/rizonesoft|Facebook.com/rizonesoft"									; https://www.facebook.com/rizonesoft
+Global $g_sUrlTwitter			= "https://twitter.com/rizonesoft|Twitter.com/Rizonesoft"										; https://twitter.com/Rizonesoft
+Global $g_sUrlGooglePlus		= "https://plus.google.com/+Rizonesoftsa|Plus.google.com/+Rizonesoftsa" 						; https://plus.google.com/+Rizonesoftsa/posts
+Global $g_sUrlRSS				= "https://www.rizonesoft.com/feed|www.rizonesoft.com/feed"										; https://www.rizonesoft.com/feed
+Global $g_sUrlPayPal			= "https://www.paypal.me/rizonesoft|PayPal.me/rizonesoft"										; https://www.paypal.me/rizonesoft
+Global $g_sUrlGitHub			= "https://github.com/rizonesoft/ComIntRep|GitHub.com/rizonesoft/ComIntRep"						; https://github.com/rizonesoft/ComIntRep
+Global $g_sUrlGitHubIssues		= "https://github.com/rizonesoft/ComIntRep/issues|GitHub.com/rizonesoft/ComIntRep/issues"		; https://github.com/rizonesoft/ComIntRep/issues
+Global $g_sUrlSA				= "https://en.wikipedia.org/wiki/South_Africa|Wikipedia.org/wiki/South_Africa"					; https://en.wikipedia.org/wiki/South_Africa
+Global $g_sUrlProgPage			= "https://www.rizonesoft.com/downloads/complete-internet-repair/|www.rizonesoft.com/downloads/complete-internet-repair/"
+Global $g_sUrlUpdate			= "https://www.rizonesoft.com/downloads/complete-internet-repair/update/|www.rizonesoft.com/downloads/complete-internet-repair/update/"
+Global $g_sUrlWinRepair         = "https://www.rizonesoft.com/downloads/complete-windows-repair/|www.rizonesoft.com/downloads/complete-windows-repair/"
 
 ;~ Path Settings
 Global $g_sWorkingDir		= @ScriptDir ;~ Working Directory
@@ -336,7 +351,7 @@ Global $g_sCatrootOld 		= @WindowsDir & "\System32\CatRoot.Old"
 Global $g_sCatroot2 		= @WindowsDir & "\System32\CatRoot2"
 Global $g_sCatroot2Old 		= @WindowsDir & "\System32\CatRoot2.Old"
 
-; Configuration Settings
+;~ Configuration Settings
 Global $g_iBackupData		= 0
 Global $g_iBackupIPData 	= 1
 
@@ -361,12 +376,15 @@ Global $g_sLanguageFile		= $g_sLanguageDir & "\" & $g_sSelectedLanguage & ".ini"
 Global $g_iUpdateIconStart				= 209
 Global $g_iDialogIconStart				= 211
 Global $g_iAboutIconStart				= 216
-Global $g_iComIconStart					= 260
-Global $g_iMenuIconsStart				= 279
 Global $g_iLangIconStart				= 228
+Global $g_iPowerIconsStart				= 262
+Global $g_iComIconStart					= 268
+Global $g_iMenuIconsStart				= 288
+
 Global $g_aCoreIcons[3]
 Global $g_iSizeIcon						= 64
 Global $g_aLognIcons[$CNT_LOGICONS]
+Global $g_aLanguageIcons[$CNT_LANGICONS]
 Global $g_aMenuIcons[$CNT_MENUICONS]
 Global $g_aCommIcons[$CNT_COMMICONS]
 Global $g_sDlgOptionsIcon
@@ -377,7 +395,12 @@ Global $g_iSplashDelay
 
 ;~ Update Notification Settings
 Global $g_sUpdateAnimation	= $g_sThemesDir & "\Processing\" & $g_iSizeIcon & "\Globe.ani"
-Global $g_sRemoteUpdateFile	= "https://www.rizonesoft.com/update/" & $g_sProgShortName & ".ru"
+Global $g_sProcessingAnimation  = $g_sThemesDir & "\Processing\" & $g_iSizeIcon & "\Stroke.ani"
+If $DEBUG_UPDATE = True Then
+	Global $g_sRemoteUpdateFile	= "https://www.rizonesoft.com/update/" & $g_sProgShortName & ".ruz"
+Else
+	Global $g_sRemoteUpdateFile	= "https://www.rizonesoft.com/update/" & $g_sProgShortName & ".ru"
+EndIf
 Global $g_iCheckForUpdates	= 4
 
 ;~ Donate Time
@@ -394,7 +417,7 @@ Global $g_TitleShowAutoIt	= False	;~ Show AutoIt version
 
 ;~ Interface Settings
 Global $g_iCoreGuiWidth		= 480
-Global $g_iCoreGuiHeight	= 460
+Global $g_iCoreGuiHeight	= 465
 Global $g_iMsgBoxTimeOut	= 60
 
 Global $g_sAboutCredits		= "Derick Payne (Rizonesoft), Brian J Christy (Beege), " & _
@@ -403,6 +426,7 @@ Global $g_sProgramTitle = _GUIGetTitle($g_sProgName)	;~ Get Program Ttile, inclu
 Global $g_hCoreGui, $g_hCoreGuiHandle					;~ Main GUI
 Global $g_hGuiIcon										;~ Main Icon
 Global $g_AniUpdate
+Global $g_AniProcessing
 Global $g_hMenuFile
 Global $g_hMenuMaintenance
 Global $g_hMenuTrouble
@@ -419,6 +443,10 @@ If Not IsDeclared("g_iParentState") Then Global $g_iParentState
 If Not IsDeclared("g_iParent") Then Global $g_iParent
 
 Global $g_hOptionsGui
+Global $g_hOIconPower
+Global $g_hOComboPower
+Global $g_hOChkSaveRealtime
+Global $g_hOChkReduceMemory
 Global $g_hOChkBackupData
 Global $g_hOChkExportIP
 Global $g_hOChkLogEnabled
@@ -433,6 +461,12 @@ Global $g_hOLblLanguage
 Global $g_hOLblPrefsUpdated
 Global $g_hOBtnSave
 Global $g_hOBtnCancel
+
+Global $g_iProcessPriority 		= 3
+Global $g_iSaveRealtime			= 0
+Global $g_iReduceMemory 		= 1
+Global $g_iReduceEveryMill 		= 300
+Global $g_iMaxSysMemoryPerc 	= 80
 
 Global $g_aRepair[$CNT_REPAIR][8]
 Global $g_aRepairHovering[$CNT_REPAIR][2]
@@ -461,9 +495,9 @@ If @OSVersion = "WIN_2000" Or @OSVersion = "WIN_XPe" Or @OSVersion = "WIN_2003" 
 	Switch $iMsgBoxResult
 		Case $IDYES
 			ShellExecute(_Link_Split($g_sUrlSupport))
-			_TerminateProgram()
+			Exit
 		Case -1, $IDNO
-			_TerminateProgram()
+			Exit
 	EndSwitch
 Else
 
@@ -473,7 +507,7 @@ Else
 
 		If FileExists($s64BitExePath) Then
 			ShellExecute($s64BitExePath)
-			_TerminateProgram()
+			Exit
 		Else
 
 			Local $iMsgBoxResult = MsgBox($MB_YESNO + $MB_ICONWARNING + $MB_TOPMOST, $g_aLangMessages[3], StringFormat($g_aLangMessages[6], _
@@ -482,14 +516,16 @@ Else
 			Switch $iMsgBoxResult
 				Case $IDYES
 					ShellExecute(_Link_Split($g_sUrlDownloads))
-					_TerminateProgram()
+					Exit
 				Case -1, $IDNO
-					_TerminateProgram()
+					Exit
 			EndSwitch
 
 		EndIf
 
 	Else
+
+		OnAutoItExitRegister("_TerminateProgram")
 
 		$g_SplashAnimation 	= $g_sThemesDir & "\Processing\32\Stroke.ani"
 		$g_iSplashDelay		= 100
@@ -669,12 +705,14 @@ Func _StartCoreGui()
 	$g_hGuiIcon = GUICtrlCreateIcon($g_aCoreIcons[0], 99, 10, 10, $g_iSizeIcon, $g_iSizeIcon)
 	GUICtrlSetTip($g_hGuiIcon, $g_aLangAbout[1] & Chr(32) & _GetProgramVersion(0) & @CRLF & _
 			$g_aLangAbout[2] & Chr(32) & @AutoItVersion & @CRLF & _
-			$g_aLangAbout[3] & " © " & @YEAR & " " & $g_sCompanyName, _
+			$g_aLangAbout[3] & " Â© " & @YEAR & " " & $g_sCompanyName, _
 			$g_aLangAbout[0], $TIP_INFOICON, $TIP_BALLOON)
 	GUICtrlSetCursor($g_hGuiIcon, 0)
 	GUICtrlSetOnEvent($g_hGuiIcon, "_About_ShowDialog")
 	$g_AniUpdate = GUICtrlCreateIcon($g_sUpdateAnimation, 0, 10, 10, $g_iSizeIcon, $g_iSizeIcon)
+	$g_AniProcessing = GUICtrlCreateIcon($g_sProcessingAnimation, 0, 10, 10, $g_iSizeIcon, $g_iSizeIcon)
 	GUICtrlSetState($g_AniUpdate, $GUI_HIDE)
+	GUICtrlSetState($g_AniProcessing, $GUI_HIDE)
 	$hHeading = GUICtrlCreateLabel($g_sProgName & " " & _GetProgramVersion(1), $g_iSizeIcon + 22, 15, 300, 25)
 	GUICtrlSetFont($hHeading, 12)
 
@@ -683,7 +721,7 @@ Func _StartCoreGui()
 	GUICtrlSetColor($g_hSubHeading, 0x353535)
 
 	If $g_iShowCwrMessage Then
-		$g_hSubNotice = GUICtrlCreateLabel($g_aLangCustom[33], $g_iSizeIcon + 22, 38, $g_iCoreGuiWidth - 45 - $g_iSizeIcon, 50)
+		$g_hSubNotice = GUICtrlCreateLabel($g_aLangCustom[35], $g_iSizeIcon + 22, 38, $g_iCoreGuiWidth - 45 - $g_iSizeIcon, 50)
 		GUICtrlSetColor($g_hSubNotice, 0xC80B0B)
 		GUICtrlSetCursor($g_hSubNotice, 0)
 		GUICtrlSetOnEvent($g_hSubNotice, "_GoTo_WinRepair")
@@ -696,16 +734,16 @@ Func _StartCoreGui()
 
 	$g_IntExplVersion = _GetInternetExplorerVersion()
 
-	GUICtrlCreateGroup("", 10, 95, 460, 290)
+	GUICtrlCreateGroup("", 10, 85, 460, 305)
 	For $iR = 0 To $CNT_REPAIR - 1
 
-		$g_aRepair[$iR][0] = GUICtrlCreateIcon($g_aCommIcons[$iR + 6], $g_iComIconStart + 6 + $iR, 20, 113 + ($iR * $SPACING_LINE), 16, 16)
-		$g_aRepair[$iR][1] = GUICtrlCreateCheckbox(Chr(32) & $g_aLangCustom[$iR + 2], 43, 113 + ($iR * $SPACING_LINE), 325, 16)
-		$g_aRepair[$iR][2] = GUICtrlCreateIcon($g_aCommIcons[0], $g_iComIconStart, 408, 113 + ($iR * $SPACING_LINE), 16, 16)
+		$g_aRepair[$iR][0] = GUICtrlCreateIcon($g_aCommIcons[$iR + 6], $g_iComIconStart + 6 + $iR, 20, 103 + ($iR * $SPACING_LINE), 16, 16)
+		$g_aRepair[$iR][1] = GUICtrlCreateCheckbox(Chr(32) & $g_aLangCustom[$iR + 2], 43, 103 + ($iR * $SPACING_LINE), 325, 16)
+		$g_aRepair[$iR][2] = GUICtrlCreateIcon($g_aCommIcons[0], $g_iComIconStart, 408, 103 + ($iR * $SPACING_LINE), 16, 16)
 		GUICtrlSetCursor($g_aRepair[$iR][2], 0)
-		$g_aRepair[$iR][3] = GUICtrlCreateIcon($g_aCommIcons[2], $g_iComIconStart + 2, 428, 113 + ($iR * $SPACING_LINE), 16, 16)
+		$g_aRepair[$iR][3] = GUICtrlCreateIcon($g_aCommIcons[2], $g_iComIconStart + 2, 428, 103 + ($iR * $SPACING_LINE), 16, 16)
 		GUICtrlSetCursor($g_aRepair[$iR][3], 0)
-		$g_aRepair[$iR][4] = 130 + ($iR * $SPACING_LINE)
+		$g_aRepair[$iR][4] = 120 + ($iR * $SPACING_LINE)
 		$g_aRepair[$iR][5] = GUICtrlCreateLabel("", 43, $g_aRepair[$iR][4], 365, 1)
 		GUICtrlSetBkColor($g_aRepair[$iR][5], 0xD9D9D9)
 		$g_aRepair[$iR][6] = GUICtrlCreateLabel("", 43, $g_aRepair[$iR][4], 1, 1)
@@ -720,17 +758,17 @@ Func _StartCoreGui()
 	GUICtrlSetData($g_aRepair[5][1],  Chr(32) & StringFormat($g_aLangCustom[7], $g_IntExplVersion))
 	GUICtrlCreateGroup("", -99, -99, 1, 1) ;close group
 
-	$g_hBtnExtend = GUICtrlCreateCheckbox(6, 10, 405, 30, 28, $BS_PUSHLIKE)
+	$g_hBtnExtend = GUICtrlCreateCheckbox(6, 10, 410, 30, 28, $BS_PUSHLIKE)
 	GUICtrlSetFont($g_hBtnExtend, 10, 400, 0, "Webdings")
-	GUICtrlSetTip($g_hBtnExtend, $g_aLangCustom[15])
-	$g_hBtnGo = GUICtrlCreateButton($g_aLangCustom[17], 280, 390, 190, 43)
+	GUICtrlSetTip($g_hBtnExtend, $g_aLangCustom[16])
+	$g_hBtnGo = GUICtrlCreateButton($g_aLangCustom[18], 280, 395, 190, 43)
 	GUICtrlSetState($g_hBtnGo, $GUI_FOCUS)
 	GUICtrlSetFont($g_hBtnGo, 11, 400, 0, "Verdana")
 
 	GUICtrlSetOnEvent($g_hBtnGo, "_RunSelectedOption")
 	GUICtrlSetOnEvent($g_hBtnExtend, "_GUIExtender")
 
-	$g_hListStatus = GUICtrlCreateListView("", 10, 450, _
+	$g_hListStatus = GUICtrlCreateListView("", 10, 455, _
 			$g_iCoreGuiWidth - 20, $g_GuiLogBoxHeight, BitOR($LVS_REPORT, $LVS_NOCOLUMNHEADER))
 	_GUICtrlListView_SetExtendedListViewStyle($g_hListStatus, BitOR($LVS_EX_FULLROWSELECT, $LVS_EX_DOUBLEBUFFER, _
 			$LVS_EX_SUBITEMIMAGES, $LVS_EX_INFOTIP, $WS_EX_CLIENTEDGE))
@@ -750,7 +788,7 @@ Func _StartCoreGui()
 	$g_hEditInfo = GUICtrlCreateEdit("", 10, 450, 460, 120, BitOR($WS_VSCROLL, $ES_READONLY, $ES_AUTOVSCROLL))
 	GUICtrlSetBkColor($g_hEditInfo, 0xE8FFCC)
 	GUICtrlSetFont($g_hEditInfo, 9)
-	GUICtrlSetData($g_hEditInfo, StringFormat($g_aLangCustom[19], $g_aLangCustom[17]))
+	GUICtrlSetData($g_hEditInfo, StringFormat($g_aLangCustom[20], $g_aLangCustom[18]))
 
 	_Splash_Update("Initializing States", 99)
 	_InitializeStates()
@@ -760,6 +798,9 @@ Func _StartCoreGui()
 	GUIRegisterMsg($WM_COMMAND, "MY_WM_COMMAND")
 	AdlibRegister("_OnIconsHover", 65)
 	AdlibRegister("_UptimeMonitor", 1000)
+	If @Compiled Then
+		AdlibRegister("_ReduceMemory", $g_iReduceEveryMill)
+	EndIf
 
 	_GUIExtender()
 	SoundPlay(@ScriptDir & "\Themes\Sounds\Welcome.wav")
@@ -789,7 +830,7 @@ Func MY_WM_COMMAND($hWnd, $iMsg, $wParam, $lParam)
 		Case $g_hBtnGo
 			Switch BitShift($wParam, 16) ;HiWord = Code
 				Case $BN_CLICKED
-					If GUICtrlRead($g_hBtnGo) = $g_aLangCustom[18] Then
+					If GUICtrlRead($g_hBtnGo) = $g_aLangCustom[19] Then
 						$g_iCancel = True
 						GUICtrlSetState($g_hBtnGo, $GUI_DISABLE)
 						GUICtrlSetData($g_hSubHeading, $g_aLangMessages2[2])
@@ -842,7 +883,7 @@ Func _GUIExtender()
 		If $g_hGuiExpanded = False Then
 			_GUIRetract()
 		ElseIf $g_hGuiExpanded = True Then
-			_GUIExpand(150)
+			_GUIExpand(140)
 		EndIf
 	EndIf
 EndFunc   ;==>_GUIExtender
@@ -853,7 +894,7 @@ Func _GUIRetract()
 	WinMove($g_hCoreGuiHandle, "", Default, Default, $g_hCoreGuiCoords[2], $g_hCoreGuiCoords[3])
 	GUICtrlSetData($g_hBtnExtend, 6)
 	GUICtrlSetState($g_hBtnExtend, $GUI_UNCHECKED)
-	GUICtrlSetTip($g_hBtnExtend, $g_aLangCustom[15])
+	GUICtrlSetTip($g_hBtnExtend, $g_aLangCustom[16])
 	$g_hGuiExpanded = True
 
 EndFunc   ;==>_GUIRetract
@@ -864,7 +905,7 @@ Func _GUIExpand($iSize)
 	WinMove($g_hCoreGuiHandle, "", Default, Default, $g_hCoreGuiCoords[2], $g_hCoreGuiCoords[3] + $iSize)
 	GUICtrlSetData($g_hBtnExtend, 5)
 	GUICtrlSetState($g_hBtnExtend, $GUI_CHECKED)
-	GUICtrlSetTip($g_hBtnExtend, $g_aLangCustom[16])
+	GUICtrlSetTip($g_hBtnExtend, $g_aLangCustom[17])
 	$g_hGuiExpanded = False
 
 EndFunc   ;==>_GUIExpand
@@ -904,6 +945,10 @@ Func _SetResources()
 			$g_aMenuIcons[$iMi] = @ScriptFullPath
 		Next
 
+		For $iNi = 0 To $CNT_LANGICONS - 1
+			$g_aLanguageIcons[$iNi] = @ScriptFullPath
+		Next
+
 		For $iCi = 0 To $CNT_COMMICONS - 1
 			$g_aCommIcons[$iCi] = @ScriptFullPath
 		Next
@@ -922,6 +967,41 @@ Func _SetResources()
 		$g_aLognIcons[4] = $g_sThemesDir & "\Icons\logging\Smiley-Glass.ico"
 		$g_aLognIcons[5] = $g_sThemesDir & "\Icons\logging\Skull.ico"
 		$g_aLognIcons[6] = $g_sThemesDir & "\Icons\logging\Snowman.ico"
+
+		$g_aLanguageIcons[0]  = $g_sThemesDir & "\Icons\Flags\en.ico"
+		$g_aLanguageIcons[1]  = $g_sThemesDir & "\Icons\Flags\af.ico"
+		$g_aLanguageIcons[2]  = $g_sThemesDir & "\Icons\Flags\ar.ico"
+		$g_aLanguageIcons[3]  = $g_sThemesDir & "\Icons\Flags\bg.ico"
+		$g_aLanguageIcons[4]  = $g_sThemesDir & "\Icons\Flags\cs.ico"
+		$g_aLanguageIcons[5]  = $g_sThemesDir & "\Icons\Flags\da.ico"
+		$g_aLanguageIcons[6]  = $g_sThemesDir & "\Icons\Flags\de.ico"
+		$g_aLanguageIcons[7]  = $g_sThemesDir & "\Icons\Flags\el.ico"
+		$g_aLanguageIcons[8]  = $g_sThemesDir & "\Icons\Flags\es.ico"
+		$g_aLanguageIcons[9]  = $g_sThemesDir & "\Icons\Flags\fr.ico"
+		$g_aLanguageIcons[10] = $g_sThemesDir & "\Icons\Flags\hi.ico"
+		$g_aLanguageIcons[11] = $g_sThemesDir & "\Icons\Flags\hr.ico"
+		$g_aLanguageIcons[12] = $g_sThemesDir & "\Icons\Flags\hu.ico"
+		$g_aLanguageIcons[13] = $g_sThemesDir & "\Icons\Flags\id.ico"
+		$g_aLanguageIcons[14] = $g_sThemesDir & "\Icons\Flags\is.ico"
+		$g_aLanguageIcons[15] = $g_sThemesDir & "\Icons\Flags\it.ico"
+		$g_aLanguageIcons[16] = $g_sThemesDir & "\Icons\Flags\iw.ico"
+		$g_aLanguageIcons[17] = $g_sThemesDir & "\Icons\Flags\ja.ico"
+		$g_aLanguageIcons[18] = $g_sThemesDir & "\Icons\Flags\ko.ico"
+		$g_aLanguageIcons[19] = $g_sThemesDir & "\Icons\Flags\nl.ico"
+		$g_aLanguageIcons[20] = $g_sThemesDir & "\Icons\Flags\no.ico"
+		$g_aLanguageIcons[21] = $g_sThemesDir & "\Icons\Flags\pl.ico"
+		$g_aLanguageIcons[22] = $g_sThemesDir & "\Icons\Flags\pt.ico"
+		$g_aLanguageIcons[23] = $g_sThemesDir & "\Icons\Flags\pt-BR.ico"
+		$g_aLanguageIcons[24] = $g_sThemesDir & "\Icons\Flags\ro.ico"
+		$g_aLanguageIcons[25] = $g_sThemesDir & "\Icons\Flags\ru.ico"
+		$g_aLanguageIcons[26] = $g_sThemesDir & "\Icons\Flags\sl.ico"
+		$g_aLanguageIcons[27] = $g_sThemesDir & "\Icons\Flags\sk.ico"
+		$g_aLanguageIcons[28] = $g_sThemesDir & "\Icons\Flags\sv.ico"
+		$g_aLanguageIcons[29] = $g_sThemesDir & "\Icons\Flags\th.ico"
+		$g_aLanguageIcons[30] = $g_sThemesDir & "\Icons\Flags\tr.ico"
+		$g_aLanguageIcons[31] = $g_sThemesDir & "\Icons\Flags\vi.ico"
+		$g_aLanguageIcons[32] = $g_sThemesDir & "\Icons\Flags\zh-CN.ico"
+		$g_aLanguageIcons[32] = $g_sThemesDir & "\Icons\Flags\zh-TW.ico"
 
 		$g_aMenuIcons[0]  = $g_sThemesDir & "\Icons\Menus\Eventvwr.ico"
 		$g_aMenuIcons[1]  = $g_sThemesDir & "\Icons\Menus\Gear.ico"
@@ -965,6 +1045,7 @@ Func _SetResources()
 		$g_aCommIcons[16] = $g_sThemesDir & "\Icons\Commands\Repair-10.ico"
 		$g_aCommIcons[17] = $g_sThemesDir & "\Icons\Commands\Repair-11.ico"
 		$g_aCommIcons[18] = $g_sThemesDir & "\Icons\Commands\Repair-12.ico"
+		$g_aCommIcons[19] = $g_sThemesDir & "\Icons\Commands\Repair-13.ico"
 
 		$g_sDlgOptionsIcon = $g_sThemesDir & "\Icons\Dialogs\Gear.ico"
 
@@ -1034,11 +1115,19 @@ Func _LoadConfiguration()
 	$g_iBackupData = Int(IniRead($g_sPathIni, $g_sProgShortName, "BackupData", 0))
 	$g_iBackupIPData  = Int(IniRead($g_sPathIni, $g_sProgShortName, "BackupIPData", 1))
 	$g_iCheckForUpdates = Int(IniRead($g_sPathIni, $g_sProgShortName, "CheckForUpdates", 4))
+	$g_iProcessPriority = Int(IniRead($g_sPathIni, $g_sProgShortName, "ProcessPriority", 3))
+	$g_iSaveRealtime = Int(IniRead($g_sPathIni, $g_sProgShortName, "SaveRealtime", 0))
+	$g_iReduceMemory = Int(IniRead($g_sPathIni, $g_sProgShortName, "ReduceMemory", 1))
+	$g_iReduceEveryMill = Int(IniRead($g_sPathIni, $g_sProgShortName, "ReduceEveryMill", 300))
+	$g_iMaxSysMemoryPerc = Int(IniRead($g_sPathIni, $g_sProgShortName, "MinSysMemoryPerc", 80))
 	$g_iLoggingEnabled = Int(IniRead($g_sPathIni, $g_sProgShortName, "LoggingEnabled", 1))
 	$g_iLoggingStorage = Int(IniRead($g_sPathIni, $g_sProgShortName, "LoggingStorageSize", 5242880))
 	$g_iUptimeMonitor = Int(IniRead($g_sPathIni, "Donate", "Seconds", 0))
 	$g_iDonateTime = Int(IniRead($g_sPathIni, "Donate", "DonateTime", 0))
 
+	If @Compiled Then
+		ProcessSetPriority(@ScriptName, $g_iProcessPriority)
+	EndIf
 EndFunc   ;==>_LoadConfiguration
 
 
@@ -1065,6 +1154,17 @@ Func _UptimeMonitor()
 	If $g_iUptimeMonitor < 2000000000 Then
 		$g_iUptimeMonitor += 1
 	EndIf
+EndFunc
+
+
+Func _ReduceMemory()
+
+	Local $aMemStats = MemGetStats()
+
+	If $aMemStats[0] > $g_iMaxSysMemoryPerc And $g_iReduceMemory = 1 Then
+		_WinAPI_EmptyWorkingSet()
+	EndIf
+
 EndFunc
 
 
@@ -1106,6 +1206,9 @@ Func _ShutdownProgram()
 
 	AdlibUnRegister("_OnIconsHover")
 	AdlibUnRegister("_UptimeMonitor")
+	If @Compiled Then
+		AdlibUnRegister("_ReduceMemory")
+	EndIf
 
 	_SaveConfiguration()
 
@@ -1115,7 +1218,7 @@ Func _ShutdownProgram()
 		_Donate_ShowDialog()
 	Else
 		WinSetTrans($g_hCoreGui, Default, 255)
-		_TerminateProgram()
+		Exit
 	EndIf
 
 EndFunc   ;==>_ShutdownProgram
@@ -1127,7 +1230,6 @@ Func _TerminateProgram()
 		Local $iPID = ProcessExists(@ScriptName)
 		If $iPID Then ProcessClose($iPID)
 	EndIf
-	Exit
 
 EndFunc
 
@@ -1145,7 +1247,10 @@ EndFunc
 #Region "Menu Events"
 
 Func _StartEventLog()
+	_Logging_Start($g_aLangMessages2[97])
 	ShellExecute("eventvwr")
+	_Logging_FinalMessage($g_aLangMessages2[98])
+
 EndFunc   ;==>_StartEventLog
 
 
@@ -1204,42 +1309,42 @@ EndFunc   ;==>_OpenTroubleshootingID
 
 
 Func _SpeedTest()
-	ShellExecute("https://goo.gl/oZZQPJ")
+	ShellExecute("http://www.speedtest.net")
 EndFunc   ;==>_SpeedTest
 
 
 Func _GetRouterPasswords()
-	ShellExecute("https://goo.gl/XfecJ1")
+	ShellExecute("http://www.routerpasswords.com")
 EndFunc   ;==>_GetRouterPasswords
 
 
 Func _OpenRDP()
 
-	_Logging_Start($g_aLangMessages2[108])
+	_Logging_Start($g_aLangMessages2[111])
 	ShellExecute("mstsc")
 	If @error Then
-		_Logging_EditWrite(_Logging_SetLevel($g_aLangMessages2[109], "ERROR"))
+		_Logging_EditWrite(_Logging_SetLevel($g_aLangMessages2[112], "ERROR"))
 	EndIf
-	_Logging_FinalMessage($g_aLangMessages2[110])
+	_Logging_FinalMessage($g_aLangMessages2[113])
 
 EndFunc   ;==>_OpenRDP
 
 
 Func _OpenIEProperties()
 
-	_Logging_Start($g_aLangMessages2[111])
+	_Logging_Start($g_aLangMessages2[114])
 	ShellExecute("inetcpl.cpl")
 	If @error Then
-		_Logging_EditWrite(_Logging_SetLevel($g_aLangMessages2[112], "ERROR"))
+		_Logging_EditWrite(_Logging_SetLevel($g_aLangMessages2[115], "ERROR"))
 	EndIf
-	_Logging_FinalMessage($g_aLangMessages2[113])
+	_Logging_FinalMessage($g_aLangMessages2[116])
 
 EndFunc   ;==>_OpenIEProperties
 
 
 Func _InstallIP6()
 
-	_Logging_Start($g_aLangMessages2[114])
+	_Logging_Start($g_aLangMessages2[117])
 	_RunCommand("netsh int ipv6 install")
 	_Logging_FinalMessage()
 
@@ -1248,7 +1353,7 @@ EndFunc   ;==>_InstallIP6
 
 Func _UnInstallIP6()
 
-	_Logging_Start($g_aLangMessages2[115])
+	_Logging_Start($g_aLangMessages2[118])
 	_RunCommand("netsh int ipv6 uninstall")
 	_Logging_FinalMessage()
 
@@ -1257,7 +1362,7 @@ EndFunc   ;==>_UnInstallIP6
 
 Func _RepairWorkGroups()
 
-	_Logging_Start($g_aLangMessages2[116])
+	_Logging_Start($g_aLangMessages2[119])
 	RegDelete("HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\NetBt\Parameters", "NodeType")
 	RegDelete("HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\NetBt\Parameters", "DhcpNodeType")
 	_Logging_FinalMessage()
@@ -1280,20 +1385,20 @@ Func __ExportIPConfiguration()
 	Local $sExportPath = $g_sExportRoot & "\IP-" & $sTimeStamp & ".txt"
 
 	If @GUI_CtrlId = $g_miExport[0] Then
-		_Logging_Start($g_aLangMessages2[96])
+		_Logging_Start($g_aLangMessages2[99])
 	Else
-		_Logging_EditWrite($g_aLangMessages2[96])
+		_Logging_EditWrite($g_aLangMessages2[99])
 	EndIf
 
 	RunWait(@ComSpec & " /c ipconfig /all >" & Chr(34) & $sExportPath & Chr(34), "", @SW_HIDE)
 
 	If FileExists($sExportPath) Then
-		_Logging_EditWrite(StringFormat($g_aLangMessages2[97], $sExportPath))
+		_Logging_EditWrite(StringFormat($g_aLangMessages2[100], $sExportPath))
 		If @GUI_CtrlId = $g_miExport[0] Then
 			_FileEx_OpenTextFile($sExportPath)
 		EndIf
 	Else
-		_Logging_EditWrite(_Logging_SetLevel($g_aLangMessages2[98], "ERROR"))
+		_Logging_EditWrite(_Logging_SetLevel($g_aLangMessages2[101], "ERROR"))
 	EndIf
 
 EndFunc
@@ -1303,25 +1408,8 @@ Func __ExportWinsockLSPs()
 
 	Local $sTimeStamp =  @YEAR & @MON & @MDAY & @HOUR & @MIN
 	Local $sExportPath = $g_sExportRoot & "\LSP-" & $sTimeStamp & ".txt"
-	_Logging_Start($g_aLangMessages2[99])
-	RunWait(@ComSpec & " /c netsh winsock show catalog >" & Chr(34) & $sExportPath & Chr(34), "", @SW_HIDE)
-
-	If FileExists($sExportPath) Then
-		_Logging_EditWrite(StringFormat($g_aLangMessages2[100], $sExportPath))
-		_FileEx_OpenTextFile($sExportPath)
-	Else
-		_Logging_EditWrite(_Logging_SetLevel($g_aLangMessages2[101], "ERROR"))
-	EndIf
-
-EndFunc
-
-
-Func __ExportARPEntries()
-
-	Local $sTimeStamp =  @YEAR & @MON & @MDAY & @HOUR & @MIN
-	Local $sExportPath = $g_sExportRoot & "\ARP-" & $sTimeStamp & ".txt"
 	_Logging_Start($g_aLangMessages2[102])
-	RunWait(@ComSpec & " /c arp -a >" & Chr(34) & $sExportPath & Chr(34), "", @SW_HIDE)
+	RunWait(@ComSpec & " /c netsh winsock show catalog >" & Chr(34) & $sExportPath & Chr(34), "", @SW_HIDE)
 
 	If FileExists($sExportPath) Then
 		_Logging_EditWrite(StringFormat($g_aLangMessages2[103], $sExportPath))
@@ -1333,18 +1421,35 @@ Func __ExportARPEntries()
 EndFunc
 
 
-Func __ExportNetBIOSStatistics()
+Func __ExportARPEntries()
 
 	Local $sTimeStamp =  @YEAR & @MON & @MDAY & @HOUR & @MIN
-	Local $sExportPath = $g_sExportRoot & "\NBIOS-" & $sTimeStamp & ".txt"
+	Local $sExportPath = $g_sExportRoot & "\ARP-" & $sTimeStamp & ".txt"
 	_Logging_Start($g_aLangMessages2[105])
-	RunWait(@ComSpec & " /c Nbtstat.exe -r >" & Chr(34) & $sExportPath & Chr(34), "", @SW_HIDE)
+	RunWait(@ComSpec & " /c arp -a >" & Chr(34) & $sExportPath & Chr(34), "", @SW_HIDE)
 
 	If FileExists($sExportPath) Then
 		_Logging_EditWrite(StringFormat($g_aLangMessages2[106], $sExportPath))
 		_FileEx_OpenTextFile($sExportPath)
 	Else
 		_Logging_EditWrite(_Logging_SetLevel($g_aLangMessages2[107], "ERROR"))
+	EndIf
+
+EndFunc
+
+
+Func __ExportNetBIOSStatistics()
+
+	Local $sTimeStamp =  @YEAR & @MON & @MDAY & @HOUR & @MIN
+	Local $sExportPath = $g_sExportRoot & "\NBIOS-" & $sTimeStamp & ".txt"
+	_Logging_Start($g_aLangMessages2[108])
+	RunWait(@ComSpec & " /c Nbtstat.exe -r >" & Chr(34) & $sExportPath & Chr(34), "", @SW_HIDE)
+
+	If FileExists($sExportPath) Then
+		_Logging_EditWrite(StringFormat($g_aLangMessages2[109], $sExportPath))
+		_FileEx_OpenTextFile($sExportPath)
+	Else
+		_Logging_EditWrite(_Logging_SetLevel($g_aLangMessages2[110], "ERROR"))
 	EndIf
 
 EndFunc
@@ -1371,7 +1476,7 @@ Func _RunSelectedOption()
 			If _ProcessCheckedCount() > 0 Then
 
 				_StartProcessing()
-				GUICtrlSetData($g_hBtnGo, $g_aLangCustom[18])
+				GUICtrlSetData($g_hBtnGo, $g_aLangCustom[19])
 				$g_iSoloProcess = False
 
 				For $iRun = 0 To $CNT_REPAIR - 1
@@ -1389,10 +1494,10 @@ Func _RunSelectedOption()
 					GUICtrlSetImage($g_aRepair[$iRepair][0], $g_aCommIcons[$iXz], $g_iComIconStart + $iXz)
 				Next
 
-				GUICtrlSetData($g_hBtnGo, $g_aLangCustom[17])
+				GUICtrlSetData($g_hBtnGo, $g_aLangCustom[18])
 				$g_iSoloProcess = True
 				GUICtrlSetState($g_hBtnGo, $GUI_ENABLE)
-				GUICtrlSetData($g_hSubHeading, $g_aLangCustom[34])
+				GUICtrlSetData($g_hSubHeading, $g_aLangCustom[36])
 				_EndProcessing()
 
 			Else
@@ -1440,6 +1545,8 @@ Func _ProcessSelectedOption($iAction)
 			_RestoreWindowsHosts($iAction)
 		Case 12
 			_RenewWinsClient($iAction)
+		Case 13
+			_MakeNetComputersVisible($iAction)
 	EndSwitch
 
 	If $g_iSoloProcess = True Then _EndProcessing()
@@ -1866,7 +1973,7 @@ Func _RepairInternetExplorer($iRow)
 ;~ This is a result of a bug in shdocvw.dll (see above), probably only on Windows XP
 		_Logging_EditWrite($g_aLangMessages2[51])
 		_Logging_EditWrite($g_aLangMessages2[52])
-		_Registry_Write("HKEY_CLASSES_ROOT\TypeLib\{EAB22AC0-30C1-11CF-A7EB-0000C05BAE0B}\1.1\0\win32", "", "REG_SZ", "%SystemRoot%\system32\ieframe.dll")
+		_Registry_Write("HKEY_CLASSES_ROOT\TypeLib\{EAB22AC0-30C1-11CF-A7EB-0000C05BAE0B}\1.1\0\win32", "", "REG_SZ", "C:\Windows\system32\ieframe.dll")
 
 		_Logging_EditWrite($g_aLangMessages2[53])
 		__RegisterProgramFilesDll("Outlook Express\msoe.dll")
@@ -2316,6 +2423,25 @@ Func _RenewWinsClient($iRow)
 EndFunc
 
 
+Func _MakeNetComputersVisible($iRow)
+
+	_StartSoloProcess($iRow)
+	_UpdateSoloProcess($iRow, 30)
+	_Logging_Start($g_aLangMessages2[94])
+	_RunCommand("net stop FDResPub")
+	_UpdateSoloProcess($iRow, 60)
+	_Logging_EditWrite($g_aLangMessages2[95])
+	_Service_Configure("FDResPub", 2)
+	_RunCommand("sc config FDResPub start= auto")
+	_UpdateSoloProcess($iRow, 90)
+	_RunCommand("net start FDResPub")
+	_UpdateSoloProcess($iRow, 100)
+		Sleep(100)
+	_Logging_FinalMessage($g_aLangMessages2[96])
+
+EndFunc
+
+
 Func _StartSoloProcess($iRow)
 
 	GUICtrlSetImage($g_aRepair[$iRow][0], $g_sProcessSim, 0)
@@ -2376,18 +2502,20 @@ EndFunc
 
 Func _StartProcessing()
 
-	; GUICtrlSetState($g_hBtnGo, $GUI_DISABLE)
 	_SetAllOptionStates($GUI_DISABLE)
 	GUICtrlSetState($g_hSubHeading, $GUI_SHOW)
 	GUICtrlSetState($g_hSubNotice, $GUI_HIDE)
+	GUICtrlSetState($g_hGuiIcon, $GUI_HIDE)
+	GUICtrlSetState($g_AniProcessing, $GUI_SHOW)
 
 EndFunc   ;==>_StartProcessing
 
 
 Func _EndProcessing()
 
-	; GUICtrlSetState($g_hBtnGo, $GUI_ENABLE)
 	_SetAllOptionStates($GUI_ENABLE)
+	GUICtrlSetState($g_hGuiIcon, $GUI_SHOW)
+	GUICtrlSetState($g_AniProcessing, $GUI_HIDE)
 
 	; If $g_iCancel = False Then
 		SoundPlay(@ScriptDir & "\Themes\Sounds\Complete.wav")
@@ -2424,9 +2552,9 @@ EndFunc   ;==>_ResetWinsock
 
 Func __RegisterProgramFilesDll($sDllName)
 
-	_Dll_Register(Chr(34) & "%ProgramFiles%\" & $sDllName & Chr(34))
+	_Dll_Register(Chr(34) & "C:\Program Files\" & $sDllName & Chr(34))
 	If @OSArch = "X64" Then
-		_Dll_Register(Chr(34) & "%ProgramFiles(x86)%\" & $sDllName & Chr(34))
+		_Dll_Register(Chr(34) & "C:\Program Files (x86)\" & $sDllName & Chr(34))
 	EndIf
 
 EndFunc
@@ -2435,9 +2563,9 @@ EndFunc
 Func __RegisterSystemDll($sDllName, $sParam = "/s")
 
 	; Expand environment variables for this to work! - Opt("ExpandEnvStrings", 1)
-	_Dll_Register(Chr(34) & "%SystemRoot%\system32\" & $sDllName & Chr(34), $sParam)
+	_Dll_Register(Chr(34) & "C:\Windows\system32\" & $sDllName & Chr(34), $sParam)
 	If @OSArch = "X64" Then
-		_Dll_Register(Chr(34) & "%SystemRoot%\SysWoW64\" & $sDllName & Chr(34), $sParam)
+		_Dll_Register(Chr(34) & "C:\Windows\SysWoW64\" & $sDllName & Chr(34), $sParam)
 	EndIf
 
 EndFunc
@@ -2445,9 +2573,9 @@ EndFunc
 
 Func __RegisterCommonProgramFilesDll($sDllName, $sParam = "/s")
 
-	_Dll_Register(Chr(34) & "%CommonProgramFiles%\" & $sDllName & Chr(34), $sParam)
+	_Dll_Register(Chr(34) & "C:\Program Files\Common Files\" & $sDllName & Chr(34), $sParam)
 	If @OSArch = "X64" Then
-		_Dll_Register(Chr(34) & "%CommonProgramFiles(x86)%\" & $sDllName & Chr(34), $sParam)
+		_Dll_Register(Chr(34) & "C:\Program Files (x86)\Common Files\" & $sDllName & Chr(34), $sParam)
 	EndIf
 
 EndFunc
@@ -2518,31 +2646,33 @@ Func _ShowRepairInfo()
 
 	Switch @GUI_CtrlId
 		Case $g_aRepair[0][2]
-			GUICtrlSetData($g_hEditInfo, $g_aLangCustom[20])
-		Case $g_aRepair[1][2]
 			GUICtrlSetData($g_hEditInfo, $g_aLangCustom[21])
-		Case $g_aRepair[2][2]
+		Case $g_aRepair[1][2]
 			GUICtrlSetData($g_hEditInfo, $g_aLangCustom[22])
-		Case $g_aRepair[3][2]
+		Case $g_aRepair[2][2]
 			GUICtrlSetData($g_hEditInfo, $g_aLangCustom[23])
-		Case $g_aRepair[4][2]
+		Case $g_aRepair[3][2]
 			GUICtrlSetData($g_hEditInfo, $g_aLangCustom[24])
+		Case $g_aRepair[4][2]
+			GUICtrlSetData($g_hEditInfo, $g_aLangCustom[25])
 		Case $g_aRepair[5][2]
-			GUICtrlSetData($g_hEditInfo, StringFormat($g_aLangCustom[25], $g_IntExplVersion))
+			GUICtrlSetData($g_hEditInfo, StringFormat($g_aLangCustom[26], $g_IntExplVersion))
 		Case $g_aRepair[6][2]
-			GUICtrlSetData($g_hEditInfo, StringFormat($g_aLangCustom[26], $g_sDataStore, $g_sSoftDisDown))
+			GUICtrlSetData($g_hEditInfo, StringFormat($g_aLangCustom[27], $g_sDataStore, $g_sSoftDisDown))
 		Case $g_aRepair[7][2]
-			GUICtrlSetData($g_hEditInfo, $g_aLangCustom[27])
-		Case $g_aRepair[8][2]
 			GUICtrlSetData($g_hEditInfo, $g_aLangCustom[28])
-		Case $g_aRepair[9][2]
+		Case $g_aRepair[8][2]
 			GUICtrlSetData($g_hEditInfo, $g_aLangCustom[29])
-		Case $g_aRepair[10][2]
+		Case $g_aRepair[9][2]
 			GUICtrlSetData($g_hEditInfo, $g_aLangCustom[30])
-		Case $g_aRepair[11][2]
+		Case $g_aRepair[10][2]
 			GUICtrlSetData($g_hEditInfo, $g_aLangCustom[31])
-		Case $g_aRepair[12][2]
+		Case $g_aRepair[11][2]
 			GUICtrlSetData($g_hEditInfo, $g_aLangCustom[32])
+		Case $g_aRepair[12][2]
+			GUICtrlSetData($g_hEditInfo, $g_aLangCustom[33])
+		Case $g_aRepair[13][2]
+			GUICtrlSetData($g_hEditInfo, $g_aLangCustom[34])
 
 	EndSwitch
 
@@ -2637,11 +2767,11 @@ Func _ShowPreferencesDlg()
 
 	GUICtrlCreateTab(10, 10, 430, 430)
 	GUICtrlCreateTabItem(StringFormat(" %s ", $g_aLangPreferences[1]))
-	GUICtrlCreateGroup($g_aLangPreferences[4], 25, 50, 400, 120)
+	GUICtrlCreateGroup($g_aLangPreferences[5], 25, 50, 400, 120)
 	GUICtrlSetFont(-1, 10, 700, 2)
-	$g_hOChkBackupData = GUICtrlCreateCheckbox($g_aLangPreferences[8], 35, 100, 300, 20)
+	$g_hOChkBackupData = GUICtrlCreateCheckbox($g_aLangPreferences[10], 35, 100, 300, 20)
 	GUICtrlSetState($g_hOChkBackupData, $g_iBackupData)
-	$g_hOChkExportIP = GUICtrlCreateCheckbox($g_aLangPreferences[9], 35, 120, 300, 20)
+	$g_hOChkExportIP = GUICtrlCreateCheckbox($g_aLangPreferences[11], 35, 120, 300, 20)
 	GUICtrlSetState($g_hOChkExportIP, $g_iBackupIPData)
 	GUICtrlCreateGroup("", -99, -99, 1, 1) ;close group
 	GUICtrlCreateTabItem("") ; end tabitem definition
@@ -2652,17 +2782,17 @@ Func _ShowPreferencesDlg()
 	GUICtrlCreateTabItem(StringFormat(" %s ", $g_aLangPreferences[2]))
 	GUICtrlCreateGroup($g_aLangPreferences[6], 25, 50, 400, 160)
 	GUICtrlSetFont(-1, 10, 700, 2)
-	$g_hOChkLogEnabled = GUICtrlCreateCheckbox($g_aLangPreferences[10], 35, 90, 200, 20)
+	$g_hOChkLogEnabled = GUICtrlCreateCheckbox($g_aLangPreferences[12], 35, 90, 200, 20)
 	GUICtrlSetState($g_hOChkLogEnabled, $g_iLoggingEnabled)
-	GUICtrlCreateLabel($g_aLangPreferences[11], 35, 120, 180, 20)
+	GUICtrlCreateLabel($g_aLangPreferences[13], 35, 120, 180, 20)
 	$g_hOInLogSize = GUICtrlCreateInput(Round($g_iLoggingStorage / 1024, 2), 215, 118, 100, 20)
 	GUICtrlSetStyle($g_hOInLogSize, BitOr($ES_RIGHT, $ES_NUMBER))
 	GUICtrlSetFont(-1, 9, 400, 0, "Verdana")
 	GUICtrlCreateLabel("KB", 325, 120, 50, 20)
 	$g_hOInLogSizeTemp = Int(GUICtrlRead($g_hOInLogSize))
-	$g_hOLblLogSize = GUICtrlCreateLabel(StringFormat($g_aLangPreferences[12], __GetLoggingSize()), 35, 160, 200, 20)
+	$g_hOLblLogSize = GUICtrlCreateLabel(StringFormat($g_aLangPreferences[14], __GetLoggingSize()), 35, 160, 200, 20)
 	GUICtrlSetColor($g_hOLblLogSize, 0x555555)
-	$g_hOBtnLogClear = GUICtrlCreateButton($g_aLangPreferences[13], 255, 155, 150, 30)
+	$g_hOBtnLogClear = GUICtrlCreateButton($g_aLangPreferences[15], 255, 155, 150, 30)
 	GUICtrlCreateGroup("", -99, -99, 1, 1) ;close group
 
 	GUICtrlSetOnEvent($g_hOChkLogEnabled, "__CheckPreferenceChange")
@@ -2672,7 +2802,43 @@ Func _ShowPreferencesDlg()
 	GUICtrlCreateTabItem("") ; end tabitem definition
 
 	GUICtrlCreateTabItem(StringFormat(" %s ", $g_aLangPreferences[3]))
-	GUICtrlCreateGroup($g_aLangPreferences[7], 25, 50, 400, 350)
+	GUICtrlCreateGroup($g_aLangPreferences[7], 25, 50, 400, 130)
+	GUICtrlSetFont(-1, 10, 700, 2)
+	GUICtrlCreateLabel($g_aLangPreferences[16], 35, 80, 300, 20)
+	GUICTrlSetColor(-1, 0x555555)
+	$g_hOComboPower = GUICtrlCreateCombo("", 35, 105, 200, 30)
+	GUICtrlSetData($g_hOComboPower, "Low|Below Normal|Normal|Above Normal|High|Realtime", "Normal")
+	GUICtrlSetFont($g_hOComboPower, 10, 400)
+	If @Compiled Then
+		$g_hOIconPower = GUICtrlCreateIcon(@ScriptFullPath, $g_iPowerIconsStart, 350, 80, 48, 48)
+	Else
+		$g_hOIconPower = GUICtrlCreateIcon($g_sThemesDir & "\Icons\Power\Power-0.ico", 0, 350, 80, 48, 48)
+	EndIf
+	$g_hOChkSaveRealtime = GUICtrlCreateCheckbox($g_aLangPreferences[17], 35, 145, 360, 20)
+	GUICtrlSetState($g_hOChkSaveRealtime, $g_iSaveRealtime)
+	GUICtrlCreateGroup("", -99, -99, 1, 1) ;close group
+
+	_SetProcessInfo()
+	GUICtrlSetOnEvent($g_hOComboPower, "_SetProcessPriority")
+	GUICtrlSetOnEvent($g_hOChkSaveRealtime, "__CheckPreferenceChange")
+
+	GUICtrlCreateGroup($g_aLangPreferences[8], 25, 200, 400, 70)
+	GUICtrlSetFont(-1, 10, 700, 2)
+	$g_hOChkReduceMemory = GUICtrlCreateCheckbox($g_aLangPreferences[18], 35, 235, 360, 20)
+	GUICtrlSetState($g_hOChkReduceMemory, $g_iReduceMemory)
+	GUICtrlCreateGroup("", -99, -99, 1, 1) ;close group
+
+	If Not @Compiled Then
+		GUICtrlSetState($g_hOComboPower, $GUI_DISABLE)
+		GUICtrlSetState($g_hOChkSaveRealtime, $GUI_DISABLE)
+		GUICtrlSetState($g_hOChkReduceMemory, $GUI_DISABLE)
+	EndIf
+
+	GUICtrlSetOnEvent($g_hOChkReduceMemory, "__CheckPreferenceChange")
+	GUICtrlCreateTabItem("") ; end tabitem definition
+
+	GUICtrlCreateTabItem(StringFormat(" %s ", $g_aLangPreferences[4]))
+	GUICtrlCreateGroup($g_aLangPreferences[9], 25, 50, 400, 350)
 	GUICtrlSetFont(-1, 10, 700, 2)
 
 	Local $aSelLangInfo = __ISO639CodeToIndex($g_sSelectedLanguage)
@@ -2686,8 +2852,8 @@ Func _ShowPreferencesDlg()
 			$WS_EX_CLIENTEDGE, $LVS_EX_FLATSB, $LVS_EX_INFOTIP))
 
 	$g_hOImgLanguage = _GUIImageList_Create(16, 16, 5, 3)
-	For $l = 0 To 31
-		_GUIImageList_AddIcon($g_hOImgLanguage, @ScriptFullPath, 0 - $g_iLangIconStart - $l)
+	For $l = 0 To $CNT_LANGICONS - 1
+		_GUIImageList_AddIcon($g_hOImgLanguage, $g_aLanguageIcons[$l], 0 - $g_iLangIconStart - $l)
 	Next
 	_GUICtrlListView_SetImageList($g_hOListLanguage, $g_hOImgLanguage, 1)
 
@@ -2724,22 +2890,22 @@ Func _ShowPreferencesDlg()
 	Local $iSelLangItem = __FindLanguageItem(3300 + $aSelLangInfo[1])
 	_GUICtrlListView_SetItemSelected($g_hOListLanguage, $iSelLangItem, True, True)
 	_GUICtrlListView_EnsureVisible($g_hOListLanguage, $iSelLangItem)
-	GUICtrlCreateLabel(StringFormat($g_aLangPreferences[14], $g_aLangPreferences[15]), 40, 350, 365, 35)
+	GUICtrlCreateLabel(StringFormat($g_aLangPreferences[19], $g_aLangPreferences[20]), 40, 350, 365, 35)
 	GUICtrlSetColor(-1, 0x555555)
 	GUICtrlSetFont(-1, 9)
 	GUICtrlCreateGroup("", -99, -99, 1, 1) ;close group
 	GUICtrlCreateTabItem("") ; end tabitem definition
 
-	$g_hOLblPrefsUpdated = GUICtrlCreateLabel($g_aLangPreferences[17], 25, 455, 200, 20)
+	$g_hOLblPrefsUpdated = GUICtrlCreateLabel($g_aLangPreferences[22], 25, 455, 200, 20)
 	GUICtrlSetColor($g_hOLblPrefsUpdated, 0x008000)
 	GUICtrlSetState($g_hOLblPrefsUpdated, $GUI_HIDE)
-	$g_hOBtnSave = GUICtrlCreateButton($g_aLangPreferences[15], 210, 450, 100, 30)
+	$g_hOBtnSave = GUICtrlCreateButton($g_aLangPreferences[20], 210, 450, 100, 30)
 	GUICtrlSetFont($g_hOBtnSave, 10)
 	GUICtrlSetState($g_hOBtnSave, $GUI_FOCUS)
 	GUICtrlSetState($g_hOBtnSave, $GUI_DISABLE)
 	GUICtrlSetOnEvent($g_hOBtnSave, "__SavePreferences")
 
-	$g_hOBtnCancel = GUICtrlCreateButton($g_aLangPreferences[16], 320, 450, 100, 30)
+	$g_hOBtnCancel = GUICtrlCreateButton($g_aLangPreferences[21], 320, 450, 100, 30)
 	GUICtrlSetFont($g_hOBtnCancel, 10)
 	GUICtrlSetOnEvent($g_hOBtnCancel, "__CloseOptionsDlg")
 
@@ -2758,8 +2924,8 @@ Func __RemoveLoggingFile()
 		_Logging_Initialize()
 	EndIf
 
-	GUICtrlSetData($g_hOLblLogSize, StringFormat($g_aLangPreferences[12], __GetLoggingSize()))
-	GUICtrlSetData($g_hOLblPrefsUpdated, $g_aLangPreferences[18])
+	GUICtrlSetData($g_hOLblLogSize, StringFormat($g_aLangPreferences[14], __GetLoggingSize()))
+	GUICtrlSetData($g_hOLblPrefsUpdated, $g_aLangPreferences[23])
 	GUICtrlSetState($g_hOLblPrefsUpdated, $GUI_SHOW)
 	GUICtrlSetState($g_hOBtnLogClear, $GUI_ENABLE)
 
@@ -2777,11 +2943,74 @@ Func __GetLoggingSize()
 EndFunc
 
 
+Func _SetProcessPriority()
+
+	Switch GuiCtrlRead($g_hOComboPower)
+		Case "Low"
+			$g_iProcessPriority = 0
+		Case "Below Normal"
+			$g_iProcessPriority = 1
+		Case "Normal"
+			$g_iProcessPriority = 2
+		Case "Above Normal"
+			$g_iProcessPriority = 3
+		Case "High"
+			$g_iProcessPriority = 4
+		Case "Realtime"
+			$g_iProcessPriority = 5
+	EndSwitch
+
+	ProcessSetPriority(@ScriptName, $g_iProcessPriority)
+	_SetProcessInfo()
+
+EndFunc
+
+
+Func _SetProcessInfo($ProcessName = @ScriptName)
+
+	Local $iPID = ProcessExists($ProcessName) ;~ Will return the PID or 0 if the process isn't found.
+	Local $iProcessPriority = _ProcessGetPriority($iPID)
+	Local $iTempPriority = Int(IniRead($g_sPathIni, $g_sProgShortName, "ProcessPriority", 2))
+
+	For $p = 0 To 5
+		If $p = $iProcessPriority Then
+			GUICtrlSetImage($g_hOIconPower, @ScriptFullPath, $g_iPowerIconsStart + $p)
+		EndIf
+	Next
+
+	Switch $iProcessPriority
+		Case 0
+			GuiCtrlSetData($g_hOComboPower, "Low")
+		Case 1
+			GuiCtrlSetData($g_hOComboPower, "Below Normal")
+		Case 2
+			GuiCtrlSetData($g_hOComboPower, "Normal")
+		Case 3
+			GuiCtrlSetData($g_hOComboPower, "Above Normal")
+		Case 4
+			GuiCtrlSetData($g_hOComboPower, "High")
+		Case 5
+			GuiCtrlSetData($g_hOComboPower, "Realtime")
+		Case Else
+			GuiCtrlSetData($g_hOComboPower, "Error")
+	EndSwitch
+
+	If $g_iProcessPriority = $iTempPriority Then
+		GUICtrlSetState($g_hOBtnSave, $GUI_DISABLE)
+	Else
+		GUICtrlSetState($g_hOBtnSave, $GUI_ENABLE)
+	EndIf
+
+EndFunc
+
+
 Func __CheckPreferenceChange()
 
 	If __CheckBoxChanged("LoggingEnabled", $g_hOChkLogEnabled) = True Or _
 			__CheckBoxChanged("BackupData", $g_hOChkBackupData) = True Or _
-			__CheckBoxChanged("BackupIPData", $g_hOChkExportIP) = True Then
+			__CheckBoxChanged("BackupIPData", $g_hOChkExportIP) = True Or _
+			__CheckBoxChanged("SaveRealtime", $g_hOChkSaveRealtime) = True Or _
+			__CheckBoxChanged("ReduceMemory", $g_hOChkReduceMemory) = True Then
 		GUICtrlSetState($g_hOBtnSave, $GUI_ENABLE)
 	Else
 		GUICtrlSetState($g_hOBtnSave, $GUI_DISABLE)
@@ -2839,11 +3068,11 @@ Func __SavePreferences()
 	Local $iLangChanged = False
 
 	If $g_tSelectedLanguage <> $g_sSelectedLanguage Then
-		Local $iMsgBoxResult = MsgBox($MB_OKCANCEL + $MB_ICONINFORMATION, $g_aLangPreferences[19], $g_aLangPreferences[20], 0, $g_hOptionsGui)
+		Local $iMsgBoxResult = MsgBox($MB_OKCANCEL + $MB_ICONINFORMATION, $g_aLangPreferences[24], $g_aLangPreferences[25], 0, $g_hOptionsGui)
 		Switch $iMsgBoxResult
 			Case 1
 				IniWrite($g_sPathIni, $g_sProgShortName, "Language", $g_tSelectedLanguage)
-				GUICtrlSetData($g_hOLblPrefsUpdated, $g_aLangPreferences[19])
+				GUICtrlSetData($g_hOLblPrefsUpdated, $g_aLangPreferences[22])
 				GUICtrlSetState($g_hOLblPrefsUpdated, $GUI_SHOW)
 				GUICtrlSetState($g_hOBtnSave, $GUI_DISABLE)
 				$iLangChanged = True
@@ -2865,21 +3094,40 @@ Func __SavePreferences()
 		$g_iBackupIPData = 0
 	EndIf
 
+	If GUICtrlRead($g_hOChkSaveRealtime) = $GUI_CHECKED Then
+		$g_iSaveRealtime = 1
+	ElseIf GUICtrlRead($g_hOChkSaveRealtime) = $GUI_UNCHECKED Then
+		$g_iSaveRealtime = 0
+	EndIf
+
+	If GUICtrlRead($g_hOChkReduceMemory) = $GUI_CHECKED Then
+		$g_iReduceMemory = 1
+	ElseIf GUICtrlRead($g_hOChkReduceMemory) = $GUI_UNCHECKED Then
+		$g_iReduceMemory = 0
+	EndIf
+
 	If GUICtrlRead($g_hOChkLogEnabled) = $GUI_CHECKED Then
 		$g_iLoggingEnabled = 1
 	ElseIf GUICtrlRead($g_hOChkLogEnabled) = $GUI_UNCHECKED Then
 		$g_iLoggingEnabled = 0
 	EndIf
 
-	$g_iLoggingStorage = Int(GUICtrlRead($g_hOInLogSize)) * 1024
+	If $g_iSaveRealtime = 0 And $g_iProcessPriority = 5 Then
+		IniWrite($g_sPathIni, $g_sProgShortName, "ProcessPriority", 4)
+	Else
+		IniWrite($g_sPathIni, $g_sProgShortName, "ProcessPriority", $g_iProcessPriority)
+	EndIf
 
+	$g_iLoggingStorage = Int(GUICtrlRead($g_hOInLogSize)) * 1024
+	IniWrite($g_sPathIni, $g_sProgShortName, "SaveRealtime", $g_iSaveRealtime)
+	IniWrite($g_sPathIni, $g_sProgShortName, "ReduceMemory", $g_iReduceMemory)
 	IniWrite($g_sPathIni, $g_sProgShortName, "BackupData", $g_iBackupData)
 	IniWrite($g_sPathIni, $g_sProgShortName, "BackupIPData", $g_iBackupIPData)
 	IniWrite($g_sPathIni, $g_sProgShortName, "LoggingEnabled", $g_iLoggingEnabled)
 	IniWrite($g_sPathIni, $g_sProgShortName, "LoggingStorageSize", $g_iLoggingStorage)
 
 	If $iLangChanged = True Then
-		$iMsgBoxResult = MsgBox($MB_OKCANCEL + $MB_ICONINFORMATION, $g_aLangPreferences[21], $g_aLangPreferences[22], 0, $g_hOptionsGui)
+		$iMsgBoxResult = MsgBox($MB_OKCANCEL + $MB_ICONINFORMATION, $g_aLangPreferences[26], $g_aLangPreferences[27], 0, $g_hOptionsGui)
 		Switch $iMsgBoxResult
 			Case 1
 				_ShutdownProgram()
@@ -2888,7 +3136,7 @@ Func __SavePreferences()
 				$iLangChanged = False
 		EndSwitch
 	Else
-		GUICtrlSetData($g_hOLblPrefsUpdated, $g_aLangPreferences[17])
+		GUICtrlSetData($g_hOLblPrefsUpdated, $g_aLangPreferences[22])
 		GUICtrlSetState($g_hOLblPrefsUpdated, $GUI_SHOW)
 		GUICtrlSetState($g_hOBtnSave, $GUI_DISABLE)
 	EndIf
@@ -2998,33 +3246,39 @@ Func __ISO639CodeToIndex($i639 = "en")
 		Case "pt"
 			$aLangInfo[0] = "Portuguese"
 			$aLangInfo[1] = 22
+		Case "pt-BR"
+			$aLangInfo[0] = "Portuguese (Brazil)"
+			$aLangInfo[1] = 23
 		Case "ro"
 			$aLangInfo[0] = "Romanian"
-			$aLangInfo[1] = 23
+			$aLangInfo[1] = 24
 		Case "ru"
 			$aLangInfo[0] = "Russian"
-			$aLangInfo[1] = 24
-		Case "sk"
-			$aLangInfo[0] = "Slovak"
 			$aLangInfo[1] = 25
 		Case "sl"
 			$aLangInfo[0] = "Slovenian"
 			$aLangInfo[1] = 26
+		Case "sk"
+			$aLangInfo[0] = "Slovak"
+			$aLangInfo[1] = 27
 		Case "sv"
 			$aLangInfo[0] = "Swedish"
-			$aLangInfo[1] = 27
+			$aLangInfo[1] = 28
 		Case "th"
 			$aLangInfo[0] = "Thai"
-			$aLangInfo[1] = 28
+			$aLangInfo[1] = 29
 		Case "tr"
 			$aLangInfo[0] = "Turkish"
-			$aLangInfo[1] = 29
+			$aLangInfo[1] = 30
 		Case "vi"
 			$aLangInfo[0] = "Vietnamese"
-			$aLangInfo[1] = 30
-		Case "zh-CN"
-			$aLangInfo[0] = "Chinese"
 			$aLangInfo[1] = 31
+		Case "zh-CN"
+			$aLangInfo[0] = "Simplified Chinese"
+			$aLangInfo[1] = 32
+		Case "zh-TW"
+			$aLangInfo[0] = "Traditional Chinese"
+			$aLangInfo[1] = 33
 	EndSwitch
 
 	Return $aLangInfo
@@ -3051,7 +3305,7 @@ Func __LanguageListEvents($hWnd, $iMsg, $wParam, $lParam)
 					Local $iSelLang = DllStructGetData($tInfo, "Index")
 					$g_tSelectedLanguage = _GUICtrlListView_GetItemText($g_hOListLanguage, $iSelLang, 1)
 					Local $aSelLangInfo = __ISO639CodeToIndex($g_tSelectedLanguage)
-					GUICtrlSetImage($g_hOIconLanguage, @ScriptFullPath, $g_iLangIconStart + $aSelLangInfo[1])
+					GUICtrlSetImage($g_hOIconLanguage, $g_aLanguageIcons[$aSelLangInfo[1]], $g_iLangIconStart + $aSelLangInfo[1])
 					GUICtrlSetData($g_hOLblLanguage, $aSelLangInfo[0])
 
 					If $g_tSelectedLanguage <> $g_sSelectedLanguage Then
