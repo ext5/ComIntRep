@@ -74,8 +74,8 @@ File=Readme.md
 CompanyURL=https://www.rizonesoft.com
 SupportURL=https://www.rizonesoft.com/support/
 ContactURL=https://www.rizonesoft.com/contact
-UpdateURL=https://www.rizonesoft.com/downloads/update/?update=comintrep
-ReleaseNotesURL=https://www.rizonesoft.com/downloads/release-notes/?release=comintrep
+UpdateURL=https://www.rizonesoft.com/downloads/complete-internet-repair/update/
+ReleaseNotesURL=https://www.rizonesoft.com/downloads/complete-internet-repair/release-notes/
 
 [Environment]
 ScriptPath=D:\SDK\Concrete\ComIntRep\ComIntRep.au3
@@ -86,10 +86,10 @@ ShortName=ComIntRep
 Description=Complete Internet Repair
 Type=N
 Icon=D:\SDK\Concrete\ComIntRep\Themes\Icons\ComIntRep.ico
-Version=5.2.3.3988
+Version=5.2.3.4000
 VersionMajor=5
 VersionMaintenance=3
-VersionBuild=3988
+VersionBuild=4000
 UseBeta=P
 UseX64=Y
 CompileBoth=Y
@@ -97,11 +97,11 @@ OutFile=ComIntRep.exe
 OutFileX64=ComIntRep_X64.exe
 OutFilePath=D:\SDK\Concrete\ComIntRep\ComIntRep.exe
 OutFileX64Path=D:\SDK\Concrete\ComIntRep\ComIntRep_X64.exe
-InstallScriptPath=D:\SDK\Concrete\ComIntRep\Distribution\3988\ComIntRep_3988_Setup.iss
-InstallOutputPath=D:\SDK\Concrete\ComIntRep\Distribution\3988\ComIntRep_3988_Setup.exe
-InstallSize=6145505
-DistributionPath=D:\SDK\Concrete\ComIntRep\Distribution\3988
-DistributionName=ComIntRep_3988
-FullDistributionPath=D:\SDK\Concrete\ComIntRep\Distribution\3988\ComIntRep_3988
-DistroSourceName=ComIntRep_3988_Source
-DistroSourceFullPath=D:\SDK\Concrete\ComIntRep\Distribution\3988\ComIntRep_3988_Source
+InstallScriptPath=D:\SDK\Concrete\ComIntRep\Distribution\4000\ComIntRep_4000_Setup.iss
+InstallOutputPath=D:\SDK\Concrete\ComIntRep\Distribution\4000\ComIntRep_4000_Setup.exe
+InstallSize=6144380
+DistributionPath=D:\SDK\Concrete\ComIntRep\Distribution\4000
+DistributionName=ComIntRep_4000
+FullDistributionPath=D:\SDK\Concrete\ComIntRep\Distribution\4000\ComIntRep_4000
+DistroSourceName=ComIntRep_4000_Source
+DistroSourceFullPath=D:\SDK\Concrete\ComIntRep\Distribution\4000\ComIntRep_4000_Source

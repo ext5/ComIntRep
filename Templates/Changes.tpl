@@ -6,6 +6,25 @@
 Version %{VERSION} (%{MONTH} %{DAY}, %{YEAR})
 --------------------------------------------------
 
+Updated Simplified Chinese translation.
+Updated Russian translation.
+
+--------------------------------------------------
+Version 5.2.3.3999 (October 11, 2018)
+--------------------------------------------------
+
+Updated the Italian translation.
+
+--------------------------------------------------
+Version 5.2.3.3990 (October 09, 2018)
+--------------------------------------------------
+
+Updated the Simplified Chinese Language file.
+
+--------------------------------------------------
+Version 5.2.3.3988 (October 09, 2018)
+--------------------------------------------------
+
 - New Make Network Computers Visible function.
 - Updated Afrikaans Translation.
 - Fixed wrong Korean flag.

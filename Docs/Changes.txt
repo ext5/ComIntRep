@@ -3,7 +3,26 @@ RIZONESOFT COMPLETE INTERNET REPAIR CHANGES
 ==================================================
 
 --------------------------------------------------
-Version 5.2.3.3988 (October 06, 2018)
+Version 5.2.3.4000 (October 16, 2018)
+--------------------------------------------------
+
+Updated Simplified Chinese translation.
+Updated Russian translation.
+
+--------------------------------------------------
+Version 5.2.3.3999 (October 11, 2018)
+--------------------------------------------------
+
+Updated the Italian translation.
+
+--------------------------------------------------
+Version 5.2.3.3990 (October 09, 2018)
+--------------------------------------------------
+
+Updated the Simplified Chinese Language file.
+
+--------------------------------------------------
+Version 5.2.3.3988 (October 09, 2018)
 --------------------------------------------------
 
 - New Make Network Computers Visible function.
@@ -14,7 +33,7 @@ Version 5.2.3.3988 (October 06, 2018)
 Language File Changes:
 --------------------------------------------------
 - Checkbox_Repair_14 = Make Network Computers Visible in File Explorer
-- Info_15 = By default, computers in your local network should be visible when browsing for a network device with File Explorer. With Windows 10 version 1803 some computers are only accessible via their names or IP addresses.
+- Info_15 = By default, computers in your local network should be visible when browsing for a network device with File Explorer. With Windows 10 build 1803 some computers are only accessible via their names or IP addresses.
 - Make_Computers_Visible_01 = Making Network Computers Visible.
 - Make_Computers_Visible_02 = Configuring the Function Discovery Resource Publication Service.
 - Make_Computers_Visible_03 = Network Computers should now be visible in File Explorer.
